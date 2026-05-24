@@ -434,15 +434,26 @@
                 </label>
               </div>
 
-              <label class="block">
-                <span class="text-sm font-bold text-ink/70">申请准备度</span>
-                <select id="readiness" class="mt-2 w-full rounded-lg border border-ink/12 bg-white px-3 py-3 text-sm outline-none focus:border-mint">
-                  <option value="early">刚开始了解，目标不清</option>
-                  <option value="planning" selected>已确定方向，材料在准备</option>
-                  <option value="ready">语言和文书基本就绪</option>
-                  <option value="urgent">临近DDL，时间紧张</option>
-                </select>
-              </label>
+              <div class="grid gap-4 sm:grid-cols-2">
+                <label class="block">
+                  <span class="text-sm font-bold text-ink/70">申请准备度</span>
+                  <select id="readiness" class="mt-2 w-full rounded-lg border border-ink/12 bg-white px-3 py-3 text-sm outline-none focus:border-mint">
+                    <option value="early">刚开始了解，目标不清</option>
+                    <option value="planning" selected>已确定方向，材料在准备</option>
+                    <option value="ready">语言和文书基本就绪</option>
+                    <option value="urgent">临近DDL，时间紧张</option>
+                  </select>
+                </label>
+                <label class="block">
+                  <span class="text-sm font-bold text-ink/70">预算/路径偏好</span>
+                  <select id="budget" class="mt-2 w-full rounded-lg border border-ink/12 bg-white px-3 py-3 text-sm outline-none focus:border-mint">
+                    <option value="balanced" selected>均衡：香港本地为主</option>
+                    <option value="lowcost">预算有限：优先性价比</option>
+                    <option value="brand">优先学校品牌</option>
+                    <option value="safe">低风险：先保证有学上</option>
+                  </select>
+                </label>
+              </div>
 
               <label class="block">
                 <span class="text-sm font-bold text-ink/70">个人亮点或担忧</span>
@@ -576,6 +587,35 @@
               </div>
 
               <div class="rounded-xl bg-white/8 p-5">
+                <div class="mb-4 flex items-center justify-between gap-4">
+                  <div>
+                    <h3 class="text-lg font-black">如果我再努力一点</h3>
+                    <p class="mt-1 text-xs leading-5 text-white/45">模拟变量变化后，申请力会如何变化。这个模块不是承诺结果，而是帮用户看到可操作路径。</p>
+                  </div>
+                  <span class="rounded-lg bg-white/10 px-3 py-1 text-xs font-black text-lemon">人生模拟器</span>
+                </div>
+                <div id="scenarioList" class="grid gap-3 sm:grid-cols-3"></div>
+              </div>
+
+              <div class="grid gap-4 lg:grid-cols-2">
+                <div class="rounded-xl bg-white/8 p-5">
+                  <h3 class="text-lg font-black">相似案例回测</h3>
+                  <p class="mt-2 text-xs leading-5 text-white/45">前端演示使用脱敏样例，真实产品阶段会接入用户授权案例与公开数据。</p>
+                  <div id="caseList" class="mt-4 space-y-3"></div>
+                </div>
+                <div class="rounded-xl bg-white/8 p-5">
+                  <h3 class="text-lg font-black">匿名分享卡</h3>
+                  <div class="mt-4 rounded-xl bg-white p-4 text-ink">
+                    <p class="text-xs font-black uppercase tracking-[0.18em] text-mint">Nexus AI Profile</p>
+                    <p id="shareTitle" class="mt-2 text-2xl font-black"></p>
+                    <p id="shareLine" class="mt-3 text-sm leading-6 text-ink/65"></p>
+                    <div id="shareTags" class="mt-4 flex flex-wrap gap-2"></div>
+                  </div>
+                  <button id="copyShareBtn" type="button" class="mt-3 w-full rounded-lg bg-white/10 px-4 py-3 text-sm font-black text-white transition hover:bg-white/15">复制匿名画像文案</button>
+                </div>
+              </div>
+
+              <div class="rounded-xl bg-white/8 p-5">
                 <h3 class="text-lg font-black">AI 申请画像解析</h3>
                 <div id="aiReply" class="mt-3 space-y-3 text-sm leading-6 text-white/75"></div>
               </div>
@@ -605,7 +645,7 @@
           <p class="text-sm font-black uppercase tracking-[0.2em] text-mint">Core Product</p>
           <h2 class="mt-3 text-3xl font-black text-ink sm:text-4xl">四个模块，把申请从“被动听话”变成“主动理解”。</h2>
         </div>
-        <p class="max-w-md text-sm leading-6 text-ink/62">Nexus AI 初期聚焦香港，先做深 3-5 个热门专业，再逐步扩展到更多港校项目。</p>
+        <p class="max-w-md text-sm leading-6 text-ink/62">Nexus AI 初期聚焦香港升学体系，不只覆盖港八大，也会纳入香港恒生、香港都会、树仁、澳门及港校内地分校等更适合不同绩点和预算的路径。</p>
       </div>
 
       <div class="grid gap-4 lg:grid-cols-2">
@@ -738,6 +778,12 @@
     const ddlText = document.getElementById('ddlText');
     const mapList = document.getElementById('mapList');
     const moneyAdvice = document.getElementById('moneyAdvice');
+    const scenarioList = document.getElementById('scenarioList');
+    const caseList = document.getElementById('caseList');
+    const shareTitle = document.getElementById('shareTitle');
+    const shareLine = document.getElementById('shareLine');
+    const shareTags = document.getElementById('shareTags');
+    const copyShareBtn = document.getElementById('copyShareBtn');
     const aiReply = document.getElementById('aiReply');
     const actionList = document.getElementById('actionList');
 
@@ -849,6 +895,7 @@
         internship: document.getElementById('internship').value,
         research: document.getElementById('research').value,
         readiness: document.getElementById('readiness').value,
+        budget: document.getElementById('budget').value,
         notes: document.getElementById('notes').value
       };
     }
@@ -872,17 +919,34 @@
       return Math.round(clamp(score, 35, 98));
     }
 
-    function schoolBands(score, direction) {
-      const top = direction === 'business'
-        ? ['香港大学 HKU', '香港科技大学 HKUST', '香港中文大学 CUHK']
-        : ['香港大学 HKU', '香港中文大学 CUHK', '香港科技大学 HKUST'];
-      const mid = ['香港城市大学 CityU', '香港理工大学 PolyU', '香港浸会大学 HKBU'];
-      const broad = ['岭南大学 Lingnan', '香港教育大学 EdUHK', '都会大学 HKMU'];
+    function schoolBands(score, direction, budget = 'balanced') {
+      const eliteBusiness = ['香港大学 HKU', '香港科技大学 HKUST', '香港中文大学 CUHK'];
+      const eliteGeneral = ['香港大学 HKU', '香港中文大学 CUHK', '香港科技大学 HKUST'];
+      const top = direction === 'business' ? eliteBusiness : eliteGeneral;
+      const strong = ['香港城市大学 CityU', '香港理工大学 PolyU'];
+      const mid = ['香港浸会大学 HKBU', '岭南大学 Lingnan', '香港教育大学 EdUHK'];
+      const accessible = ['香港都会大学 HKMU', '香港恒生大学 HSUHK', '香港树仁大学 HKSYU'];
+      const mainlandCampuses = ['香港中文大学（深圳）CUHK-Shenzhen', '北师港浸大 UIC', '香港科技大学（广州）HKUST(GZ)'];
+      const practical = ['澳门大学 UM', '澳门科技大学 MUST', '同层级中外合办项目'];
 
-      if (score >= 88) return { reach: top.slice(0, 2), match: [top[2], mid[0]], safe: mid.slice(1, 3) };
-      if (score >= 76) return { reach: top, match: mid.slice(0, 2), safe: [mid[2], broad[0]] };
-      if (score >= 64) return { reach: top.slice(1, 3), match: mid, safe: broad.slice(0, 2) };
-      return { reach: [mid[0], mid[1]], match: [mid[2], broad[0], broad[1]], safe: [broad[2], '同层级项目组合'] };
+      if (budget === 'lowcost') {
+        if (score >= 84) return { reach: [top[1], top[2]], match: ['香港中文大学（深圳）CUHK-Shenzhen', strong[0]], safe: [strong[1], mid[0], '北师港浸大 UIC'] };
+        if (score >= 72) return { reach: [strong[0], strong[1]], match: ['香港中文大学（深圳）CUHK-Shenzhen', mid[0], '北师港浸大 UIC'], safe: [mid[1], accessible[0], accessible[1]] };
+        if (score >= 60) return { reach: [mid[0], mid[1]], match: [accessible[0], accessible[1], '北师港浸大 UIC'], safe: [accessible[2], practical[0], practical[1]] };
+        return { reach: [accessible[0], accessible[1]], match: [accessible[2], practical[1], '北师港浸大 UIC'], safe: ['澳门城市大学 CityU Macau', '同层级项目组合', '先补语言/均分再申'] };
+      }
+
+      if (budget === 'safe') {
+        if (score >= 84) return { reach: top.slice(0, 2), match: [top[2], strong[0]], safe: [strong[1], mid[0], mainlandCampuses[0]] };
+        if (score >= 72) return { reach: [top[2], strong[0]], match: [strong[1], mid[0], mid[1]], safe: [accessible[0], accessible[1], mainlandCampuses[0]] };
+        if (score >= 60) return { reach: [strong[1], mid[0]], match: [mid[1], accessible[0], accessible[1]], safe: [accessible[2], practical[0], practical[1]] };
+        return { reach: [mid[1], accessible[0]], match: [accessible[1], accessible[2], practical[1]], safe: ['先补硬门槛', '同层级项目组合', '延后申请轮次'] };
+      }
+
+      if (score >= 88) return { reach: top.slice(0, 2), match: [top[2], strong[0]], safe: [strong[1], mid[0], mainlandCampuses[0]] };
+      if (score >= 76) return { reach: top, match: strong, safe: [mid[0], mid[1], mainlandCampuses[0]] };
+      if (score >= 64) return { reach: [top[2], strong[0]], match: [strong[1], mid[0], mid[1]], safe: [accessible[0], accessible[1], mainlandCampuses[0]] };
+      return { reach: [mid[0], mid[1]], match: [accessible[0], accessible[1], mainlandCampuses[0]], safe: [accessible[2], practical[0], practical[1]] };
     }
 
     function levelForScore(score) {
@@ -997,6 +1061,7 @@
       if (lang < 72) return '当前最值得投入的是语言成绩，不建议先购买高价文书套餐。因为语言是硬门槛变量，没过线时包装价值会被大幅削弱。';
       if (ready < 62) return '当前最值得投入的是时间线管理和材料审核，不建议盲目买全包。先把 DDL、推荐信、CV 和目标项目顺序排清楚。';
       if (gpa < 78) return '当前最值得投入的是选校分层和背景解释，不建议把钱全部花在“冲名校包装”上。硬指标需要更稳的目标组合兜底。';
+      if (data.budget === 'lowcost') return '你的预算偏谨慎，建议优先考虑香港本地性价比项目、港校内地分校和澳门项目组合。钱应该先花在硬门槛和材料终审上，而不是一上来买全包。';
       if (Number(data.internship) >= 2 && score >= 76) return '你可以先 DIY 完成大部分基础流程，真正值得花钱的是高级文书挖掘、面试模拟和最终材料复核。';
       return '建议先做一次低成本诊断，再决定是否需要真人顾问。基础信息整理、DDL提醒和初稿润色不应该成为高价套餐的主要收费理由。';
     }
@@ -1045,6 +1110,79 @@
       ];
     }
 
+    function buildScenarios(data, score) {
+      const lang = languageScore(data.langType, data.langScore);
+      const gpa = normalizeGpa(data.gpa, data.gpaScale);
+      const ready = readinessScore(data.readiness);
+      const scenarios = [];
+
+      const langBoost = data.langType === 'ielts' ? '雅思提升到 7.0' : data.langType === 'toefl' ? '托福提升到 100+' : '补出可提交语言成绩';
+      scenarios.push({
+        title: langBoost,
+        delta: lang < 80 ? '+6~10' : '+2~4',
+        text: lang < 80 ? '语言风险明显下降，部分“冲刺”项目会更接近匹配区间。' : '语言已基本可用，继续提升主要用于增强热门项目竞争力。'
+      });
+      scenarios.push({
+        title: Number(data.internship) < 2 ? '补一段强相关实习' : '把现有实习写成成果证据',
+        delta: Number(data.internship) < 2 ? '+5~8' : '+3~5',
+        text: '经历不只是数量，关键是能不能证明你和目标专业真的匹配。'
+      });
+      scenarios.push({
+        title: ready < 70 ? '本周完成 CV 和推荐信沟通' : '完成文书终审和面试题库',
+        delta: ready < 70 ? '+4~7' : '+2~3',
+        text: '申请节奏会直接影响提交质量，越临近 DDL 越需要减少低性价比动作。'
+      });
+      if (gpa < 78) {
+        scenarios.unshift({ title: '重做选校分层', delta: '风险 -12%', text: '低绩点不等于没学上，关键是减少盲冲，把香港恒生、都会、澳门或港校内地分校纳入托底。' });
+      }
+      return scenarios.slice(0, 3);
+    }
+
+    function buildCases(data, score) {
+      if (score >= 82) {
+        return [
+          { profile: '985 / GPA 3.6+ / 雅思7 / 两段相关实习', result: '常见路径：港中文、城大、理工进入重点匹配；港大/港科仍需文书与面试拉开差距。', key: '分水岭：经历是否能讲出专业动机。' },
+          { profile: '211财经类 / GPA 3.55 / 雅思7 / 券商实习', result: '脱敏样例：港中文商科录取，港大热门项目未录。', key: '关键：文书把实习成果量化，而不是堆公司名。' }
+        ];
+      }
+      if (score >= 68) {
+        return [
+          { profile: '211 / GPA 3.35-3.55 / 雅思6.5 / 1-2段实习', result: '常见路径：城大、理工、浸会、岭南更适合作为主申组合。', key: '分水岭：是否有清楚的项目匹配理由。' },
+          { profile: '双非强专业 / GPA 3.4 / 雅思6.5 / 项目经历较强', result: '脱敏样例：港都会、恒生、澳门方向更适合做稳妥托底。', key: '关键：不要只盯港前三，先保证申请组合完整。' }
+        ];
+      }
+      return [
+        { profile: '普通本科 / GPA偏低 / 语言临界', result: '常见路径：香港恒生、香港都会、树仁、澳门及中外合办更适合先做托底。', key: '分水岭：语言是否过线，以及是否避开超热门专业。' },
+        { profile: '预算有限 / 想要港校体系资源', result: '可考虑港中深、北师港浸大、港科广等港校内地分校或合作办学路径。', key: '关键：用成本和结果倒推，不为“名校焦虑”买单。' }
+      ];
+    }
+
+    function renderScenarios(items) {
+      scenarioList.innerHTML = items.map(item => `
+        <div class="rounded-lg bg-white/7 p-4">
+          <p class="text-sm font-black text-white">${item.title}</p>
+          <p class="mt-2 text-2xl font-black text-mint">${item.delta}</p>
+          <p class="mt-2 text-xs leading-5 text-white/55">${item.text}</p>
+        </div>
+      `).join('');
+    }
+
+    function renderCases(items) {
+      caseList.innerHTML = items.map(item => `
+        <div class="rounded-lg bg-white/7 p-4">
+          <p class="text-sm font-black text-white">${item.profile}</p>
+          <p class="mt-2 text-xs leading-5 text-white/65">${item.result}</p>
+          <p class="mt-2 text-xs font-bold leading-5 text-mint">${item.key}</p>
+        </div>
+      `).join('');
+    }
+
+    function renderShareCard(persona, tags, bands) {
+      shareTitle.textContent = persona.title;
+      shareLine.textContent = `我的港校申请画像：${persona.title}。适合策略：${bands.reach[0]} 冲刺，${bands.match[0]} 重点推进，${bands.safe[0]} 做风险托底。`;
+      shareTags.innerHTML = tags.map(tag => `<span class="rounded-full bg-ink/7 px-3 py-1 text-xs font-black text-ink/65">${tag}</span>`).join('');
+    }
+
     function renderBars(items) {
       powerBars.innerHTML = items.map(item => `
         <div>
@@ -1061,7 +1199,7 @@
     function renderResult(data) {
       const score = evaluateProfile(data);
       const level = levelForScore(score);
-      const bands = schoolBands(score, data.direction);
+      const bands = schoolBands(score, data.direction, data.budget);
       const persona = buildPersona(data, score);
       const replies = buildReply(data, score, bands, persona);
       const actions = buildActions(data, score);
@@ -1100,6 +1238,9 @@
       mapList.innerHTML = map.items.map(item => `<li class="rounded-lg bg-white/7 px-3 py-2">建议优先完成：${item}</li>`).join('');
 
       moneyAdvice.textContent = buildMoneyAdvice(data, score);
+      renderScenarios(buildScenarios(data, score));
+      renderCases(buildCases(data, score));
+      renderShareCard(persona, tags, bands);
       aiReply.innerHTML = replies.map(item => `<p>${item}</p>`).join('');
       actionList.innerHTML = actions.map(item => `<li class="rounded-lg bg-white/7 px-3 py-2">${item}</li>`).join('');
 
