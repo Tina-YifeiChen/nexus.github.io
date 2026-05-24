@@ -569,6 +569,74 @@ a{color:inherit}
   margin-top:16px;
 }
 
+
+/* Share image modal */
+.share-simple{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:22px;
+  flex-wrap:wrap;
+}
+.share-modal{
+  position:fixed;
+  inset:0;
+  z-index:120;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:22px;
+  background:rgba(8,22,20,.58);
+  backdrop-filter:blur(14px);
+}
+.share-modal.open{
+  display:flex;
+}
+.share-modal-panel{
+  width:min(520px,96vw);
+  max-height:92vh;
+  overflow:auto;
+  background:white;
+  border-radius:28px;
+  padding:18px;
+  box-shadow:0 30px 110px rgba(0,0,0,.28);
+  border:1px solid rgba(255,255,255,.22);
+}
+.share-modal-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-bottom:12px;
+}
+.share-modal-head strong{
+  font-size:18px;
+  font-weight:950;
+}
+.close-btn{
+  width:38px;
+  height:38px;
+  border:none;
+  border-radius:999px;
+  background:#eef8f5;
+  cursor:pointer;
+  font-size:20px;
+  font-weight:900;
+}
+.share-popup-canvas{
+  width:100%;
+  height:auto;
+  display:block;
+  border-radius:22px;
+  border:1px solid rgba(8,22,20,.08);
+  background:#f7fffd;
+}
+.share-modal-actions{
+  display:flex;
+  gap:10px;
+  margin-top:14px;
+}
+
 @media(max-width:1180px){
   .app-layout{grid-template-columns:1fr}
   .left-panel{position:relative;top:0}
@@ -936,33 +1004,33 @@ a{color:inherit}
         </div>
       </section>
 
+      
       <section id="share" class="card">
-        <div class="section-head">
+        <div class="share-simple">
           <div>
             <div class="pill">生成分享图</div>
-            <h2 class="section-title">生成我的申请画像分享图</h2>
+            <h2 class="section-title">一键生成我的申请画像图</h2>
             <p class="section-sub">
-              生成一张图片，包含申请画像、个人雷达图、关键结论和右下角二维码。二维码会指向当前网站地址，别人扫码即可进入页面。
+              点击后会弹出一张可保存的图片，里面包含申请画像、个人雷达图、关键结论和右下角二维码。二维码可以直接扫码进入网站。
             </p>
           </div>
-        </div>
-        <div class="share-layout">
-          <div>
-            <h3 style="font-size:22px;font-weight:950;margin:0 0 12px;">分享图内容</h3>
-            <p style="line-height:1.8;color:rgba(8,22,20,.62);">
-              分享图不会展示隐私细节，只展示申请状态、关键变量和建议路径。适合发给同学、朋友或团队做演示。
-            </p>
-            <div class="share-actions">
-              <button class="btn btn-primary" onclick="drawShareCard()">生成分享图</button>
-              <button class="btn btn-soft" onclick="downloadShareCard()">下载 PNG</button>
-            </div>
-            <p style="font-size:12px;color:rgba(8,22,20,.52);line-height:1.6;margin-top:12px;">
-              若二维码生成失败，请检查网络或 QRCode CDN 是否可用。
-            </p>
-          </div>
-          <canvas id="shareCanvas" class="share-preview" width="1080" height="1440"></canvas>
+          <button class="btn btn-primary" onclick="openShareModal()">生成我的申请画像图</button>
         </div>
       </section>
+
+      <div id="shareModal" class="share-modal" onclick="closeShareModal(event)">
+        <div class="share-modal-panel" onclick="event.stopPropagation()">
+          <div class="share-modal-head">
+            <strong>我的申请画像分享图</strong>
+            <button class="close-btn" onclick="closeShareModal()">×</button>
+          </div>
+          <canvas id="shareCanvas" class="share-popup-canvas" width="1080" height="1440"></canvas>
+          <div class="share-modal-actions">
+            <button class="btn btn-primary" onclick="downloadShareCard()">下载 PNG</button>
+            <button class="btn btn-soft" onclick="closeShareModal()">关闭</button>
+          </div>
+        </div>
+      </div>
 
       <section id="schools" class="card">
         <div class="section-head">
@@ -1057,6 +1125,17 @@ const schools = [
   ["澳门大学 UM","https://www.um.edu.mo/","预算替代"],
   ["澳门科技大学 MUST","https://www.must.edu.mo/","预算替代"]
 ];
+
+
+function openShareModal(){
+  const modal = document.getElementById("shareModal");
+  modal.classList.add("open");
+  drawShareCard();
+}
+function closeShareModal(event){
+  if(event && event.target && event.target.id !== "shareModal") return;
+  document.getElementById("shareModal").classList.remove("open");
+}
 
 function renderStages(active=1){
   const row = document.getElementById("stageRow");
