@@ -4,94 +4,284 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Nexus AI｜申请人生导航地图</title>
+<title>Nexus AI｜港校申请导航</title>
 <script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
 <style>
 :root{
   --ink:#081614;
-  --mint:#25d8ad;
-  --cyan:#52d7ff;
-  --soft:#f4fbfa;
-  --line:#d8efea;
+  --muted:#5b6865;
+  --line:#d9ede8;
+  --mint:#22d3a6;
+  --cyan:#58d7ff;
+  --blue:#5a7cff;
+  --lemon:#ffe7a8;
+  --coral:#ff8a7a;
+  --paper:#f7fffd;
 }
 *{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
   margin:0;
   font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   background:
-    radial-gradient(circle at 12% 8%, rgba(37,216,173,.15), transparent 28%),
-    radial-gradient(circle at 88% 20%, rgba(82,215,255,.16), transparent 26%),
-    linear-gradient(180deg,#f7fffd 0%,#effbf9 42%,#f9fcfc 100%);
+    radial-gradient(circle at 10% 7%, rgba(34,211,166,.16), transparent 26%),
+    radial-gradient(circle at 88% 18%, rgba(88,215,255,.16), transparent 28%),
+    linear-gradient(180deg,#f8fffd 0%,#effbf8 45%,#fbfefd 100%);
   color:var(--ink);
 }
+a{color:inherit}
 .topbar{
-  position:sticky;top:0;z-index:50;
-  background:rgba(255,255,255,.86);
-  backdrop-filter:blur(16px);
+  position:sticky;
+  top:0;
+  z-index:80;
+  background:rgba(255,255,255,.88);
+  backdrop-filter:blur(18px);
   border-bottom:1px solid rgba(8,22,20,.08);
 }
-.shell{max-width:1450px;margin:auto;padding:28px}
-.layout{
-  display:grid;
-  grid-template-columns:430px 1fr;
-  gap:28px;
-  align-items:start;
+.shell{
+  width:min(1460px,100%);
+  margin:auto;
+  padding:28px;
 }
-.left-panel{position:sticky;top:96px;align-self:start}
+.nav-shell{
+  width:min(1460px,100%);
+  margin:auto;
+  padding:14px 28px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+}
+.logo{
+  width:44px;height:44px;border-radius:14px;
+  display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--mint),var(--cyan));
+  font-weight:950;
+}
+.navlinks{
+  display:flex;
+  gap:24px;
+  font-size:14px;
+  font-weight:900;
+  color:rgba(8,22,20,.72);
+}
+.navlinks a{text-decoration:none}
+.nav-cta{
+  background:var(--ink);
+  color:white;
+  padding:12px 18px;
+  border-radius:14px;
+  text-decoration:none;
+  font-weight:950;
+  box-shadow:0 12px 32px rgba(8,22,20,.15);
+}
 .card{
-  background:rgba(255,255,255,.82);
+  position:relative;
+  background:rgba(255,255,255,.84);
   border:1px solid rgba(8,22,20,.08);
-  border-radius:24px;
+  border-radius:26px;
   padding:24px;
   box-shadow:0 18px 60px rgba(8,22,20,.06);
   backdrop-filter:blur(14px);
 }
-.input{
-  width:100%;padding:14px;border-radius:14px;border:1px solid rgba(8,22,20,.1);
-  margin-top:8px;background:white;outline:none;
-}
-.label{font-size:14px;font-weight:800;margin-top:16px;display:block;color:rgba(8,22,20,.74)}
-.button{
-  width:100%;margin-top:18px;border:none;background:var(--ink);color:white;
-  padding:16px;border-radius:16px;font-weight:900;cursor:pointer;
-  box-shadow:0 16px 42px rgba(8,22,20,.18);
-}
-.helper{
-  margin-top:18px;padding:18px;border-radius:18px;
-  background:linear-gradient(135deg,#e9fff8,#eefcff);
-  border:1px solid rgba(37,216,173,.18);
-}
-.right-panel{display:flex;flex-direction:column;gap:24px}
-.pill{display:inline-flex;align-items:center;gap:8px;padding:9px 13px;border-radius:999px;background:#ecfff8;color:#087b64;font-weight:900;font-size:13px}
-.school-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-.school{padding:18px;border-radius:18px;background:white;border:1px solid rgba(8,22,20,.07)}
-.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
-.meter{height:10px;border-radius:999px;background:#e8f0ef;overflow:hidden}
-.fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--mint),var(--cyan))}
-.big-score{font-size:54px;font-weight:950;letter-spacing:-.05em}
-
-/* Life Map */
-.life-map-card{
+.hero{
   overflow:hidden;
-  position:relative;
+  padding:40px;
 }
-.life-map-card:before{
+.hero:before,.map-card:before{
   content:"";
-  position:absolute;inset:0;
+  position:absolute;
+  inset:0;
   background-image:
     linear-gradient(rgba(8,22,20,.045) 1px, transparent 1px),
     linear-gradient(90deg, rgba(8,22,20,.045) 1px, transparent 1px);
-  background-size:28px 28px;
+  background-size:30px 30px;
   mask-image:linear-gradient(to bottom, black, transparent 92%);
   pointer-events:none;
 }
-.life-head{position:relative;display:flex;justify-content:space-between;gap:18px;align-items:flex-start;margin-bottom:22px}
-.life-title{font-size:30px;font-weight:950;letter-spacing:-.04em;margin:0}
-.life-sub{margin-top:8px;color:rgba(8,22,20,.62);line-height:1.7}
+.pill{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:9px 13px;
+  border-radius:999px;
+  background:#ecfff8;
+  color:#087b64;
+  font-weight:950;
+  font-size:13px;
+  border:1px solid rgba(34,211,166,.16);
+}
+.hero h1{
+  position:relative;
+  font-size:clamp(38px,6vw,76px);
+  line-height:.98;
+  margin:24px 0 18px;
+  letter-spacing:-.06em;
+  max-width:980px;
+}
+.hero p{
+  position:relative;
+  max-width:850px;
+  font-size:18px;
+  line-height:1.85;
+  color:rgba(8,22,20,.64);
+}
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:26px;
+}
+.btn{
+  border:none;
+  border-radius:16px;
+  padding:14px 18px;
+  font-weight:950;
+  cursor:pointer;
+  text-decoration:none;
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+}
+.btn-primary{
+  background:var(--ink);
+  color:white;
+  box-shadow:0 14px 38px rgba(8,22,20,.15);
+}
+.btn-soft{
+  background:white;
+  color:var(--ink);
+  border:1px solid rgba(8,22,20,.1);
+}
+.app-layout{
+  display:grid;
+  grid-template-columns:minmax(330px,420px) minmax(0,1fr);
+  gap:24px;
+  align-items:start;
+}
+.left-panel{
+  position:sticky;
+  top:94px;
+  align-self:start;
+}
+.input{
+  width:100%;
+  padding:13px 14px;
+  border-radius:14px;
+  border:1px solid rgba(8,22,20,.1);
+  margin-top:8px;
+  background:white;
+  outline:none;
+}
+.input:focus{border-color:rgba(34,211,166,.75);box-shadow:0 0 0 4px rgba(34,211,166,.12)}
+.label{
+  font-size:14px;
+  font-weight:850;
+  margin-top:15px;
+  display:block;
+  color:rgba(8,22,20,.74);
+}
+.helper{
+  margin-top:16px;
+  padding:16px;
+  border-radius:18px;
+  background:linear-gradient(135deg,#e9fff8,#eefcff);
+  border:1px solid rgba(34,211,166,.18);
+}
+.right-stack{
+  display:grid;
+  gap:20px;
+}
+.flex-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:14px;
+  flex-wrap:wrap;
+}
+.school-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:16px;
+}
+.school-card{
+  padding:18px;
+  border-radius:20px;
+  background:white;
+  border:1px solid rgba(8,22,20,.07);
+}
+.school-card h3{margin:0 0 10px;font-size:18px}
+.school-card div{line-height:1.7;color:rgba(8,22,20,.68)}
+.grid2{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:20px;
+}
+.meter{
+  height:10px;
+  border-radius:999px;
+  background:#e8f0ef;
+  overflow:hidden;
+}
+.fill{
+  height:100%;
+  border-radius:999px;
+  background:linear-gradient(90deg,var(--mint),var(--cyan));
+  transition:width .35s ease;
+}
+.big-score{
+  font-size:54px;
+  font-weight:950;
+  letter-spacing:-.05em;
+}
+.sim-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:14px;
+}
+.sim-btn{
+  border:none;
+  padding:11px 14px;
+  border-radius:999px;
+  background:#e7faf6;
+  cursor:pointer;
+  font-weight:850;
+  color:#087b64;
+  transition:.18s ease;
+}
+.sim-btn:hover{transform:translateY(-2px);background:#dff8f2}
+
+/* Life map */
+.map-card{
+  overflow:hidden;
+}
+.section-head{
+  position:relative;
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  align-items:flex-start;
+  margin-bottom:22px;
+}
+.section-title{
+  font-size:30px;
+  font-weight:950;
+  letter-spacing:-.04em;
+  margin:10px 0 6px;
+}
+.section-sub{
+  margin:0;
+  color:rgba(8,22,20,.62);
+  line-height:1.75;
+  max-width:780px;
+}
 .stage-board{
   position:relative;
   display:grid;
-  grid-template-columns:1.18fr .82fr;
+  grid-template-columns:minmax(0,1.2fr) minmax(300px,.8fr);
   gap:22px;
   align-items:stretch;
 }
@@ -99,39 +289,48 @@ body{
   position:relative;
   padding:24px 18px 18px;
   border-radius:24px;
-  background:rgba(255,255,255,.72);
+  background:rgba(255,255,255,.74);
   border:1px solid rgba(8,22,20,.08);
+  overflow-x:auto;
+  overflow-y:visible;
 }
 .route{
   position:absolute;
-  top:82px;left:52px;right:52px;height:8px;border-radius:999px;
+  top:82px;
+  left:72px;
+  right:72px;
+  height:8px;
+  border-radius:999px;
   background:linear-gradient(90deg,#d8eee8,#b7efe1,#a6eefd,#d8eee8);
-  box-shadow:inset 0 0 0 1px rgba(8,22,20,.04);
+  z-index:1;
 }
 .stage-row{
   position:relative;
   z-index:2;
   display:grid;
-  grid-template-columns:repeat(7,1fr);
-  gap:10px;
+  grid-template-columns:repeat(7,minmax(160px,1fr));
+  gap:14px;
+  min-width:1180px;
+  padding-bottom:8px;
 }
 .stage-node{
   cursor:pointer;
   border:1px solid rgba(8,22,20,.08);
-  background:rgba(255,255,255,.92);
-  border-radius:20px;
-  min-height:156px;
-  padding:14px 12px;
+  background:rgba(255,255,255,.96);
+  border-radius:22px;
+  min-height:180px;
+  padding:16px 14px;
   transition:.22s ease;
+  position:relative;
 }
 .stage-node:hover{transform:translateY(-4px);box-shadow:0 16px 32px rgba(8,22,20,.08)}
 .stage-node.active{
-  border-color:rgba(37,216,173,.7);
-  box-shadow:0 0 0 4px rgba(37,216,173,.12),0 18px 36px rgba(37,216,173,.16);
+  border-color:rgba(34,211,166,.72);
+  box-shadow:0 0 0 4px rgba(34,211,166,.12),0 18px 36px rgba(34,211,166,.13);
 }
 .node-dot{
   width:30px;height:30px;border-radius:999px;background:#fff;border:6px solid var(--mint);
-  box-shadow:0 0 0 5px rgba(37,216,173,.12);
+  box-shadow:0 0 0 5px rgba(34,211,166,.12);
   margin-bottom:12px;
 }
 .node-month{font-size:12px;font-weight:950;color:#0a7a65}
@@ -139,7 +338,7 @@ body{
 .node-desc{font-size:12px;color:rgba(8,22,20,.58);line-height:1.45;margin-top:8px}
 .round-badge{
   display:inline-flex;margin-top:10px;padding:5px 8px;border-radius:999px;font-size:11px;font-weight:950;
-  background:#f1fffb;color:#087b64;border:1px solid rgba(37,216,173,.18);
+  background:#f1fffb;color:#087b64;border:1px solid rgba(34,211,166,.18);
 }
 .detail-panel{
   position:relative;
@@ -151,62 +350,74 @@ body{
 }
 .detail-kicker{font-size:12px;font-weight:950;letter-spacing:.16em;color:#0a9074;text-transform:uppercase}
 .detail-title{font-size:26px;font-weight:950;margin:8px 0 6px;letter-spacing:-.04em}
-.detail-time{color:rgba(8,22,20,.58);font-size:14px;font-weight:800}
+.detail-time{color:rgba(8,22,20,.58);font-size:14px;font-weight:850}
+.progress-strip{
+  margin-top:18px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+.mini-progress{
+  background:white;
+  border:1px solid rgba(8,22,20,.06);
+  border-radius:16px;
+  padding:12px;
+}
+.mini-progress b{font-size:12px}
+.mini-progress span{display:block;margin-top:6px;font-size:18px;font-weight:950}
 .task-list{margin-top:18px;display:grid;gap:10px}
 .task{
-  display:flex;gap:10px;align-items:flex-start;
-  padding:13px;border-radius:16px;background:white;border:1px solid rgba(8,22,20,.06);
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  padding:13px;
+  border-radius:16px;
+  background:white;
+  border:1px solid rgba(8,22,20,.06);
 }
 .check{
-  flex:0 0 auto;width:22px;height:22px;border-radius:50%;
+  flex:0 0 auto;
+  width:22px;height:22px;border-radius:50%;
   background:linear-gradient(135deg,var(--mint),var(--cyan));
   color:white;font-size:13px;font-weight:950;display:grid;place-items:center;
 }
 .warning{
-  margin-top:16px;padding:14px;border-radius:16px;
-  background:#fffaf0;border:1px solid rgba(246,183,79,.28);color:#6b4b11;line-height:1.65;font-size:14px;
+  margin-top:16px;
+  padding:14px;
+  border-radius:16px;
+  background:#fffaf0;
+  border:1px solid rgba(246,183,79,.28);
+  color:#6b4b11;
+  line-height:1.65;
+  font-size:14px;
 }
-.progress-strip{
-  margin-top:18px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;
-}
-.mini-progress{
-  background:white;border:1px solid rgba(8,22,20,.06);border-radius:16px;padding:12px;
-}
-.mini-progress b{font-size:12px}
-.mini-progress span{display:block;margin-top:6px;font-size:18px;font-weight:950}
 .rounds{
-  margin-top:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
+  margin-top:18px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
 }
 .round-card{
-  background:white;border:1px solid rgba(8,22,20,.07);border-radius:18px;padding:14px;
+  background:white;
+  border:1px solid rgba(8,22,20,.07);
+  border-radius:18px;
+  padding:14px;
 }
 .round-card strong{display:block;font-size:14px}
 .round-card p{margin:7px 0 0;color:rgba(8,22,20,.58);font-size:12px;line-height:1.45}
-.now-marker{
-  display:inline-flex;align-items:center;gap:8px;margin-top:14px;
-  background:#081614;color:white;border-radius:999px;padding:9px 13px;font-size:12px;font-weight:950;
-}
 
-
-/* Demo Profile & Radar */
+/* Demo profile and radar */
 .demo-grid{
   display:grid;
   grid-template-columns:1.05fr .95fr;
-  gap:24px;
+  gap:20px;
   align-items:stretch;
 }
-.profile-card{
+.profile-card,.radar-panel{
   background:linear-gradient(180deg,#ffffff,#f5fffc);
   border:1px solid rgba(8,22,20,.08);
   border-radius:24px;
   padding:22px;
-}
-.profile-head{
-  display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-  gap:16px;
-  margin-bottom:18px;
 }
 .demo-badge{
   display:inline-flex;
@@ -222,7 +433,7 @@ body{
   font-size:26px;
   font-weight:950;
   letter-spacing:-.04em;
-  margin:6px 0 6px;
+  margin:8px 0 6px;
 }
 .profile-meta{
   color:rgba(8,22,20,.62);
@@ -241,17 +452,8 @@ body{
   border-radius:16px;
   padding:13px;
 }
-.fact b{
-  display:block;
-  font-size:12px;
-  color:rgba(8,22,20,.5);
-}
-.fact span{
-  display:block;
-  margin-top:6px;
-  font-size:17px;
-  font-weight:950;
-}
+.fact b{display:block;font-size:12px;color:rgba(8,22,20,.5)}
+.fact span{display:block;margin-top:6px;font-size:17px;font-weight:950}
 .path-cards{
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
@@ -264,25 +466,11 @@ body{
   background:white;
   border:1px solid rgba(8,22,20,.07);
 }
-.path-card strong{
-  display:block;
-  font-size:14px;
-}
-.path-card p{
-  margin:7px 0 0;
-  font-size:12px;
-  line-height:1.45;
-  color:rgba(8,22,20,.58);
-}
-.radar-panel{
-  background:rgba(255,255,255,.78);
-  border:1px solid rgba(8,22,20,.08);
-  border-radius:24px;
-  padding:22px;
-}
+.path-card strong{display:block;font-size:14px}
+.path-card p{margin:7px 0 0;font-size:12px;line-height:1.45;color:rgba(8,22,20,.58)}
 .radar-wrap{
   display:grid;
-  grid-template-columns:330px 1fr;
+  grid-template-columns:330px minmax(0,1fr);
   gap:18px;
   align-items:center;
 }
@@ -297,10 +485,7 @@ body{
   font-weight:900;
   fill:rgba(8,22,20,.72);
 }
-.radar-score{
-  display:grid;
-  gap:10px;
-}
+.radar-score{display:grid;gap:10px}
 .radar-item{
   padding:12px;
   border-radius:16px;
@@ -339,180 +524,257 @@ body{
   border-radius:18px;
   padding:14px;
 }
-.test-result b{
-  display:block;
-  font-size:22px;
-  font-weight:950;
-  letter-spacing:-.04em;
+.test-result b{display:block;font-size:22px;font-weight:950;letter-spacing:-.04em}
+.test-result span{display:block;margin-top:6px;font-size:12px;line-height:1.45;color:rgba(8,22,20,.58)}
+
+/* School links */
+.school-directory{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:14px;
 }
-.test-result span{
+.link-card{
   display:block;
-  margin-top:6px;
-  font-size:12px;
-  line-height:1.45;
-  color:rgba(8,22,20,.58);
+  text-decoration:none;
+  background:white;
+  border:1px solid rgba(8,22,20,.07);
+  border-radius:18px;
+  padding:16px;
+  transition:.18s ease;
+}
+.link-card:hover{transform:translateY(-3px);box-shadow:0 14px 28px rgba(8,22,20,.08)}
+.link-card strong{display:block;font-size:15px}
+.link-card span{display:block;margin-top:6px;color:rgba(8,22,20,.58);font-size:12px}
+
+/* Share card */
+.share-layout{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 420px;
+  gap:20px;
+  align-items:start;
+}
+.share-preview{
+  width:100%;
+  max-width:420px;
+  aspect-ratio:3/4;
+  border-radius:24px;
+  background:white;
+  border:1px solid rgba(8,22,20,.08);
+  box-shadow:0 18px 60px rgba(8,22,20,.08);
+}
+.share-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:16px;
 }
 
 @media(max-width:1180px){
-  .stage-board{grid-template-columns:1fr}
-  .stage-row{grid-template-columns:repeat(4,1fr)}
-  .route{display:none}
-  .demo-grid{grid-template-columns:1fr}
-  .radar-wrap{grid-template-columns:1fr}
-  .radar-svg{margin:auto}
-}
-@media(max-width:1024px){
-  .shell{padding:18px}
-  .layout{grid-template-columns:1fr}
+  .app-layout{grid-template-columns:1fr}
   .left-panel{position:relative;top:0}
-  .school-grid,.grid2{grid-template-columns:1fr}
+  .stage-board{grid-template-columns:1fr}
+  .demo-grid,.share-layout{grid-template-columns:1fr}
+  .radar-wrap{grid-template-columns:1fr}
+  .radar-svg,.share-preview{margin:auto}
+  .school-directory{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
-@media(max-width:720px){
-  .topbar .navlinks{display:none}
+@media(max-width:860px){
+  .navlinks{display:none}
+  .shell{padding:18px}
+  .nav-shell{padding:12px 18px}
+  .hero{padding:26px}
+  .school-grid,.grid2,.profile-facts,.path-cards,.test-result-grid{grid-template-columns:1fr}
+  .school-directory{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .progress-strip,.rounds{grid-template-columns:1fr}
+}
+@media(max-width:560px){
   .card{border-radius:20px;padding:18px}
-  .life-head{display:block}
-  .life-title{font-size:26px}
-  .stage-row{grid-template-columns:1fr}
-  .stage-node{
-    min-height:auto;display:grid;grid-template-columns:44px 1fr;column-gap:10px;align-items:start;
+  .hero h1{font-size:38px}
+  .hero p{font-size:16px}
+  .stage-row{
+    min-width:0;
+    display:grid;
+    grid-template-columns:1fr;
   }
-  .node-dot{grid-row:span 3;margin:0}
-  .rounds,.progress-strip,.profile-facts,.path-cards,.test-result-grid{grid-template-columns:1fr}
-  .big-score{font-size:44px}
-  .profile-head{display:block}
-  .profile-name{font-size:23px}
+  .map-track{overflow:visible}
+  .route{display:none}
+  .stage-node{
+    min-height:auto;
+    display:grid;
+    grid-template-columns:44px minmax(0,1fr);
+    gap:8px 10px;
+    align-items:start;
+  }
+  .node-dot{grid-row:span 4;margin:0}
+  .school-directory{grid-template-columns:1fr}
+  .big-score{font-size:42px}
+  .share-preview{max-width:100%}
 }
 </style>
 </head>
 <body>
 
-<div class="topbar">
-  <div class="shell" style="padding-top:14px;padding-bottom:14px;display:flex;align-items:center;justify-content:space-between;gap:20px;">
-    <div style="display:flex;align-items:center;gap:12px;">
-      <div style="width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,#25d8ad,#52d7ff);display:grid;place-items:center;font-weight:950;">NX</div>
+<header class="topbar">
+  <div class="nav-shell">
+    <a href="#home" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+      <div class="logo">NX</div>
       <div>
         <div style="font-weight:950;font-size:19px;">Nexus AI</div>
         <div style="font-size:13px;color:rgba(8,22,20,.55);">港校申请智能助手</div>
       </div>
-    </div>
-    <div class="navlinks" style="display:flex;gap:28px;font-weight:900;">
-      <a href="#engine" style="color:inherit;text-decoration:none;">智能测评</a>
-      <a href="#life-map" style="color:inherit;text-decoration:none;">人生导航地图</a>
-      <a href="#demo-profile" style="color:inherit;text-decoration:none;">演示案例</a>
-      <a href="#effort" style="color:inherit;text-decoration:none;">努力模拟器</a>
-      <a href="#schools" style="color:inherit;text-decoration:none;">院校直达</a>
-    </div>
-    <a href="#engine" style="background:#081614;color:white;padding:12px 18px;border-radius:14px;text-decoration:none;font-weight:950;">开始测评</a>
+    </a>
+    <nav class="navlinks">
+      <a href="#engine">申请画像</a>
+      <a href="#effort">努力模拟</a>
+      <a href="#life-map">时间地图</a>
+      <a href="#demo-profile">示例分析</a>
+      <a href="#share">生成分享图</a>
+      <a href="#schools">学校官网</a>
+    </nav>
+    <a class="nav-cta" href="#engine">开始生成</a>
   </div>
-</div>
+</header>
 
-<div class="shell">
-  <div class="card" style="margin:18px 0 28px;padding:36px;">
-    <div class="pill">申请人生导航仪 · 不是替你做决定，而是让你看清路径</div>
-    <h1 style="font-size:clamp(38px,6vw,76px);line-height:.98;margin:24px 0 18px;letter-spacing:-.06em;">
-      你真的知道自己<br/>该什么时候做什么吗？
-    </h1>
-    <p style="max-width:850px;font-size:18px;line-height:1.85;color:rgba(8,22,20,.64);">
-      Nexus AI 把港校申请拆成一张可视化地图：现在在哪一站、离第几轮还有多久、这周该做什么、哪里值得花钱，全部放到一条路径里。
+<main class="shell">
+  <section id="home" class="card hero">
+    <div class="pill">3分钟看清你的港校申请位置</div>
+    <h1>先看清你是哪种申请状态，<br/>再决定下一步怎么走。</h1>
+    <p>
+      输入你的背景后，系统会生成申请画像、学校分层、努力模拟和时间地图。你会知道自己现在处于什么位置、风险在哪、哪些地方最值得投入。
     </p>
-  </div>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#engine">生成我的申请画像</a>
+      <a class="btn btn-soft" href="#life-map">先看申请时间地图</a>
+    </div>
+  </section>
 
-  <div id="engine" class="layout">
-    <div class="left-panel">
+  <section id="engine" class="app-layout" style="margin-top:26px;">
+    <aside class="left-panel">
       <div class="card">
-        <h2 style="font-size:30px;margin-top:0;">生成你的申请画像</h2>
+        <h2 style="font-size:30px;margin:0;">生成我的申请画像</h2>
 
         <label class="label">本科背景</label>
-        <select class="input"><option>211 / 双一流</option><option>985</option><option>双非</option></select>
+        <select class="input" id="schoolTier">
+          <option>211 / 双一流</option>
+          <option>985</option>
+          <option>双非</option>
+          <option>海外本科</option>
+        </select>
 
         <label class="label">GPA</label>
-        <input class="input" value="3.55"/>
+        <input class="input" id="gpaInput" value="3.55"/>
 
         <label class="label">语言成绩</label>
-        <input class="input" value="雅思 6.5"/>
+        <input class="input" id="languageInput" value="雅思 6.5"/>
 
         <label class="label">目标方向</label>
-        <select class="input"><option>商科 / 金融</option><option>AI / CS</option><option>传媒 / 社科</option></select>
+        <select class="input" id="directionInput">
+          <option>商科 / 金融</option>
+          <option>AI / CS</option>
+          <option>传媒 / 社科</option>
+          <option>教育 / TESOL</option>
+        </select>
 
         <label class="label">预算 / 路径偏好</label>
-        <select class="input"><option>均衡：香港本地为主</option><option>预算有限：大湾区替代路径</option><option>低风险保底</option></select>
+        <select class="input" id="budgetInput">
+          <option>优先香港本地</option>
+          <option>预算有限，接受大湾区路径</option>
+          <option>希望更稳妥</option>
+        </select>
 
-        <button class="button">重新生成申请导航</button>
+        <button class="btn btn-primary" style="width:100%;margin-top:18px;" onclick="refreshProfile()">重新生成我的申请导航</button>
 
         <div class="helper">
-          <h3>你的申请状态</h3>
-          <div>当前画像：稳中带冲型</div>
-          <div style="margin-top:10px;">最大变量：语言成绩</div>
-          <div style="margin-top:10px;">建议策略：先稳后冲</div>
+          <h3 style="margin:0 0 10px;">我现在是哪种申请状态</h3>
+          <div>当前画像：<b id="sideType">稳中带冲型</b></div>
+          <div style="margin-top:10px;">最大变量：<b id="sideVariable">语言成绩</b></div>
+          <div style="margin-top:10px;">建议策略：<b>先稳后冲</b></div>
         </div>
 
         <div class="helper">
-          <h3>本周优先级</h3>
-          <div>1. 确认主申专业</div>
-          <div>2. 报名语言考试</div>
-          <div>3. 联系推荐人</div>
+          <h3 style="margin:0 0 10px;">这份报告怎么看？</h3>
+          <div>1. 先看自己属于哪种申请状态</div>
+          <div>2. 再试试提高语言、增加实习会怎样</div>
+          <div>3. 看哪些地方值得花钱</div>
+          <div>4. 查看接下来每个月该做什么</div>
         </div>
       </div>
-    </div>
+    </aside>
 
-    <div class="right-panel">
-      <div class="card">
-        <div style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;">
-          <h2 style="margin:0;">你的申请画像：稳中带冲型</h2>
-          <div class="pill">语言临界 · 实习加分 · 适合分层</div>
+    <div class="right-stack">
+      <section class="card">
+        <div class="flex-head">
+          <div>
+            <div class="pill">申请画像</div>
+            <h2 style="font-size:30px;letter-spacing:-.04em;margin:12px 0 0;">我的申请画像：<span id="profileType">稳中带冲型</span></h2>
+          </div>
+          <div class="pill" id="profileTags">语言临界 · 实习加分 · 适合分层</div>
         </div>
-        <p style="margin-top:16px;color:#4f5c59;line-height:1.8;">
-          你不是没有机会，而是不适合盲冲。当前最影响结果的变量是语言成绩和申请节奏。
+        <p id="profileSummary" style="margin-top:16px;color:#4f5c59;line-height:1.8;">
+          你不是没有机会，而是不适合盲目冲刺。当前最影响结果的变量是语言成绩和申请节奏。
         </p>
-      </div>
+      </section>
 
-      <div class="school-grid" id="schools">
-        <div class="school"><h3>冲刺</h3><div>香港大学 HKU</div><div>香港科技大学 HKUST</div></div>
-        <div class="school"><h3>匹配</h3><div>香港中文大学 CUHK</div><div>香港理工大学 PolyU</div></div>
-        <div class="school"><h3>稳妥 / 替代</h3><div>香港恒生大学</div><div>港中深 CUHK-Shenzhen</div><div>港科广 HKUST(GZ)</div></div>
-      </div>
+      <section class="school-grid">
+        <div class="school-card">
+          <h3>冲刺</h3>
+          <div>香港大学 HKU</div>
+          <div>香港科技大学 HKUST</div>
+        </div>
+        <div class="school-card">
+          <h3>主申</h3>
+          <div>香港中文大学 CUHK</div>
+          <div>香港理工大学 PolyU</div>
+          <div>香港城市大学 CityU</div>
+        </div>
+        <div class="school-card">
+          <h3>稳妥 / 替代</h3>
+          <div>香港都会大学 HKMU</div>
+          <div>香港恒生大学 HSUHK</div>
+          <div>港中深 CUHK-Shenzhen</div>
+        </div>
+      </section>
 
-      <div class="grid2">
+      <section class="grid2">
         <div class="card">
-          <h2 style="margin-top:0;">申请能量条</h2>
-          <div style="margin-top:18px;">学术基础 <b style="float:right">91</b></div><div class="meter"><div class="fill" style="width:91%"></div></div>
-          <div style="margin-top:18px;">语言准备 <b style="float:right">68</b></div><div class="meter"><div class="fill" style="width:68%"></div></div>
-          <div style="margin-top:18px;">实习科研 <b style="float:right">72</b></div><div class="meter"><div class="fill" style="width:72%"></div></div>
-          <div style="margin-top:18px;">综合匹配 <b style="float:right">76</b></div><div class="meter"><div class="fill" style="width:76%"></div></div>
+          <h2 style="margin:0 0 18px;font-size:24px;font-weight:950;">申请能量条</h2>
+          <div>学术基础 <b style="float:right" id="academicScore">86</b></div><div class="meter"><div class="fill" id="academicBar" style="width:86%"></div></div>
+          <div style="margin-top:18px;">语言准备 <b style="float:right" id="langScore">68</b></div><div class="meter"><div class="fill" id="langBar" style="width:68%"></div></div>
+          <div style="margin-top:18px;">实习科研 <b style="float:right" id="expScore">78</b></div><div class="meter"><div class="fill" id="expBar" style="width:78%"></div></div>
+          <div style="margin-top:18px;">申请节奏 <b style="float:right" id="paceScore">64</b></div><div class="meter"><div class="fill" id="paceBar" style="width:64%"></div></div>
         </div>
 
         <div class="card" id="effort">
-          <h2 style="margin-top:0;">如果我再努力一点？</h2>
+          <h2 style="margin:0;font-size:24px;font-weight:950;">如果我再努力一点，会怎样？</h2>
           <div class="big-score" id="effortScore">72 → 81</div>
           <p id="effortText" style="line-height:1.8;color:#52615d;">
-            如果雅思提升到 7.0，并新增一段相关实习，你的申请风险会明显下降，港中文匹配度会从下沿提升至中位区间。
+            如果雅思提升到 7.0，语言风险会明显下降。港中文匹配度提高，港大冲刺理由也会更充分。
           </p>
-          <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;">
-            <button class="sim-btn" onclick="changeEffort('ielts')">模拟雅思提升</button>
-            <button class="sim-btn" onclick="changeEffort('intern')">模拟新增实习</button>
-            <button class="sim-btn" onclick="changeEffort('cv')">模拟提前完成 CV</button>
-            <button class="sim-btn" onclick="changeEffort('budget')">模拟预算有限路径</button>
+          <div class="sim-actions">
+            <button class="sim-btn" onclick="changeEffort('ielts')">雅思提高到 7.0</button>
+            <button class="sim-btn" onclick="changeEffort('intern')">新增一段相关实习</button>
+            <button class="sim-btn" onclick="changeEffort('cv')">提前完成 CV</button>
+            <button class="sim-btn" onclick="changeEffort('budget')">预算有限怎么选</button>
           </div>
         </div>
-      </div>
+      </section>
 
-      <section id="life-map" class="card life-map-card">
-        <div class="life-head">
+      <section id="life-map" class="card map-card">
+        <div class="section-head">
           <div>
-            <div class="pill">全流程进度可视化</div>
-            <h2 class="life-title">申请人生导航地图</h2>
-            <p class="life-sub">
-              把港校申请做成一条路线：每个阶段看当前任务、风险提醒、对应轮次和最该投入的地方。点击地图节点切换阶段。
+            <div class="pill">全流程进度地图</div>
+            <h2 class="section-title">港校申请导航地图</h2>
+            <p class="section-sub">
+              从准备到拿到 Offer，把每个阶段该做的事放到一张地图里。点击节点，就能看到当前阶段的任务、轮次、风险和优先级。
             </p>
           </div>
-          <div class="now-marker">当前建议：背景准备期 · 先补语言和推荐信</div>
+          <div class="pill">你现在更适合：先补语言，再推进推荐信</div>
         </div>
 
         <div class="stage-board">
           <div class="map-track">
             <div class="route"></div>
             <div id="stageRow" class="stage-row"></div>
-
             <div class="rounds">
               <div class="round-card">
                 <strong>第一轮 R1</strong>
@@ -530,7 +792,7 @@ body{
           </div>
 
           <aside class="detail-panel">
-            <div class="detail-kicker" id="detailKicker">Current Stage</div>
+            <div class="detail-kicker" id="detailKicker">黄金补强</div>
             <div class="detail-title" id="detailTitle">背景补强期</div>
             <div class="detail-time" id="detailTime">4-6月｜申请前关键窗口</div>
 
@@ -547,29 +809,43 @@ body{
         </div>
       </section>
 
+      <section class="grid2">
+        <div class="card">
+          <h2 style="margin:0;font-size:24px;font-weight:950;">哪里值得花钱，哪里先别急</h2>
+          <p style="line-height:1.9;color:#55625f;margin-top:14px;">
+            你当前的核心问题不是文书，而是语言成绩。现阶段不建议优先购买高价全包套餐。
+          </p>
+          <div style="margin-top:16px;padding:16px;border-radius:16px;background:#effff8;font-weight:900;">
+            更值得投入：雅思提升 + 面试模拟 + 最终材料复核
+          </div>
+        </div>
+
+        <div class="card">
+          <h2 style="margin:0;font-size:24px;font-weight:950;">相似路径参考</h2>
+          <p style="line-height:1.9;color:#55625f;margin-top:14px;">
+            演示样例：211财经院校 / GPA 3.48 / 雅思 7 / 两段实习。系统建议主申港中文与港理工，港大保留为冲刺。
+          </p>
+          <div style="margin-top:16px;color:#087b64;font-weight:900;">关键变量：语言达标 + 文书中讲清数据分析经历</div>
+        </div>
+      </section>
 
       <section id="demo-profile" class="card">
-        <div class="life-head">
+        <div class="section-head">
           <div>
-            <div class="pill">Demo Profile · 非真实案例</div>
-            <h2 class="life-title">经典案例展示板块</h2>
-            <p class="life-sub">
-              用一个虚拟申请者演示 Nexus AI 如何把背景、风险、预算和下一步行动拆开。以下内容为产品演示样例，不代表真实用户，不构成录取承诺。
+            <div class="pill">Demo Profile · 演示案例</div>
+            <h2 class="section-title">看一个完整示例</h2>
+            <p class="section-sub">
+              下面用一个虚拟申请者展示系统如何分析背景、风险、预算和下一步行动。以下内容为演示案例，不代表真实用户，也不构成录取承诺。
             </p>
           </div>
-          <div class="demo-badge">演示案例｜非真实用户数据</div>
+          <div class="demo-badge">演示案例｜非真实案例</div>
         </div>
 
         <div class="demo-grid">
           <div class="profile-card">
-            <div class="profile-head">
-              <div>
-                <div class="profile-name">Demo Profile A：稳中带冲型</div>
-                <div class="profile-meta">
-                  适合展示典型 211 商科申请者：有一定基础，但语言和申请节奏会影响港前三冲刺结果。
-                </div>
-              </div>
-              <div class="pill">关键词：语言临界 · 实习加分 · 分层申请</div>
+            <div class="profile-name">Demo Profile A：稳中带冲型</div>
+            <div class="profile-meta">
+              这个例子展示一种常见情况：背景有竞争力，但语言成绩和申请节奏会影响港前三冲刺结果。
             </div>
 
             <div class="profile-facts">
@@ -597,22 +873,21 @@ body{
             </div>
 
             <div class="warning">
-              系统解读：这个画像不是“申不上”，而是“不适合盲冲”。最值得优先投入的是语言成绩与文书主线，而不是一开始购买高价全包套餐。
+              系统解读：这个状态不是“没有机会”，而是“不适合盲冲”。当前最值得优先投入的是语言成绩与文书主线，而不是一开始购买高价全包套餐。
             </div>
           </div>
 
           <div class="radar-panel">
-            <h3 style="margin:0;font-size:24px;font-weight:950;letter-spacing:-.04em;">用户测试结果雷达图</h3>
+            <h3 style="margin:0;font-size:24px;font-weight:950;letter-spacing:-.04em;">申请状态雷达图</h3>
             <p style="margin:8px 0 18px;color:rgba(8,22,20,.62);line-height:1.65;font-size:14px;">
-              用 6 个维度展示演示用户的申请状态：越靠外代表该维度越强。该雷达图为前端演示可视化，后续可接入真实测试数据。
+              用 6 个维度展示申请状态：越靠外代表该维度越强。以下为演示数据，仅用于展示分析方式。
             </p>
-
             <div class="radar-wrap">
               <svg class="radar-svg" viewBox="0 0 320 320" aria-label="申请雷达图">
                 <defs>
                   <linearGradient id="radarFill" x1="0" x2="1" y1="0" y2="1">
-                    <stop offset="0%" stop-color="#25d8ad" stop-opacity=".48"/>
-                    <stop offset="100%" stop-color="#52d7ff" stop-opacity=".38"/>
+                    <stop offset="0%" stop-color="#22d3a6" stop-opacity=".50"/>
+                    <stop offset="100%" stop-color="#58d7ff" stop-opacity=".38"/>
                   </linearGradient>
                 </defs>
                 <g transform="translate(160 160)">
@@ -626,14 +901,13 @@ body{
                   <line x1="0" y1="0" x2="0" y2="120" stroke="#d8efea"/>
                   <line x1="0" y1="0" x2="-103.9" y2="60" stroke="#d8efea"/>
                   <line x1="0" y1="0" x2="-103.9" y2="-60" stroke="#d8efea"/>
-                  <!-- scores: academic 86, language 68, internship 78, pace 64, budget 82, writing 72 -->
-                  <polygon points="0,-103.2 70.7,-40.8 81.0,46.8 0,76.8 -85.2,49.2 -74.8,-43.2" fill="url(#radarFill)" stroke="#25d8ad" stroke-width="3"/>
-                  <circle cx="0" cy="-103.2" r="4" fill="#25d8ad"/>
-                  <circle cx="70.7" cy="-40.8" r="4" fill="#25d8ad"/>
-                  <circle cx="81.0" cy="46.8" r="4" fill="#25d8ad"/>
-                  <circle cx="0" cy="76.8" r="4" fill="#25d8ad"/>
-                  <circle cx="-85.2" cy="49.2" r="4" fill="#25d8ad"/>
-                  <circle cx="-74.8" cy="-43.2" r="4" fill="#25d8ad"/>
+                  <polygon points="0,-103.2 70.7,-40.8 81.0,46.8 0,76.8 -85.2,49.2 -74.8,-43.2" fill="url(#radarFill)" stroke="#22d3a6" stroke-width="3"/>
+                  <circle cx="0" cy="-103.2" r="4" fill="#22d3a6"/>
+                  <circle cx="70.7" cy="-40.8" r="4" fill="#22d3a6"/>
+                  <circle cx="81.0" cy="46.8" r="4" fill="#22d3a6"/>
+                  <circle cx="0" cy="76.8" r="4" fill="#22d3a6"/>
+                  <circle cx="-85.2" cy="49.2" r="4" fill="#22d3a6"/>
+                  <circle cx="-74.8" cy="-43.2" r="4" fill="#22d3a6"/>
                 </g>
                 <text class="radar-label" x="160" y="20" text-anchor="middle">学术基础 86</text>
                 <text class="radar-label" x="290" y="92" text-anchor="middle">语言 68</text>
@@ -644,118 +918,118 @@ body{
               </svg>
 
               <div class="radar-score">
-                <div class="radar-item">
-                  <div class="radar-item-row"><span>学术基础</span><b>86</b></div>
-                  <div class="radar-bar"><div style="width:86%"></div></div>
-                </div>
-                <div class="radar-item">
-                  <div class="radar-item-row"><span>语言准备</span><b>68</b></div>
-                  <div class="radar-bar"><div style="width:68%"></div></div>
-                </div>
-                <div class="radar-item">
-                  <div class="radar-item-row"><span>实习科研</span><b>78</b></div>
-                  <div class="radar-bar"><div style="width:78%"></div></div>
-                </div>
-                <div class="radar-item">
-                  <div class="radar-item-row"><span>申请节奏</span><b>64</b></div>
-                  <div class="radar-bar"><div style="width:64%"></div></div>
-                </div>
-                <div class="radar-item">
-                  <div class="radar-item-row"><span>预算适配</span><b>82</b></div>
-                  <div class="radar-bar"><div style="width:82%"></div></div>
-                </div>
-                <div class="radar-item">
-                  <div class="radar-item-row"><span>文书潜力</span><b>72</b></div>
-                  <div class="radar-bar"><div style="width:72%"></div></div>
-                </div>
+                <div class="radar-item"><div class="radar-item-row"><span>学术基础</span><b>86</b></div><div class="radar-bar"><div style="width:86%"></div></div></div>
+                <div class="radar-item"><div class="radar-item-row"><span>语言准备</span><b>68</b></div><div class="radar-bar"><div style="width:68%"></div></div></div>
+                <div class="radar-item"><div class="radar-item-row"><span>实习科研</span><b>78</b></div><div class="radar-bar"><div style="width:78%"></div></div></div>
+                <div class="radar-item"><div class="radar-item-row"><span>申请节奏</span><b>64</b></div><div class="radar-bar"><div style="width:64%"></div></div></div>
+                <div class="radar-item"><div class="radar-item-row"><span>预算适配</span><b>82</b></div><div class="radar-bar"><div style="width:82%"></div></div></div>
+                <div class="radar-item"><div class="radar-item-row"><span>文书潜力</span><b>72</b></div><div class="radar-bar"><div style="width:72%"></div></div></div>
               </div>
             </div>
 
             <div class="test-result-grid">
-              <div class="test-result"><b>72→81</b><span>模拟雅思提升与实习增强后的申请力变化。</span></div>
+              <div class="test-result"><b>72→81</b><span>雅思提升与实习增强后的申请力变化。</span></div>
               <div class="test-result"><b>3条</b><span>系统给出冲刺、主申、托底三层路径。</span></div>
-              <div class="test-result"><b>1个变量</b><span>当前最关键变量：语言成绩，而不是文书包装。</span></div>
+              <div class="test-result"><b>1个变量</b><span>当前最关键变量：语言成绩，而不是盲目包装。</span></div>
             </div>
           </div>
         </div>
       </section>
 
-
-      <div class="grid2">
-        <div class="card">
-          <h2 style="margin-top:0;">少花冤枉钱建议</h2>
-          <p style="line-height:1.9;color:#55625f;">
-            你当前的核心问题不是文书，而是语言成绩。现阶段不建议优先购买高价全包套餐。
-          </p>
-          <div style="margin-top:16px;padding:16px;border-radius:16px;background:#effff8;">
-            更值得投入：雅思 + 面试模拟 + 最终材料复核
+      <section id="share" class="card">
+        <div class="section-head">
+          <div>
+            <div class="pill">生成分享图</div>
+            <h2 class="section-title">生成我的申请画像分享图</h2>
+            <p class="section-sub">
+              生成一张图片，包含申请画像、个人雷达图、关键结论和右下角二维码。二维码会指向当前网站地址，别人扫码即可进入页面。
+            </p>
           </div>
         </div>
-
-        <div class="card">
-          <h2 style="margin-top:0;">相似案例回测</h2>
-          <p style="line-height:1.9;color:#55625f;">
-            脱敏样例：211财经院校 / GPA 3.48 / 雅思 7 / 两段实习。最终港中文匹配成功，港大冲刺失败，港理工稳妥录取。
-          </p>
-          <div style="margin-top:16px;color:#087b64;font-weight:900;">关键变量：语言达标 + 文书中强化数据分析经历</div>
+        <div class="share-layout">
+          <div>
+            <h3 style="font-size:22px;font-weight:950;margin:0 0 12px;">分享图内容</h3>
+            <p style="line-height:1.8;color:rgba(8,22,20,.62);">
+              分享图不会展示隐私细节，只展示申请状态、关键变量和建议路径。适合发给同学、朋友或团队做演示。
+            </p>
+            <div class="share-actions">
+              <button class="btn btn-primary" onclick="drawShareCard()">生成分享图</button>
+              <button class="btn btn-soft" onclick="downloadShareCard()">下载 PNG</button>
+            </div>
+            <p style="font-size:12px;color:rgba(8,22,20,.52);line-height:1.6;margin-top:12px;">
+              若二维码生成失败，请检查网络或 QRCode CDN 是否可用。
+            </p>
+          </div>
+          <canvas id="shareCanvas" class="share-preview" width="1080" height="1440"></canvas>
         </div>
-      </div>
+      </section>
+
+      <section id="schools" class="card">
+        <div class="section-head">
+          <div>
+            <div class="pill">学校官网一键直达</div>
+            <h2 class="section-title">查看目标学校官网</h2>
+            <p class="section-sub">官网链接放在测评结果之后，是为了让你先知道自己适合看哪些学校，再直接进入官网确认专业、DDL 和申请要求。</p>
+          </div>
+        </div>
+        <div class="school-directory" id="schoolDirectory"></div>
+      </section>
     </div>
-  </div>
-</div>
+  </section>
+</main>
 
 <script>
 const stages = [
   {
-    id:"s1", month:"1-3月", name:"探索定位期", round:"准备前站",
-    desc:"先看清自己在哪，不急着买服务。",
-    title:"探索定位期", time:"1-3月｜确定方向和初步定位",
+    month:"1-3月", name:"探索定位期", round:"起点",
+    desc:"先看清自己的位置，再决定怎么投入。",
+    title:"探索定位期", time:"1-3月｜确定方向与初步定位",
     progress:["20%","10%","20%","30%"],
-    tasks:["确定目标方向：商科/CS/传媒/教育等","粗筛港校层级：冲刺、匹配、稳妥","判断是否需要考雅思/托福","初步估算预算和是否接受大湾区替代路径"],
-    warning:"这个阶段最怕盲目听结论。先看清位置，再决定是否需要顾问。"
+    tasks:["确定目标方向：商科/CS/传媒/教育等","粗筛港校层级：冲刺、主申、稳妥","判断是否需要考雅思/托福","初步估算预算和是否接受大湾区替代路径"],
+    warning:"这个阶段最怕还没看清自己，就先被各种建议带着走。先明确位置，再决定是否需要顾问。"
   },
   {
-    id:"s2", month:"4-6月", name:"背景补强期", round:"黄金补强",
-    desc:"最能改变结果的窗口。",
+    month:"4-6月", name:"背景补强期", round:"黄金补强",
+    desc:"最适合补短板的窗口。",
     title:"背景补强期", time:"4-6月｜申请前关键窗口",
     progress:["60%","25%","45%","68%"],
     tasks:["优先补语言成绩，锁定最近考试窗口","补一段相关实习/科研/课程项目","维护 GPA，准备成绩单与排名证明","确认推荐人范围，不要临近DDL才联系"],
     warning:"这个阶段最值得花的是能改变硬变量的钱，比如语言、实习、项目；不建议过早购买高价全包套餐。"
   },
   {
-    id:"s3", month:"7-8月", name:"材料准备期", round:"R1 前夜",
-    desc:"CV、PS、推荐信开始定稿。",
+    month:"7-8月", name:"材料准备期", round:"R1准备",
+    desc:"材料开始成型。",
     title:"材料准备期", time:"7-8月｜R1提交前的材料窗口",
     progress:["70%","55%","62%","72%"],
     tasks:["完成 CV 初稿和经历素材库","整理 PS 主题：为什么这个专业、为什么这个学校","正式联系推荐人并确认推荐信节奏","建立目标项目清单，标记开放时间和DDL"],
-    warning:"这个阶段最怕反复纠结方向。先确定主线，再开始文书，不要一边改方向一边改文书。"
+    warning:"这个阶段最怕一边改方向，一边改文书。先确定主线，再推进材料。"
   },
   {
-    id:"s4", month:"9-10月", name:"开放冲刺期", round:"第一轮 R1",
-    desc:"项目陆续开放，节奏开始拉紧。",
+    month:"9-10月", name:"开放冲刺期", round:"第一轮 R1",
+    desc:"项目陆续开放，节奏开始变紧。",
     title:"港校开放冲刺期", time:"9-10月｜项目开放与第一轮准备",
     progress:["78%","72%","80%","76%"],
-    tasks:["检查港大、港中文、港科、港理工等项目是否开放","优先提交匹配项目，不要等所有材料完美","确认推荐信是否成功提交","准备可能出现的面试问题"],
+    tasks:["检查港大、港中文、港科、港理工等项目是否开放","优先提交主申项目，不要等所有材料完美","确认推荐信是否成功提交","准备可能出现的面试问题"],
     warning:"R1 阶段不要无限拖延。港校很多项目 rolling，早提交通常更舒服。"
   },
   {
-    id:"s5", month:"11-12月", name:"第一轮黄金提交", round:"R1 黄金期",
-    desc:"主申项目集中提交。",
+    month:"11-12月", name:"第一轮提交期", round:"R1 黄金期",
+    desc:"主申项目开始集中提交。",
     title:"第一轮黄金提交期", time:"11-12月｜主申与冲刺并行",
     progress:["85%","86%","88%","82%"],
-    tasks:["完成主申项目提交","保留 1-2 个冲刺项目和 2-3 个匹配项目","持续查看邮箱和系统状态","准备面试、自我介绍和项目动机回答"],
-    warning:"这个阶段最怕只冲不保。正确策略是冲刺、匹配、稳妥同时存在。"
+    tasks:["完成主申项目提交","保留 1-2 个冲刺项目和 2-3 个主申项目","持续查看邮箱和系统状态","准备面试、自我介绍和项目动机回答"],
+    warning:"这个阶段最怕只冲不保。正确策略是冲刺、主申、稳妥同时存在。"
   },
   {
-    id:"s6", month:"1-3月", name:"等待面试期", round:"第二轮 R2",
-    desc:"等结果、补申、面试。",
+    month:"1-3月", name:"等待与面试期", round:"第二轮 R2",
+    desc:"等待结果、准备面试、判断是否补申。",
     title:"等待面试与补申期", time:"1-3月｜R2审理与补申窗口",
     progress:["88%","90%","92%","70%"],
     tasks:["准备英文面试和常见问题","根据 R1 结果决定是否补申","跟进申请系统状态和补材料要求","不要因等待焦虑而盲目加申过多项目"],
-    warning:"等待期最容易焦虑消费。先看真实短板，再决定是否找真人顾问。"
+    warning:"等待期最容易因为焦虑乱花钱。先看真实短板，再决定是否需要真人顾问。"
   },
   {
-    id:"s7", month:"4-6月", name:"Offer选择与行前", round:"收尾 / 行前",
+    month:"4-6月", name:"Offer选择与行前准备", round:"收尾 / 行前",
     desc:"留位费、签证、租房、银行卡。",
     title:"Offer选择与行前准备", time:"4-6月｜结果选择与落地准备",
     progress:["95%","94%","92%","88%"],
@@ -764,11 +1038,28 @@ const stages = [
   }
 ];
 
-const row = document.getElementById("stageRow");
-const taskList = document.getElementById("taskList");
-const warningBox = document.getElementById("warningBox");
+const schools = [
+  ["香港大学 HKU","https://www.hku.hk/","港八大 / 冲刺"],
+  ["香港中文大学 CUHK","https://www.cuhk.edu.hk/","港八大 / 主申"],
+  ["香港科技大学 HKUST","https://hkust.edu.hk/","港八大 / 冲刺"],
+  ["香港城市大学 CityU","https://www.cityu.edu.hk/","港八大 / 主申"],
+  ["香港理工大学 PolyU","https://www.polyu.edu.hk/","港八大 / 主申"],
+  ["香港浸会大学 HKBU","https://www.hkbu.edu.hk/","港八大 / 主申"],
+  ["岭南大学 Lingnan","https://www.ln.edu.hk/","港八大 / 稳妥"],
+  ["香港教育大学 EdUHK","https://www.eduhk.hk/","教育方向"],
+  ["香港都会大学 HKMU","https://www.hkmu.edu.hk/","低风险路径"],
+  ["香港恒生大学 HSUHK","https://www.hsu.edu.hk/","低绩点友好"],
+  ["香港树仁大学 HKSYU","https://www.hksyu.edu/","低风险路径"],
+  ["香港珠海学院 CHC","https://www.chuhai.edu.hk/","低风险路径"],
+  ["香港中文大学（深圳）","https://www.cuhk.edu.cn/","大湾区替代"],
+  ["香港科技大学（广州）","https://www.hkust-gz.edu.cn/","大湾区替代"],
+  ["北师港浸大 UIC","https://www.uic.edu.cn/","大湾区替代"],
+  ["澳门大学 UM","https://www.um.edu.mo/","预算替代"],
+  ["澳门科技大学 MUST","https://www.must.edu.mo/","预算替代"]
+];
 
 function renderStages(active=1){
+  const row = document.getElementById("stageRow");
   row.innerHTML = stages.map((s,i)=>`
     <div class="stage-node ${i===active?'active':''}" onclick="selectStage(${i})">
       <div class="node-dot"></div>
@@ -789,23 +1080,217 @@ function selectStage(i){
   document.getElementById("pDoc").textContent = s.progress[1];
   document.getElementById("pSchool").textContent = s.progress[2];
   document.getElementById("pPace").textContent = s.progress[3];
-  taskList.innerHTML = s.tasks.map(t=>`<div class="task"><div class="check">✓</div><div>${t}</div></div>`).join("");
-  warningBox.textContent = s.warning;
+  document.getElementById("taskList").innerHTML = s.tasks.map(t=>`<div class="task"><div class="check">✓</div><div>${t}</div></div>`).join("");
+  document.getElementById("warningBox").textContent = s.warning;
 }
 function changeEffort(type){
   const score = document.getElementById("effortScore");
   const text = document.getElementById("effortText");
   const data = {
-    ielts:["72 → 78","雅思提升到 7.0 后，语言从临界变量变成可用优势。港中文匹配度提高，港大冲刺理由增强。"],
-    intern:["72 → 80","新增一段强相关实习后，商科和管理类项目的经历匹配度上升。文书中会更容易讲出职业动机。"],
-    cv:["72 → 76","提前完成 CV 和主文书框架后，申请节奏风险下降。你会更适合赶第一轮，而不是拖到补申阶段。"],
-    budget:["72 → 74","如果预算有限，建议加入港中深、港科广、北师港浸大、澳门大学等替代路径。路径更现实，风险更可控。"]
+    ielts:["72 → 78","如果雅思提升到 7.0，语言风险会明显下降。港中文匹配度提高，港大冲刺理由也会更充分。"],
+    intern:["72 → 80","如果新增一段强相关实习，商科和管理类项目的经历匹配度会上升，文书也更容易讲清职业动机。"],
+    cv:["72 → 76","如果提前完成 CV 和主文书框架，申请节奏风险会下降，更适合赶第一轮，而不是拖到补申阶段。"],
+    budget:["72 → 74","如果预算有限，可以加入港中深、港科广、北师港浸大、澳门大学等路径。选择会更现实，风险也更可控。"]
   };
   score.textContent = data[type][0];
   text.textContent = data[type][1];
 }
+function renderSchools(){
+  document.getElementById("schoolDirectory").innerHTML = schools.map(([name,url,tag])=>`
+    <a class="link-card" href="${url}" target="_blank" rel="noopener noreferrer">
+      <strong>${name}</strong>
+      <span>${tag} · 一键直达官网 ↗</span>
+    </a>
+  `).join("");
+}
+function refreshProfile(){
+  const budget = document.getElementById("budgetInput").value;
+  let type = "稳中带冲型";
+  let variable = "语言成绩";
+  let tags = "语言临界 · 实习加分 · 适合分层";
+  let summary = "你不是没有机会，而是不适合盲目冲刺。当前最影响结果的变量是语言成绩和申请节奏。";
+  if(budget.includes("预算有限")){
+    type = "预算敏感规划型";
+    variable = "路径选择";
+    tags = "预算敏感 · 大湾区替代 · 稳妥推进";
+    summary = "你更适合把香港本地院校与大湾区替代路径一起考虑，先控制成本和风险，再保留少量冲刺项目。";
+  }
+  if(budget.includes("稳妥")){
+    type = "低风险稳妥型";
+    variable = "托底组合";
+    tags = "稳妥优先 · 控制风险 · 分层申请";
+    summary = "你更适合建立清晰的托底组合，不建议只盯港前三。当前重点是提高录取确定性。";
+  }
+  document.getElementById("profileType").textContent = type;
+  document.getElementById("profileTags").textContent = tags;
+  document.getElementById("profileSummary").textContent = summary;
+  document.getElementById("sideType").textContent = type;
+  document.getElementById("sideVariable").textContent = variable;
+  drawShareCard();
+}
+
+/* Share image generation */
+function roundRect(ctx,x,y,w,h,r){
+  ctx.beginPath();
+  ctx.moveTo(x+r,y);
+  ctx.lineTo(x+w-r,y);
+  ctx.quadraticCurveTo(x+w,y,x+w,y+r);
+  ctx.lineTo(x+w,y+h-r);
+  ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+  ctx.lineTo(x+r,y+h);
+  ctx.quadraticCurveTo(x,y+h,x,y+h-r);
+  ctx.lineTo(x,y+r);
+  ctx.quadraticCurveTo(x,y,x+r,y);
+  ctx.closePath();
+}
+function drawRadarOnCanvas(ctx,cx,cy,r,scores){
+  const labels = ["学术","语言","实习","节奏","预算","文书"];
+  const n = scores.length;
+  ctx.save();
+  ctx.strokeStyle = "#d8efea";
+  ctx.lineWidth = 3;
+  for(let layer=1; layer<=4; layer++){
+    ctx.beginPath();
+    const rr = r*layer/4;
+    for(let i=0;i<n;i++){
+      const a = -Math.PI/2 + i*2*Math.PI/n;
+      const x = cx + rr*Math.cos(a);
+      const y = cy + rr*Math.sin(a);
+      if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+    }
+    ctx.closePath();
+    ctx.stroke();
+  }
+  for(let i=0;i<n;i++){
+    const a = -Math.PI/2 + i*2*Math.PI/n;
+    ctx.beginPath();
+    ctx.moveTo(cx,cy);
+    ctx.lineTo(cx+r*Math.cos(a),cy+r*Math.sin(a));
+    ctx.stroke();
+    ctx.fillStyle = "#23322f";
+    ctx.font = "700 26px sans-serif";
+    ctx.textAlign = Math.cos(a) > .4 ? "left" : Math.cos(a) < -.4 ? "right" : "center";
+    ctx.textBaseline = Math.sin(a) > .4 ? "top" : Math.sin(a) < -.4 ? "bottom" : "middle";
+    ctx.fillText(labels[i] + " " + scores[i], cx+(r+34)*Math.cos(a), cy+(r+34)*Math.sin(a));
+  }
+  ctx.beginPath();
+  for(let i=0;i<n;i++){
+    const a = -Math.PI/2 + i*2*Math.PI/n;
+    const rr = r*scores[i]/100;
+    const x = cx + rr*Math.cos(a);
+    const y = cy + rr*Math.sin(a);
+    if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+  }
+  ctx.closePath();
+  ctx.fillStyle = "rgba(34,211,166,.36)";
+  ctx.strokeStyle = "#22d3a6";
+  ctx.lineWidth = 6;
+  ctx.fill();
+  ctx.stroke();
+  ctx.restore();
+}
+async function drawShareCard(){
+  const canvas = document.getElementById("shareCanvas");
+  const ctx = canvas.getContext("2d");
+  const W = canvas.width, H = canvas.height;
+  const type = document.getElementById("profileType").textContent;
+  const tags = document.getElementById("profileTags").textContent;
+  const url = window.location.href.split("#")[0] || "https://tina-yifeichen.github.io/nexus.github.io/";
+
+  ctx.clearRect(0,0,W,H);
+  const g = ctx.createLinearGradient(0,0,W,H);
+  g.addColorStop(0,"#f7fffd");
+  g.addColorStop(.55,"#e9fff8");
+  g.addColorStop(1,"#effbff");
+  ctx.fillStyle = g;
+  ctx.fillRect(0,0,W,H);
+
+  ctx.fillStyle = "rgba(255,255,255,.86)";
+  roundRect(ctx,70,70,W-140,H-140,54);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(8,22,20,.10)";
+  ctx.lineWidth = 3;
+  ctx.stroke();
+
+  ctx.fillStyle = "#081614";
+  ctx.font = "950 46px sans-serif";
+  ctx.fillText("Nexus AI",110,150);
+  ctx.font = "800 26px sans-serif";
+  ctx.fillStyle = "#087b64";
+  ctx.fillText("我的港校申请画像",110,192);
+
+  ctx.fillStyle = "#081614";
+  ctx.font = "950 68px sans-serif";
+  ctx.fillText(type,110,300);
+
+  ctx.fillStyle = "#40504d";
+  ctx.font = "700 30px sans-serif";
+  wrapText(ctx, tags, 110,360,820,42);
+
+  drawRadarOnCanvas(ctx,540,650,250,[86,68,78,64,82,72]);
+
+  ctx.fillStyle = "rgba(255,255,255,.92)";
+  roundRect(ctx,110,960,860,230,34);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(8,22,20,.08)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#081614";
+  ctx.font = "900 32px sans-serif";
+  ctx.fillText("关键结论",150,1020);
+  ctx.font = "700 27px sans-serif";
+  ctx.fillStyle = "#40504d";
+  wrapText(ctx,"当前最影响结果的变量是语言成绩和申请节奏。建议先稳住主申路径，再保留少量冲刺项目。",150,1070,760,42);
+
+  ctx.fillStyle = "#081614";
+  roundRect(ctx,110,1230,430,86,24);
+  ctx.fill();
+  ctx.fillStyle = "white";
+  ctx.font = "900 28px sans-serif";
+  ctx.fillText("扫码生成你的申请画像",140,1284);
+
+  try{
+    const qrCanvas = document.createElement("canvas");
+    await QRCode.toCanvas(qrCanvas, url, { width: 180, margin: 1, color: { dark:"#081614", light:"#ffffff" }});
+    ctx.drawImage(qrCanvas,800,1210,180,180);
+    ctx.fillStyle = "#40504d";
+    ctx.font = "700 20px sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("扫码进入网站",890,1415);
+    ctx.textAlign = "left";
+  }catch(e){
+    ctx.fillStyle = "#081614";
+    ctx.font = "700 22px sans-serif";
+    ctx.fillText("二维码生成失败，请刷新重试",720,1280);
+  }
+}
+function wrapText(ctx,text,x,y,maxWidth,lineHeight){
+  const words = text.split("");
+  let line = "";
+  for(let i=0;i<words.length;i++){
+    const test = line + words[i];
+    if(ctx.measureText(test).width > maxWidth && i > 0){
+      ctx.fillText(line,x,y);
+      line = words[i];
+      y += lineHeight;
+    } else line = test;
+  }
+  ctx.fillText(line,x,y);
+}
+function downloadShareCard(){
+  drawShareCard().then(()=>{
+    const canvas = document.getElementById("shareCanvas");
+    const a = document.createElement("a");
+    a.download = "nexus-ai-申请画像.png";
+    a.href = canvas.toDataURL("image/png");
+    a.click();
+  });
+}
+
 renderStages(1);
 selectStage(1);
+renderSchools();
+window.addEventListener("load", drawShareCard);
 </script>
 </body>
 </html>
