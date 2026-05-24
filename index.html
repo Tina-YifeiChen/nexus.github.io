@@ -1,537 +1,811 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nexus AI｜港校申请人生模拟器</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif']
-          },
-          colors: {
-            ink: '#07110f',
-            mint: '#21d6a6',
-            aqua: '#39bdf8',
-            skysoft: '#e9f8ff',
-            foam: '#ecfff7',
-            lemon: '#f6d365',
-            coral: '#ff7a70',
-            violet: '#8b7cf6'
-          },
-          boxShadow: {
-            soft: '0 18px 60px rgba(7,17,15,0.10)',
-            card: '0 12px 38px rgba(36, 137, 174, 0.10)',
-            glow: '0 0 0 1px rgba(33,214,166,0.18), 0 18px 70px rgba(57,189,248,0.18)'
-          }
-        }
-      }
-    }
-  </script>
-  <style>
-    html { scroll-behavior:smooth; scrollbar-gutter: stable; }
-    body {
-      min-height: 100vh;
-      overflow-x: hidden;
-      background:
-        radial-gradient(circle at 12% 10%, rgba(33,214,166,.20), transparent 27%),
-        radial-gradient(circle at 90% 4%, rgba(57,189,248,.20), transparent 26%),
-        radial-gradient(circle at 84% 70%, rgba(139,124,246,.10), transparent 22%),
-        linear-gradient(180deg,#fbfffd 0%,#f0fbff 38%,#f7fbf8 100%);
-      color:#07110f;
-    }
-    .grid-bg {
-      background-image: linear-gradient(rgba(7,17,15,.055) 1px, transparent 1px), linear-gradient(90deg,rgba(7,17,15,.055) 1px, transparent 1px);
-      background-size: 34px 34px;
-      mask-image: linear-gradient(to bottom, black, transparent 88%);
-    }
-    .glass { background: rgba(255,255,255,.76); backdrop-filter: blur(22px); border:1px solid rgba(7,17,15,.08); }
-    .soft-panel { background: linear-gradient(135deg, rgba(255,255,255,.86), rgba(236,255,247,.74)); border:1px solid rgba(7,17,15,.08); }
-    .blue-panel { background: linear-gradient(135deg, rgba(255,255,255,.88), rgba(233,248,255,.82)); border:1px solid rgba(7,17,15,.08); }
-    .chip { border:1px solid rgba(7,17,15,.10); background:rgba(255,255,255,.76); }
-    .section-anchor { scroll-margin-top: 92px; }
-    .scan-orbit { position:relative; overflow:hidden; }
-    .scan-orbit:after { content:""; position:absolute; width:40%; height:200%; top:-50%; left:-50%; background:linear-gradient(90deg, transparent, rgba(33,214,166,.18), rgba(57,189,248,.18), transparent); transform:rotate(18deg); animation: sweep 2.6s ease-in-out infinite; }
-    @keyframes sweep { 0% { left:-55%; opacity:.4; } 55% { opacity:1; } 100% { left:115%; opacity:.2; } }
-    .fade-up { animation: fadeUp .55s ease both; }
-    @keyframes fadeUp { from { opacity:0; transform: translateY(14px); } to { opacity:1; transform: translateY(0); } }
-    .pulse-dot { animation: pulseDot 1.6s ease-in-out infinite; }
-    @keyframes pulseDot { 0%,100%{ transform:scale(.8); opacity:.55;} 50%{transform:scale(1.25); opacity:1;} }
-    .meter { width: var(--value,0%); transition: width .72s cubic-bezier(.2,.8,.2,1); }
-    .sim-card.active { border-color: rgba(33,214,166,.55); box-shadow:0 0 0 3px rgba(33,214,166,.12), 0 16px 48px rgba(33,214,166,.12); transform: translateY(-2px); }
-    .uni-card { transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
-    .uni-card:hover { transform: translateY(-4px); box-shadow:0 14px 36px rgba(7,17,15,.10); border-color:rgba(33,214,166,.36); }
-    ::-webkit-scrollbar { width:12px; }
-    ::-webkit-scrollbar-track { background:rgba(7,17,15,.04); }
-    ::-webkit-scrollbar-thumb { background:rgba(7,17,15,.20); border:3px solid rgba(250,255,253,.96); border-radius:999px; }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Nexus AI｜申请人生导航地图</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+:root{
+  --ink:#081614;
+  --mint:#25d8ad;
+  --cyan:#52d7ff;
+  --soft:#f4fbfa;
+  --line:#d8efea;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(37,216,173,.15), transparent 28%),
+    radial-gradient(circle at 88% 20%, rgba(82,215,255,.16), transparent 26%),
+    linear-gradient(180deg,#f7fffd 0%,#effbf9 42%,#f9fcfc 100%);
+  color:var(--ink);
+}
+.topbar{
+  position:sticky;top:0;z-index:50;
+  background:rgba(255,255,255,.86);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(8,22,20,.08);
+}
+.shell{max-width:1450px;margin:auto;padding:28px}
+.layout{
+  display:grid;
+  grid-template-columns:430px 1fr;
+  gap:28px;
+  align-items:start;
+}
+.left-panel{position:sticky;top:96px;align-self:start}
+.card{
+  background:rgba(255,255,255,.82);
+  border:1px solid rgba(8,22,20,.08);
+  border-radius:24px;
+  padding:24px;
+  box-shadow:0 18px 60px rgba(8,22,20,.06);
+  backdrop-filter:blur(14px);
+}
+.input{
+  width:100%;padding:14px;border-radius:14px;border:1px solid rgba(8,22,20,.1);
+  margin-top:8px;background:white;outline:none;
+}
+.label{font-size:14px;font-weight:800;margin-top:16px;display:block;color:rgba(8,22,20,.74)}
+.button{
+  width:100%;margin-top:18px;border:none;background:var(--ink);color:white;
+  padding:16px;border-radius:16px;font-weight:900;cursor:pointer;
+  box-shadow:0 16px 42px rgba(8,22,20,.18);
+}
+.helper{
+  margin-top:18px;padding:18px;border-radius:18px;
+  background:linear-gradient(135deg,#e9fff8,#eefcff);
+  border:1px solid rgba(37,216,173,.18);
+}
+.right-panel{display:flex;flex-direction:column;gap:24px}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:9px 13px;border-radius:999px;background:#ecfff8;color:#087b64;font-weight:900;font-size:13px}
+.school-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.school{padding:18px;border-radius:18px;background:white;border:1px solid rgba(8,22,20,.07)}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.meter{height:10px;border-radius:999px;background:#e8f0ef;overflow:hidden}
+.fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--mint),var(--cyan))}
+.big-score{font-size:54px;font-weight:950;letter-spacing:-.05em}
+
+/* Life Map */
+.life-map-card{
+  overflow:hidden;
+  position:relative;
+}
+.life-map-card:before{
+  content:"";
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(8,22,20,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(8,22,20,.045) 1px, transparent 1px);
+  background-size:28px 28px;
+  mask-image:linear-gradient(to bottom, black, transparent 92%);
+  pointer-events:none;
+}
+.life-head{position:relative;display:flex;justify-content:space-between;gap:18px;align-items:flex-start;margin-bottom:22px}
+.life-title{font-size:30px;font-weight:950;letter-spacing:-.04em;margin:0}
+.life-sub{margin-top:8px;color:rgba(8,22,20,.62);line-height:1.7}
+.stage-board{
+  position:relative;
+  display:grid;
+  grid-template-columns:1.18fr .82fr;
+  gap:22px;
+  align-items:stretch;
+}
+.map-track{
+  position:relative;
+  padding:24px 18px 18px;
+  border-radius:24px;
+  background:rgba(255,255,255,.72);
+  border:1px solid rgba(8,22,20,.08);
+}
+.route{
+  position:absolute;
+  top:82px;left:52px;right:52px;height:8px;border-radius:999px;
+  background:linear-gradient(90deg,#d8eee8,#b7efe1,#a6eefd,#d8eee8);
+  box-shadow:inset 0 0 0 1px rgba(8,22,20,.04);
+}
+.stage-row{
+  position:relative;
+  z-index:2;
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:10px;
+}
+.stage-node{
+  cursor:pointer;
+  border:1px solid rgba(8,22,20,.08);
+  background:rgba(255,255,255,.92);
+  border-radius:20px;
+  min-height:156px;
+  padding:14px 12px;
+  transition:.22s ease;
+}
+.stage-node:hover{transform:translateY(-4px);box-shadow:0 16px 32px rgba(8,22,20,.08)}
+.stage-node.active{
+  border-color:rgba(37,216,173,.7);
+  box-shadow:0 0 0 4px rgba(37,216,173,.12),0 18px 36px rgba(37,216,173,.16);
+}
+.node-dot{
+  width:30px;height:30px;border-radius:999px;background:#fff;border:6px solid var(--mint);
+  box-shadow:0 0 0 5px rgba(37,216,173,.12);
+  margin-bottom:12px;
+}
+.node-month{font-size:12px;font-weight:950;color:#0a7a65}
+.node-name{font-size:15px;font-weight:950;margin-top:6px;line-height:1.25}
+.node-desc{font-size:12px;color:rgba(8,22,20,.58);line-height:1.45;margin-top:8px}
+.round-badge{
+  display:inline-flex;margin-top:10px;padding:5px 8px;border-radius:999px;font-size:11px;font-weight:950;
+  background:#f1fffb;color:#087b64;border:1px solid rgba(37,216,173,.18);
+}
+.detail-panel{
+  position:relative;
+  border-radius:24px;
+  background:linear-gradient(180deg,#ffffff,#f4fffc);
+  border:1px solid rgba(8,22,20,.08);
+  padding:22px;
+  min-height:360px;
+}
+.detail-kicker{font-size:12px;font-weight:950;letter-spacing:.16em;color:#0a9074;text-transform:uppercase}
+.detail-title{font-size:26px;font-weight:950;margin:8px 0 6px;letter-spacing:-.04em}
+.detail-time{color:rgba(8,22,20,.58);font-size:14px;font-weight:800}
+.task-list{margin-top:18px;display:grid;gap:10px}
+.task{
+  display:flex;gap:10px;align-items:flex-start;
+  padding:13px;border-radius:16px;background:white;border:1px solid rgba(8,22,20,.06);
+}
+.check{
+  flex:0 0 auto;width:22px;height:22px;border-radius:50%;
+  background:linear-gradient(135deg,var(--mint),var(--cyan));
+  color:white;font-size:13px;font-weight:950;display:grid;place-items:center;
+}
+.warning{
+  margin-top:16px;padding:14px;border-radius:16px;
+  background:#fffaf0;border:1px solid rgba(246,183,79,.28);color:#6b4b11;line-height:1.65;font-size:14px;
+}
+.progress-strip{
+  margin-top:18px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;
+}
+.mini-progress{
+  background:white;border:1px solid rgba(8,22,20,.06);border-radius:16px;padding:12px;
+}
+.mini-progress b{font-size:12px}
+.mini-progress span{display:block;margin-top:6px;font-size:18px;font-weight:950}
+.rounds{
+  margin-top:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
+}
+.round-card{
+  background:white;border:1px solid rgba(8,22,20,.07);border-radius:18px;padding:14px;
+}
+.round-card strong{display:block;font-size:14px}
+.round-card p{margin:7px 0 0;color:rgba(8,22,20,.58);font-size:12px;line-height:1.45}
+.now-marker{
+  display:inline-flex;align-items:center;gap:8px;margin-top:14px;
+  background:#081614;color:white;border-radius:999px;padding:9px 13px;font-size:12px;font-weight:950;
+}
 
 
-    .sticky-workbench {
-      align-self: start;
-    }
+/* Demo Profile & Radar */
+.demo-grid{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:24px;
+  align-items:stretch;
+}
+.profile-card{
+  background:linear-gradient(180deg,#ffffff,#f5fffc);
+  border:1px solid rgba(8,22,20,.08);
+  border-radius:24px;
+  padding:22px;
+}
+.profile-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:16px;
+  margin-bottom:18px;
+}
+.demo-badge{
+  display:inline-flex;
+  padding:8px 11px;
+  border-radius:999px;
+  background:#fff4e5;
+  color:#8a5b00;
+  font-size:12px;
+  font-weight:950;
+  border:1px solid rgba(246,183,79,.24);
+}
+.profile-name{
+  font-size:26px;
+  font-weight:950;
+  letter-spacing:-.04em;
+  margin:6px 0 6px;
+}
+.profile-meta{
+  color:rgba(8,22,20,.62);
+  line-height:1.65;
+  font-size:14px;
+}
+.profile-facts{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+  margin-top:18px;
+}
+.fact{
+  background:white;
+  border:1px solid rgba(8,22,20,.06);
+  border-radius:16px;
+  padding:13px;
+}
+.fact b{
+  display:block;
+  font-size:12px;
+  color:rgba(8,22,20,.5);
+}
+.fact span{
+  display:block;
+  margin-top:6px;
+  font-size:17px;
+  font-weight:950;
+}
+.path-cards{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+  margin-top:18px;
+}
+.path-card{
+  border-radius:18px;
+  padding:14px;
+  background:white;
+  border:1px solid rgba(8,22,20,.07);
+}
+.path-card strong{
+  display:block;
+  font-size:14px;
+}
+.path-card p{
+  margin:7px 0 0;
+  font-size:12px;
+  line-height:1.45;
+  color:rgba(8,22,20,.58);
+}
+.radar-panel{
+  background:rgba(255,255,255,.78);
+  border:1px solid rgba(8,22,20,.08);
+  border-radius:24px;
+  padding:22px;
+}
+.radar-wrap{
+  display:grid;
+  grid-template-columns:330px 1fr;
+  gap:18px;
+  align-items:center;
+}
+.radar-svg{
+  width:100%;
+  max-width:330px;
+  aspect-ratio:1/1;
+  display:block;
+}
+.radar-label{
+  font-size:11px;
+  font-weight:900;
+  fill:rgba(8,22,20,.72);
+}
+.radar-score{
+  display:grid;
+  gap:10px;
+}
+.radar-item{
+  padding:12px;
+  border-radius:16px;
+  background:white;
+  border:1px solid rgba(8,22,20,.06);
+}
+.radar-item-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  font-size:13px;
+  font-weight:900;
+}
+.radar-bar{
+  margin-top:8px;
+  height:8px;
+  border-radius:999px;
+  background:#e8f0ef;
+  overflow:hidden;
+}
+.radar-bar > div{
+  height:100%;
+  border-radius:999px;
+  background:linear-gradient(90deg,var(--mint),var(--cyan));
+}
+.test-result-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+  margin-top:18px;
+}
+.test-result{
+  background:white;
+  border:1px solid rgba(8,22,20,.06);
+  border-radius:18px;
+  padding:14px;
+}
+.test-result b{
+  display:block;
+  font-size:22px;
+  font-weight:950;
+  letter-spacing:-.04em;
+}
+.test-result span{
+  display:block;
+  margin-top:6px;
+  font-size:12px;
+  line-height:1.45;
+  color:rgba(8,22,20,.58);
+}
 
-    @media (min-width: 1024px) {
-      .sticky-workbench {
-        position: sticky;
-        top: 96px;
-      }
-      .workbench-card {
-        max-height: calc(100vh - 112px);
-        overflow: auto;
-      }
-      .workbench-card::-webkit-scrollbar { width: 8px; }
-      .workbench-card::-webkit-scrollbar-thumb { background: rgba(7,17,15,.16); border-radius: 999px; }
-    }
-
-    .flow-step {
-      position: relative;
-      padding-left: 1.9rem;
-    }
-    .flow-step::before {
-      content: attr(data-step);
-      position: absolute;
-      left: 0;
-      top: .05rem;
-      display: grid;
-      place-items: center;
-      width: 1.25rem;
-      height: 1.25rem;
-      border-radius: 999px;
-      background: rgba(31,216,164,.18);
-      color: #07110f;
-      font-size: .68rem;
-      font-weight: 900;
-    }
-
-    .mobile-section-tabs {
-      scrollbar-width: none;
-    }
-    .mobile-section-tabs::-webkit-scrollbar { display: none; }
-
-  </style>
+@media(max-width:1180px){
+  .stage-board{grid-template-columns:1fr}
+  .stage-row{grid-template-columns:repeat(4,1fr)}
+  .route{display:none}
+  .demo-grid{grid-template-columns:1fr}
+  .radar-wrap{grid-template-columns:1fr}
+  .radar-svg{margin:auto}
+}
+@media(max-width:1024px){
+  .shell{padding:18px}
+  .layout{grid-template-columns:1fr}
+  .left-panel{position:relative;top:0}
+  .school-grid,.grid2{grid-template-columns:1fr}
+}
+@media(max-width:720px){
+  .topbar .navlinks{display:none}
+  .card{border-radius:20px;padding:18px}
+  .life-head{display:block}
+  .life-title{font-size:26px}
+  .stage-row{grid-template-columns:1fr}
+  .stage-node{
+    min-height:auto;display:grid;grid-template-columns:44px 1fr;column-gap:10px;align-items:start;
+  }
+  .node-dot{grid-row:span 3;margin:0}
+  .rounds,.progress-strip,.profile-facts,.path-cards,.test-result-grid{grid-template-columns:1fr}
+  .big-score{font-size:44px}
+  .profile-head{display:block}
+  .profile-name{font-size:23px}
+}
+</style>
 </head>
-<body class="font-sans antialiased">
-  <div class="fixed inset-x-0 top-0 z-50 border-b border-ink/10 bg-white/82 backdrop-blur-xl">
-    <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-      <a href="#home" class="flex items-center gap-3">
-        <span class="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-mint to-aqua text-sm font-black text-ink shadow-card">NX</span>
-        <span class="leading-tight">
-          <span class="block text-sm font-black tracking-wide text-ink">Nexus AI</span>
-          <span class="block text-xs text-ink/55">港校申请人生模拟器</span>
-        </span>
-      </a>
-      <div class="hidden items-center gap-7 text-sm font-semibold text-ink/70 md:flex">
-        <a class="hover:text-ink" href="#engine">生成画像</a>
-        <a class="hover:text-ink" href="#simulator">努力模拟器</a>
-        <a class="hover:text-ink" href="#map">申请地图</a>
-        <a class="hover:text-ink" href="#universities">官网直达</a>
+<body>
+
+<div class="topbar">
+  <div class="shell" style="padding-top:14px;padding-bottom:14px;display:flex;align-items:center;justify-content:space-between;gap:20px;">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div style="width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,#25d8ad,#52d7ff);display:grid;place-items:center;font-weight:950;">NX</div>
+      <div>
+        <div style="font-weight:950;font-size:19px;">Nexus AI</div>
+        <div style="font-size:13px;color:rgba(8,22,20,.55);">港校申请智能助手</div>
       </div>
-      <a href="#engine" class="rounded-xl bg-ink px-4 py-2 text-sm font-bold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-ink/90">开始测评</a>
-    </nav>
+    </div>
+    <div class="navlinks" style="display:flex;gap:28px;font-weight:900;">
+      <a href="#engine" style="color:inherit;text-decoration:none;">智能测评</a>
+      <a href="#life-map" style="color:inherit;text-decoration:none;">人生导航地图</a>
+      <a href="#demo-profile" style="color:inherit;text-decoration:none;">演示案例</a>
+      <a href="#effort" style="color:inherit;text-decoration:none;">努力模拟器</a>
+      <a href="#schools" style="color:inherit;text-decoration:none;">院校直达</a>
+    </div>
+    <a href="#engine" style="background:#081614;color:white;padding:12px 18px;border-radius:14px;text-decoration:none;font-weight:950;">开始测评</a>
+  </div>
+</div>
+
+<div class="shell">
+  <div class="card" style="margin:18px 0 28px;padding:36px;">
+    <div class="pill">申请人生导航仪 · 不是替你做决定，而是让你看清路径</div>
+    <h1 style="font-size:clamp(38px,6vw,76px);line-height:.98;margin:24px 0 18px;letter-spacing:-.06em;">
+      你真的知道自己<br/>该什么时候做什么吗？
+    </h1>
+    <p style="max-width:850px;font-size:18px;line-height:1.85;color:rgba(8,22,20,.64);">
+      Nexus AI 把港校申请拆成一张可视化地图：现在在哪一站、离第几轮还有多久、这周该做什么、哪里值得花钱，全部放到一条路径里。
+    </p>
   </div>
 
-  <header id="home" class="relative overflow-hidden pt-24 section-anchor">
-    <div class="grid-bg absolute inset-0 -z-10"></div>
-    <div class="mx-auto grid max-w-7xl items-center gap-10 px-4 py-12 sm:px-6 md:py-18 lg:grid-cols-[0.98fr_1.02fr] lg:px-8">
-      <div>
-        <div class="mb-5 inline-flex items-center gap-2 rounded-full border border-ink/10 bg-white/80 px-3 py-1 text-sm font-semibold text-ink/70 shadow-sm">
-          <span class="h-2 w-2 rounded-full bg-mint pulse-dot"></span>
-          先看清自己，再决定怎么冲
+  <div id="engine" class="layout">
+    <div class="left-panel">
+      <div class="card">
+        <h2 style="font-size:30px;margin-top:0;">生成你的申请画像</h2>
+
+        <label class="label">本科背景</label>
+        <select class="input"><option>211 / 双一流</option><option>985</option><option>双非</option></select>
+
+        <label class="label">GPA</label>
+        <input class="input" value="3.55"/>
+
+        <label class="label">语言成绩</label>
+        <input class="input" value="雅思 6.5"/>
+
+        <label class="label">目标方向</label>
+        <select class="input"><option>商科 / 金融</option><option>AI / CS</option><option>传媒 / 社科</option></select>
+
+        <label class="label">预算 / 路径偏好</label>
+        <select class="input"><option>均衡：香港本地为主</option><option>预算有限：大湾区替代路径</option><option>低风险保底</option></select>
+
+        <button class="button">重新生成申请导航</button>
+
+        <div class="helper">
+          <h3>你的申请状态</h3>
+          <div>当前画像：稳中带冲型</div>
+          <div style="margin-top:10px;">最大变量：语言成绩</div>
+          <div style="margin-top:10px;">建议策略：先稳后冲</div>
         </div>
-        <h1 class="max-w-3xl text-4xl font-black leading-[1.05] tracking-normal text-ink sm:text-5xl lg:text-6xl">
-          你真的知道自己该申哪所港校吗？
-        </h1>
-        <p class="mt-6 max-w-2xl text-lg leading-8 text-ink/70">
-          很多学生不是不努力，而是不知道自己现在处于什么位置、哪里值得花钱、下一步该先做什么。Nexus AI 把港校申请做成一张能看懂、能推演、能行动的地图。
+
+        <div class="helper">
+          <h3>本周优先级</h3>
+          <div>1. 确认主申专业</div>
+          <div>2. 报名语言考试</div>
+          <div>3. 联系推荐人</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="right-panel">
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;">
+          <h2 style="margin:0;">你的申请画像：稳中带冲型</h2>
+          <div class="pill">语言临界 · 实习加分 · 适合分层</div>
+        </div>
+        <p style="margin-top:16px;color:#4f5c59;line-height:1.8;">
+          你不是没有机会，而是不适合盲冲。当前最影响结果的变量是语言成绩和申请节奏。
         </p>
-        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-          <a href="#engine" class="rounded-xl bg-ink px-6 py-3 text-center text-sm font-black text-white shadow-soft transition hover:-translate-y-0.5">3分钟生成我的申请画像</a>
-          <a href="#simulator" class="rounded-xl border border-ink/12 bg-white/75 px-6 py-3 text-center text-sm font-black text-ink transition hover:-translate-y-0.5 hover:bg-white">先看努力模拟器</a>
+      </div>
+
+      <div class="school-grid" id="schools">
+        <div class="school"><h3>冲刺</h3><div>香港大学 HKU</div><div>香港科技大学 HKUST</div></div>
+        <div class="school"><h3>匹配</h3><div>香港中文大学 CUHK</div><div>香港理工大学 PolyU</div></div>
+        <div class="school"><h3>稳妥 / 替代</h3><div>香港恒生大学</div><div>港中深 CUHK-Shenzhen</div><div>港科广 HKUST(GZ)</div></div>
+      </div>
+
+      <div class="grid2">
+        <div class="card">
+          <h2 style="margin-top:0;">申请能量条</h2>
+          <div style="margin-top:18px;">学术基础 <b style="float:right">91</b></div><div class="meter"><div class="fill" style="width:91%"></div></div>
+          <div style="margin-top:18px;">语言准备 <b style="float:right">68</b></div><div class="meter"><div class="fill" style="width:68%"></div></div>
+          <div style="margin-top:18px;">实习科研 <b style="float:right">72</b></div><div class="meter"><div class="fill" style="width:72%"></div></div>
+          <div style="margin-top:18px;">综合匹配 <b style="float:right">76</b></div><div class="meter"><div class="fill" style="width:76%"></div></div>
         </div>
-        <div class="mt-10 grid max-w-2xl gap-3 sm:grid-cols-3">
-          <div class="rounded-2xl border border-ink/10 bg-white/76 p-4 shadow-sm"><p class="text-2xl font-black text-ink">画像</p><p class="mt-1 text-xs font-semibold text-ink/55">让用户被解释</p></div>
-          <div class="rounded-2xl border border-ink/10 bg-white/76 p-4 shadow-sm"><p class="text-2xl font-black text-ink">推演</p><p class="mt-1 text-xs font-semibold text-ink/55">看见努力反馈</p></div>
-          <div class="rounded-2xl border border-ink/10 bg-white/76 p-4 shadow-sm"><p class="text-2xl font-black text-ink">省钱</p><p class="mt-1 text-xs font-semibold text-ink/55">判断投入优先级</p></div>
+
+        <div class="card" id="effort">
+          <h2 style="margin-top:0;">如果我再努力一点？</h2>
+          <div class="big-score" id="effortScore">72 → 81</div>
+          <p id="effortText" style="line-height:1.8;color:#52615d;">
+            如果雅思提升到 7.0，并新增一段相关实习，你的申请风险会明显下降，港中文匹配度会从下沿提升至中位区间。
+          </p>
+          <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;">
+            <button class="sim-btn" onclick="changeEffort('ielts')">模拟雅思提升</button>
+            <button class="sim-btn" onclick="changeEffort('intern')">模拟新增实习</button>
+            <button class="sim-btn" onclick="changeEffort('cv')">模拟提前完成 CV</button>
+            <button class="sim-btn" onclick="changeEffort('budget')">模拟预算有限路径</button>
+          </div>
         </div>
       </div>
 
-      <div class="relative">
-        <div class="glass scan-orbit rounded-3xl p-5 shadow-glow">
-          <div class="mb-5 flex items-start justify-between gap-4">
-            <div>
-              <p class="text-xs font-black uppercase tracking-[0.22em] text-mint">Live Preview</p>
-              <h2 class="mt-2 text-2xl font-black text-ink">申请画像生成中</h2>
-            </div>
-            <span class="rounded-xl bg-foam px-3 py-2 text-xs font-black text-ink">Demo</span>
+      <section id="life-map" class="card life-map-card">
+        <div class="life-head">
+          <div>
+            <div class="pill">全流程进度可视化</div>
+            <h2 class="life-title">申请人生导航地图</h2>
+            <p class="life-sub">
+              把港校申请做成一条路线：每个阶段看当前任务、风险提醒、对应轮次和最该投入的地方。点击地图节点切换阶段。
+            </p>
           </div>
-          <div class="rounded-3xl bg-white/80 p-5 shadow-card">
-            <div class="flex items-center justify-between gap-3">
+          <div class="now-marker">当前建议：背景准备期 · 先补语言和推荐信</div>
+        </div>
+
+        <div class="stage-board">
+          <div class="map-track">
+            <div class="route"></div>
+            <div id="stageRow" class="stage-row"></div>
+
+            <div class="rounds">
+              <div class="round-card">
+                <strong>第一轮 R1</strong>
+                <p>通常 9-12 月集中开放与提交。越早准备，节奏越舒服。</p>
+              </div>
+              <div class="round-card">
+                <strong>第二轮 R2</strong>
+                <p>通常 1-3 月继续审理，竞争加剧，适合补申与面试跟进。</p>
+              </div>
+              <div class="round-card">
+                <strong>第三轮 / 收尾</strong>
+                <p>通常 4-6 月进入 offer 选择、留位费、签证与行前准备。</p>
+              </div>
+            </div>
+          </div>
+
+          <aside class="detail-panel">
+            <div class="detail-kicker" id="detailKicker">Current Stage</div>
+            <div class="detail-title" id="detailTitle">背景补强期</div>
+            <div class="detail-time" id="detailTime">4-6月｜申请前关键窗口</div>
+
+            <div class="progress-strip">
+              <div class="mini-progress"><b>语言</b><span id="pLang">60%</span></div>
+              <div class="mini-progress"><b>材料</b><span id="pDoc">35%</span></div>
+              <div class="mini-progress"><b>选校</b><span id="pSchool">50%</span></div>
+              <div class="mini-progress"><b>节奏</b><span id="pPace">68%</span></div>
+            </div>
+
+            <div class="task-list" id="taskList"></div>
+            <div class="warning" id="warningBox"></div>
+          </aside>
+        </div>
+      </section>
+
+
+      <section id="demo-profile" class="card">
+        <div class="life-head">
+          <div>
+            <div class="pill">Demo Profile · 非真实案例</div>
+            <h2 class="life-title">经典案例展示板块</h2>
+            <p class="life-sub">
+              用一个虚拟申请者演示 Nexus AI 如何把背景、风险、预算和下一步行动拆开。以下内容为产品演示样例，不代表真实用户，不构成录取承诺。
+            </p>
+          </div>
+          <div class="demo-badge">演示案例｜非真实用户数据</div>
+        </div>
+
+        <div class="demo-grid">
+          <div class="profile-card">
+            <div class="profile-head">
               <div>
-                <p class="text-sm font-bold text-ink/55">你的申请画像</p>
-                <p class="mt-1 text-3xl font-black text-ink">稳中带冲型</p>
-              </div>
-              <div class="grid h-16 w-16 place-items-center rounded-2xl bg-gradient-to-br from-mint/28 to-aqua/28 text-lg font-black text-ink">72</div>
-            </div>
-            <div class="mt-5 flex flex-wrap gap-2 text-xs font-black">
-              <span class="rounded-full bg-mint/14 px-3 py-1.5 text-ink">语言临界</span>
-              <span class="rounded-full bg-aqua/14 px-3 py-1.5 text-ink">实习加分</span>
-              <span class="rounded-full bg-lemon/35 px-3 py-1.5 text-ink">适合分层</span>
-            </div>
-            <p class="mt-5 text-sm leading-6 text-ink/68">你不是没有机会，但不适合盲冲。当前最能改变结果的变量是语言成绩和申请节奏。</p>
-          </div>
-          <div class="mt-4 grid gap-3 sm:grid-cols-3">
-            <div class="rounded-2xl bg-white/72 p-4"><p class="text-xs font-black text-coral">港大</p><p class="mt-1 text-xl font-black">冲刺</p></div>
-            <div class="rounded-2xl bg-white/72 p-4"><p class="text-xs font-black text-mint">港中文</p><p class="mt-1 text-xl font-black">匹配</p></div>
-            <div class="rounded-2xl bg-white/72 p-4"><p class="text-xs font-black text-aqua">港理工</p><p class="mt-1 text-xl font-black">稳妥</p></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    <section id="engine" class="section-anchor mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-      <div class="mb-6 max-w-3xl">
-        <p class="text-sm font-black uppercase tracking-[0.2em] text-mint">Step 1 · 低门槛输入</p>
-        <h2 class="mt-3 text-3xl font-black text-ink sm:text-4xl">先不用填很准，系统会先给你一个初步画像。</h2>
-        <p class="mt-4 text-base leading-7 text-ink/64">用户一旦开始输入，就已经进入产品。先给反馈，再逐步引导补充更多信息。</p>
-      </div>
-      <div class="mobile-section-tabs -mx-4 mb-6 flex gap-2 overflow-x-auto px-4 pb-1 lg:hidden">
-        <a href="#engine" class="shrink-0 rounded-full bg-ink px-4 py-2 text-xs font-black text-white">生成画像</a>
-        <a href="#simulator" class="shrink-0 rounded-full bg-white px-4 py-2 text-xs font-black text-ink shadow-sm">努力模拟</a>
-        <a href="#money" class="shrink-0 rounded-full bg-white px-4 py-2 text-xs font-black text-ink shadow-sm">省钱建议</a>
-        <a href="#map" class="shrink-0 rounded-full bg-white px-4 py-2 text-xs font-black text-ink shadow-sm">申请地图</a>
-      </div>
-
-      <div class="grid gap-6 lg:grid-cols-[minmax(340px,0.82fr)_minmax(0,1.18fr)] lg:items-start">
-        <div class="sticky-workbench">
-        <div class="glass workbench-card rounded-3xl p-5 shadow-soft sm:p-7">
-          <form id="profileForm" class="space-y-4">
-            <div class="grid gap-4 sm:grid-cols-2">
-              <label class="block">
-                <span class="text-sm font-bold text-ink/70">本科学校层级</span>
-                <select id="schoolTier" class="mt-2 w-full rounded-xl border border-ink/12 bg-white px-3 py-3 text-sm outline-none focus:border-mint">
-                  <option value="c9">C9 / 顶尖985</option>
-                  <option value="985">985 / 强势双一流</option>
-                  <option value="211">211 / 普通双一流</option>
-                  <option value="overseas">海外本科</option>
-                  <option value="dual">双一流 / 特色院校</option>
-                  <option value="ordinary">普通本科 / 双非</option>
-                </select>
-              </label>
-              <label class="block">
-                <span class="text-sm font-bold text-ink/70">目标方向</span>
-                <select id="direction" class="mt-2 w-full rounded-xl border border-ink/12 bg-white px-3 py-3 text-sm outline-none focus:border-mint">
-                  <option value="business">商科 / 金融 / 管理</option>
-                  <option value="cs">计算机 / 数据 / AI</option>
-                  <option value="social">传媒 / 社科 / 公共政策</option>
-                  <option value="education">教育 / 语言 / TESOL</option>
-                  <option value="engineering">工程 / 理工</option>
-                  <option value="law">法学 / 合规 / 国际关系</option>
-                </select>
-              </label>
-            </div>
-            <div class="grid gap-4 sm:grid-cols-3">
-              <label class="block">
-                <span class="text-sm font-bold text-ink/70">GPA 制度</span>
-                <select id="gpaScale" class="mt-2 w-full rounded-xl border border-ink/12 bg-white px-3 py-3 text-sm outline-none focus:border-mint"><option value="4">4.0制</option><option value="5">5.0制</option><option value="100">百分制</option></select>
-              </label>
-              <label class="block sm:col-span-2">
-                <span class="text-sm font-bold text-ink/70">GPA / 均分</span>
-                <input id="gpa" type="number" min="0" step="0.01" value="3.55" class="mt-2 w-full rounded-xl border border-ink/12 bg-white px-3 py-3 text-sm outline-none focus:border-mint" />
-              </label>
-            </div>
-            <div class="grid gap-4 sm:grid-cols-3">
-              <label class="block">
-                <span class="text-sm font-bold text-ink/70">语言类型</span>
-                <select id="langType" class="mt-2 w-full rounded-xl border border-ink/12 bg-white px-3 py-3 text-sm outline-none focus:border-mint"><option value="ielts">雅思</option><option value="toefl">托福</option><option value="none">暂未出分</option></select>
-              </label>
-              <label class="block sm:col-span-2">
-                <span class="text-sm font-bold text-ink/70">语言总分</span>
-                <input id="langScore" type="number" min="0" step="0.5" value="6.5" class="mt-2 w-full rounded-xl border border-ink/12 bg-white px-3 py-3 text-sm outline-none focus:border-mint" />
-              </label>
-            </div>
-            <details class="rounded-2xl border border-ink/10 bg-white/60 p-4">
-              <summary class="cursor-pointer text-sm font-black text-ink">继续补充：实习、科研、预算、申请节奏</summary>
-              <div class="mt-4 grid gap-4 sm:grid-cols-2">
-                <label class="block"><span class="text-sm font-bold text-ink/70">实习 / 项目</span><select id="internship" class="mt-2 w-full rounded-xl border border-ink/12 bg-white px-3 py-3 text-sm outline-none focus:border-mint"><option value="0">几乎没有</option><option value="1">1段，相关度一般</option><option value="2" selected>2段，方向较匹配</option><option value="3">3段及以上，强相关</option></select></label>
-                <label class="block"><span class="text-sm font-bold text-ink/70">科研 / 竞赛 / 论文</span><select id="research" class="mt-2 w-full rounded-xl border border-ink/12 bg-white px-3 py-3 text-sm outline-none focus:border-mint"><option value="0">几乎没有</option><option value="1" selected>有课程项目或校级经历</option><option value="2">有较完整科研/竞赛项目</option><option value="3">论文、国奖或高含金量项目</option></select></label>
-                <label class="block"><span class="text-sm font-bold text-ink/70">预算/路径偏好</span><select id="budget" class="mt-2 w-full rounded-xl border border-ink/12 bg-white px-3 py-3 text-sm outline-none focus:border-mint"><option value="balanced" selected>均衡：学校与预算都考虑</option><option value="budget">预算有限：接受内地分校/澳门路径</option><option value="brand">优先学校品牌</option><option value="safe">低风险托底优先</option></select></label>
-                <label class="block"><span class="text-sm font-bold text-ink/70">申请准备度</span><select id="readiness" class="mt-2 w-full rounded-xl border border-ink/12 bg-white px-3 py-3 text-sm outline-none focus:border-mint"><option value="early">刚开始了解，目标不清</option><option value="planning" selected>已确定方向，材料在准备</option><option value="ready">语言和文书基本就绪</option><option value="urgent">临近DDL，时间紧张</option></select></label>
-              </div>
-            </details>
-            <button id="submitBtn" type="submit" class="w-full rounded-xl bg-ink px-5 py-3 text-sm font-black text-white shadow-soft transition hover:-translate-y-0.5">生成我的申请画像</button>
-          </form>
-
-          <div class="mt-5 rounded-3xl border border-ink/10 bg-gradient-to-br from-white/86 to-foam/75 p-4">
-            <p class="text-xs font-black uppercase tracking-[0.18em] text-mint">怎么玩这份报告</p>
-            <div class="mt-4 grid gap-3 text-sm text-ink/70">
-              <div class="flow-step" data-step="1"><span class="font-black text-ink">先看画像：</span>你属于哪种申请类型，最大变量是什么。</div>
-              <div class="flow-step" data-step="2"><span class="font-black text-ink">再玩模拟：</span>点“雅思提升 / 新增实习 / 预算有限”，看路径怎么变。</div>
-              <div class="flow-step" data-step="3"><span class="font-black text-ink">最后省钱：</span>判断哪些服务值得买，哪些先别急着花。</div>
-            </div>
-            <div class="mt-4 grid grid-cols-2 gap-2 text-xs font-black">
-              <a href="#simulator" class="rounded-2xl bg-white/80 px-3 py-3 text-center text-ink shadow-sm">去努力模拟器</a>
-              <a href="#map" class="rounded-2xl bg-white/80 px-3 py-3 text-center text-ink shadow-sm">看申请地图</a>
-            </div>
-          </div>
-        </div>
-        </div>
-
-        <aside id="resultPanel" class="blue-panel min-w-0 rounded-3xl p-5 shadow-glow sm:p-7">
-          <div id="emptyState" class="rounded-3xl bg-white/76 p-6 shadow-card">
-            <p class="text-xl font-black text-ink">你的结果会出现在这里。</p>
-            <p class="mt-3 text-sm leading-6 text-ink/62">先生成申请画像，再进入“如果我再努力一点”的路径推演。系统会尽量解释原因，而不是只给一句结论。</p>
-          </div>
-
-          <div id="loadingState" class="hidden rounded-3xl bg-white/80 p-6 shadow-card scan-orbit">
-            <div class="relative z-10">
-              <p class="text-sm font-black uppercase tracking-[0.22em] text-mint">Scanning</p>
-              <h3 id="loadingText" class="mt-3 text-2xl font-black text-ink">正在读取你的申请背景...</h3>
-              <div class="mt-6 grid grid-cols-2 gap-3 text-sm font-black">
-                <div class="rounded-2xl bg-foam p-4">GPA</div><div class="rounded-2xl bg-skysoft p-4">院校背景</div><div class="rounded-2xl bg-lemon/30 p-4">语言成绩</div><div class="rounded-2xl bg-violet/10 p-4">实习科研</div>
-              </div>
-            </div>
-          </div>
-
-          <div id="report" class="hidden space-y-5 fade-up">
-            <div class="rounded-3xl bg-white/86 p-6 shadow-card">
-              <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                <div>
-                  <p class="text-sm font-bold text-ink/55">你的申请画像</p>
-                  <h3 id="personaTitle" class="mt-1 text-3xl font-black text-ink">稳中带冲型</h3>
+                <div class="profile-name">Demo Profile A：稳中带冲型</div>
+                <div class="profile-meta">
+                  适合展示典型 211 商科申请者：有一定基础，但语言和申请节奏会影响港前三冲刺结果。
                 </div>
-                <div class="grid h-20 w-20 place-items-center rounded-3xl bg-gradient-to-br from-mint/28 to-aqua/28 text-3xl font-black text-ink"><span id="scoreText">72</span></div>
               </div>
-              <div id="tagWrap" class="mt-5 flex flex-wrap gap-2 text-xs font-black"></div>
-              <p id="personaSummary" class="mt-5 text-sm leading-6 text-ink/68"></p>
-              <div class="mt-5 h-3 rounded-full bg-ink/8"><div id="scoreBar" class="meter h-3 rounded-full bg-gradient-to-r from-mint to-aqua" style="--value:72%"></div></div>
+              <div class="pill">关键词：语言临界 · 实习加分 · 分层申请</div>
             </div>
 
-            <div class="grid gap-3 sm:grid-cols-2 xl:grid-cols-5" id="schoolCards"></div>
+            <div class="profile-facts">
+              <div class="fact"><b>本科背景</b><span>211 财经类院校</span></div>
+              <div class="fact"><b>GPA</b><span>3.55 / 4.0</span></div>
+              <div class="fact"><b>语言成绩</b><span>IELTS 6.5</span></div>
+              <div class="fact"><b>目标方向</b><span>商科 / 金融 / 管理</span></div>
+              <div class="fact"><b>实习经历</b><span>2段，方向较匹配</span></div>
+              <div class="fact"><b>预算偏好</b><span>香港本地优先，可接受大湾区替代</span></div>
+            </div>
 
-            <div class="rounded-3xl bg-white/76 p-5 shadow-card">
-              <div class="flex items-center justify-between gap-4"><h3 class="text-xl font-black text-ink">为什么是这个结果</h3><span class="rounded-full bg-foam px-3 py-1 text-xs font-black text-ink">可解释</span></div>
-              <div id="reasonList" class="mt-4 grid gap-3 md:grid-cols-2"></div>
+            <div class="path-cards">
+              <div class="path-card">
+                <strong>冲刺路径</strong>
+                <p>香港大学、香港科技大学。适合保留少量冲刺，但不能把全部筹码压在港前三热门专业。</p>
+              </div>
+              <div class="path-card">
+                <strong>主申路径</strong>
+                <p>香港中文大学、香港理工大学、香港城市大学。重点看文书表达、实习匹配和申请节奏。</p>
+              </div>
+              <div class="path-card">
+                <strong>托底路径</strong>
+                <p>香港都会大学、香港恒生大学、港中深、北师港浸大等。适合预算或低风险偏好用户。</p>
+              </div>
+            </div>
+
+            <div class="warning">
+              系统解读：这个画像不是“申不上”，而是“不适合盲冲”。最值得优先投入的是语言成绩与文书主线，而不是一开始购买高价全包套餐。
             </div>
           </div>
-        </aside>
-      </div>
-    </section>
 
-    <section id="simulator" class="section-anchor mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-      <div class="mb-8 max-w-3xl">
-        <p class="text-sm font-black uppercase tracking-[0.2em] text-mint">Step 2 · 最上瘾的模块</p>
-        <h2 class="mt-3 text-3xl font-black text-ink sm:text-4xl">如果我再努力一点，会怎样？</h2>
-        <p class="mt-4 text-base leading-7 text-ink/64">用户真正想看的不是“我现在多少分”，而是“我还能不能变好”。点击变量，系统会把努力变成看得见的反馈。</p>
-      </div>
+          <div class="radar-panel">
+            <h3 style="margin:0;font-size:24px;font-weight:950;letter-spacing:-.04em;">用户测试结果雷达图</h3>
+            <p style="margin:8px 0 18px;color:rgba(8,22,20,.62);line-height:1.65;font-size:14px;">
+              用 6 个维度展示演示用户的申请状态：越靠外代表该维度越强。该雷达图为前端演示可视化，后续可接入真实测试数据。
+            </p>
 
-      <div class="grid gap-6 lg:grid-cols-[1.02fr_0.98fr]">
-        <div class="glass rounded-3xl p-5 shadow-soft sm:p-7">
-          <div class="grid gap-4 sm:grid-cols-2" id="simButtons">
-            <button data-sim="ielts" class="sim-card rounded-3xl border border-ink/10 bg-white/82 p-5 text-left shadow-sm transition"><p class="text-xs font-black text-mint">模拟雅思提升</p><h3 class="mt-2 text-xl font-black text-ink">6.5 → 7.0</h3><p class="mt-3 text-sm leading-6 text-ink/62">语言风险下降，港中文匹配度提升。</p></button>
-            <button data-sim="intern" class="sim-card rounded-3xl border border-ink/10 bg-white/82 p-5 text-left shadow-sm transition"><p class="text-xs font-black text-aqua">模拟新增实习</p><h3 class="mt-2 text-xl font-black text-ink">+1段强相关经历</h3><p class="mt-3 text-sm leading-6 text-ink/62">经历匹配度上升，商科/管理类更有说服力。</p></button>
-            <button data-sim="cv" class="sim-card rounded-3xl border border-ink/10 bg-white/82 p-5 text-left shadow-sm transition"><p class="text-xs font-black text-lemon">模拟提前完成CV</p><h3 class="mt-2 text-xl font-black text-ink">节奏风险下降</h3><p class="mt-3 text-sm leading-6 text-ink/62">DDL 压力降低，推荐信与文书更从容。</p></button>
-            <button data-sim="budget" class="sim-card rounded-3xl border border-ink/10 bg-white/82 p-5 text-left shadow-sm transition"><p class="text-xs font-black text-violet">模拟预算有限路径</p><h3 class="mt-2 text-xl font-black text-ink">更多替代方案</h3><p class="mt-3 text-sm leading-6 text-ink/62">加入港中深、港科广、澳门/内地分校路径。</p></button>
-          </div>
-        </div>
+            <div class="radar-wrap">
+              <svg class="radar-svg" viewBox="0 0 320 320" aria-label="申请雷达图">
+                <defs>
+                  <linearGradient id="radarFill" x1="0" x2="1" y1="0" y2="1">
+                    <stop offset="0%" stop-color="#25d8ad" stop-opacity=".48"/>
+                    <stop offset="100%" stop-color="#52d7ff" stop-opacity=".38"/>
+                  </linearGradient>
+                </defs>
+                <g transform="translate(160 160)">
+                  <polygon points="0,-120 103.9,-60 103.9,60 0,120 -103.9,60 -103.9,-60" fill="none" stroke="#d8efea" stroke-width="1.4"/>
+                  <polygon points="0,-96 83.1,-48 83.1,48 0,96 -83.1,48 -83.1,-48" fill="none" stroke="#d8efea" stroke-width="1"/>
+                  <polygon points="0,-72 62.3,-36 62.3,36 0,72 -62.3,36 -62.3,-36" fill="none" stroke="#d8efea" stroke-width="1"/>
+                  <polygon points="0,-48 41.6,-24 41.6,24 0,48 -41.6,24 -41.6,-24" fill="none" stroke="#d8efea" stroke-width="1"/>
+                  <line x1="0" y1="0" x2="0" y2="-120" stroke="#d8efea"/>
+                  <line x1="0" y1="0" x2="103.9" y2="-60" stroke="#d8efea"/>
+                  <line x1="0" y1="0" x2="103.9" y2="60" stroke="#d8efea"/>
+                  <line x1="0" y1="0" x2="0" y2="120" stroke="#d8efea"/>
+                  <line x1="0" y1="0" x2="-103.9" y2="60" stroke="#d8efea"/>
+                  <line x1="0" y1="0" x2="-103.9" y2="-60" stroke="#d8efea"/>
+                  <!-- scores: academic 86, language 68, internship 78, pace 64, budget 82, writing 72 -->
+                  <polygon points="0,-103.2 70.7,-40.8 81.0,46.8 0,76.8 -85.2,49.2 -74.8,-43.2" fill="url(#radarFill)" stroke="#25d8ad" stroke-width="3"/>
+                  <circle cx="0" cy="-103.2" r="4" fill="#25d8ad"/>
+                  <circle cx="70.7" cy="-40.8" r="4" fill="#25d8ad"/>
+                  <circle cx="81.0" cy="46.8" r="4" fill="#25d8ad"/>
+                  <circle cx="0" cy="76.8" r="4" fill="#25d8ad"/>
+                  <circle cx="-85.2" cy="49.2" r="4" fill="#25d8ad"/>
+                  <circle cx="-74.8" cy="-43.2" r="4" fill="#25d8ad"/>
+                </g>
+                <text class="radar-label" x="160" y="20" text-anchor="middle">学术基础 86</text>
+                <text class="radar-label" x="290" y="92" text-anchor="middle">语言 68</text>
+                <text class="radar-label" x="292" y="232" text-anchor="middle">实习科研 78</text>
+                <text class="radar-label" x="160" y="310" text-anchor="middle">申请节奏 64</text>
+                <text class="radar-label" x="28" y="232" text-anchor="middle">预算适配 82</text>
+                <text class="radar-label" x="30" y="92" text-anchor="middle">文书潜力 72</text>
+              </svg>
 
-        <div class="soft-panel rounded-3xl p-5 shadow-glow sm:p-7">
-          <div class="rounded-3xl bg-white/80 p-6 shadow-card">
-            <div class="flex items-center justify-between gap-4">
-              <div><p class="text-sm font-bold text-ink/55">模拟后申请力</p><h3 id="simTitle" class="mt-1 text-2xl font-black text-ink">选择一个变量看看变化</h3></div>
-              <div class="text-right"><p class="text-xs font-black text-mint">Impact</p><p id="simDelta" class="text-3xl font-black text-ink">+0</p></div>
+              <div class="radar-score">
+                <div class="radar-item">
+                  <div class="radar-item-row"><span>学术基础</span><b>86</b></div>
+                  <div class="radar-bar"><div style="width:86%"></div></div>
+                </div>
+                <div class="radar-item">
+                  <div class="radar-item-row"><span>语言准备</span><b>68</b></div>
+                  <div class="radar-bar"><div style="width:68%"></div></div>
+                </div>
+                <div class="radar-item">
+                  <div class="radar-item-row"><span>实习科研</span><b>78</b></div>
+                  <div class="radar-bar"><div style="width:78%"></div></div>
+                </div>
+                <div class="radar-item">
+                  <div class="radar-item-row"><span>申请节奏</span><b>64</b></div>
+                  <div class="radar-bar"><div style="width:64%"></div></div>
+                </div>
+                <div class="radar-item">
+                  <div class="radar-item-row"><span>预算适配</span><b>82</b></div>
+                  <div class="radar-bar"><div style="width:82%"></div></div>
+                </div>
+                <div class="radar-item">
+                  <div class="radar-item-row"><span>文书潜力</span><b>72</b></div>
+                  <div class="radar-bar"><div style="width:72%"></div></div>
+                </div>
+              </div>
             </div>
-            <div class="mt-5 h-4 rounded-full bg-ink/8"><div id="simBar" class="meter h-4 rounded-full bg-gradient-to-r from-mint to-aqua" style="--value:72%"></div></div>
-            <p id="simText" class="mt-5 text-sm leading-6 text-ink/68">生成申请画像后，点击左侧变量。系统会告诉你：努力会影响哪里、该不该花钱、下一步怎么做。</p>
-          </div>
-          <div id="simPath" class="mt-4 grid gap-3"></div>
-        </div>
-      </div>
-    </section>
 
-    <section id="money" class="section-anchor mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-      <div class="grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
-        <div class="max-w-2xl">
-          <p class="text-sm font-black uppercase tracking-[0.2em] text-coral">Step 3 · 少花冤枉钱</p>
-          <h2 class="mt-3 text-3xl font-black text-ink sm:text-4xl">你现在最不该乱花钱的地方。</h2>
-          <p class="mt-4 text-base leading-7 text-ink/64">这个模块是你们和传统中介拉开差距的关键：不是让用户不花钱，而是让用户知道钱应该花在哪。</p>
-        </div>
-        <div id="moneyAdvice" class="grid gap-4"></div>
-      </div>
-    </section>
-
-    <section id="map" class="section-anchor mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-      <div class="mb-8 max-w-3xl">
-        <p class="text-sm font-black uppercase tracking-[0.2em] text-aqua">Step 4 · 动态申请地图</p>
-        <h2 class="mt-3 text-3xl font-black text-ink sm:text-4xl">把一次性测评，变成每天能回来的申请进度盘。</h2>
-      </div>
-      <div class="blue-panel rounded-3xl p-6 shadow-soft sm:p-8">
-        <div class="grid gap-6 lg:grid-cols-[0.82fr_1.18fr]">
-          <div class="rounded-3xl bg-white/78 p-6 shadow-card">
-            <p class="text-sm font-bold text-ink/55">当前阶段</p>
-            <h3 id="stageText" class="mt-2 text-3xl font-black text-ink">背景准备期</h3>
-            <p id="ddlText" class="mt-4 text-sm leading-6 text-ink/66">距离港大第一轮 DDL：74 天</p>
-            <div class="mt-5 flex flex-wrap gap-2 text-xs font-black"><span class="rounded-full bg-foam px-3 py-1.5">雅思</span><span class="rounded-full bg-skysoft px-3 py-1.5">推荐信</span><span class="rounded-full bg-lemon/35 px-3 py-1.5">CV初稿</span></div>
-          </div>
-          <div class="grid gap-4 sm:grid-cols-2" id="progressGrid"></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="cases" class="section-anchor mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-      <div class="mb-8 max-w-3xl">
-        <p class="text-sm font-black uppercase tracking-[0.2em] text-mint">Step 5 · 相似案例回测</p>
-        <h2 class="mt-3 text-3xl font-black text-ink sm:text-4xl">和我差不多的人，后来怎么样了？</h2>
-      </div>
-      <div class="grid gap-4 lg:grid-cols-3" id="caseGrid"></div>
-      <p class="mt-4 text-xs leading-5 text-ink/46">以下为脱敏演示样例，用于展示产品交互逻辑，不构成录取承诺。</p>
-    </section>
-
-    <section id="share" class="section-anchor mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-      <div class="grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
-        <div>
-          <p class="text-sm font-black uppercase tracking-[0.2em] text-violet">Step 6 · 匿名分享卡</p>
-          <h2 class="mt-3 text-3xl font-black text-ink sm:text-4xl">像 MBTI 一样，让用户想知道“我是什么型”。</h2>
-          <p class="mt-4 text-base leading-7 text-ink/64">分享卡不暴露学校、GPA 等隐私，只展示画像、关键词和建议策略，适合发群里引发二次测评。</p>
-        </div>
-        <div class="rounded-3xl bg-gradient-to-br from-white to-foam p-6 shadow-glow border border-ink/10">
-          <div class="rounded-3xl bg-white p-6 shadow-card">
-            <p class="text-xs font-black uppercase tracking-[0.22em] text-mint">My Nexus Profile</p>
-            <h3 id="shareTitle" class="mt-3 text-3xl font-black text-ink">稳中带冲型</h3>
-            <div id="shareTags" class="mt-4 flex flex-wrap gap-2 text-xs font-black"></div>
-            <p id="shareText" class="mt-5 text-sm leading-6 text-ink/66">当前最大变量：语言成绩。建议策略：主申匹配项目，保留少量冲刺。</p>
-            <button id="copyShare" class="mt-6 w-full rounded-xl bg-ink px-5 py-3 text-sm font-black text-white shadow-soft transition hover:-translate-y-0.5">复制匿名分享文案</button>
+            <div class="test-result-grid">
+              <div class="test-result"><b>72→81</b><span>模拟雅思提升与实习增强后的申请力变化。</span></div>
+              <div class="test-result"><b>3条</b><span>系统给出冲刺、主申、托底三层路径。</span></div>
+              <div class="test-result"><b>1个变量</b><span>当前最关键变量：语言成绩，而不是文书包装。</span></div>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="universities" class="section-anchor mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-      <div class="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
-        <div class="max-w-3xl">
-          <p class="text-sm font-black uppercase tracking-[0.2em] text-mint">Step 7 · 官网直达</p>
-          <h2 class="mt-3 text-3xl font-black text-ink sm:text-4xl">根据你的画像，再去看对应学校官网。</h2>
-          <p class="mt-4 text-base leading-7 text-ink/64">官网链接放在测评之后，点击动机会更强：用户已经知道自己适合什么层级，再去查专业更有方向。</p>
+
+      <div class="grid2">
+        <div class="card">
+          <h2 style="margin-top:0;">少花冤枉钱建议</h2>
+          <p style="line-height:1.9;color:#55625f;">
+            你当前的核心问题不是文书，而是语言成绩。现阶段不建议优先购买高价全包套餐。
+          </p>
+          <div style="margin-top:16px;padding:16px;border-radius:16px;background:#effff8;">
+            更值得投入：雅思 + 面试模拟 + 最终材料复核
+          </div>
         </div>
-        <a href="https://studyinhongkong.edu.hk/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center rounded-xl border border-ink/10 bg-white/75 px-5 py-3 text-sm font-black text-ink shadow-sm transition hover:-translate-y-0.5 hover:bg-white">Study in Hong Kong</a>
-      </div>
-      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <a class="uni-card rounded-3xl border border-ink/10 bg-white/78 p-5 shadow-sm" href="https://www.hku.hk/" target="_blank" rel="noopener noreferrer"><p class="text-xs font-black text-mint">HKU</p><h3 class="mt-2 text-lg font-black text-ink">香港大学</h3><p class="mt-2 text-sm text-ink/56">综合顶尖｜冲刺核心</p></a>
-        <a class="uni-card rounded-3xl border border-ink/10 bg-white/78 p-5 shadow-sm" href="https://www.cuhk.edu.hk/" target="_blank" rel="noopener noreferrer"><p class="text-xs font-black text-mint">CUHK</p><h3 class="mt-2 text-lg font-black text-ink">香港中文大学</h3><p class="mt-2 text-sm text-ink/56">多专业主申</p></a>
-        <a class="uni-card rounded-3xl border border-ink/10 bg-white/78 p-5 shadow-sm" href="https://hkust.edu.hk/" target="_blank" rel="noopener noreferrer"><p class="text-xs font-black text-mint">HKUST</p><h3 class="mt-2 text-lg font-black text-ink">香港科技大学</h3><p class="mt-2 text-sm text-ink/56">商科/理工/科技</p></a>
-        <a class="uni-card rounded-3xl border border-ink/10 bg-white/78 p-5 shadow-sm" href="https://www.cityu.edu.hk/" target="_blank" rel="noopener noreferrer"><p class="text-xs font-black text-aqua">CityUHK</p><h3 class="mt-2 text-lg font-black text-ink">香港城市大学</h3><p class="mt-2 text-sm text-ink/56">匹配区间常用</p></a>
-        <a class="uni-card rounded-3xl border border-ink/10 bg-white/78 p-5 shadow-sm" href="https://www.polyu.edu.hk/" target="_blank" rel="noopener noreferrer"><p class="text-xs font-black text-aqua">PolyU</p><h3 class="mt-2 text-lg font-black text-ink">香港理工大学</h3><p class="mt-2 text-sm text-ink/56">应用型强</p></a>
-        <a class="uni-card rounded-3xl border border-ink/10 bg-white/78 p-5 shadow-sm" href="https://www.hkbu.edu.hk/" target="_blank" rel="noopener noreferrer"><p class="text-xs font-black text-aqua">HKBU</p><h3 class="mt-2 text-lg font-black text-ink">香港浸会大学</h3><p class="mt-2 text-sm text-ink/56">传媒/商科/文社</p></a>
-        <a class="uni-card rounded-3xl border border-ink/10 bg-white/78 p-5 shadow-sm" href="https://www.ln.edu.hk/" target="_blank" rel="noopener noreferrer"><p class="text-xs font-black text-lemon">LU</p><h3 class="mt-2 text-lg font-black text-ink">岭南大学</h3><p class="mt-2 text-sm text-ink/56">文商社科｜稳妥</p></a>
-        <a class="uni-card rounded-3xl border border-ink/10 bg-white/78 p-5 shadow-sm" href="https://www.eduhk.hk/" target="_blank" rel="noopener noreferrer"><p class="text-xs font-black text-lemon">EdUHK</p><h3 class="mt-2 text-lg font-black text-ink">香港教育大学</h3><p class="mt-2 text-sm text-ink/56">教育/TESOL</p></a>
-        <a class="uni-card rounded-3xl border border-ink/10 bg-white/78 p-5 shadow-sm" href="https://www.hkmu.edu.hk/" target="_blank" rel="noopener noreferrer"><p class="text-xs font-black text-coral">HKMU</p><h3 class="mt-2 text-lg font-black text-ink">香港都会大学</h3><p class="mt-2 text-sm text-ink/56">预算与稳妥路径</p></a>
-        <a class="uni-card rounded-3xl border border-ink/10 bg-white/78 p-5 shadow-sm" href="https://www.hsu.edu.hk/" target="_blank" rel="noopener noreferrer"><p class="text-xs font-black text-coral">HSUHK</p><h3 class="mt-2 text-lg font-black text-ink">香港恒生大学</h3><p class="mt-2 text-sm text-ink/56">低绩点托底探索</p></a>
-        <a class="uni-card rounded-3xl border border-ink/10 bg-white/78 p-5 shadow-sm" href="https://www.hksyu.edu/" target="_blank" rel="noopener noreferrer"><p class="text-xs font-black text-coral">HKSYU</p><h3 class="mt-2 text-lg font-black text-ink">香港树仁大学</h3><p class="mt-2 text-sm text-ink/56">低风险院校池补充</p></a>
-        <a class="uni-card rounded-3xl border border-ink/10 bg-white/78 p-5 shadow-sm" href="https://www.chuhai.edu.hk/" target="_blank" rel="noopener noreferrer"><p class="text-xs font-black text-coral">CHC</p><h3 class="mt-2 text-lg font-black text-ink">珠海学院</h3><p class="mt-2 text-sm text-ink/56">香港本地托底</p></a>
-        <a class="uni-card rounded-3xl border border-ink/10 bg-white/78 p-5 shadow-sm" href="https://www.cuhk.edu.cn/" target="_blank" rel="noopener noreferrer"><p class="text-xs font-black text-violet">CUHK-Shenzhen</p><h3 class="mt-2 text-lg font-black text-ink">香港中文大学（深圳）</h3><p class="mt-2 text-sm text-ink/56">预算/地理折中</p></a>
-        <a class="uni-card rounded-3xl border border-ink/10 bg-white/78 p-5 shadow-sm" href="https://www.hkust-gz.edu.cn/" target="_blank" rel="noopener noreferrer"><p class="text-xs font-black text-violet">HKUST(GZ)</p><h3 class="mt-2 text-lg font-black text-ink">香港科技大学（广州）</h3><p class="mt-2 text-sm text-ink/56">大湾区科技路径</p></a>
-        <a class="uni-card rounded-3xl border border-ink/10 bg-white/78 p-5 shadow-sm" href="https://www.uic.edu.cn/" target="_blank" rel="noopener noreferrer"><p class="text-xs font-black text-violet">BNBU/UIC</p><h3 class="mt-2 text-lg font-black text-ink">北师港浸大</h3><p class="mt-2 text-sm text-ink/56">预算友好国际化</p></a>
-        <a class="uni-card rounded-3xl border border-ink/10 bg-white/78 p-5 shadow-sm" href="https://www.um.edu.mo/" target="_blank" rel="noopener noreferrer"><p class="text-xs font-black text-violet">UM</p><h3 class="mt-2 text-lg font-black text-ink">澳门大学</h3><p class="mt-2 text-sm text-ink/56">大湾区补充路径</p></a>
-      </div>
-    </section>
 
-    <section id="trust" class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-      <div class="rounded-3xl bg-white/78 p-6 shadow-card border border-ink/10 sm:p-8">
-        <div class="grid gap-6 lg:grid-cols-[0.86fr_1.14fr] lg:items-center">
-          <div><p class="text-sm font-black uppercase tracking-[0.2em] text-mint">Trust</p><h2 class="mt-3 text-3xl font-black text-ink">辅助判断，不承诺录取。</h2><p class="mt-4 text-sm leading-6 text-ink/62">Nexus AI 的目标是让申请过程更透明，而不是制造确定性幻觉。所有结果均为前端演示规则生成，真实产品需结合官方信息、真实案例和人工复核。</p></div>
-          <div class="grid gap-4 sm:grid-cols-3"><div class="rounded-2xl bg-foam p-5"><p class="font-black">可解释</p><p class="mt-2 text-sm text-ink/62">展示原因，不只给结论。</p></div><div class="rounded-2xl bg-skysoft p-5"><p class="font-black">可推演</p><p class="mt-2 text-sm text-ink/62">看见努力的变化。</p></div><div class="rounded-2xl bg-lemon/30 p-5"><p class="font-black">可省钱</p><p class="mt-2 text-sm text-ink/62">判断哪些投入最值得。</p></div></div>
+        <div class="card">
+          <h2 style="margin-top:0;">相似案例回测</h2>
+          <p style="line-height:1.9;color:#55625f;">
+            脱敏样例：211财经院校 / GPA 3.48 / 雅思 7 / 两段实习。最终港中文匹配成功，港大冲刺失败，港理工稳妥录取。
+          </p>
+          <div style="margin-top:16px;color:#087b64;font-weight:900;">关键变量：语言达标 + 文书中强化数据分析经历</div>
         </div>
       </div>
-    </section>
-  </main>
-
-  <footer class="border-t border-ink/10 bg-white/72">
-    <div class="mx-auto flex max-w-7xl flex-col gap-6 px-4 py-8 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
-      <div><p class="text-lg font-black text-ink">Nexus AI</p><p class="mt-1 text-sm text-ink/55">让港校申请从信息黑箱，变成可理解、可推演、可行动的决策过程。</p></div>
-      <div class="flex flex-wrap gap-4 text-sm font-semibold text-ink/60"><a href="#engine" class="hover:text-ink">生成画像</a><a href="#simulator" class="hover:text-ink">努力模拟器</a><a href="#universities" class="hover:text-ink">官网直达</a></div>
     </div>
-  </footer>
+  </div>
+</div>
 
-  <script>
-    const $ = id => document.getElementById(id);
-    const form = $('profileForm');
-    const emptyState = $('emptyState');
-    const loadingState = $('loadingState');
-    const report = $('report');
-    const loadingText = $('loadingText');
-    const submitBtn = $('submitBtn');
+<script>
+const stages = [
+  {
+    id:"s1", month:"1-3月", name:"探索定位期", round:"准备前站",
+    desc:"先看清自己在哪，不急着买服务。",
+    title:"探索定位期", time:"1-3月｜确定方向和初步定位",
+    progress:["20%","10%","20%","30%"],
+    tasks:["确定目标方向：商科/CS/传媒/教育等","粗筛港校层级：冲刺、匹配、稳妥","判断是否需要考雅思/托福","初步估算预算和是否接受大湾区替代路径"],
+    warning:"这个阶段最怕盲目听结论。先看清位置，再决定是否需要顾问。"
+  },
+  {
+    id:"s2", month:"4-6月", name:"背景补强期", round:"黄金补强",
+    desc:"最能改变结果的窗口。",
+    title:"背景补强期", time:"4-6月｜申请前关键窗口",
+    progress:["60%","25%","45%","68%"],
+    tasks:["优先补语言成绩，锁定最近考试窗口","补一段相关实习/科研/课程项目","维护 GPA，准备成绩单与排名证明","确认推荐人范围，不要临近DDL才联系"],
+    warning:"这个阶段最值得花的是能改变硬变量的钱，比如语言、实习、项目；不建议过早购买高价全包套餐。"
+  },
+  {
+    id:"s3", month:"7-8月", name:"材料准备期", round:"R1 前夜",
+    desc:"CV、PS、推荐信开始定稿。",
+    title:"材料准备期", time:"7-8月｜R1提交前的材料窗口",
+    progress:["70%","55%","62%","72%"],
+    tasks:["完成 CV 初稿和经历素材库","整理 PS 主题：为什么这个专业、为什么这个学校","正式联系推荐人并确认推荐信节奏","建立目标项目清单，标记开放时间和DDL"],
+    warning:"这个阶段最怕反复纠结方向。先确定主线，再开始文书，不要一边改方向一边改文书。"
+  },
+  {
+    id:"s4", month:"9-10月", name:"开放冲刺期", round:"第一轮 R1",
+    desc:"项目陆续开放，节奏开始拉紧。",
+    title:"港校开放冲刺期", time:"9-10月｜项目开放与第一轮准备",
+    progress:["78%","72%","80%","76%"],
+    tasks:["检查港大、港中文、港科、港理工等项目是否开放","优先提交匹配项目，不要等所有材料完美","确认推荐信是否成功提交","准备可能出现的面试问题"],
+    warning:"R1 阶段不要无限拖延。港校很多项目 rolling，早提交通常更舒服。"
+  },
+  {
+    id:"s5", month:"11-12月", name:"第一轮黄金提交", round:"R1 黄金期",
+    desc:"主申项目集中提交。",
+    title:"第一轮黄金提交期", time:"11-12月｜主申与冲刺并行",
+    progress:["85%","86%","88%","82%"],
+    tasks:["完成主申项目提交","保留 1-2 个冲刺项目和 2-3 个匹配项目","持续查看邮箱和系统状态","准备面试、自我介绍和项目动机回答"],
+    warning:"这个阶段最怕只冲不保。正确策略是冲刺、匹配、稳妥同时存在。"
+  },
+  {
+    id:"s6", month:"1-3月", name:"等待面试期", round:"第二轮 R2",
+    desc:"等结果、补申、面试。",
+    title:"等待面试与补申期", time:"1-3月｜R2审理与补申窗口",
+    progress:["88%","90%","92%","70%"],
+    tasks:["准备英文面试和常见问题","根据 R1 结果决定是否补申","跟进申请系统状态和补材料要求","不要因等待焦虑而盲目加申过多项目"],
+    warning:"等待期最容易焦虑消费。先看真实短板，再决定是否找真人顾问。"
+  },
+  {
+    id:"s7", month:"4-6月", name:"Offer选择与行前", round:"收尾 / 行前",
+    desc:"留位费、签证、租房、银行卡。",
+    title:"Offer选择与行前准备", time:"4-6月｜结果选择与落地准备",
+    progress:["95%","94%","92%","88%"],
+    tasks:["比较 offer：排名、课程、费用、就业、城市","确认留位费和签证时间","准备租房、银行卡、保险、电话卡","加入校友群，提前了解求职和生活信息"],
+    warning:"Offer 之后不是结束。预算、租房和就业信息会影响真实体验。"
+  }
+];
 
-    const schoolScores = { c9:96, '985':90, '211':80, overseas:86, dual:74, ordinary:64 };
-    const directionLabels = { business:'商科/金融/管理', cs:'计算机/数据/AI', social:'传媒/社科/公共政策', education:'教育/语言/TESOL', engineering:'工程/理工', law:'法学/合规/国际关系' };
-    let current = null;
-    let activeSim = null;
+const row = document.getElementById("stageRow");
+const taskList = document.getElementById("taskList");
+const warningBox = document.getElementById("warningBox");
 
-    function clamp(v,min,max){ return Math.max(min, Math.min(max, v)); }
-    function normalizeGpa(raw, scale){ const v=Number(raw); if(!Number.isFinite(v)||v<=0) return 45; if(scale==='4') return clamp(v/4*100,0,100); if(scale==='5') return clamp(v/5*100,0,100); return clamp(v,0,100); }
-    function langScore(type, raw){ const v=Number(raw); if(type==='none'||!Number.isFinite(v)||v<=0) return 45; if(type==='ielts'){ if(v>=7.5)return 96; if(v>=7)return 88; if(v>=6.5)return 74; if(v>=6)return 58; return 42; } if(v>=105)return 96; if(v>=100)return 88; if(v>=92)return 74; if(v>=80)return 58; return 42; }
-    function expScore(v){ return [44,62,80,94][Number(v)] || 44; }
-    function readyScore(v){ return { early:58, planning:76, ready:90, urgent:56 }[v] || 70; }
-
-    function readData(){ return { schoolTier:$('schoolTier').value, direction:$('direction').value, gpaScale:$('gpaScale').value, gpa:$('gpa').value, langType:$('langType').value, langScore:$('langScore').value, internship:$('internship').value, research:$('research').value, budget:$('budget').value, readiness:$('readiness').value }; }
-    function scoreData(d){ const gpa=normalizeGpa(d.gpa,d.gpaScale), lang=langScore(d.langType,d.langScore), school=schoolScores[d.schoolTier]||68, intern=expScore(d.internship), research=expScore(d.research), ready=readyScore(d.readiness); let score=school*.20+gpa*.28+lang*.16+intern*.16+research*.12+ready*.08; if(d.direction==='business') score+=(intern-70)*.07+(lang-70)*.03; if(['cs','engineering'].includes(d.direction)) score+=(research-70)*.07+(gpa-75)*.04; if(['social','education','law'].includes(d.direction)) score+=(lang-70)*.05+(ready-70)*.03; if(d.readiness==='urgent') score-=5; if(d.langType==='none') score-=6; if(d.budget==='budget') score-=1; return Math.round(clamp(score,35,98)); }
-
-    function persona(score,d){
-      const lang=langScore(d.langType,d.langScore), ready=readyScore(d.readiness), gpa=normalizeGpa(d.gpa,d.gpaScale), intern=expScore(d.internship);
-      if(ready<62) return { title:'高潜力晚启动型', tags:['节奏危险','需要压缩路径','先完成材料'], summary:'你不是没有机会，但时间线会放大风险。现在最重要的不是继续纠结学校，而是先把材料和DDL排好。' };
-      if(score>=86) return { title:'强竞争冲刺型', tags:['可主动冲刺','材料要精修','注意项目匹配'], summary:'你的基础盘较强，适合保留冲刺目标，但仍需要用文书和经历解释证明“为什么是你”。' };
-      if(lang<75 && intern>=78) return { title:'稳中带冲型', tags:['语言临界','实习加分','适合分层'], summary:'你不是没有机会，但不适合盲冲。当前最能改变结果的变量是语言成绩和选校分层。' };
-      if(gpa<76) return { title:'低绩点策略型', tags:['避开硬卡项目','强调经历','托底要现实'], summary:'你的策略重点不是硬冲排名，而是找到更看重经历、预算和路径匹配的项目，把风险降下来。' };
-      return { title:'均衡规划型', tags:['适合分层申请','节奏可控','文书有发挥空间'], summary:'你的背景没有明显单点爆发，也没有严重硬伤，适合用分层组合和材料质量稳定推进。' };
-    }
-
-    function bands(score,d,sim){
-      let reach=['香港大学 HKU','香港科技大学 HKUST','香港中文大学 CUHK'];
-      let match=['香港城市大学 CityUHK','香港理工大学 PolyU','香港浸会大学 HKBU'];
-      let safe=['岭南大学 LU','香港教育大学 EdUHK','香港都会大学 HKMU'];
-      let budget=['港中深 CUHK-Shenzhen','港科广 HKUST(GZ)','北师港浸大 BNBU','澳门大学 UM'];
-      let low=['香港恒生大学 HSUHK','香港树仁大学 HKSYU','珠海学院 CHC'];
-      if(d.budget==='budget' || sim==='budget') { safe=['香港都会大学 HKMU','香港恒生大学 HSUHK','北师港浸大 BNBU']; match=['港中深 CUHK-Shenzhen','港科广 HKUST(GZ)','澳门大学 UM']; }
-      else if(score<64) { reach=['香港城市大学 CityUHK','香港理工大学 PolyU']; match=['香港浸会大学 HKBU','岭南大学 LU','香港都会大学 HKMU']; safe=[...low]; }
-      else if(score<76) { reach=['香港中文大学 CUHK','香港科技大学 HKUST']; match=['香港城市大学 CityUHK','香港理工大学 PolyU','香港浸会大学 HKBU']; safe=['岭南大学 LU','香港都会大学 HKMU','香港恒生大学 HSUHK']; }
-      else if(score>=88) { reach=['香港大学 HKU','香港科技大学 HKUST']; match=['香港中文大学 CUHK','香港城市大学 CityUHK']; safe=['香港理工大学 PolyU','香港浸会大学 HKBU']; }
-      return { reach, match, safe, budget, low };
-    }
-
-    function reasons(score,d){ const gpa=normalizeGpa(d.gpa,d.gpaScale), lang=langScore(d.langType,d.langScore), intern=expScore(d.internship), research=expScore(d.research); const arr=[]; arr.push(lang<75?'语言成绩是当前最敏感变量：它会影响热门项目的第一轮筛选和面试机会。':'语言成绩已基本可用：下一步应检查小分要求和面试表达。'); arr.push(gpa<78?'GPA 需要解释：建议用专业课、排名证明、课程项目或趋势提升来补充。':'GPA 能支撑分层申请：重点转向项目匹配和材料差异化。'); arr.push(intern>=78?'实习经历是你的加分项：文书要把它写成可量化结果，而不是简单罗列。':'实习/项目证据不足：建议优先补一个与目标方向相关的项目。'); arr.push(research<62&&['cs','engineering','social','education'].includes(d.direction)?'科研/竞赛偏弱：理工、社科和教育方向需要补足研究或课程项目证据。':'当前最重要的是把经历和目标专业建立清晰关联。'); return arr; }
-
-    function moneyAdvice(d,score){ const lang=langScore(d.langType,d.langScore), gpa=normalizeGpa(d.gpa,d.gpaScale); const list=[]; if(lang<75) list.push(['先别急着买高价文书','你的核心问题更像语言变量。优先投入雅思/托福与小分，比先做豪华文书更有效。']); if(gpa<76) list.push(['不建议盲买“冲名校套餐”','低绩点要先做项目匹配和风险分层，避免花钱冲一个硬门槛不友好的项目。']); if(d.readiness==='urgent') list.push(['最值得买的是节奏管理','临近DDL时，材料清单、推荐信、网申排期比反复改简历样式更重要。']); if(Number(d.internship)>=2 && score>=72) list.push(['可以只做关键节点付费','你的基础不差，不一定需要全包。更适合文书终审、面试模拟或一次策略复核。']); if(d.budget==='budget') list.push(['预算有限时先扩路径','优先比较港校内地分校、澳门和香港稳妥院校，不要为了“港八大执念”过度消费。']); if(!list.length) list.push(['当前最适合小步投入','先用免费/低价工具完成定位，再决定是否购买真人顾问。']); return list.slice(0,3); }
-
-    function renderProgress(d){ const base=d.readiness==='urgent'?[75,65,40,88]:d.readiness==='ready'?[82,78,72,68]:[60,35,20,50]; const names=['语言','CV','推荐信','选校']; $('progressGrid').innerHTML=names.map((n,i)=>`<div class="rounded-3xl bg-white/78 p-5 shadow-card"><div class="flex justify-between text-sm font-black"><span>${n}</span><span>${base[i]}%</span></div><div class="mt-3 h-3 rounded-full bg-ink/8"><div class="h-3 rounded-full bg-gradient-to-r from-mint to-aqua" style="width:${base[i]}%"></div></div></div>`).join(''); $('stageText').textContent=d.readiness==='urgent'?'DDL冲刺期':d.readiness==='ready'?'材料定稿期':'背景准备期'; $('ddlText').textContent=d.readiness==='urgent'?'距离部分项目DDL可能不足30天：优先做申请排序。':'距离港大第一轮 DDL：74 天'; }
-
-    function renderCases(d){ const cases=[['211财经院校 / GPA3.48 / 雅思7','稳中带冲型','港中文匹配成功，港大冲刺失败，港理工稳妥录取','关键变量：文书强化了数据分析经历。'],['双非本科 / 均分82 / 雅思6.5','低绩点策略型','香港都会大学与恒生大学路径更稳，后续补充实习后再冲浸会','关键变量：避开硬卡院校背景的项目。'],['985本科 / GPA3.62 / 两段科研','强竞争冲刺型','港科大与港中文进入主申区间，港大保留冲刺','关键变量：科研方向与项目高度一致。']]; $('caseGrid').innerHTML=cases.map(c=>`<article class="rounded-3xl border border-ink/10 bg-white/78 p-6 shadow-card"><p class="text-xs font-black text-mint">相似画像样例</p><h3 class="mt-3 text-lg font-black text-ink">${c[0]}</h3><p class="mt-3 text-sm font-black text-ink/72">${c[1]}</p><p class="mt-3 text-sm leading-6 text-ink/62">${c[2]}</p><p class="mt-3 rounded-2xl bg-foam p-3 text-sm leading-6 text-ink/68">${c[3]}</p></article>`).join(''); }
-
-    function renderReport(d, sim=null){ const base=scoreData(d); const delta={ielts:6, intern:8, cv:4, budget:2}[sim]||0; const score=clamp(base+delta,35,98); const p=persona(score,d); const b=bands(score,d,sim); current={d,score,p,b};
-      $('personaTitle').textContent=p.title; $('scoreText').textContent=score; $('scoreBar').style.setProperty('--value',score+'%'); $('personaSummary').textContent=p.summary; $('tagWrap').innerHTML=p.tags.map((t,i)=>`<span class="rounded-full ${['bg-mint/14','bg-aqua/14','bg-lemon/35','bg-violet/10'][i%4]} px-3 py-1.5 text-ink">${t}</span>`).join('');
-      const schoolData=[['冲刺',b.reach.join(' / '),'text-coral'],['匹配',b.match.join(' / '),'text-mint'],['稳妥',b.safe.join(' / '),'text-aqua'],['预算友好',b.budget.slice(0,3).join(' / '),'text-violet'],['低绩点友好',b.low.slice(0,3).join(' / '),'text-coral']];
-      $('schoolCards').innerHTML=schoolData.map(x=>`<div class="rounded-3xl bg-white/78 p-4 shadow-card"><p class="text-xs font-black ${x[2]}">${x[0]}</p><p class="mt-2 text-sm font-black leading-6 text-ink">${x[1]}</p></div>`).join('');
-      $('reasonList').innerHTML=reasons(score,d).map(r=>`<div class="rounded-2xl bg-foam/70 p-4 text-sm leading-6 text-ink/68">${r}</div>`).join('');
-      $('moneyAdvice').innerHTML=moneyAdvice(d,score).map(m=>`<div class="rounded-3xl border border-ink/10 bg-white/80 p-6 shadow-card"><p class="text-lg font-black text-ink">${m[0]}</p><p class="mt-3 text-sm leading-6 text-ink/64">${m[1]}</p></div>`).join('');
-      renderProgress(d); renderCases(d); renderShare(p,d,b);
-      if(sim) renderSim(sim,d,base,score); else renderSim(null,d,base,base);
-    }
-
-    function renderShare(p,d,b){ $('shareTitle').textContent=p.title; $('shareTags').innerHTML=p.tags.map(t=>`<span class="rounded-full bg-foam px-3 py-1.5 text-ink">${t}</span>`).join(''); $('shareText').textContent=`当前最大变量：${p.tags[0] || '申请节奏'}。建议策略：${b.reach[0]}保留冲刺，${b.match[0]}重点推进，${b.safe[0]}作为风险托底。`; }
-
-    function renderSim(sim,d,base,score){ const configs={ ielts:['雅思提升后','+6','语言从“临界变量”变为“可用优势”，港中文匹配度提升，港大冲刺理由增强。','建议：优先投入时间，不建议先买高价文书。','行动：2周内报名考试，先补小分。'], intern:['新增实习后','+8','经历匹配度上升，文书可讲的证据更多，商科/管理方向更有说服力。','建议：找强相关项目，不要只追求公司名气。','行动：把实习结果写成可量化影响。'], cv:['提前完成CV后','+4','申请节奏风险下降，推荐信、文书和网申可以更稳定推进。','建议：先完成80分初稿，不要在格式上反复内耗。','行动：本周完成一版CV和素材库。'], budget:['预算路径调整后','+2','系统会加入港中深、港科广、北师港浸大、澳门大学等替代路径，降低单一路径压力。','建议：预算有限时先扩大可选项。','行动：对比学费、住宿、地理和就业路径。'] };
-      document.querySelectorAll('.sim-card').forEach(btn=>btn.classList.toggle('active',btn.dataset.sim===sim));
-      if(!sim){ $('simTitle').textContent='选择一个变量看看变化'; $('simDelta').textContent='+0'; $('simBar').style.setProperty('--value',(current?current.score:72)+'%'); $('simText').textContent='点击左侧变量。系统会告诉你：努力会影响哪里、该不该花钱、下一步怎么做。'; $('simPath').innerHTML=''; return; }
-      const c=configs[sim]; $('simTitle').textContent=c[0]; $('simDelta').textContent=c[1]; $('simBar').style.setProperty('--value',score+'%'); $('simText').textContent=c[2]; $('simPath').innerHTML=`<div class="rounded-2xl bg-white/76 p-4 shadow-card"><p class="text-sm font-black text-ink">${c[3]}</p></div><div class="rounded-2xl bg-white/76 p-4 shadow-card"><p class="text-sm font-black text-ink">${c[4]}</p></div>`;
-    }
-
-    async function handleSubmit(e){ e.preventDefault(); const d=readData(); emptyState.classList.add('hidden'); report.classList.add('hidden'); loadingState.classList.remove('hidden'); submitBtn.disabled=true; submitBtn.textContent='正在生成...'; const steps=['正在读取你的申请背景...','正在匹配港校项目偏好...','正在拆解你的风险变量...','正在生成你的申请画像...']; for(let i=0;i<steps.length;i++){ loadingText.textContent=steps[i]; await new Promise(r=>setTimeout(r,520)); } loadingState.classList.add('hidden'); report.classList.remove('hidden'); submitBtn.disabled=false; submitBtn.textContent='重新生成我的申请画像'; renderReport(d); document.getElementById('simulator').scrollIntoView({behavior:'smooth', block:'start'}); }
-    form.addEventListener('submit', handleSubmit);
-    document.querySelectorAll('.sim-card').forEach(btn=>btn.addEventListener('click',()=>{ if(!current){ form.dispatchEvent(new Event('submit',{cancelable:true})); return; } activeSim=btn.dataset.sim; renderReport(current.d,activeSim); }));
-    $('copyShare').addEventListener('click',async()=>{ const text=`我的 Nexus 港校申请画像：${$('shareTitle').textContent}\n${$('shareText').textContent}\n不暴露隐私，只看申请路径。`; try{ await navigator.clipboard.writeText(text); $('copyShare').textContent='已复制'; setTimeout(()=>$('copyShare').textContent='复制匿名分享文案',1200); }catch(e){ alert(text); } });
-    window.addEventListener('load',()=>{ const d=readData(); renderReport(d); emptyState.classList.add('hidden'); report.classList.remove('hidden'); });
-  </script>
+function renderStages(active=1){
+  row.innerHTML = stages.map((s,i)=>`
+    <div class="stage-node ${i===active?'active':''}" onclick="selectStage(${i})">
+      <div class="node-dot"></div>
+      <div class="node-month">${s.month}</div>
+      <div class="node-name">${s.name}</div>
+      <div class="node-desc">${s.desc}</div>
+      <div class="round-badge">${s.round}</div>
+    </div>
+  `).join("");
+}
+function selectStage(i){
+  renderStages(i);
+  const s = stages[i];
+  document.getElementById("detailKicker").textContent = s.round;
+  document.getElementById("detailTitle").textContent = s.title;
+  document.getElementById("detailTime").textContent = s.time;
+  document.getElementById("pLang").textContent = s.progress[0];
+  document.getElementById("pDoc").textContent = s.progress[1];
+  document.getElementById("pSchool").textContent = s.progress[2];
+  document.getElementById("pPace").textContent = s.progress[3];
+  taskList.innerHTML = s.tasks.map(t=>`<div class="task"><div class="check">✓</div><div>${t}</div></div>`).join("");
+  warningBox.textContent = s.warning;
+}
+function changeEffort(type){
+  const score = document.getElementById("effortScore");
+  const text = document.getElementById("effortText");
+  const data = {
+    ielts:["72 → 78","雅思提升到 7.0 后，语言从临界变量变成可用优势。港中文匹配度提高，港大冲刺理由增强。"],
+    intern:["72 → 80","新增一段强相关实习后，商科和管理类项目的经历匹配度上升。文书中会更容易讲出职业动机。"],
+    cv:["72 → 76","提前完成 CV 和主文书框架后，申请节奏风险下降。你会更适合赶第一轮，而不是拖到补申阶段。"],
+    budget:["72 → 74","如果预算有限，建议加入港中深、港科广、北师港浸大、澳门大学等替代路径。路径更现实，风险更可控。"]
+  };
+  score.textContent = data[type][0];
+  text.textContent = data[type][1];
+}
+renderStages(1);
+selectStage(1);
+</script>
 </body>
 </html>
