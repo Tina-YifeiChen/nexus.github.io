@@ -1264,6 +1264,39 @@ body{padding-bottom:96px !important;}
   .quick-nav a span:first-child{font-size:16px;}
 }
 
+
+
+/* === v20 手机端更深嵌套：电脑保持展开，手机减少一屏信息密度 === */
+.mobile-fold{display:block;margin-top:22px;}
+.mobile-fold>summary{display:none;}
+.mobile-fold>.fold-content{display:block;}
+@media(max-width:760px){
+  .topbar{position:relative !important;}
+  .nav-shell{padding:12px 16px !important;}
+  .page-guide-inner{align-items:flex-start !important;}
+  .page-guide-actions{width:100%;overflow-x:auto;flex-wrap:nowrap;padding-bottom:2px;}
+  .page-guide-actions a,.page-guide-actions button{white-space:nowrap;}
+  .mobile-fold{border:1px solid rgba(8,22,20,.08);border-radius:24px;background:rgba(255,255,255,.84);box-shadow:0 16px 46px rgba(8,22,20,.055);overflow:hidden;margin-top:16px;}
+  .mobile-fold>summary{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 18px;cursor:pointer;list-style:none;font-weight:950;color:var(--ink);}
+  .mobile-fold>summary::-webkit-details-marker{display:none;}
+  .mobile-fold>summary:after{content:'展开';font-size:12px;color:#087b64;background:#ecfff8;border:1px solid rgba(34,211,166,.18);border-radius:999px;padding:7px 10px;white-space:nowrap;}
+  .mobile-fold[open]>summary:after{content:'收起';}
+  .mobile-fold>.fold-content{padding:0 14px 14px;}
+  .mobile-fold>.fold-content>.card,
+  .mobile-fold>.fold-content>section.card,
+  .mobile-fold>.fold-content>section{margin-top:0 !important;box-shadow:none !important;border-radius:20px !important;}
+  .mobile-fold .section-title{font-size:24px !important;line-height:1.18 !important;}
+  .mobile-fold .section-head{margin-bottom:14px !important;}
+  .mobile-fold .btn{width:100%;}
+  .map-track{max-height:520px;overflow:auto !important;}
+  .rounds{display:none !important;}
+  .detail-panel{display:none !important;}
+  .share-simple{display:block !important;}
+}
+@media(min-width:761px){
+  .mobile-fold:not([open])>.fold-content{display:block !important;}
+}
+
 </style>
 </head>
 <body>
@@ -1369,7 +1402,8 @@ body{padding-bottom:96px !important;}
     </aside>
 
     <div class="right-stack">
-      <section id="life-map" class="card map-card">
+      <details class="mobile-fold"><summary>港校申请时间地图</summary><div class="fold-content">
+<section id="life-map" class="card map-card">
         <div class="section-head">
           <div>
             <div class="pill">全流程进度地图</div>
@@ -1422,8 +1456,12 @@ body{padding-bottom:96px !important;}
           </aside>
         </div>
       </section>
+</div></details>
 
-      <section id="advisor-entry" class="card">
+
+
+      <details class="mobile-fold"><summary>找学长学姐或顾问聊聊</summary><div class="fold-content">
+<section id="advisor-entry" class="card">
         <div class="section-head">
           <div>
             <div class="pill">真人顾问匹配</div>
@@ -1435,9 +1473,13 @@ body{padding-bottom:96px !important;}
           <a class="btn btn-primary" href="advisors.html">详情了解</a>
         </div>
       </section>
+</div></details>
 
 
-      <section class="card">
+
+
+      <details class="mobile-fold"><summary>哪里值得花钱，哪里先别急</summary><div class="fold-content">
+<section class="card">
         <h2 style="margin:0;font-size:24px;font-weight:950;">哪里值得花钱，哪里先别急</h2>
         <p style="line-height:1.9;color:#55625f;margin-top:14px;">
           你当前的核心问题不是文书，而是语言成绩。现阶段不建议一上来购买高价全包套餐，先把语言和关键材料补稳，会比盲目加服务更有效。
@@ -1446,8 +1488,12 @@ body{padding-bottom:96px !important;}
           更值得投入：雅思提升 + 面试模拟 + 最终材料复核
         </div>
       </section>
+</div></details>
 
-      <section id="share" class="card">
+
+
+      <details class="mobile-fold"><summary>生成申请画像分享图</summary><div class="fold-content">
+<section id="share" class="card">
         <div class="share-simple">
           <div>
             <div class="pill">生成分享图</div>
@@ -1459,6 +1505,9 @@ body{padding-bottom:96px !important;}
           <button class="btn btn-primary" onclick="openShareModal()">生成我的申请画像图</button>
         </div>
       </section>
+</div></details>
+
+
 
       <div id="shareModal" class="share-modal" onclick="closeShareModal(event)">
         <div class="share-modal-panel" onclick="event.stopPropagation()">
@@ -1474,7 +1523,8 @@ body{padding-bottom:96px !important;}
         </div>
       </div>
 
-      <section id="schools" class="card">
+      <details class="mobile-fold"><summary>学校官网直达</summary><div class="fold-content">
+<section id="schools" class="card">
         <div class="section-head">
           <div>
             <div class="pill">学校官网一键直达</div>
@@ -1484,6 +1534,9 @@ body{padding-bottom:96px !important;}
         </div>
         <div class="school-directory" id="schoolDirectory"></div>
       </section>
+</div></details>
+
+
     </div>
   </section>
 </main>
