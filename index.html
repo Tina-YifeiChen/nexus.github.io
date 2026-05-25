@@ -1177,7 +1177,7 @@ a{color:inherit}
 
 
 
-/* === 全站页面导航 v17 === */
+/* === 全站页面导航 v18：底部四项 + 顶部小导航 === */
 body{padding-bottom:96px !important;}
 .page-guide{
   width:min(1180px,100%);
@@ -1225,14 +1225,14 @@ body{padding-bottom:96px !important;}
   bottom:18px;
   transform:translateX(-50%);
   z-index:200;
-  width:min(760px,calc(100% - 28px));
+  width:min(620px,calc(100% - 28px));
   padding:9px;
   border-radius:24px;
   background:rgba(255,255,255,.92);
   border:1px solid rgba(8,22,20,.1);
   box-shadow:0 22px 70px rgba(8,22,20,.16);
   display:grid;
-  grid-template-columns:repeat(5,1fr);
+  grid-template-columns:repeat(4,1fr);
   gap:8px;
   backdrop-filter:blur(18px);
 }
@@ -1277,16 +1277,7 @@ body{padding-bottom:96px !important;}
         <div style="font-size:13px;color:rgba(8,22,20,.55);">港校申请智能助手</div>
       </div>
     </a>
-    <nav class="navlinks">
-      <a href="#engine">生成画像</a>
-      <a href="#engine">填写背景</a>
-      <a href="#life-map">时间地图</a>
-      <a href="timeline.html">阶段详情</a>
-      <a href="#demo-profile">示例分析</a>
-      <a href="#share">生成分享图</a>
-      <a href="#schools">学校官网</a>
-      <a href="advisors.html">顾问匹配</a>
-    </nav>
+    <nav class="navlinks"><a href="#engine">填写背景</a><a href="status.html">状态</a><a href="#life-map">地图</a><a href="advisors.html">顾问</a></nav>
     <a class="nav-cta" href="#engine">开始测评</a>
   </div>
 </header>
@@ -1294,7 +1285,7 @@ body{padding-bottom:96px !important;}
 <div class="page-guide" aria-label="页面位置导航">
   <div class="page-guide-inner">
     <div class="page-guide-title">你在：首页</div>
-    <div class="page-guide-actions"><a href="#engine">填写背景</a><a href="timeline.html">申请地图</a><a href="advisors.html">找人聊聊</a></div>
+    <div class="page-guide-actions"><button onclick="history.back()">返回上一页</button><a href="index.html">首页</a><a href="status.html">状态</a><a href="timeline.html">地图</a><a href="advisors.html">顾问</a></div>
   </div>
 </div>
 
@@ -1446,33 +1437,13 @@ body{padding-bottom:96px !important;}
       </section>
 
 
-      <section class="grid2">
-        <div class="card">
-          <h2 style="margin:0;font-size:24px;font-weight:950;">哪里值得花钱，哪里先别急</h2>
-          <p style="line-height:1.9;color:#55625f;margin-top:14px;">
-            你当前的核心问题不是文书，而是语言成绩。现阶段不建议一上来购买高价全包套餐，先把语言和关键材料补稳，会比盲目加服务更有效。
-          </p>
-          <div style="margin-top:16px;padding:16px;border-radius:16px;background:#effff8;font-weight:900;">
-            更值得投入：雅思提升 + 面试模拟 + 最终材料复核
-          </div>
-        </div>
-
-        <div class="card" id="demo-profile">
-          <div class="pill">案例与相似路径参考</div>
-          <h2 style="margin:12px 0 8px;font-size:24px;font-weight:950;">看看和你相似的申请者怎么走。</h2>
-          <p style="line-height:1.9;color:#55625f;margin-top:14px;">
-            首页只保留一个入口：用一个虚拟案例展示“个人背景 → 经历时间线 → 系统画像 → 冲刺/主申/稳妥路径 → 下一步行动”。详细内容放进案例详情页，避免首页信息过载。
-          </p>
-          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:16px;">
-            <div class="fact"><b>演示背景</b><span>211 财经类</span></div>
-            <div class="fact"><b>核心画像</b><span>稳中带冲型</span></div>
-            <div class="fact"><b>关键变量</b><span>语言 + 节奏</span></div>
-          </div>
-          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;">
-            <a class="btn btn-primary" href="case-profile.html">查看完整案例</a>
-            <a class="btn btn-soft" href="profile-detail.html">对照我的画像</a>
-          </div>
-          <div class="warning" style="margin-top:16px;">以下案例为演示案例，不代表真实用户，也不构成录取承诺。</div>
+      <section class="card">
+        <h2 style="margin:0;font-size:24px;font-weight:950;">哪里值得花钱，哪里先别急</h2>
+        <p style="line-height:1.9;color:#55625f;margin-top:14px;">
+          你当前的核心问题不是文书，而是语言成绩。现阶段不建议一上来购买高价全包套餐，先把语言和关键材料补稳，会比盲目加服务更有效。
+        </p>
+        <div style="margin-top:16px;padding:16px;border-radius:16px;background:#effff8;font-weight:900;">
+          更值得投入：雅思提升 + 面试模拟 + 最终材料复核
         </div>
       </section>
 
@@ -1950,7 +1921,6 @@ window.addEventListener("load", drawShareCard);
   <a class="" href="status.html"><span>◎</span><span>状态</span></a>
   <a class="" href="timeline.html"><span>▦</span><span>地图</span></a>
   <a class="" href="advisors.html"><span>✦</span><span>顾问</span></a>
-  <a class="" href="case-profile.html"><span>◌</span><span>案例</span></a>
 </nav>
 
 </body>

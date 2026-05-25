@@ -149,7 +149,7 @@ ul{margin:0;padding-left:20px}
 }
 
 
-/* === 全站页面导航 v17 === */
+/* === 全站页面导航 v18：底部四项 + 顶部小导航 === */
 body{padding-bottom:96px !important;}
 .page-guide{
   width:min(1180px,100%);
@@ -197,14 +197,14 @@ body{padding-bottom:96px !important;}
   bottom:18px;
   transform:translateX(-50%);
   z-index:200;
-  width:min(760px,calc(100% - 28px));
+  width:min(620px,calc(100% - 28px));
   padding:9px;
   border-radius:24px;
   background:rgba(255,255,255,.92);
   border:1px solid rgba(8,22,20,.1);
   box-shadow:0 22px 70px rgba(8,22,20,.16);
   display:grid;
-  grid-template-columns:repeat(5,1fr);
+  grid-template-columns:repeat(4,1fr);
   gap:8px;
   backdrop-filter:blur(18px);
 }
@@ -245,15 +245,15 @@ body{padding-bottom:96px !important;}
       <div class="logo">NX</div>
       <div><div style="font-weight:950;font-size:19px;">Nexus AI</div><div style="font-size:13px;color:rgba(8,22,20,.55);">顾问个人主页</div></div>
     </a>
-    <nav class="navlinks"><a href="advisors.html">返回顾问列表</a><a href="#services">能帮你什么</a><a href="#records">咨询记录</a><a href="index.html">返回首页</a></nav>
+    <nav class="navlinks"><a href="index.html">首页</a><a href="status.html">状态</a><a href="timeline.html">地图</a><a href="advisors.html">顾问</a></nav>
     <a class="btn btn-primary" href="advisors.html">返回列表</a>
   </div>
 </header>
 
 <div class="page-guide" aria-label="页面位置导航">
   <div class="page-guide-inner">
-    <div class="page-guide-title">你在：顾问主页</div>
-    <div class="page-guide-actions"><button onclick="history.back()">返回上一页</button><a href="advisors.html">回到顾问列表</a><a href="status.html">先看状态</a></div>
+    <div class="page-guide-title">你在：顾问 / 个人主页</div>
+    <div class="page-guide-actions"><button onclick="history.back()">返回上一页</button><a href="index.html">首页</a><a href="status.html">状态</a><a href="timeline.html">地图</a><a href="advisors.html">顾问</a></div>
   </div>
 </div>
 
@@ -364,7 +364,6 @@ d.records.forEach(x=>{const div=document.createElement('div');div.className='rec
   <a class="" href="status.html"><span>◎</span><span>状态</span></a>
   <a class="" href="timeline.html"><span>▦</span><span>地图</span></a>
   <a class="active" href="advisors.html"><span>✦</span><span>顾问</span></a>
-  <a class="" href="case-profile.html"><span>◌</span><span>案例</span></a>
 </nav>
 
 </body>

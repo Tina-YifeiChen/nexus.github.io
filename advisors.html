@@ -127,7 +127,7 @@ a{color:inherit}
 }
 
 
-/* === 全站页面导航 v17 === */
+/* === 全站页面导航 v18：底部四项 + 顶部小导航 === */
 body{padding-bottom:96px !important;}
 .page-guide{
   width:min(1180px,100%);
@@ -175,14 +175,14 @@ body{padding-bottom:96px !important;}
   bottom:18px;
   transform:translateX(-50%);
   z-index:200;
-  width:min(760px,calc(100% - 28px));
+  width:min(620px,calc(100% - 28px));
   padding:9px;
   border-radius:24px;
   background:rgba(255,255,255,.92);
   border:1px solid rgba(8,22,20,.1);
   box-shadow:0 22px 70px rgba(8,22,20,.16);
   display:grid;
-  grid-template-columns:repeat(5,1fr);
+  grid-template-columns:repeat(4,1fr);
   gap:8px;
   backdrop-filter:blur(18px);
 }
@@ -226,20 +226,15 @@ body{padding-bottom:96px !important;}
         <div style="font-size:13px;color:rgba(8,22,20,.55);">顾问匹配</div>
       </div>
     </a>
-    <nav class="navlinks">
-      <a href="#types">两类顾问</a>
-      <a href="#cards">顾问卡片</a>
-      <a href="#trust">信任机制</a>
-      <a href="index.html">返回首页</a>
-    </nav>
+    <nav class="navlinks"><a href="index.html">首页</a><a href="status.html">状态</a><a href="timeline.html">地图</a><a href="advisors.html">顾问</a></nav>
     <a class="btn btn-primary" href="index.html">先生成画像</a>
   </div>
 </header>
 
 <div class="page-guide" aria-label="页面位置导航">
   <div class="page-guide-inner">
-    <div class="page-guide-title">你在：学长学姐 / 顾问匹配</div>
-    <div class="page-guide-actions"><button onclick="history.back()">返回上一页</button><a href="index.html#advisor-entry">回到顾问入口</a><a href="status.html">先看状态</a></div>
+    <div class="page-guide-title">你在：顾问与案例</div>
+    <div class="page-guide-actions"><button onclick="history.back()">返回上一页</button><a href="index.html">首页</a><a href="status.html">状态</a><a href="timeline.html">地图</a><a href="advisors.html">顾问</a></div>
   </div>
 </div>
 
@@ -367,6 +362,24 @@ body{padding-bottom:96px !important;}
     </div>
   </section>
 
+
+  <section id="case-ref" class="card" style="margin-top:24px;">
+    <div class="section-head">
+      <div>
+        <div class="pill">案例与相似路径参考</div>
+        <h2 class="section-title">先看相似路径，再决定要不要找人聊。</h2>
+        <p class="section-sub">顾问页里保留案例入口，是为了让用户先通过一个虚拟申请者看懂“背景怎么被拆解、路径怎么被分层、什么时候值得找学长学姐复核”。这样案例不会在首页打断主流程，也能自然连接到顾问服务。</p>
+      </div>
+      <a class="btn btn-primary" href="case-profile.html">查看完整案例</a>
+    </div>
+    <div class="grid3">
+      <div class="trust-card"><h3>虚拟申请者背景</h3><p>211 财经类院校，GPA 3.55，雅思 6.5，两段相关实习，目标港校商科。</p></div>
+      <div class="trust-card"><h3>系统判断</h3><p>不是没有机会，而是不适合盲冲。更适合“少量冲刺 + 重点主申 + 稳妥路径”的组合。</p></div>
+      <div class="trust-card"><h3>可以怎么用</h3><p>用户可以先对照案例理解自己的处境，再决定要不要找学长学姐看真实项目经验。</p></div>
+    </div>
+    <div class="warning" style="margin-top:18px;">案例为演示内容，不代表真实用户，也不构成录取承诺。</div>
+  </section>
+
   <section id="trust" class="card" style="margin-top:24px;">
     <div class="section-head">
       <div>
@@ -397,7 +410,6 @@ body{padding-bottom:96px !important;}
   <a class="" href="status.html"><span>◎</span><span>状态</span></a>
   <a class="" href="timeline.html"><span>▦</span><span>地图</span></a>
   <a class="active" href="advisors.html"><span>✦</span><span>顾问</span></a>
-  <a class="" href="case-profile.html"><span>◌</span><span>案例</span></a>
 </nav>
 
 </body>
