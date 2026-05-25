@@ -1064,6 +1064,71 @@ a{color:inherit}
   .effort-card-v8 .effort-links-v8{grid-template-columns:1fr !important;}
 }
 
+
+/* === v9 desktop/tablet coordination fix === */
+/* 之前 900px 以下就变成上下排，很多电脑窗口/浏览器缩放后会被误判成窄屏。
+   现在只在真正手机宽度才上下排；电脑和 iPad 横屏保持左右协调。 */
+.status-effort-pair{
+  display:grid !important;
+  grid-template-columns:minmax(360px,0.95fr) minmax(420px,1.05fr) !important;
+  gap:24px !important;
+  align-items:stretch !important;
+  width:100% !important;
+}
+.status-effort-pair > .card{
+  min-height:620px !important;
+  height:100% !important;
+  display:flex !important;
+  flex-direction:column !important;
+}
+.status-card-v8 .flex-head,
+.effort-card-v8 .flex-head{
+  display:flex !important;
+  align-items:flex-start !important;
+  justify-content:space-between !important;
+  gap:14px !important;
+}
+.status-card-v8 .radar-center{
+  min-height:330px !important;
+  padding:6px 0 0 !important;
+}
+.status-card-v8 .radar-svg{
+  width:min(330px,100%) !important;
+  max-width:330px !important;
+}
+.status-summary-v8{
+  margin-top:auto !important;
+  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+}
+.effort-card-v8 .big-score{
+  font-size:clamp(52px,5vw,72px) !important;
+  line-height:1 !important;
+  margin-top:26px !important;
+  padding:22px 24px !important;
+}
+.effort-card-v8 .sim-actions{
+  margin-top:18px !important;
+}
+.effort-card-v8 .effort-links-v8{
+  margin-top:auto !important;
+  grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+}
+@media(max-width:760px){
+  .status-effort-pair{
+    grid-template-columns:1fr !important;
+  }
+  .status-effort-pair > .card{
+    min-height:auto !important;
+  }
+  .status-summary-v8,
+  .effort-card-v8 .effort-links-v8{
+    grid-template-columns:1fr !important;
+  }
+  .status-card-v8 .radar-center{
+    min-height:auto !important;
+  }
+}
+
 </style>
 </head>
 <body>
