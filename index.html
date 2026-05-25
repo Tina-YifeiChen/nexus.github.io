@@ -315,6 +315,9 @@ a{color:inherit}
 }
 .stage-node{
   cursor:pointer;
+  display:block;
+  text-decoration:none;
+  color:inherit;
   border:1px solid rgba(8,22,20,.08);
   background:rgba(255,255,255,.96);
   border-radius:22px;
@@ -1550,14 +1553,14 @@ function closeShareModal(event){
 function renderStages(active=1){
   const row = document.getElementById("stageRow");
   row.innerHTML = stages.map((s,i)=>`
-    <div class="stage-node ${i===active?'active':''}" onclick="openStageDetail(${i})" role="button" tabindex="0" onkeydown="if(event.key==='Enter'){openStageDetail(${i})}">
+    <a class="stage-node ${i===active?'active':''}" href="timeline.html?stage=${i}" aria-label="查看${s.month}${s.name}详情">
       <div class="node-dot"></div>
       <div class="node-month">${s.month}</div>
       <div class="node-name">${s.name}</div>
       <div class="node-desc">${s.desc}</div>
       <div class="round-badge">${s.round}</div>
-      <div style="margin-top:12px;font-size:12px;font-weight:950;color:#087b64;">查看阶段详情 →</div>
-    </div>
+      <div style="margin-top:12px;font-size:12px;font-weight:950;color:#087b64;">点击进入详情页 →</div>
+    </a>
   `).join("");
 }
 function openStageDetail(i){
