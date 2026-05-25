@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Nexus AI｜我的申请状态</title>
+<style>
+:root{--ink:#081614;--muted:#5b6865;--mint:#22d3a6;--cyan:#58d7ff;--paper:#f7fffd;--line:#d9ede8;--warning:#fff4e5}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;background:radial-gradient(circle at 12% 8%,rgba(34,211,166,.16),transparent 26%),radial-gradient(circle at 88% 18%,rgba(88,215,255,.16),transparent 28%),linear-gradient(180deg,#f8fffd 0%,#effbf8 45%,#fbfefd 100%);color:var(--ink)}a{color:inherit}.topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.9);backdrop-filter:blur(16px);border-bottom:1px solid rgba(8,22,20,.08)}.nav-shell{width:min(1180px,100%);margin:auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:18px}.logo{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,var(--mint),var(--cyan));font-weight:950}.navlinks{display:flex;gap:22px;font-size:14px;font-weight:900;color:rgba(8,22,20,.7)}.navlinks a{text-decoration:none}.shell{width:min(1180px,100%);margin:auto;padding:24px}.card{background:rgba(255,255,255,.86);border:1px solid rgba(8,22,20,.08);border-radius:28px;padding:28px;box-shadow:0 18px 60px rgba(8,22,20,.06);position:relative}.hero{overflow:hidden;padding:48px 40px}.hero:before,.result-card:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(8,22,20,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(8,22,20,.045) 1px,transparent 1px);background-size:30px 30px;mask-image:linear-gradient(to bottom,black,transparent 92%);pointer-events:none}.pill{display:inline-flex;align-items:center;gap:8px;padding:9px 13px;border-radius:999px;background:#ecfff8;color:#087b64;font-weight:950;font-size:13px;border:1px solid rgba(34,211,166,.16)}h1{position:relative;font-size:clamp(38px,6vw,70px);line-height:1;margin:22px 0 16px;letter-spacing:-.06em;max-width:960px}.hero p{position:relative;max-width:830px;font-size:18px;line-height:1.85;color:rgba(8,22,20,.64)}.btn{border:none;border-radius:16px;padding:14px 18px;font-weight:950;cursor:pointer;text-decoration:none;display:inline-flex;justify-content:center;align-items:center;gap:8px}.btn-primary{background:var(--ink);color:white;box-shadow:0 14px 38px rgba(8,22,20,.15)}.btn-soft{background:white;color:var(--ink);border:1px solid rgba(8,22,20,.1)}.grid2{display:grid;grid-template-columns:1.05fr .95fr;gap:22px;align-items:stretch}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.section-title{font-size:32px;font-weight:950;letter-spacing:-.04em;margin:10px 0 8px}.section-sub{margin:0;color:rgba(8,22,20,.62);line-height:1.75;max-width:820px}.result-card{overflow:hidden}.big-type{font-size:44px;font-weight:950;letter-spacing:-.06em;margin:14px 0 10px}.summary{font-size:17px;line-height:1.9;color:rgba(8,22,20,.66);max-width:760px}.info-card,.next-card,.mini-card{background:white;border:1px solid rgba(8,22,20,.07);border-radius:22px;padding:20px}.info-card h3,.next-card h3,.mini-card h3{margin:0 0 10px;font-size:20px;letter-spacing:-.03em}.info-card p,.next-card p,.mini-card p{margin:0;color:rgba(8,22,20,.62);line-height:1.7}.profile-line{display:grid;gap:12px;margin-top:18px}.line-item{display:flex;justify-content:space-between;gap:12px;padding:14px;border-radius:16px;background:#f6fffc;border:1px solid rgba(34,211,166,.15);font-weight:900}.line-item span:first-child{color:rgba(8,22,20,.55)}.priority{margin-top:18px;padding:18px;border-radius:20px;background:linear-gradient(135deg,#effff8,#eefcff);border:1px solid rgba(34,211,166,.18);line-height:1.85;color:#31524b}.path-list{display:grid;gap:12px;margin-top:16px}.path{display:flex;gap:12px;align-items:flex-start;padding:16px;border-radius:18px;background:#fff;border:1px solid rgba(8,22,20,.07)}.num{width:30px;height:30px;border-radius:999px;background:linear-gradient(135deg,var(--mint),var(--cyan));display:grid;place-items:center;color:white;font-weight:950;flex:0 0 auto}.path strong{display:block;margin-bottom:5px}.path div:last-child{color:rgba(8,22,20,.62);line-height:1.65}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}.status-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:22px}.status-strip .mini-card b{display:block;font-size:13px;color:rgba(8,22,20,.55);margin-bottom:8px}.status-strip .mini-card span{font-size:22px;font-weight:950}.notice{padding:16px;border-radius:18px;background:var(--warning);border:1px solid rgba(246,183,79,.28);color:#6b4b11;line-height:1.75}.footer-note{text-align:center;color:rgba(8,22,20,.55);font-size:13px;line-height:1.7;margin:24px 0}.share-modal{position:fixed;inset:0;z-index:120;display:none;align-items:center;justify-content:center;padding:22px;background:rgba(8,22,20,.58);backdrop-filter:blur(12px)}.share-modal.open{display:flex}.share-panel{width:min(520px,96vw);max-height:92vh;overflow:auto;background:#fff;border-radius:28px;padding:18px;box-shadow:0 30px 110px rgba(0,0,0,.28)}.share-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}.close-btn{width:38px;height:38px;border:none;border-radius:999px;background:#eef8f5;cursor:pointer;font-size:20px;font-weight:900}.share-card{border-radius:22px;background:linear-gradient(180deg,#f7fffd,#ffffff);border:1px solid rgba(8,22,20,.08);padding:26px}.share-card .score{font-size:56px;font-weight:950;letter-spacing:-.06em;margin:14px 0}.share-card p{line-height:1.8;color:rgba(8,22,20,.65)}@media(max-width:760px){.navlinks{display:none}.shell{padding:16px}.hero{padding:30px 24px}.grid2,.grid3,.status-strip{grid-template-columns:1fr}h1{font-size:40px}.big-type{font-size:36px}}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="nav-shell"><a href="index.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;"><div class="logo">NX</div><div><div style="font-weight:950;font-size:19px;">Nexus AI</div><div style="font-size:13px;color:rgba(8,22,20,.55);">我的申请状态</div></div></a><nav class="navlinks"><a href="profile-detail.html">画像详情</a><a href="effort.html">努力详情</a><a href="timeline.html">阶段地图</a><a href="advisors.html">顾问匹配</a><a href="index.html">重新测评</a></nav><a class="btn btn-primary" href="index.html#engine">重新生成</a></div></header>
+<main class="shell">
+<section class="card hero"><div class="pill">你的初步申请画像已生成</div><h1>你现在的申请状态：<span id="heroType">稳中带冲型</span></h1><p id="heroSummary">你不是没有机会，而是不适合盲目冲刺。当前最影响结果的变量是语言成绩和申请节奏。</p><div class="actions"><a class="btn btn-primary" href="profile-detail.html">看画像与选校详情</a><button class="btn btn-soft" onclick="openShare()">分享我的申请画像</button></div></section>
+<section class="grid2" style="margin-top:24px;">
+  <div class="card result-card">
+    <div class="pill">我现在的申请状态</div>
+    <div class="big-type" id="mainType">稳中带冲型</div>
+    <p class="summary" id="mainSummary">你目前的基础不弱，但还不适合把全部希望押在港前三热门项目上。更稳的做法是保留少量冲刺，把主申学校和稳妥路径一起排好。</p>
+    <div class="profile-line">
+      <div class="line-item"><span>本科背景</span><strong id="schoolText">211 / 双一流</strong></div>
+      <div class="line-item"><span>GPA</span><strong id="gpaText">3.55</strong></div>
+      <div class="line-item"><span>语言成绩</span><strong id="languageText">雅思 6.5</strong></div>
+      <div class="line-item"><span>目标方向</span><strong id="directionText">商科 / 金融</strong></div>
+    </div>
+    <div class="priority"><strong>当前最该先看的不是“能不能上岸”，而是“哪个变量最拖后腿”。</strong><br/>你现在更适合先把语言和申请节奏稳住，再决定港前三冲刺数量和主申学校组合。</div>
+  </div>
+  <div class="card">
+    <div class="pill">接下来可以怎么看？</div>
+    <h2 class="section-title">从现在到递交，按这四步走。</h2>
+    <div class="path-list">
+      <div class="path"><div class="num">1</div><div><strong>先看画像详情</strong><div>确认自己属于哪种申请状态，再看冲刺、主申、稳妥路径为什么这样分。</div></div></div>
+      <div class="path"><div class="num">2</div><div><strong>再看努力模拟</strong><div>判断雅思、实习、CV、预算这些变量，哪个最值得你现在投入。</div></div></div>
+      <div class="path"><div class="num">3</div><div><strong>接着看申请地图</strong><div>按月份拆任务，知道现在该准备什么，不要临近截止日期才补材料。</div></div></div>
+      <div class="path"><div class="num">4</div><div><strong>最后判断要不要找人</strong><div>如果只是语言和时间线问题，先自己推进；如果是低绩点、跨专业、港前三冲刺，再找学长学姐或顾问复核。</div></div></div>
+    </div>
+  </div>
+</section>
+<section class="status-strip">
+  <div class="mini-card"><b>当前优势</b><span>学术基础</span><p>背景可以支撑主申项目，不需要一开始就否定自己。</p></div>
+  <div class="mini-card"><b>优先补强</b><span>语言成绩</span><p>语言达标会直接降低申请风险，也会让递交节奏更主动。</p></div>
+  <div class="mini-card"><b>路径策略</b><span>先稳后冲</span><p>冲刺、主申、稳妥一起排，避免只盯一个层级。</p></div>
+  <div class="mini-card"><b>是否需要顾问</b><span>先不急</span><p>先完成画像详情和努力模拟，再判断是否需要真人复核。</p></div>
+</section>
+<section class="grid3" style="margin-top:24px;">
+  <div class="info-card"><h3>画像详情</h3><p>看清为什么你被判断为当前状态，以及冲刺、主申、稳妥路径怎么安排。</p><div class="actions"><a class="btn btn-primary" href="profile-detail.html">进入详情</a></div></div>
+  <div class="info-card"><h3>努力详情</h3><p>查看语言、实习、材料、预算四个方向分别怎么补，哪一项最值得先做。</p><div class="actions"><a class="btn btn-primary" href="effort.html">查看怎么努力</a></div></div>
+  <div class="info-card"><h3>申请地图</h3><p>按月份查看每个阶段该做什么，避免错过材料准备、开放申请和面试节点。</p><div class="actions"><a class="btn btn-primary" href="timeline.html">看时间地图</a></div></div>
+</section>
+<section class="card" style="margin-top:24px;"><div class="pill">花钱建议</div><h2 class="section-title">先把钱花在能改变结果的地方。</h2><p class="section-sub">如果你当前主要问题是语言和节奏，不建议一上来购买高价全包服务。更适合先投入语言提分、材料复核和关键节点咨询；如果后面发现是跨专业、低绩点或港前三冲刺问题，再进入顾问匹配。</p><div class="actions"><a class="btn btn-soft" href="advisors.html">什么时候适合找学长学姐？</a></div></section>
+<div class="footer-note">以上结果用于申请规划参考，不代表录取承诺。最终申请要求请以学校官网为准。</div>
+</main>
+<div id="shareModal" class="share-modal" onclick="closeShare(event)"><div class="share-panel"><div class="share-head"><strong>我的申请画像</strong><button class="close-btn" onclick="closeShare()">×</button></div><div class="share-card"><div class="pill">Nexus AI 申请状态</div><div class="score" id="shareType">稳中带冲型</div><p id="shareText">当前优势是学术基础，优先补强语言成绩。建议先稳后冲，主申和稳妥路径一起安排。</p><div class="notice">下一步：查看画像详情 → 测试努力方向 → 按申请地图推进。</div></div></div></div>
+<script>
+function getSnapshot(){try{return JSON.parse(localStorage.getItem('nexusStatusSnapshot')||'{}')}catch(e){return {}}}
+function fill(){const s=getSnapshot();const type=s.profileType||'稳中带冲型';const summary=s.profileSummary||'你不是没有机会，而是不适合盲目冲刺。当前最影响结果的变量是语言成绩和申请节奏。';document.getElementById('heroType').textContent=type;document.getElementById('mainType').textContent=type;document.getElementById('shareType').textContent=type;document.getElementById('heroSummary').textContent=summary;document.getElementById('mainSummary').textContent=summary;document.getElementById('schoolText').textContent=s.school||'211 / 双一流';document.getElementById('gpaText').textContent=s.gpa||'3.55';document.getElementById('languageText').textContent=s.language||'雅思 6.5';document.getElementById('directionText').textContent=s.direction||'商科 / 金融';document.getElementById('shareText').textContent=`${type}：${summary} 下一步建议先看画像详情，再用努力模拟判断最值得补强的变量。`;}
+function openShare(){document.getElementById('shareModal').classList.add('open')}
+function closeShare(event){if(event&&event.target&&event.target.id!=='shareModal')return;document.getElementById('shareModal').classList.remove('open')}
+fill();
+</script>
+</body>
+</html>

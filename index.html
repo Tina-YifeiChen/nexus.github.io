@@ -1143,7 +1143,8 @@ a{color:inherit}
       </div>
     </a>
     <nav class="navlinks">
-      <a href="#engine">申请画像</a>
+      <a href="#engine">生成画像</a>
+      <a href="status.html">我的状态</a>
       <a href="#effort">努力模拟</a>
       <a href="effort.html">努力详情</a>
       <a href="#life-map">时间地图</a>
@@ -1153,7 +1154,7 @@ a{color:inherit}
       <a href="#schools">学校官网</a>
       <a href="advisors.html">顾问匹配</a>
     </nav>
-    <a class="nav-cta" href="#engine">查看状态</a>
+    <a class="nav-cta" href="#engine">开始测评</a>
   </div>
 </header>
 
@@ -1162,7 +1163,7 @@ a{color:inherit}
     <div class="pill">3分钟看清你的港校申请位置 · 统一版 v2</div>
     <h1>帮你看清港校申请的位置、风险与下一步。</h1>
     <div class="hero-actions">
-      <a class="btn btn-primary" href="#engine">查看我的申请状态</a>
+      <a class="btn btn-primary" href="#engine">开始生成申请画像</a>
     </div>
   </section>
 
@@ -1231,22 +1232,7 @@ a{color:inherit}
           </select>
         </div>
 
-        <button class="btn btn-primary" style="width:100%;margin-top:18px;" onclick="startScan()">查看我的申请状态</button>
-
-        <div class="helper">
-          <h3 style="margin:0 0 10px;">我现在的申请状态</h3>
-          <div>当前画像：<b id="sideType">稳中带冲型</b></div>
-          <div style="margin-top:10px;">最大变量：<b id="sideVariable">语言成绩</b></div>
-          <div style="margin-top:10px;">建议策略：<b>先稳后冲</b></div>
-        </div>
-
-        <div class="helper">
-          <h3 style="margin:0 0 10px;">接下来可以怎么看？</h3>
-          <div>1. 先看自己属于哪种申请状态</div>
-          <div>2. 再试试提高语言、增加实习会怎样</div>
-          <div>3. 看哪些地方值得花钱</div>
-          <div>4. 查看接下来每个月该做什么</div>
-        </div>
+        <button class="btn btn-primary" style="width:100%;margin-top:18px;" onclick="startScan()">生成我的申请状态</button>
       </div>
     </aside>
 
@@ -1277,10 +1263,10 @@ a{color:inherit}
         <div class="card status-card-v8" id="status-overview">
           <div class="flex-head">
             <div>
-              <div class="pill">申请状态总览</div>
-              <h2 style="margin:12px 0 8px;font-size:24px;font-weight:950;letter-spacing:-.04em;">用一张雷达图看清当前申请形状</h2>
+              <div class="pill">申请状态雷达图</div>
+              <h2 style="margin:12px 0 8px;font-size:24px;font-weight:950;letter-spacing:-.04em;">一眼看清你的优势和短板</h2>
               <p style="margin:0;color:rgba(8,22,20,.62);line-height:1.7;font-size:14px;">
-                这里不再重复展示能量条，只保留雷达图作为总览。重点是让用户一眼看出：强项在哪里，短板在哪里，下一步该先补哪一块。
+                这张图帮你快速看清：哪些条件已经能支撑申请，哪些地方还会拖慢结果。具体学校分层和冲刺/主申/稳妥路径，可以进入画像详情查看。
               </p>
             </div>
             <button class="btn btn-soft" onclick="openShareModal()">分享画像图</button>
@@ -1528,7 +1514,7 @@ a{color:inherit}
   <div class="scan-box">
     <div class="scan-orb"></div>
     <div id="scanText" class="scan-text">正在读取你的申请背景……</div>
-    <div class="scan-sub">先别急，系统正在生成你的初步申请画像。</div>
+    <div class="scan-sub">正在把你的背景拆成可理解的申请状态。</div>
     <div class="scan-dots"><span></span><span></span><span></span></div>
   </div>
 </div>
@@ -1560,10 +1546,24 @@ function startScan(){
       setTimeout(()=>{
         overlay.classList.remove("open");
         refreshProfile();
-        document.getElementById("engine").scrollIntoView({behavior:"smooth", block:"start"});
+        saveStatusSnapshot();
+        window.location.href = "status.html";
       }, 450);
     }
   }, 520);
+}
+
+function saveStatusSnapshot(){
+  const snapshot = {
+    school: document.getElementById("schoolName")?.value || "未填写",
+    gpa: document.getElementById("gpaInput")?.value || "未填写",
+    language: document.getElementById("languageInput")?.value || "未填写",
+    direction: document.getElementById("directionInput")?.value || "未填写",
+    profileType: document.getElementById("profileType")?.textContent || "稳中带冲型",
+    profileTags: document.getElementById("profileTags")?.textContent || "语言临界 · 实习加分 · 适合分层",
+    profileSummary: document.getElementById("profileSummary")?.textContent?.trim() || "你不是没有机会，而是不适合盲目冲刺。当前最影响结果的变量是语言成绩和申请节奏。"
+  };
+  try{ localStorage.setItem("nexusStatusSnapshot", JSON.stringify(snapshot)); }catch(e){}
 }
 
 const stages = [
@@ -1725,11 +1725,16 @@ function refreshProfile(){
     tags = "稳妥优先 · 控制风险 · 分层申请";
     summary = "你更适合建立清晰的托底组合，不建议只盯港前三。当前重点是提高录取确定性。";
   }
-  document.getElementById("profileType").textContent = type;
-  document.getElementById("profileTags").textContent = tags;
-  document.getElementById("profileSummary").textContent = summary;
-  document.getElementById("sideType").textContent = type;
-  document.getElementById("sideVariable").textContent = variable;
+  const profileTypeEl = document.getElementById("profileType");
+  const profileTagsEl = document.getElementById("profileTags");
+  const profileSummaryEl = document.getElementById("profileSummary");
+  if(profileTypeEl) profileTypeEl.textContent = type;
+  if(profileTagsEl) profileTagsEl.textContent = tags;
+  if(profileSummaryEl) profileSummaryEl.textContent = summary;
+  const sideTypeEl = document.getElementById("sideType");
+  const sideVariableEl = document.getElementById("sideVariable");
+  if(sideTypeEl) sideTypeEl.textContent = type;
+  if(sideVariableEl) sideVariableEl.textContent = variable;
   drawShareCard();
 }
 
