@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Nexus AI｜港校申请导航地图详情</title>
+<style>
+:root{--ink:#081614;--muted:#5b6865;--line:#d9ede8;--mint:#22d3a6;--cyan:#58d7ff;--paper:#f7fffd;--warning:#fff4e5}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;background:radial-gradient(circle at 12% 8%, rgba(34,211,166,.16), transparent 26%),radial-gradient(circle at 88% 18%, rgba(88,215,255,.16), transparent 28%),linear-gradient(180deg,#f8fffd 0%,#effbf8 45%,#fbfefd 100%);color:var(--ink)}a{color:inherit}.topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.9);backdrop-filter:blur(18px);border-bottom:1px solid rgba(8,22,20,.08)}.shell{width:min(1180px,100%);margin:auto;padding:24px}.nav-shell{width:min(1180px,100%);margin:auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:18px}.logo{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,var(--mint),var(--cyan));font-weight:950}.navlinks{display:flex;gap:22px;font-size:14px;font-weight:900;color:rgba(8,22,20,.72)}.navlinks a{text-decoration:none}.card{position:relative;background:rgba(255,255,255,.86);border:1px solid rgba(8,22,20,.08);border-radius:26px;padding:26px;box-shadow:0 18px 60px rgba(8,22,20,.06);backdrop-filter:blur(14px)}.hero{overflow:hidden;padding:48px 40px}.hero:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(8,22,20,.045) 1px, transparent 1px),linear-gradient(90deg, rgba(8,22,20,.045) 1px, transparent 1px);background-size:30px 30px;mask-image:linear-gradient(to bottom, black, transparent 92%);pointer-events:none}.pill{display:inline-flex;align-items:center;gap:8px;padding:9px 13px;border-radius:999px;background:#ecfff8;color:#087b64;font-weight:950;font-size:13px;border:1px solid rgba(34,211,166,.16)}.hero h1{position:relative;font-size:clamp(38px,6vw,72px);line-height:.98;margin:24px 0 18px;letter-spacing:-.06em;max-width:980px}.hero p{position:relative;max-width:850px;font-size:18px;line-height:1.85;color:rgba(8,22,20,.64)}.btn{border:none;border-radius:16px;padding:14px 18px;font-weight:950;cursor:pointer;text-decoration:none;display:inline-flex;justify-content:center;align-items:center;gap:8px}.btn-primary{background:var(--ink);color:white;box-shadow:0 14px 38px rgba(8,22,20,.15)}.btn-soft{background:white;color:var(--ink);border:1px solid rgba(8,22,20,.1)}.section-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;margin-bottom:22px;flex-wrap:wrap}.section-title{font-size:32px;font-weight:950;letter-spacing:-.04em;margin:10px 0 6px}.section-sub{margin:0;color:rgba(8,22,20,.62);line-height:1.75;max-width:820px}.stage-tabs{display:grid;grid-template-columns:repeat(7,minmax(120px,1fr));gap:12px;margin-top:22px}.stage-tab{border:1px solid rgba(8,22,20,.08);background:white;border-radius:18px;padding:14px;cursor:pointer;text-align:left}.stage-tab.active{border-color:rgba(34,211,166,.72);box-shadow:0 0 0 4px rgba(34,211,166,.12)}.stage-tab b{display:block;font-size:13px;color:#087b64}.stage-tab span{display:block;margin-top:6px;font-size:14px;font-weight:950}.layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);gap:22px;margin-top:24px}.big-title{font-size:36px;font-weight:950;letter-spacing:-.05em;margin:8px 0}.summary{font-size:16px;line-height:1.9;color:rgba(8,22,20,.64)}.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.mini-card,.task,.side-card{background:white;border:1px solid rgba(8,22,20,.07);border-radius:20px;padding:18px}.mini-card b{display:block;font-size:12px;color:rgba(8,22,20,.52)}.mini-card span{display:block;margin-top:6px;font-size:20px;font-weight:950}.task-list{display:grid;gap:12px}.task{display:flex;gap:12px;align-items:flex-start;line-height:1.65}.check{flex:0 0 auto;width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--mint),var(--cyan));color:white;font-size:13px;font-weight:950;display:grid;place-items:center}.warning{padding:16px;border-radius:18px;background:var(--warning);border:1px solid rgba(246,183,79,.28);color:#6b4b11;line-height:1.75}.side-stack{display:grid;gap:16px}.side-card h3{margin:0 0 10px;font-size:20px;letter-spacing:-.03em}.side-card p,.side-card li{color:rgba(8,22,20,.62);line-height:1.75}.material-list{display:grid;gap:9px}.material{padding:10px 12px;border-radius:14px;background:#f4fffc;border:1px solid rgba(34,211,166,.14);font-weight:850;color:#087b64}.cta-card{text-align:center;padding:34px}@media(max-width:980px){.layout,.grid2,.grid3{grid-template-columns:1fr}.stage-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}.navlinks{display:none}.hero{padding:30px 24px}.shell{padding:16px}}@media(max-width:560px){.stage-tabs{grid-template-columns:1fr}.hero h1{font-size:38px}.card{padding:20px;border-radius:22px}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="nav-shell">
+    <a href="index.html#life-map" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+      <div class="logo">NX</div>
+      <div><div style="font-weight:950;font-size:19px;">Nexus AI</div><div style="font-size:13px;color:rgba(8,22,20,.55);">申请时间地图</div></div>
+    </a>
+    <nav class="navlinks">
+      <a href="index.html">返回首页</a><a href="advisors.html">顾问匹配</a><a href="#details">阶段详情</a>
+    </nav>
+    <a class="btn btn-primary" href="index.html#engine">生成画像</a>
+  </div>
+</header>
+<main class="shell">
+  <section class="card hero">
+    <div class="pill">港校申请导航地图 · 阶段详情页</div>
+    <h1>每个时间点，具体应该做什么。</h1>
+    <p>首页地图负责让用户看到完整路径；这个详情页负责把每个阶段拆成具体任务、材料清单、风险提醒、花钱优先级和是否需要真人顾问。这样产品会更像“申请导航系统”，而不是普通展示页。</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;position:relative;">
+      <a class="btn btn-primary" href="#details">查看当前阶段</a>
+      <a class="btn btn-soft" href="index.html#life-map">返回时间地图</a>
+    </div>
+  </section>
+  <section class="card" style="margin-top:24px;" id="details">
+    <div class="section-head">
+      <div><div class="pill">选择阶段</div><h2 class="section-title">从定位到 Offer，每一步都有不同优先级。</h2><p class="section-sub">用户可以从首页点击某个时间节点进入这里，也可以在本页切换不同阶段。</p></div>
+    </div>
+    <div class="stage-tabs" id="stageTabs"></div>
+  </section>
+  <section class="layout">
+    <div class="card">
+      <div class="pill" id="roundPill">黄金补强</div>
+      <div class="big-title" id="stageTitle">背景补强期</div>
+      <div style="font-weight:850;color:rgba(8,22,20,.58);" id="stageTime">4-6月｜申请前关键窗口</div>
+      <p class="summary" id="stageSummary"></p>
+      <div class="grid2" id="progressGrid" style="margin:20px 0;"></div>
+      <h2 class="section-title" style="font-size:26px;">这个阶段具体要做什么</h2>
+      <div class="task-list" id="taskList"></div>
+    </div>
+    <aside class="side-stack">
+      <div class="side-card"><h3>要准备的材料</h3><div class="material-list" id="materialList"></div></div>
+      <div class="warning" id="riskBox"></div>
+      <div class="side-card"><h3>什么时候需要真人顾问</h3><p id="advisorBox"></p><a class="btn btn-primary" href="advisors.html" style="margin-top:12px;width:100%;">查看顾问匹配</a></div>
+      <div class="side-card"><h3>钱应该花在哪里</h3><p id="moneyBox"></p></div>
+    </aside>
+  </section>
+  <section class="card cta-card" style="margin-top:24px;">
+    <h2 class="section-title">先看清阶段，再决定行动。</h2>
+    <p class="section-sub" style="margin:auto;">Nexus AI 的价值不是让用户做更多事，而是让用户在正确时间做最重要的事。</p>
+    <div style="margin-top:22px;display:flex;justify-content:center;gap:12px;flex-wrap:wrap;"><a class="btn btn-primary" href="index.html#engine">返回生成申请画像</a><a class="btn btn-soft" href="index.html#life-map">返回导航地图</a></div>
+  </section>
+</main>
+<script>
+const stages = [
+  {
+    "slug": "positioning",
+    "month": "1-3月",
+    "name": "探索定位期",
+    "round": "起点",
+    "title": "探索定位期",
+    "time": "1-3月｜确定方向与初步定位",
+    "summary": "这个阶段的核心不是马上买服务或疯狂看项目，而是先建立一张自己的申请坐标图：我在哪个层级、目标是否合理、硬伤是什么、预算能承受什么。",
+    "progress": [
+      "语言 20%",
+      "材料 10%",
+      "选校 20%",
+      "节奏 30%"
+    ],
+    "tasks": [
+      "确定目标方向：商科、AI/CS、传媒、教育、社科等，不要同时追太多方向。",
+      "把学校粗分为冲刺、主申、稳妥、预算友好四层。",
+      "判断语言成绩是否已达基本门槛，决定雅思/托福考试窗口。",
+      "初步估算预算：学费、住宿、生活费、留位费，并判断是否接受大湾区/澳门替代路径。",
+      "建立申请文件夹，开始收集成绩单、在读证明、实习证明、获奖证明。"
+    ],
+    "materials": [
+      "成绩单/均分证明",
+      "语言考试计划",
+      "目标专业关键词表",
+      "预算范围表",
+      "初版项目清单"
+    ],
+    "risk": "最大风险是还没看清自己，就被外部建议带着走。这个阶段不要急着承诺高价套餐，先确认自己的真实短板。",
+    "advisor": "通常不需要深度顾问。若目标严重不清、跨专业跨度很大，可以做一次低成本定位咨询。",
+    "money": "值得花：语言诊断、低成本定位复核。不建议花：完整文书套餐、保录承诺、过早的高价全包。"
+  },
+  {
+    "slug": "upgrade",
+    "month": "4-6月",
+    "name": "背景补强期",
+    "round": "黄金补强",
+    "title": "背景补强期",
+    "time": "4-6月｜申请前关键窗口",
+    "summary": "这是最能改变申请结果的窗口。第一性原理是：申请不是最后一刻靠文书包装，而是在提交前把能改变的硬变量尽量补上。",
+    "progress": [
+      "语言 60%",
+      "材料 25%",
+      "选校 45%",
+      "节奏 68%"
+    ],
+    "tasks": [
+      "优先锁定语言考试时间，目标不是“考过一次”，而是尽快接近项目要求。",
+      "补一段方向相关实习、科研、课程项目或竞赛，把经历和目标专业连起来。",
+      "维护 GPA，准备成绩单、排名证明或均分说明。",
+      "确认推荐人范围，提前建立沟通，不要到 DDL 前临时索要。",
+      "根据当前背景调整项目分层，不要只盯港前三热门项目。"
+    ],
+    "materials": [
+      "语言成绩/考试报名记录",
+      "实习或项目证明",
+      "推荐人名单",
+      "经历素材库",
+      "项目分层清单"
+    ],
+    "risk": "最大风险是把钱花在不能改变核心变量的地方。如果短板是语言或经历，先补硬变量，再谈文书包装。",
+    "advisor": "适合找目标院校学霸顾问问项目真实偏好，也可以找策略顾问判断“补什么最值”。",
+    "money": "值得花：语言提分、强相关实习/项目、一次策略复核。不建议花：在语言没达标前购买重文书包装。"
+  },
+  {
+    "slug": "documents",
+    "month": "7-8月",
+    "name": "材料准备期",
+    "round": "R1准备",
+    "title": "材料准备期",
+    "time": "7-8月｜R1提交前的材料窗口",
+    "summary": "这个阶段的目标是把申请从“想法”变成“可提交材料”。材料不是堆经历，而是形成一个能被招生官理解的主线。",
+    "progress": [
+      "语言 70%",
+      "材料 55%",
+      "选校 62%",
+      "节奏 72%"
+    ],
+    "tasks": [
+      "完成 CV 初稿，把经历按目标方向重排，而不是简单罗列。",
+      "整理 PS/SOP 主线：为什么这个专业、为什么这所学校、为什么现在申请。",
+      "正式联系推荐人，说明目标项目、推荐重点和时间安排。",
+      "建立项目表：学校、专业、开放时间、DDL、语言要求、材料要求、申请费。",
+      "准备文书素材库：项目经历、实习成果、课程论文、职业目标、失败与转折。"
+    ],
+    "materials": [
+      "CV 初稿",
+      "PS/SOP 大纲",
+      "推荐信沟通材料",
+      "项目追踪表",
+      "文书素材库"
+    ],
+    "risk": "最大风险是一边换方向一边写文书，导致所有材料都像模板。先定主线，再开始规模化改文书。",
+    "advisor": "适合找顶级申请顾问复核文书主线，或者找学霸顾问确认项目偏好。",
+    "money": "值得花：CV/PS 主线复核、推荐信策略、项目清单复核。不建议花：模板化文书批改。"
+  },
+  {
+    "slug": "opening",
+    "month": "9-10月",
+    "name": "开放冲刺期",
+    "round": "第一轮 R1",
+    "title": "港校开放冲刺期",
+    "time": "9-10月｜项目开放与第一轮准备",
+    "summary": "项目陆续开放后，节奏开始变紧。这个阶段的本质是用时间优势换确定性，不能等所有东西完美才提交。",
+    "progress": [
+      "语言 78%",
+      "材料 72%",
+      "选校 80%",
+      "节奏 76%"
+    ],
+    "tasks": [
+      "每天/每周检查目标项目是否开放，优先确认港大、港中文、港科、港理工等项目。",
+      "优先提交主申项目，不要把所有项目都拖到最后。",
+      "确认推荐信是否成功提交，避免系统卡在推荐信环节。",
+      "准备可能出现的面试问题：自我介绍、项目动机、经历细节、职业规划。",
+      "根据开放项目微调文书，不要为每个项目完全重写。"
+    ],
+    "materials": [
+      "最终 CV",
+      "分项目 PS/SOP",
+      "推荐信提交状态",
+      "申请系统账号",
+      "面试题库"
+    ],
+    "risk": "最大风险是无限拖延。港校很多项目 rolling，早提交通常比完美主义更重要。",
+    "advisor": "适合找顾问做提交前复核，尤其是港前三冲刺、跨专业解释和面试准备。",
+    "money": "值得花：提交前材料复核、面试模拟。不建议花：临时大改方向。"
+  },
+  {
+    "slug": "r1",
+    "month": "11-12月",
+    "name": "第一轮提交期",
+    "round": "R1 黄金期",
+    "title": "第一轮黄金提交期",
+    "time": "11-12月｜主申与冲刺并行",
+    "summary": "这是主申和冲刺并行的关键阶段。正确策略不是孤注一掷，而是让冲刺、主申、稳妥同时存在。",
+    "progress": [
+      "语言 85%",
+      "材料 86%",
+      "选校 88%",
+      "节奏 82%"
+    ],
+    "tasks": [
+      "完成主申项目提交，确保申请费、材料、推荐信全部到位。",
+      "保留 1-2 个冲刺项目，同时配置 2-3 个主申和稳妥项目。",
+      "持续查看邮箱和申请系统状态，及时补材料。",
+      "准备面试、自我介绍、项目动机和经历追问。",
+      "记录每个项目的提交时间、状态、面试邀请和结果。"
+    ],
+    "materials": [
+      "已提交项目列表",
+      "申请系统截图",
+      "面试准备文档",
+      "补材料清单",
+      "项目状态追踪表"
+    ],
+    "risk": "最大风险是只冲不保，或者因为焦虑乱加项目。项目组合要有层级，而不是越多越好。",
+    "advisor": "适合做一次项目组合复核，判断是否冲得过多、稳妥不足，或是否需要补申。",
+    "money": "值得花：项目组合复核、面试模拟。不建议花：无差别加申大量项目。"
+  },
+  {
+    "slug": "interview",
+    "month": "1-3月",
+    "name": "等待与面试期",
+    "round": "第二轮 R2",
+    "title": "等待面试与补申期",
+    "time": "1-3月｜R2审理与补申窗口",
+    "summary": "等待期最考验心态。这个阶段不是被动焦虑，而是根据 R1 反馈判断是否补申、补哪里、还要不要投入真人帮助。",
+    "progress": [
+      "语言 88%",
+      "材料 90%",
+      "选校 92%",
+      "节奏 70%"
+    ],
+    "tasks": [
+      "准备英文面试和常见问题，尤其是项目动机、职业规划和经历细节。",
+      "根据 R1 结果决定是否补申，不要因为焦虑盲目加申过多项目。",
+      "跟进申请系统状态，及时处理补材料、面试邀请和邮件回复。",
+      "复盘已提交项目：文书主线是否清楚、项目层级是否合理。",
+      "准备 offer 到来后的选择标准：费用、课程、城市、就业、身份路径。"
+    ],
+    "materials": [
+      "面试答案库",
+      "补申项目清单",
+      "邮件模板",
+      "R1 反馈记录",
+      "Offer选择标准表"
+    ],
+    "risk": "最大风险是把等待焦虑转化成冲动消费。先看真实反馈，再决定是否需要顾问或补申。",
+    "advisor": "适合找学霸顾问做面试模拟，或找策略顾问判断是否补申与补哪些项目。",
+    "money": "值得花：面试模拟、补申策略。不建议花：重复购买没有新信息的定位服务。"
+  },
+  {
+    "slug": "offer",
+    "month": "4-6月",
+    "name": "Offer选择与行前准备",
+    "round": "收尾 / 行前",
+    "title": "Offer选择与行前准备",
+    "time": "4-6月｜结果选择与落地准备",
+    "summary": "拿到 offer 不是结束，而是从“申请决策”进入“真实就读决策”。好选择不是看排名一个指标，而是看课程、成本、就业和个人约束的组合。",
+    "progress": [
+      "语言 95%",
+      "材料 94%",
+      "选校 92%",
+      "节奏 88%"
+    ],
+    "tasks": [
+      "比较 offer：排名、课程设置、费用、就业资源、城市、校友网络。",
+      "确认留位费、签证、宿舍/租房、保险和入学注册时间。",
+      "准备租房、银行卡、电话卡、疫苗/体检等行前事项。",
+      "加入校友群或项目群，了解真实课程强度和求职节奏。",
+      "如果有多个 offer，建立评分表，不要只按“名气”选择。"
+    ],
+    "materials": [
+      "Offer对比表",
+      "留位费/签证时间表",
+      "租房清单",
+      "行前文件夹",
+      "校友/项目群信息"
+    ],
+    "risk": "最大风险是只看排名，不看真实成本和发展路径。预算、课程和就业信息会影响真实体验。",
+    "advisor": "适合找目标院校学霸顾问了解真实就读体验，或找策略顾问做多个 offer 选择。",
+    "money": "值得花：Offer选择咨询、行前信息核对。不建议花：已经不影响录取结果的重复包装服务。"
+  }
+];
+let current = Number(new URLSearchParams(location.search).get('stage') || 1);
+if(!Number.isInteger(current) || current < 0 || current >= stages.length) current = 1;
+function renderTabs(){
+  document.getElementById('stageTabs').innerHTML = stages.map((s,i)=>`<button class="stage-tab ${i===current?'active':''}" onclick="selectStage(${i})"><b>${s.month}</b><span>${s.name}</span><small style="display:block;margin-top:7px;color:rgba(8,22,20,.55);font-weight:800;">${s.round}</small></button>`).join('');
+}
+function selectStage(i){
+  current = i;
+  const s = stages[i];
+  history.replaceState(null,'',`timeline.html?stage=${i}`);
+  document.getElementById('roundPill').textContent = s.round;
+  document.getElementById('stageTitle').textContent = s.title;
+  document.getElementById('stageTime').textContent = s.time;
+  document.getElementById('stageSummary').textContent = s.summary;
+  document.getElementById('progressGrid').innerHTML = s.progress.map(p=>{const parts=p.split(' '); return `<div class="mini-card"><b>${parts[0]}</b><span>${parts.slice(1).join(' ')}</span></div>`}).join('');
+  document.getElementById('taskList').innerHTML = s.tasks.map(t=>`<div class="task"><div class="check">✓</div><div>${t}</div></div>`).join('');
+  document.getElementById('materialList').innerHTML = s.materials.map(m=>`<div class="material">${m}</div>`).join('');
+  document.getElementById('riskBox').textContent = s.risk;
+  document.getElementById('advisorBox').textContent = s.advisor;
+  document.getElementById('moneyBox').textContent = s.money;
+  renderTabs();
+}
+selectStage(current);
+</script>
+</body>
+</html>

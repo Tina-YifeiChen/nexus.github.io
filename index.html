@@ -1015,6 +1015,7 @@ a{color:inherit}
       <a href="#engine">申请画像</a>
       <a href="#effort">努力模拟</a>
       <a href="#life-map">时间地图</a>
+      <a href="timeline.html">阶段详情</a>
       <a href="#demo-profile">示例分析</a>
       <a href="#share">生成分享图</a>
       <a href="#schools">学校官网</a>
@@ -1196,10 +1197,13 @@ a{color:inherit}
             <div class="pill">全流程进度地图</div>
             <h2 class="section-title">港校申请导航地图</h2>
             <p class="section-sub">
-              从准备到拿到 Offer，把每个阶段该做的事放到一张地图里。点击节点，就能看到当前阶段的任务、轮次、风险和优先级。
+              从准备到拿到 Offer，把每个阶段该做的事放到一张地图里。点击节点进入阶段详情页，查看这个时间段具体要做什么、哪些材料要准备、什么时候该找真人顾问、哪些钱先别乱花。
             </p>
           </div>
-          <div class="pill">你现在更适合：先补语言，再推进推荐信</div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+            <a class="btn btn-primary" href="timeline.html">查看全部阶段详情</a>
+            <div class="pill">你现在更适合：先补语言，再推进推荐信</div>
+          </div>
         </div>
 
         <div class="stage-board">
@@ -1236,6 +1240,7 @@ a{color:inherit}
 
             <div class="task-list" id="taskList"></div>
             <div class="warning" id="warningBox"></div>
+            <a class="btn btn-primary" id="detailPageLink" href="timeline.html?stage=1" style="margin-top:16px;width:100%;">进入这个阶段详情页</a>
           </aside>
         </div>
       </section>
@@ -1545,14 +1550,18 @@ function closeShareModal(event){
 function renderStages(active=1){
   const row = document.getElementById("stageRow");
   row.innerHTML = stages.map((s,i)=>`
-    <div class="stage-node ${i===active?'active':''}" onclick="selectStage(${i})">
+    <div class="stage-node ${i===active?'active':''}" onclick="openStageDetail(${i})" role="button" tabindex="0" onkeydown="if(event.key==='Enter'){openStageDetail(${i})}">
       <div class="node-dot"></div>
       <div class="node-month">${s.month}</div>
       <div class="node-name">${s.name}</div>
       <div class="node-desc">${s.desc}</div>
       <div class="round-badge">${s.round}</div>
+      <div style="margin-top:12px;font-size:12px;font-weight:950;color:#087b64;">查看阶段详情 →</div>
     </div>
   `).join("");
+}
+function openStageDetail(i){
+  window.location.href = `timeline.html?stage=${i}`;
 }
 function selectStage(i){
   renderStages(i);
@@ -1566,6 +1575,8 @@ function selectStage(i){
   document.getElementById("pPace").textContent = s.progress[3];
   document.getElementById("taskList").innerHTML = s.tasks.map(t=>`<div class="task"><div class="check">✓</div><div>${t}</div></div>`).join("");
   document.getElementById("warningBox").textContent = s.warning;
+  const detailLink = document.getElementById("detailPageLink");
+  if(detailLink) detailLink.href = `timeline.html?stage=${i}`;
 }
 function changeEffort(type){
   const score = document.getElementById("effortScore");
