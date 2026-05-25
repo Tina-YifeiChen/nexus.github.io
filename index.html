@@ -1123,7 +1123,7 @@ a{color:inherit}
     </aside>
 
     <div class="right-stack">
-      <section class="card">
+      <section class="card" id="profile-card">
         <div class="flex-head">
           <div>
             <div class="pill">申请画像</div>
@@ -1134,34 +1134,23 @@ a{color:inherit}
         <p id="profileSummary" style="margin-top:16px;color:#4f5c59;line-height:1.8;">
           你不是没有机会，而是不适合盲目冲刺。当前最影响结果的变量是语言成绩和申请节奏。
         </p>
-      </section>
-
-      <section class="school-grid">
-        <div class="school-card">
-          <h3>冲刺</h3>
-          <div>香港大学 HKU</div>
-          <div>香港科技大学 HKUST</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:18px;">
+          <div class="school-card"><h3>冲刺</h3><div>港大 / 港科作为少量冲刺</div></div>
+          <div class="school-card"><h3>主申</h3><div>港中文 / 港理工 / 城大重点布局</div></div>
+          <div class="school-card"><h3>稳妥</h3><div>港都会 / 恒生 / 大湾区路径兜底</div></div>
         </div>
-        <div class="school-card">
-          <h3>主申</h3>
-          <div>香港中文大学 CUHK</div>
-          <div>香港理工大学 PolyU</div>
-          <div>香港城市大学 CityU</div>
-        </div>
-        <div class="school-card">
-          <h3>稳妥 / 替代</h3>
-          <div>香港都会大学 HKMU</div>
-          <div>香港恒生大学 HSUHK</div>
-          <div>港中深 CUHK-Shenzhen</div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;">
+          <a class="btn btn-primary" href="profile-detail.html">查看画像详情</a>
+          <button class="btn btn-soft" onclick="openShareModal()">分享申请画像图</button>
         </div>
       </section>
 
       <section class="grid2">
         <div class="card" id="status-overview">
           <div class="pill">申请状态总览</div>
-          <h2 style="margin:12px 0 8px;font-size:24px;font-weight:950;letter-spacing:-.04em;">雷达图 + 能量条合并展示</h2>
+          <h2 style="margin:12px 0 8px;font-size:24px;font-weight:950;letter-spacing:-.04em;">只保留申请状态雷达图</h2>
           <p style="margin:0 0 18px;color:rgba(8,22,20,.62);line-height:1.7;font-size:14px;">
-            这部分只保留一个综合视图：雷达图看整体形状，能量条看每个维度的具体分数，避免同一信息重复出现。
+            这部分只保留一个综合雷达图，用来快速看清你的申请状态形状；具体学校分层、冲刺/主申/稳妥路径已经放到画像详情页。
           </p>
           <div class="radar-wrap">
             <svg class="radar-svg" viewBox="0 0 320 320" aria-label="申请状态雷达图">
@@ -1197,19 +1186,9 @@ a{color:inherit}
               <text class="radar-label" x="28" y="232" text-anchor="middle">预算适配 82</text>
               <text class="radar-label" x="30" y="92" text-anchor="middle">文书潜力 72</text>
             </svg>
-            <div class="radar-score">
-              <div class="radar-item"><div class="radar-item-row"><span>学术基础</span><b id="academicScore">86</b></div><div class="radar-bar"><div id="academicBar" style="width:86%"></div></div></div>
-              <div class="radar-item"><div class="radar-item-row"><span>语言准备</span><b id="langScore">68</b></div><div class="radar-bar"><div id="langBar" style="width:68%"></div></div></div>
-              <div class="radar-item"><div class="radar-item-row"><span>实习科研</span><b id="expScore">78</b></div><div class="radar-bar"><div id="expBar" style="width:78%"></div></div></div>
-              <div class="radar-item"><div class="radar-item-row"><span>申请节奏</span><b id="paceScore">64</b></div><div class="radar-bar"><div id="paceBar" style="width:64%"></div></div></div>
-              <div class="radar-item"><div class="radar-item-row"><span>预算适配</span><b>82</b></div><div class="radar-bar"><div style="width:82%"></div></div></div>
-              <div class="radar-item"><div class="radar-item-row"><span>文书潜力</span><b>72</b></div><div class="radar-bar"><div style="width:72%"></div></div></div>
-            </div>
-          </div>
-          <div class="test-result-grid">
-            <div class="test-result"><b>72</b><span>当前综合申请力，不是录取概率。</span></div>
-            <div class="test-result"><b>语言</b><span>当前最关键变量，先解决硬门槛。</span></div>
-            <div class="test-result"><b>分层</b><span>建议冲刺、主申、稳妥同时布局。</span></div>
+          <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">
+            <button class="btn btn-soft" onclick="openShareModal()">分享雷达图</button>
+            <a class="btn btn-primary" href="profile-detail.html">看画像与选校详情</a>
           </div>
         </div>
 
@@ -1241,20 +1220,6 @@ a{color:inherit}
       </section>
 
       
-      <section id="advisor-entry" class="card">
-        <div class="section-head">
-          <div>
-            <div class="pill">真人顾问匹配</div>
-            <h2 class="section-title">有些问题，适合问已经走过这条路的人。</h2>
-            <p class="section-sub">
-              AI 先帮你看清自己的申请状态；如果你遇到低绩点、跨专业、港前三冲刺、面试准备或文书主线不清楚，可以再找目标院校学长学姐或顶级申请顾问做复核。
-            </p>
-          </div>
-          <a class="btn btn-primary" href="advisors.html">详情了解</a>
-        </div>
-      </section>
-
-
       <section id="life-map" class="card map-card">
         <div class="section-head">
           <div>
@@ -1309,6 +1274,20 @@ a{color:inherit}
         </div>
       </section>
 
+      <section id="advisor-entry" class="card">
+        <div class="section-head">
+          <div>
+            <div class="pill">真人顾问匹配</div>
+            <h2 class="section-title">有些问题，适合问已经走过这条路的人。</h2>
+            <p class="section-sub">
+              AI 先帮你看清自己的申请状态；如果你遇到低绩点、跨专业、港前三冲刺、面试准备或文书主线不清楚，可以再找目标院校学长学姐或顶级申请顾问做复核。
+            </p>
+          </div>
+          <a class="btn btn-primary" href="advisors.html">详情了解</a>
+        </div>
+      </section>
+
+
       <section class="grid2">
         <div class="card">
           <h2 style="margin:0;font-size:24px;font-weight:950;">哪里值得花钱，哪里先别急</h2>
@@ -1333,53 +1312,30 @@ a{color:inherit}
         <div class="section-head">
           <div>
             <div class="pill">Demo Profile · 演示案例</div>
-            <h2 class="section-title">看一个完整示例</h2>
+            <h2 class="section-title">先看案例摘要，详细过程放到新页面。</h2>
             <p class="section-sub">
-              下面用一个虚拟申请者展示系统如何分析背景、风险、预算和下一步行动。以下内容为演示案例，不代表真实用户，也不构成录取承诺。
+              首页只保留案例的关键结论，避免页面过重。点击进入案例详情后，可以查看虚拟申请者的个人自述、经历时间线、系统如何判断画像、以及为什么给出这组学校路径。
             </p>
           </div>
           <div class="demo-badge">演示案例｜非真实案例</div>
         </div>
-
         <div class="demo-grid">
           <div class="profile-card">
             <div class="profile-name">Demo Profile A：稳中带冲型</div>
-            <div class="profile-meta">
-              这个例子展示一种常见情况：背景有竞争力，但语言成绩和申请节奏会影响港前三冲刺结果。
-            </div>
-
+            <div class="profile-meta">211 财经类院校 / GPA 3.55 / IELTS 6.5 / 2段相关实习 / 商科金融方向。</div>
             <div class="profile-facts">
-              <div class="fact"><b>本科背景</b><span>211 财经类院校</span></div>
-              <div class="fact"><b>GPA</b><span>3.55 / 4.0</span></div>
-              <div class="fact"><b>语言成绩</b><span>IELTS 6.5</span></div>
-              <div class="fact"><b>目标方向</b><span>商科 / 金融 / 管理</span></div>
-              <div class="fact"><b>实习经历</b><span>2段，方向较匹配</span></div>
-              <div class="fact"><b>预算偏好</b><span>香港本地优先，可接受大湾区替代</span></div>
+              <div class="fact"><b>核心画像</b><span>稳中带冲型</span></div>
+              <div class="fact"><b>关键风险</b><span>语言临界 + 申请节奏</span></div>
+              <div class="fact"><b>建议路径</b><span>少量冲刺 + 主申稳定 + 大湾区兜底</span></div>
             </div>
-
-            <div class="path-cards">
-              <div class="path-card">
-                <strong>冲刺路径</strong>
-                <p>香港大学、香港科技大学。适合保留少量冲刺，但不能把全部筹码压在港前三热门专业。</p>
-              </div>
-              <div class="path-card">
-                <strong>主申路径</strong>
-                <p>香港中文大学、香港理工大学、香港城市大学。重点看文书表达、实习匹配和申请节奏。</p>
-              </div>
-              <div class="path-card">
-                <strong>托底路径</strong>
-                <p>香港都会大学、香港恒生大学、港中深、北师港浸大等。适合预算或低风险偏好用户。</p>
-              </div>
-            </div>
-
-            <div class="warning">
-              系统解读：这个状态不是“没有机会”，而是“不适合盲冲”。当前最值得优先投入的是语言成绩与文书主线，而不是一开始购买高价全包套餐。
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;">
+              <a class="btn btn-primary" href="case-profile.html">查看完整案例</a>
+              <a class="btn btn-soft" href="profile-detail.html">对照我的画像</a>
             </div>
           </div>
         </div>
       </section>
 
-      
       <section id="share" class="card">
         <div class="share-simple">
           <div>
