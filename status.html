@@ -10,9 +10,10 @@
 </style>
 </head>
 <body>
-<header class="topbar"><div class="nav-shell"><a href="index.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;"><div class="logo">NX</div><div><div style="font-weight:950;font-size:19px;">Nexus AI</div><div style="font-size:13px;color:rgba(8,22,20,.55);">我的申请状态</div></div></a><nav class="navlinks"><a href="profile-detail.html">画像详情</a><a href="effort.html">努力详情</a><a href="timeline.html">阶段地图</a><a href="advisors.html">顾问匹配</a><a href="index.html">重新测评</a></nav><a class="btn btn-primary" href="index.html#engine">重新生成</a></div></header>
+<header class="topbar"><div class="nav-shell"><a href="index.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;"><div class="logo">NX</div><div><div style="font-weight:950;font-size:19px;">Nexus AI</div><div style="font-size:13px;color:rgba(8,22,20,.55);">我的申请状态</div></div></a><nav class="navlinks"><a href="profile-detail.html">状态说明</a><a href="effort.html">努力方向</a><a href="timeline.html">申请时间表</a><a href="advisors.html">找人复核</a><a href="index.html">重新看看</a></nav><a class="btn btn-primary" href="index.html#engine">重新填写</a></div></header>
 <main class="shell">
-<section class="card hero"><div class="pill">你的初步申请画像已生成</div><h1>你现在的申请状态：<span id="heroType">稳中带冲型</span></h1><p id="heroSummary">你不是没有机会，而是不适合盲目冲刺。当前最影响结果的变量是语言成绩和申请节奏。</p><div class="actions"><a class="btn btn-primary" href="profile-detail.html">看画像与选校详情</a><button class="btn btn-soft" onclick="openShare()">分享我的申请画像</button></div></section>
+<section class="card" style="margin-bottom:24px;padding:18px 22px;"><div class="pill">你的结果</div><p style="margin:10px 0 0;color:rgba(8,22,20,.62);line-height:1.75;">先看清现在的位置，再决定下一步怎么走。</p></section>
+<section class="card hero"><div class="pill">扫描完成 · 这是你的申请状态</div><h1>我现在的申请状态：<span id="heroType">稳中带冲型</span></h1><p id="heroSummary">你不是没有机会，而是不适合盲目冲刺。当前最影响结果的变量是语言成绩和申请节奏。</p><div class="actions"><a class="btn btn-primary" href="profile-detail.html">继续看状态与选校说明</a><button class="btn btn-soft" onclick="openShare()">分享我的申请状态</button></div></section>
 <section class="grid2" style="margin-top:24px;">
   <div class="card result-card">
     <div class="pill">我现在的申请状态</div>
@@ -24,16 +25,16 @@
       <div class="line-item"><span>语言成绩</span><strong id="languageText">雅思 6.5</strong></div>
       <div class="line-item"><span>目标方向</span><strong id="directionText">商科 / 金融</strong></div>
     </div>
-    <div class="priority"><strong>当前最该先看的不是“能不能上岸”，而是“哪个变量最拖后腿”。</strong><br/>你现在更适合先把语言和申请节奏稳住，再决定港前三冲刺数量和主申学校组合。</div>
+    <div class="priority"><strong>先不用纠结“我到底能不能上岸”，更重要的是看清哪个变量最影响结果。</strong><br/>你现在更适合先把语言和申请节奏稳住，再决定港前三冲刺数量和主申学校组合。</div>
   </div>
   <div class="card">
     <div class="pill">接下来可以怎么看？</div>
-    <h2 class="section-title">从现在到递交，按这四步走。</h2>
+    <h2 class="section-title">你可以按这四步继续看。</h2>
     <div class="path-list">
-      <div class="path"><div class="num">1</div><div><strong>先看画像详情</strong><div>确认自己属于哪种申请状态，再看冲刺、主申、稳妥路径为什么这样分。</div></div></div>
-      <div class="path"><div class="num">2</div><div><strong>再看努力模拟</strong><div>判断雅思、实习、CV、预算这些变量，哪个最值得你现在投入。</div></div></div>
-      <div class="path"><div class="num">3</div><div><strong>接着看申请地图</strong><div>按月份拆任务，知道现在该准备什么，不要临近截止日期才补材料。</div></div></div>
-      <div class="path"><div class="num">4</div><div><strong>最后判断要不要找人</strong><div>如果只是语言和时间线问题，先自己推进；如果是低绩点、跨专业、港前三冲刺，再找学长学姐或顾问复核。</div></div></div>
+      <div class="path"><div class="num">1</div><div><strong>先看状态说明</strong><div>先别急着纠结能不能上岸，先看清系统为什么这样判断你，再看冲刺、主申和稳妥路径怎么排。</div></div></div>
+      <div class="path"><div class="num">2</div><div><strong>再看努力模拟</strong><div>看看雅思、实习、CV、预算这些变量里，哪一个最值得你现在先补。</div></div></div>
+      <div class="path"><div class="num">3</div><div><strong>接着看申请时间表</strong><div>按月份看任务，知道现在该准备什么，别等到截止前才补材料。</div></div></div>
+      <div class="path"><div class="num">4</div><div><strong>最后判断要不要找人</strong><div>如果只是语言和时间线问题，可以先自己推进；如果是低绩点、跨专业、港前三冲刺，再找学长学姐或顾问复核。</div></div></div>
     </div>
   </div>
 </section>
@@ -41,20 +42,20 @@
   <div class="mini-card"><b>当前优势</b><span>学术基础</span><p>背景可以支撑主申项目，不需要一开始就否定自己。</p></div>
   <div class="mini-card"><b>优先补强</b><span>语言成绩</span><p>语言达标会直接降低申请风险，也会让递交节奏更主动。</p></div>
   <div class="mini-card"><b>路径策略</b><span>先稳后冲</span><p>冲刺、主申、稳妥一起排，避免只盯一个层级。</p></div>
-  <div class="mini-card"><b>是否需要顾问</b><span>先不急</span><p>先完成画像详情和努力模拟，再判断是否需要真人复核。</p></div>
+  <div class="mini-card"><b>要不要找人聊聊</b><span>先不用急</span><p>先完成状态说明和努力模拟，再判断是否需要真人复核。</p></div>
 </section>
 <section class="grid3" style="margin-top:24px;">
-  <div class="info-card"><h3>画像详情</h3><p>看清为什么你被判断为当前状态，以及冲刺、主申、稳妥路径怎么安排。</p><div class="actions"><a class="btn btn-primary" href="profile-detail.html">进入详情</a></div></div>
-  <div class="info-card"><h3>努力详情</h3><p>查看语言、实习、材料、预算四个方向分别怎么补，哪一项最值得先做。</p><div class="actions"><a class="btn btn-primary" href="effort.html">查看怎么努力</a></div></div>
-  <div class="info-card"><h3>申请地图</h3><p>按月份查看每个阶段该做什么，避免错过材料准备、开放申请和面试节点。</p><div class="actions"><a class="btn btn-primary" href="timeline.html">看时间地图</a></div></div>
+  <div class="info-card"><h3>状态说明</h3><p>看清为什么你是这个状态，以及冲刺、主申、稳妥学校应该怎么放。</p><div class="actions"><a class="btn btn-primary" href="profile-detail.html">继续看原因</a></div></div>
+  <div class="info-card"><h3>努力方向</h3><p>查看语言、实习、材料、预算四个方向分别怎么补，哪一项最值得先做。</p><div class="actions"><a class="btn btn-primary" href="effort.html">看看怎么补</a></div></div>
+  <div class="info-card"><h3>申请时间表</h3><p>按月份看接下来该做什么，避免错过材料、开放申请和面试。</p><div class="actions"><a class="btn btn-primary" href="timeline.html">看每个阶段该做什么</a></div></div>
 </section>
-<section class="card" style="margin-top:24px;"><div class="pill">花钱建议</div><h2 class="section-title">先把钱花在能改变结果的地方。</h2><p class="section-sub">如果你当前主要问题是语言和节奏，不建议一上来购买高价全包服务。更适合先投入语言提分、材料复核和关键节点咨询；如果后面发现是跨专业、低绩点或港前三冲刺问题，再进入顾问匹配。</p><div class="actions"><a class="btn btn-soft" href="advisors.html">什么时候适合找学长学姐？</a></div></section>
+<section class="card" style="margin-top:24px;"><div class="pill">花钱建议</div><h2 class="section-title">先把钱花在能改变结果的地方。</h2><p class="section-sub">如果你当前主要问题是语言和节奏，不建议一上来购买高价全包服务。更适合先投入语言提分、材料复核和关键节点咨询；如果后面发现是跨专业、低绩点或港前三冲刺问题，再进入找人复核。</p><div class="actions"><a class="btn btn-soft" href="advisors.html">什么时候适合找学长学姐？</a></div></section>
 <div class="footer-note">以上结果用于申请规划参考，不代表录取承诺。最终申请要求请以学校官网为准。</div>
 </main>
-<div id="shareModal" class="share-modal" onclick="closeShare(event)"><div class="share-panel"><div class="share-head"><strong>我的申请画像</strong><button class="close-btn" onclick="closeShare()">×</button></div><div class="share-card"><div class="pill">Nexus AI 申请状态</div><div class="score" id="shareType">稳中带冲型</div><p id="shareText">当前优势是学术基础，优先补强语言成绩。建议先稳后冲，主申和稳妥路径一起安排。</p><div class="notice">下一步：查看画像详情 → 测试努力方向 → 按申请地图推进。</div></div></div></div>
+<div id="shareModal" class="share-modal" onclick="closeShare(event)"><div class="share-panel"><div class="share-head"><strong>我的申请状态</strong><button class="close-btn" onclick="closeShare()">×</button></div><div class="share-card"><div class="pill">Nexus AI 申请状态</div><div class="score" id="shareType">稳中带冲型</div><p id="shareText">当前优势是学术基础，优先补强语言成绩。建议先稳后冲，主申和稳妥路径一起安排。</p><div class="notice">接下来先做什么：查看状态说明 → 测试努力方向 → 按申请时间表推进。</div></div></div></div>
 <script>
 function getSnapshot(){try{return JSON.parse(localStorage.getItem('nexusStatusSnapshot')||'{}')}catch(e){return {}}}
-function fill(){const s=getSnapshot();const type=s.profileType||'稳中带冲型';const summary=s.profileSummary||'你不是没有机会，而是不适合盲目冲刺。当前最影响结果的变量是语言成绩和申请节奏。';document.getElementById('heroType').textContent=type;document.getElementById('mainType').textContent=type;document.getElementById('shareType').textContent=type;document.getElementById('heroSummary').textContent=summary;document.getElementById('mainSummary').textContent=summary;document.getElementById('schoolText').textContent=s.school||'211 / 双一流';document.getElementById('gpaText').textContent=s.gpa||'3.55';document.getElementById('languageText').textContent=s.language||'雅思 6.5';document.getElementById('directionText').textContent=s.direction||'商科 / 金融';document.getElementById('shareText').textContent=`${type}：${summary} 下一步建议先看画像详情，再用努力模拟判断最值得补强的变量。`;}
+function fill(){const s=getSnapshot();const type=s.profileType||'稳中带冲型';const summary=s.profileSummary||'你不是没有机会，而是不适合盲目冲刺。当前最影响结果的变量是语言成绩和申请节奏。';document.getElementById('heroType').textContent=type;document.getElementById('mainType').textContent=type;document.getElementById('shareType').textContent=type;document.getElementById('heroSummary').textContent=summary;document.getElementById('mainSummary').textContent=summary;document.getElementById('schoolText').textContent=s.school||'211 / 双一流';document.getElementById('gpaText').textContent=s.gpa||'3.55';document.getElementById('languageText').textContent=s.language||'雅思 6.5';document.getElementById('directionText').textContent=s.direction||'商科 / 金融';document.getElementById('shareText').textContent=`${type}：${summary} 接下来先做什么建议先看状态说明，再用努力模拟判断最值得补强的变量。`;}
 function openShare(){document.getElementById('shareModal').classList.add('open')}
 function closeShare(event){if(event&&event.target&&event.target.id!=='shareModal')return;document.getElementById('shareModal').classList.remove('open')}
 fill();

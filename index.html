@@ -1,9 +1,10 @@
 
 <!DOCTYPE html>
+
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Nexus AI｜港校申请导航</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
@@ -409,7 +410,7 @@ a{color:inherit}
 .round-card strong{display:block;font-size:14px}
 .round-card p{margin:7px 0 0;color:rgba(8,22,20,.58);font-size:12px;line-height:1.45}
 
-/* Demo profile and radar */
+/* case and radar */
 .demo-grid{
   display:grid;
   grid-template-columns:1.05fr .95fr;
@@ -872,7 +873,7 @@ a{color:inherit}
 
 
 /* === FINAL UNIFIED RESPONSIVE OVERRIDE v2 === */
-/* 三端统一原则：同一内容顺序，同一功能，不隐藏核心模块。桌面只允许更宽，不允许变成另一套结构。 */
+/* 三端统一 */
 .shell{
   width:min(1180px,100%) !important;
   margin:0 auto !important;
@@ -1129,396 +1130,190 @@ a{color:inherit}
   }
 }
 
+
+/* === v11 final layout lock ===
+   电脑端/平板横屏强制左右并排；只有很窄手机才上下排列。
+   这一段放在 CSS 最末尾，覆盖前面所有 grid2 / 响应式规则。 */
+#statusEffortPair.status-effort-pair{
+  display:grid !important;
+  grid-template-columns:minmax(420px,1fr) minmax(420px,1fr) !important;
+  gap:24px !important;
+  align-items:stretch !important;
+  width:100% !important;
+}
+#statusEffortPair.status-effort-pair > .card{
+  min-height:620px !important;
+  height:100% !important;
+  display:flex !important;
+  flex-direction:column !important;
+}
+#statusEffortPair .radar-center{
+  flex:1 1 auto !important;
+  display:grid !important;
+  place-items:center !important;
+  min-height:340px !important;
+}
+#statusEffortPair .radar-svg{
+  width:min(360px,100%) !important;
+  max-width:360px !important;
+}
+#statusEffortPair .effort-links-v8{
+  margin-top:auto !important;
+  display:grid !important;
+  grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  gap:10px !important;
+}
+@media(max-width:640px){
+  #statusEffortPair.status-effort-pair{
+    grid-template-columns:1fr !important;
+  }
+  #statusEffortPair.status-effort-pair > .card{
+    min-height:auto !important;
+  }
+  #statusEffortPair .effort-links-v8,
+  #statusEffortPair .status-summary-v8{
+    grid-template-columns:1fr !important;
+  }
+}
+
+
+
+/* === v12 result-gated homepage === */
+.result-hidden-preview .card{
+  min-height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+@media (min-width: 860px){
+  #engine.app-layout{
+    display:grid !important;
+    grid-template-columns:minmax(330px,430px) minmax(0,1fr) !important;
+    gap:24px !important;
+    align-items:stretch !important;
+  }
+  #engine .left-panel{
+    margin:0 !important;
+  }
+}
+@media (max-width: 859px){
+  #engine.app-layout{
+    display:block !important;
+  }
+}
 </style>
 </head>
 <body>
-
 <header class="topbar">
-  <div class="nav-shell">
-    <a href="#home" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
-      <div class="logo">NX</div>
-      <div>
-        <div style="font-weight:950;font-size:19px;">Nexus AI</div>
-        <div style="font-size:13px;color:rgba(8,22,20,.55);">港校申请智能助手</div>
-      </div>
-    </a>
-    <nav class="navlinks">
-      <a href="#engine">生成画像</a>
-      <a href="status.html">我的状态</a>
-      <a href="#effort">努力模拟</a>
-      <a href="effort.html">努力详情</a>
-      <a href="#life-map">时间地图</a>
-      <a href="timeline.html">阶段详情</a>
-      <a href="#demo-profile">示例分析</a>
-      <a href="#share">生成分享图</a>
-      <a href="#schools">学校官网</a>
-      <a href="advisors.html">顾问匹配</a>
-    </nav>
-    <a class="nav-cta" href="#engine">开始测评</a>
-  </div>
-</header>
-
-<main class="shell">
-  <section id="home" class="card hero">
-    <div class="pill">3分钟看清你的港校申请位置 · 统一版 v2</div>
-    <h1>帮你看清港校申请的位置、风险与下一步。</h1>
-    <div class="hero-actions">
-      <a class="btn btn-primary" href="#engine">开始生成申请画像</a>
-    </div>
-  </section>
-
-  <section id="engine" class="app-layout" style="margin-top:26px;">
-    <aside class="left-panel">
-      <div class="card">
-        <h2 style="font-size:30px;margin:0;">生成我的申请画像</h2>
-
-        <label class="label">学校</label>
-        <input class="input" id="schoolName" placeholder="例如：四川大学 / 某211 / 某双非院校" value="211 / 双一流"/>
-
-        <label class="label">GPA</label>
-        <input class="input" id="gpaInput" placeholder="例如：3.55 / 4.0 或 86 / 100" value="3.55"/>
-
-        <label class="label">语言成绩</label>
-        <input class="input" id="languageInput" placeholder="例如：雅思 6.5 / 托福 95 / 暂无" value="雅思 6.5"/>
-
-        <label class="label">目标方向</label>
-        <select class="input" id="directionInput">
-          <option>商科 / 金融</option>
-          <option>AI / CS</option>
-          <option>传媒 / 社科</option>
-          <option>教育 / TESOL</option>
-        </select>
-
-        <div class="input-hint">先不用填很准，系统会先给你一个初步画像。</div>
-
-        <button class="advanced-toggle" type="button" onclick="toggleAdvanced()">
-          继续补充更多信息，可让画像更细 →
-        </button>
-
-        <div id="advancedFields" class="advanced-fields">
-          <label class="label">实习经历</label>
-          <select class="input" id="internshipInput">
-            <option>暂时没有</option>
-            <option selected>1-2段相关经历</option>
-            <option>3段及以上，方向较匹配</option>
-          </select>
-
-          <label class="label">科研 / 项目 / 竞赛</label>
-          <select class="input" id="researchInput">
-            <option>暂时没有</option>
-            <option selected>有课程项目或校级经历</option>
-            <option>有较完整科研 / 竞赛 / 论文</option>
-          </select>
-
-          <label class="label">预算偏好</label>
-          <select class="input" id="budgetInput">
-            <option>优先香港本地</option>
-            <option>预算有限，接受大湾区路径</option>
-            <option>希望更稳妥</option>
-          </select>
-
-          <label class="label">地区偏好</label>
-          <select class="input" id="regionInput">
-            <option>只看香港本地</option>
-            <option>香港本地 + 大湾区都可以</option>
-            <option>香港 / 澳门 / 大湾区都可以</option>
-          </select>
-
-          <label class="label">是否接受港校内地分校</label>
-          <select class="input" id="branchInput">
-            <option>可以接受</option>
-            <option>暂时不考虑</option>
-            <option>看预算和专业再决定</option>
-          </select>
-        </div>
-
-        <button class="btn btn-primary" style="width:100%;margin-top:18px;" onclick="startScan()">生成我的申请状态</button>
-      </div>
-    </aside>
-
-    <div class="right-stack">
-      <section class="card" id="profile-card">
-        <div class="flex-head">
-          <div>
-            <div class="pill">申请画像</div>
-            <h2 style="font-size:30px;letter-spacing:-.04em;margin:12px 0 0;">我的申请画像：<span id="profileType">稳中带冲型</span></h2>
-          </div>
-          <div class="pill" id="profileTags">语言临界 · 实习加分 · 适合分层</div>
-        </div>
-        <p id="profileSummary" style="margin-top:16px;color:#4f5c59;line-height:1.8;">
-          你不是没有机会，而是不适合盲目冲刺。当前最影响结果的变量是语言成绩和申请节奏。
-        </p>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:18px;">
-          <div class="school-card"><h3>冲刺</h3><div>港大 / 港科作为少量冲刺</div></div>
-          <div class="school-card"><h3>主申</h3><div>港中文 / 港理工 / 城大重点布局</div></div>
-          <div class="school-card"><h3>稳妥</h3><div>港都会 / 恒生 / 大湾区路径兜底</div></div>
-        </div>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;">
-          <a class="btn btn-primary" href="profile-detail.html">查看画像详情</a>
-          <button class="btn btn-soft" onclick="openShareModal()">分享申请画像图</button>
-        </div>
-      </section>
-
-      <section class="status-effort-pair">
-        <div class="card status-card-v8" id="status-overview">
-          <div class="flex-head">
-            <div>
-              <div class="pill">申请状态雷达图</div>
-              <h2 style="margin:12px 0 8px;font-size:24px;font-weight:950;letter-spacing:-.04em;">一眼看清你的优势和短板</h2>
-              <p style="margin:0;color:rgba(8,22,20,.62);line-height:1.7;font-size:14px;">
-                这张图帮你快速看清：哪些条件已经能支撑申请，哪些地方还会拖慢结果。具体学校分层和冲刺/主申/稳妥路径，可以进入画像详情查看。
-              </p>
-            </div>
-            <button class="btn btn-soft" onclick="openShareModal()">分享画像图</button>
-          </div>
-
-          <div class="radar-center">
-            <svg class="radar-svg" viewBox="0 0 320 320" aria-label="申请状态雷达图">
-              <defs>
-                <linearGradient id="radarFillMain" x1="0" x2="1" y1="0" y2="1">
-                  <stop offset="0%" stop-color="#22d3a6" stop-opacity=".50"/>
-                  <stop offset="100%" stop-color="#58d7ff" stop-opacity=".38"/>
-                </linearGradient>
-              </defs>
-              <g transform="translate(160 160)">
-                <polygon points="0,-120 103.9,-60 103.9,60 0,120 -103.9,60 -103.9,-60" fill="none" stroke="#d8efea" stroke-width="1.4"/>
-                <polygon points="0,-96 83.1,-48 83.1,48 0,96 -83.1,48 -83.1,-48" fill="none" stroke="#d8efea" stroke-width="1"/>
-                <polygon points="0,-72 62.3,-36 62.3,36 0,72 -62.3,36 -62.3,-36" fill="none" stroke="#d8efea" stroke-width="1"/>
-                <polygon points="0,-48 41.6,-24 41.6,24 0,48 -41.6,24 -41.6,-24" fill="none" stroke="#d8efea" stroke-width="1"/>
-                <line x1="0" y1="0" x2="0" y2="-120" stroke="#d8efea"/>
-                <line x1="0" y1="0" x2="103.9" y2="-60" stroke="#d8efea"/>
-                <line x1="0" y1="0" x2="103.9" y2="60" stroke="#d8efea"/>
-                <line x1="0" y1="0" x2="0" y2="120" stroke="#d8efea"/>
-                <line x1="0" y1="0" x2="-103.9" y2="60" stroke="#d8efea"/>
-                <line x1="0" y1="0" x2="-103.9" y2="-60" stroke="#d8efea"/>
-                <polygon points="0,-103.2 70.7,-40.8 81.0,46.8 0,76.8 -85.2,49.2 -74.8,-43.2" fill="url(#radarFillMain)" stroke="#22d3a6" stroke-width="3"/>
-                <circle cx="0" cy="-103.2" r="4" fill="#22d3a6"/>
-                <circle cx="70.7" cy="-40.8" r="4" fill="#22d3a6"/>
-                <circle cx="81.0" cy="46.8" r="4" fill="#22d3a6"/>
-                <circle cx="0" cy="76.8" r="4" fill="#22d3a6"/>
-                <circle cx="-85.2" cy="49.2" r="4" fill="#22d3a6"/>
-                <circle cx="-74.8" cy="-43.2" r="4" fill="#22d3a6"/>
-              </g>
-              <text class="radar-label" x="160" y="20" text-anchor="middle">学术基础 86</text>
-              <text class="radar-label" x="290" y="92" text-anchor="middle">语言 68</text>
-              <text class="radar-label" x="292" y="232" text-anchor="middle">实习科研 78</text>
-              <text class="radar-label" x="160" y="310" text-anchor="middle">申请节奏 64</text>
-              <text class="radar-label" x="28" y="232" text-anchor="middle">预算适配 82</text>
-              <text class="radar-label" x="30" y="92" text-anchor="middle">文书潜力 72</text>
-            </svg>
-          </div>
-
-          <div class="status-summary-v8">
-            <div class="status-chip-v8"><b>当前优势</b><span>学术基础</span></div>
-            <div class="status-chip-v8"><b>优先补强</b><span>语言准备</span></div>
-            <div class="status-chip-v8"><b>下一步</b><span>定主申层</span></div>
-          </div>
-
-          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;">
-            <a class="btn btn-primary" href="profile-detail.html">看画像与选校详情</a>
-          </div>
-        </div>
-
-        <div class="card effort-card-v8" id="effort">
-          <div class="flex-head">
-            <div>
-              <div class="pill">努力模拟器</div>
-              <h2 style="margin:12px 0 8px;font-size:24px;font-weight:950;letter-spacing:-.04em;">如果我再努力一点，会怎样？</h2>
-              <p style="margin:0;color:rgba(8,22,20,.62);line-height:1.7;font-size:14px;">
-                这一块负责回答“还能不能变好”。用户先在首页快速点选变量，再进入详情页看语言、实习、材料和预算分别怎么补。
-              </p>
-            </div>
-            <a class="btn btn-primary" href="effort.html">了解详情</a>
-          </div>
-
-          <div class="big-score" id="effortScore">72 → 81</div>
-          <p id="effortText" style="line-height:1.8;color:#52615d;margin:16px 0 0;">
-            如果雅思提升到 7.0，语言风险会明显下降。港中文匹配度提高，港大冲刺理由也会更充分。
-          </p>
-
-          <div class="sim-actions">
-            <button class="sim-btn" onclick="changeEffort('ielts')">雅思提高到 7.0</button>
-            <button class="sim-btn" onclick="changeEffort('intern')">新增一段相关实习</button>
-            <button class="sim-btn" onclick="changeEffort('cv')">提前完成 CV</button>
-            <button class="sim-btn" onclick="changeEffort('budget')">预算有限怎么选</button>
-          </div>
-
-          <div class="effort-links-v8">
-            <a class="link-card" href="effort.html?type=ielts"><strong>语言怎么补</strong><span>雅思/托福提分路径</span></a>
-            <a class="link-card" href="effort.html?type=intern"><strong>实习怎么补</strong><span>相关经历与项目匹配</span></a>
-            <a class="link-card" href="effort.html?type=cv"><strong>材料怎么提前</strong><span>CV、PS、推荐信节奏</span></a>
-            <a class="link-card" href="effort.html?type=budget"><strong>预算怎么选</strong><span>香港本地与大湾区路径</span></a>
-          </div>
-        </div>
-      </section>
-
-      <section id="life-map" class="card map-card">
-        <div class="section-head">
-          <div>
-            <div class="pill">全流程进度地图</div>
-            <h2 class="section-title">港校申请导航地图</h2>
-            <p class="section-sub">
-              从准备到拿到 Offer，把每个阶段该做的事放到一张地图里。点击节点进入阶段详情页，查看这个时间段具体要做什么、哪些材料要准备、什么时候该找真人顾问、哪些钱先别乱花。
-            </p>
-          </div>
-          <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
-            <a class="btn btn-primary" href="timeline.html">查看全部阶段详情</a>
-            <div class="pill">你现在更适合：先补语言，再推进推荐信</div>
-          </div>
-        </div>
-
-        <div class="stage-board">
-          <div class="map-track">
-            <div class="route"></div>
-            <div id="stageRow" class="stage-row"></div>
-            <div class="rounds">
-              <div class="round-card">
-                <strong>第一轮 R1</strong>
-                <p>通常 9-12 月集中开放与提交。越早准备，节奏越舒服。</p>
-              </div>
-              <div class="round-card">
-                <strong>第二轮 R2</strong>
-                <p>通常 1-3 月继续审理，竞争加剧，适合补申与面试跟进。</p>
-              </div>
-              <div class="round-card">
-                <strong>第三轮 / 收尾</strong>
-                <p>通常 4-6 月进入 offer 选择、留位费、签证与行前准备。</p>
-              </div>
-            </div>
-          </div>
-
-          <aside class="detail-panel">
-            <div class="detail-kicker" id="detailKicker">黄金补强</div>
-            <div class="detail-title" id="detailTitle">背景补强期</div>
-            <div class="detail-time" id="detailTime">4-6月｜申请前关键窗口</div>
-
-            <div class="progress-strip">
-              <div class="mini-progress"><b>语言</b><span id="pLang">60%</span></div>
-              <div class="mini-progress"><b>材料</b><span id="pDoc">35%</span></div>
-              <div class="mini-progress"><b>选校</b><span id="pSchool">50%</span></div>
-              <div class="mini-progress"><b>节奏</b><span id="pPace">68%</span></div>
-            </div>
-
-            <div class="task-list" id="taskList"></div>
-            <div class="warning" id="warningBox"></div>
-            <a class="btn btn-primary" id="detailPageLink" href="timeline.html?stage=1" style="margin-top:16px;width:100%;">进入这个阶段详情页</a>
-          </aside>
-        </div>
-      </section>
-
-      <section id="advisor-entry" class="card">
-        <div class="section-head">
-          <div>
-            <div class="pill">真人顾问匹配</div>
-            <h2 class="section-title">有些问题，适合问已经走过这条路的人。</h2>
-            <p class="section-sub">
-              AI 先帮你看清自己的申请状态；如果你遇到低绩点、跨专业、港前三冲刺、面试准备或文书主线不清楚，可以再找目标院校学长学姐或顶级申请顾问做复核。
-            </p>
-          </div>
-          <a class="btn btn-primary" href="advisors.html">详情了解</a>
-        </div>
-      </section>
-
-
-      <section class="grid2">
-        <div class="card">
-          <h2 style="margin:0;font-size:24px;font-weight:950;">哪里值得花钱，哪里先别急</h2>
-          <p style="line-height:1.9;color:#55625f;margin-top:14px;">
-            你当前的核心问题不是文书，而是语言成绩。现阶段不建议优先购买高价全包套餐。
-          </p>
-          <div style="margin-top:16px;padding:16px;border-radius:16px;background:#effff8;font-weight:900;">
-            更值得投入：雅思提升 + 面试模拟 + 最终材料复核
-          </div>
-        </div>
-
-        <div class="card">
-          <h2 style="margin:0;font-size:24px;font-weight:950;">相似路径参考</h2>
-          <p style="line-height:1.9;color:#55625f;margin-top:14px;">
-            演示样例：211财经院校 / GPA 3.48 / 雅思 7 / 两段实习。系统建议主申港中文与港理工，港大保留为冲刺。
-          </p>
-          <div style="margin-top:16px;color:#087b64;font-weight:900;">关键变量：语言达标 + 文书中讲清数据分析经历</div>
-        </div>
-      </section>
-
-      <section id="demo-profile" class="card">
-        <div class="section-head">
-          <div>
-            <div class="pill">Demo Profile · 演示案例</div>
-            <h2 class="section-title">先看案例摘要，详细过程放到新页面。</h2>
-            <p class="section-sub">
-              首页只保留案例的关键结论，避免页面过重。点击进入案例详情后，可以查看虚拟申请者的个人自述、经历时间线、系统如何判断画像、以及为什么给出这组学校路径。
-            </p>
-          </div>
-          <div class="demo-badge">演示案例｜非真实案例</div>
-        </div>
-        <div class="demo-grid">
-          <div class="profile-card">
-            <div class="profile-name">Demo Profile A：稳中带冲型</div>
-            <div class="profile-meta">211 财经类院校 / GPA 3.55 / IELTS 6.5 / 2段相关实习 / 商科金融方向。</div>
-            <div class="profile-facts">
-              <div class="fact"><b>核心画像</b><span>稳中带冲型</span></div>
-              <div class="fact"><b>关键风险</b><span>语言临界 + 申请节奏</span></div>
-              <div class="fact"><b>建议路径</b><span>少量冲刺 + 主申稳定 + 大湾区兜底</span></div>
-            </div>
-            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;">
-              <a class="btn btn-primary" href="case-profile.html">查看完整案例</a>
-              <a class="btn btn-soft" href="profile-detail.html">对照我的画像</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="share" class="card">
-        <div class="share-simple">
-          <div>
-            <div class="pill">生成分享图</div>
-            <h2 class="section-title">一键生成我的申请画像图</h2>
-            <p class="section-sub">
-              点击后会弹出一张可保存的图片，里面包含申请画像、个人雷达图和关键结论。图片不会展示隐私细节，适合直接保存或分享。
-            </p>
-          </div>
-          <button class="btn btn-primary" onclick="openShareModal()">生成我的申请画像图</button>
-        </div>
-      </section>
-
-      <div id="shareModal" class="share-modal" onclick="closeShareModal(event)">
-        <div class="share-modal-panel" onclick="event.stopPropagation()">
-          <div class="share-modal-head">
-            <strong>我的申请画像分享图</strong>
-            <button class="close-btn" onclick="closeShareModal()">×</button>
-          </div>
-          <canvas id="shareCanvas" class="share-popup-canvas" width="1080" height="1440"></canvas>
-          <div class="share-modal-actions">
-            <button class="btn btn-primary" onclick="downloadShareCard()">下载 PNG</button>
-            <button class="btn btn-soft" onclick="closeShareModal()">关闭</button>
-          </div>
-        </div>
-      </div>
-
-      <section id="schools" class="card">
-        <div class="section-head">
-          <div>
-            <div class="pill">学校官网一键直达</div>
-            <h2 class="section-title">查看目标学校官网</h2>
-            <p class="section-sub">官网链接放在测评结果之后，是为了让你先知道自己适合看哪些学校，再直接进入官网确认专业、DDL 和申请要求。</p>
-          </div>
-        </div>
-        <div class="school-directory" id="schoolDirectory"></div>
-      </section>
-    </div>
-  </section>
-</main>
-
-
-<div id="scanOverlay" class="scan-overlay">
-  <div class="scan-box">
-    <div class="scan-orb"></div>
-    <div id="scanText" class="scan-text">正在读取你的申请背景……</div>
-    <div class="scan-sub">正在把你的背景拆成可理解的申请状态。</div>
-    <div class="scan-dots"><span></span><span></span><span></span></div>
-  </div>
+<div class="nav-shell">
+<a href="#home" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+<div class="logo">NX</div>
+<div>
+<div style="font-weight:950;font-size:19px;">Nexus AI</div>
+<div style="font-size:13px;color:rgba(8,22,20,.55);">港校申请智能助手</div>
 </div>
-
+</a>
+<nav class="navlinks">
+<a href="#engine">生成状态</a>
+<a href="status.html">我的状态</a>
+<a href="#effort">努力模拟</a>
+<a href="effort.html">努力方向</a>
+<a href="#life-map">时间地图</a>
+<a href="timeline.html">阶段行动</a>
+<a href="#demo-profile">示例分析</a>
+<a href="#share">生成分享图</a>
+<a href="#schools">学校官网</a>
+<a href="advisors.html">找人复核</a>
+</nav>
+<a class="nav-cta" href="#engine">开始测评</a>
+</div>
+</header>
+<main class="shell">
+<section class="card hero" id="home">
+<div class="pill">3分钟看清你的港校申请位置 · 统一版 v2</div>
+<h1>帮你看清港校申请的位置、风险与接下来先做什么。</h1>
+<div class="hero-actions">
+<a class="btn btn-primary" href="#engine">开始生成申请状态</a>
+</div>
+</section>
+<section class="app-layout" id="engine" style="margin-top:26px;">
+<aside class="left-panel">
+<div class="card">
+<h2 style="font-size:30px;margin:0;">先看看我的申请位置</h2>
+<label class="label">学校</label>
+<input class="input" id="schoolName" placeholder="例如：四川大学 / 某211 / 某双非院校" value="211 / 双一流"/>
+<label class="label">GPA</label>
+<input class="input" id="gpaInput" placeholder="例如：3.55 / 4.0 或 86 / 100" value="3.55"/>
+<label class="label">语言成绩</label>
+<input class="input" id="languageInput" placeholder="例如：雅思 6.5 / 托福 95 / 暂无" value="雅思 6.5"/>
+<label class="label">目标方向</label>
+<select class="input" id="directionInput">
+<option>商科 / 金融</option>
+<option>AI / CS</option>
+<option>传媒 / 社科</option>
+<option>教育 / TESOL</option>
+</select>
+<div class="input-hint">不用一次填得很完美，先给你一个大致判断，后面还可以慢慢补充。</div>
+<button class="advanced-toggle" onclick="toggleAdvanced()" type="button">
+          我想补充更多背景，让判断更细一点 →
+        </button>
+<div class="advanced-fields" id="advancedFields">
+<label class="label">实习经历</label>
+<select class="input" id="internshipInput">
+<option>暂时没有</option>
+<option selected="">1-2段相关经历</option>
+<option>3段及以上，方向较匹配</option>
+</select>
+<label class="label">科研 / 项目 / 竞赛</label>
+<select class="input" id="researchInput">
+<option>暂时没有</option>
+<option selected="">有课程项目或校级经历</option>
+<option>有较完整科研 / 竞赛 / 论文</option>
+</select>
+<label class="label">预算偏好</label>
+<select class="input" id="budgetInput">
+<option>优先香港本地</option>
+<option>预算有限，接受大湾区路径</option>
+<option>希望更稳妥</option>
+</select>
+<label class="label">地区偏好</label>
+<select class="input" id="regionInput">
+<option>只看香港本地</option>
+<option>香港本地 + 大湾区都可以</option>
+<option>香港 / 澳门 / 大湾区都可以</option>
+</select>
+<label class="label">是否接受港校内地分校</label>
+<select class="input" id="branchInput">
+<option>可以接受</option>
+<option>暂时不考虑</option>
+<option>看预算和专业再决定</option>
+</select>
+</div>
+<button class="btn btn-primary" onclick="startScan()" style="width:100%;margin-top:18px;">查看我的申请状态</button>
+</div>
+</aside>
+<div class="right-stack result-hidden-preview">
+<section class="card">
+<div class="pill">填完之后，你会看到</div>
+<h2 style="font-size:30px;letter-spacing:-.04em;margin:12px 0 0;">你的申请状态会单独生成一页</h2>
+<p style="margin-top:16px;color:#4f5c59;line-height:1.8;">你点下方按钮后，系统会先读取你的背景，再跳到你的结果。那里会告诉你：你现在大概处在什么位置，接下来最应该先看什么、先补什么。</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:18px;">
+<div class="school-card"><h3>我现在在哪</h3><div>先看清你目前更像哪一种申请状态。</div></div>
+<div class="school-card"><h3>下一步先看什么</h3><div>先补语言、看选校，还是先整理材料。</div></div>
+<div class="school-card"><h3>继续往下看</h3><div>想看更细的原因，再进入下一层页面。</div></div>
+</div>
+</section>
+</div>
+</section>
+</main>
+<div class="scan-overlay" id="scanOverlay">
+<div class="scan-box">
+<div class="scan-orb"></div>
+<div class="scan-text" id="scanText">正在读取你的申请背景……</div>
+<div class="scan-sub">不用等很久，我们正在把你的背景转成一份能看懂的申请判断。</div>
+<div class="scan-dots"><span></span><span></span><span></span></div>
+</div>
+</div>
 <script>
 
 function toggleAdvanced(){
@@ -1532,7 +1327,7 @@ function startScan(){
     "正在读取你的申请背景……",
     "正在匹配港校项目偏好……",
     "正在拆解你的风险变量……",
-    "正在生成你的申请画像……"
+    "正在生成你的申请状态……"
   ];
   overlay.classList.add("open");
   let i = 0;
@@ -1573,7 +1368,7 @@ const stages = [
     title:"探索定位期", time:"1-3月｜确定方向与初步定位",
     progress:["20%","10%","20%","30%"],
     tasks:["确定目标方向：商科/CS/传媒/教育等","粗筛港校层级：冲刺、主申、稳妥","判断是否需要考雅思/托福","初步估算预算和是否接受大湾区替代路径"],
-    warning:"这个阶段最怕还没看清自己，就先被各种建议带着走。先明确位置，再决定是否需要顾问。"
+    warning:"这个阶段最怕还没看清自己，就先被各种建议带着走。先明确位置，再决定要不要找人聊聊。"
   },
   {
     month:"4-6月", name:"背景补强期", round:"黄金补强",
@@ -1659,13 +1454,13 @@ function closeShareModal(event){
 function renderStages(active=1){
   const row = document.getElementById("stageRow");
   row.innerHTML = stages.map((s,i)=>`
-    <a class="stage-node ${i===active?'active':''}" href="timeline.html?stage=${i}" aria-label="查看${s.month}${s.name}详情">
+    <a class="stage-node ${i===active?'active':''}" href="timeline.html?stage=${i}" aria-label="查看${s.month}${s.name}说明">
       <div class="node-dot"></div>
       <div class="node-month">${s.month}</div>
       <div class="node-name">${s.name}</div>
       <div class="node-desc">${s.desc}</div>
       <div class="round-badge">${s.round}</div>
-      <div style="margin-top:12px;font-size:12px;font-weight:950;color:#087b64;">点击进入详情页 →</div>
+      <div style="margin-top:12px;font-size:12px;font-weight:950;color:#087b64;">点击继续看原因页 →</div>
     </a>
   `).join("");
 }
@@ -1866,7 +1661,7 @@ async function drawShareCard(){
   ctx.fillText("Nexus AI",118,154);
   ctx.font = "800 28px -apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',Arial,sans-serif";
   ctx.fillStyle = "#087b64";
-  ctx.fillText("我的港校申请画像",118,198);
+  ctx.fillText("我的港校申请状态",118,198);
 
   ctx.fillStyle = "#081614";
   ctx.font = "950 66px -apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',Arial,sans-serif";
@@ -1905,13 +1700,13 @@ async function drawShareCard(){
   ctx.fill();
   ctx.fillStyle = "white";
   ctx.font = "900 28px -apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',Arial,sans-serif";
-  ctx.fillText("扫码入口已隐藏 · 可直接保存分享这张申请画像",166,1356);
+  ctx.fillText("扫码入口已隐藏 · 可直接保存分享这张申请状态",166,1356);
 }
 function downloadShareCard(){
   drawShareCard().then(()=>{
     const canvas = document.getElementById("shareCanvas");
     const a = document.createElement("a");
-    a.download = "nexus-ai-申请画像.png";
+    a.download = "nexus-ai-申请状态.png";
     a.href = canvas.toDataURL("image/png");
     a.click();
   });
