@@ -867,6 +867,137 @@ a{color:inherit}
 @keyframes spinScan{to{transform:rotate(360deg)}}
 @keyframes pulseDot{50%{transform:translateY(-4px);background:#22d3a6}}
 
+
+/* === FINAL UNIFIED RESPONSIVE OVERRIDE v2 === */
+/* 三端统一原则：同一内容顺序，同一功能，不隐藏核心模块。桌面只允许更宽，不允许变成另一套结构。 */
+.shell{
+  width:min(1180px,100%) !important;
+  margin:0 auto !important;
+  padding:24px !important;
+}
+.app-layout{
+  display:block !important;
+}
+.left-panel{
+  position:relative !important;
+  top:auto !important;
+  width:100% !important;
+  margin:0 0 22px 0 !important;
+}
+.left-panel > .card{
+  width:100% !important;
+}
+.right-stack{
+  display:grid !important;
+  grid-template-columns:1fr !important;
+  gap:22px !important;
+}
+.hero{
+  padding:52px 40px !important;
+}
+.hero h1{
+  max-width:980px !important;
+}
+.hero-actions{
+  margin-top:30px !important;
+}
+.school-grid,
+.grid2,
+.demo-grid,
+.stage-board,
+.school-directory,
+.share-layout{
+  display:grid !important;
+  grid-template-columns:1fr !important;
+  gap:20px !important;
+}
+.radar-wrap{
+  display:grid !important;
+  grid-template-columns:1fr !important;
+}
+.radar-svg{
+  margin:0 auto !important;
+}
+.stage-row{
+  display:grid !important;
+  grid-template-columns:repeat(7,minmax(150px,1fr)) !important;
+  min-width:1100px !important;
+}
+.map-track{
+  overflow-x:auto !important;
+  overflow-y:visible !important;
+}
+.route{
+  display:block !important;
+}
+.school-directory{
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr)) !important;
+}
+.profile-facts,
+.path-cards,
+.test-result-grid,
+.progress-strip,
+.rounds{
+  display:grid !important;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr)) !important;
+}
+.share-preview{
+  max-width:420px !important;
+  margin:0 auto !important;
+}
+
+/* 桌面端也保持相同信息顺序，只在局部卡片做多列，提高利用率 */
+@media (min-width: 1024px){
+  .school-grid{grid-template-columns:repeat(3,minmax(0,1fr)) !important;}
+  .grid2{grid-template-columns:repeat(2,minmax(0,1fr)) !important;}
+  .demo-grid{grid-template-columns:1fr !important;}
+  .stage-board{grid-template-columns:1fr !important;}
+  .profile-facts{grid-template-columns:repeat(3,minmax(0,1fr)) !important;}
+  .path-cards{grid-template-columns:repeat(3,minmax(0,1fr)) !important;}
+  .test-result-grid{grid-template-columns:repeat(3,minmax(0,1fr)) !important;}
+}
+
+/* iPad 端不切换成另一套页面，只压缩卡片宽度 */
+@media (min-width: 700px) and (max-width: 1023px){
+  .school-grid{grid-template-columns:repeat(2,minmax(0,1fr)) !important;}
+  .grid2{grid-template-columns:1fr !important;}
+  .school-directory{grid-template-columns:repeat(2,minmax(0,1fr)) !important;}
+}
+
+/* 手机端时间地图改为纵向，避免横向挤压 */
+@media (max-width: 699px){
+  .shell{padding:16px !important;}
+  .hero{padding:28px 22px !important;}
+  .hero h1{font-size:38px !important;line-height:1.04 !important;}
+  .navlinks{display:none !important;}
+  .stage-row{
+    grid-template-columns:1fr !important;
+    min-width:0 !important;
+  }
+  .map-track{
+    overflow:visible !important;
+  }
+  .route{display:none !important;}
+  .stage-node{
+    display:grid !important;
+    grid-template-columns:44px 1fr !important;
+    gap:8px 10px !important;
+    min-height:auto !important;
+  }
+  .node-dot{
+    grid-row:span 4 !important;
+    margin:0 !important;
+  }
+  .profile-facts,
+  .path-cards,
+  .test-result-grid,
+  .progress-strip,
+  .rounds,
+  .school-directory{
+    grid-template-columns:1fr !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -887,6 +1018,7 @@ a{color:inherit}
       <a href="#demo-profile">示例分析</a>
       <a href="#share">生成分享图</a>
       <a href="#schools">学校官网</a>
+      <a href="advisors.html">顾问匹配</a>
     </nav>
     <a class="nav-cta" href="#engine">查看状态</a>
   </div>
@@ -894,14 +1026,10 @@ a{color:inherit}
 
 <main class="shell">
   <section id="home" class="card hero">
-    <div class="pill">3分钟看清你的港校申请位置</div>
+    <div class="pill">3分钟看清你的港校申请位置 · 统一版 v2</div>
     <h1>帮你看清港校申请的位置、风险与下一步。</h1>
-    <p>
-      输入你的背景后，系统会生成申请画像、学校分层、努力模拟和时间地图。你会知道自己现在处于什么位置、风险在哪、哪些地方最值得投入。
-    </p>
     <div class="hero-actions">
-      <a class="btn btn-primary" href="#engine">生成我的申请画像</a>
-      <a class="btn btn-soft" href="#life-map">先看申请时间地图</a>
+      <a class="btn btn-primary" href="#engine">查看我的申请状态</a>
     </div>
   </section>
 
@@ -1046,6 +1174,21 @@ a{color:inherit}
           </div>
         </div>
       </section>
+
+      
+      <section id="advisor-entry" class="card">
+        <div class="section-head">
+          <div>
+            <div class="pill">真人顾问匹配</div>
+            <h2 class="section-title">有些问题，适合问已经走过这条路的人。</h2>
+            <p class="section-sub">
+              AI 先帮你看清自己的申请状态；如果你遇到低绩点、跨专业、港前三冲刺、面试准备或文书主线不清楚，可以再找目标院校学霸顾问或顶级申请顾问做复核。
+            </p>
+          </div>
+          <a class="btn btn-primary" href="advisors.html">详情了解</a>
+        </div>
+      </section>
+
 
       <section id="life-map" class="card map-card">
         <div class="section-head">
