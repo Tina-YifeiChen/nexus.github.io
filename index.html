@@ -771,6 +771,102 @@ a{color:inherit}
   .topbar .navlinks{display:none !important;}
 }
 
+
+/* Simple-first form + generating ritual */
+.advanced-toggle{
+  margin-top:14px;
+  width:100%;
+  border:none;
+  background:#f0fbf8;
+  color:#087b64;
+  border-radius:14px;
+  padding:13px 14px;
+  font-weight:900;
+  cursor:pointer;
+  text-align:left;
+}
+.advanced-fields{
+  display:none;
+  margin-top:8px;
+}
+.advanced-fields.open{
+  display:block;
+}
+.input-hint{
+  margin-top:12px;
+  color:rgba(8,22,20,.58);
+  font-size:14px;
+  line-height:1.65;
+}
+.scan-overlay{
+  position:fixed;
+  inset:0;
+  z-index:150;
+  display:none;
+  place-items:center;
+  background:rgba(248,255,253,.74);
+  backdrop-filter:blur(18px);
+  padding:22px;
+}
+.scan-overlay.open{
+  display:grid;
+}
+.scan-box{
+  width:min(520px,92vw);
+  border-radius:30px;
+  background:rgba(255,255,255,.92);
+  border:1px solid rgba(8,22,20,.08);
+  box-shadow:0 30px 110px rgba(8,22,20,.18);
+  padding:28px;
+  text-align:center;
+}
+.scan-orb{
+  width:132px;
+  height:132px;
+  margin:0 auto 20px;
+  border-radius:999px;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(34,211,166,.9), rgba(88,215,255,.35) 45%, transparent 68%),
+    conic-gradient(from 0deg, rgba(34,211,166,.1), rgba(88,215,255,.75), rgba(34,211,166,.1));
+  animation:spinScan 1.4s linear infinite;
+  position:relative;
+}
+.scan-orb:after{
+  content:"";
+  position:absolute;
+  inset:26px;
+  border-radius:999px;
+  background:white;
+  box-shadow:inset 0 0 0 1px rgba(8,22,20,.06);
+}
+.scan-text{
+  font-size:22px;
+  font-weight:950;
+  letter-spacing:-.03em;
+}
+.scan-sub{
+  margin-top:10px;
+  font-size:14px;
+  color:rgba(8,22,20,.58);
+}
+.scan-dots{
+  margin-top:18px;
+  display:flex;
+  justify-content:center;
+  gap:8px;
+}
+.scan-dots span{
+  width:8px;
+  height:8px;
+  border-radius:999px;
+  background:#c8ebe3;
+  animation:pulseDot 1s infinite ease-in-out;
+}
+.scan-dots span:nth-child(2){animation-delay:.15s}
+.scan-dots span:nth-child(3){animation-delay:.3s}
+@keyframes spinScan{to{transform:rotate(360deg)}}
+@keyframes pulseDot{50%{transform:translateY(-4px);background:#22d3a6}}
+
 </style>
 </head>
 <body>
@@ -792,7 +888,7 @@ a{color:inherit}
       <a href="#share">生成分享图</a>
       <a href="#schools">学校官网</a>
     </nav>
-    <a class="nav-cta" href="#engine">开始生成</a>
+    <a class="nav-cta" href="#engine">查看状态</a>
   </div>
 </header>
 
@@ -814,19 +910,14 @@ a{color:inherit}
       <div class="card">
         <h2 style="font-size:30px;margin:0;">生成我的申请画像</h2>
 
-        <label class="label">本科背景</label>
-        <select class="input" id="schoolTier">
-          <option>211 / 双一流</option>
-          <option>985</option>
-          <option>双非</option>
-          <option>海外本科</option>
-        </select>
+        <label class="label">学校</label>
+        <input class="input" id="schoolName" placeholder="例如：四川大学 / 某211 / 某双非院校" value="211 / 双一流"/>
 
         <label class="label">GPA</label>
-        <input class="input" id="gpaInput" value="3.55"/>
+        <input class="input" id="gpaInput" placeholder="例如：3.55 / 4.0 或 86 / 100" value="3.55"/>
 
         <label class="label">语言成绩</label>
-        <input class="input" id="languageInput" value="雅思 6.5"/>
+        <input class="input" id="languageInput" placeholder="例如：雅思 6.5 / 托福 95 / 暂无" value="雅思 6.5"/>
 
         <label class="label">目标方向</label>
         <select class="input" id="directionInput">
@@ -836,24 +927,60 @@ a{color:inherit}
           <option>教育 / TESOL</option>
         </select>
 
-        <label class="label">预算 / 路径偏好</label>
-        <select class="input" id="budgetInput">
-          <option>优先香港本地</option>
-          <option>预算有限，接受大湾区路径</option>
-          <option>希望更稳妥</option>
-        </select>
+        <div class="input-hint">先不用填很准，系统会先给你一个初步画像。</div>
 
-        <button class="btn btn-primary" style="width:100%;margin-top:18px;" onclick="refreshProfile()">重新生成我的申请导航</button>
+        <button class="advanced-toggle" type="button" onclick="toggleAdvanced()">
+          继续补充更多信息，可让画像更细 →
+        </button>
+
+        <div id="advancedFields" class="advanced-fields">
+          <label class="label">实习经历</label>
+          <select class="input" id="internshipInput">
+            <option>暂时没有</option>
+            <option selected>1-2段相关经历</option>
+            <option>3段及以上，方向较匹配</option>
+          </select>
+
+          <label class="label">科研 / 项目 / 竞赛</label>
+          <select class="input" id="researchInput">
+            <option>暂时没有</option>
+            <option selected>有课程项目或校级经历</option>
+            <option>有较完整科研 / 竞赛 / 论文</option>
+          </select>
+
+          <label class="label">预算偏好</label>
+          <select class="input" id="budgetInput">
+            <option>优先香港本地</option>
+            <option>预算有限，接受大湾区路径</option>
+            <option>希望更稳妥</option>
+          </select>
+
+          <label class="label">地区偏好</label>
+          <select class="input" id="regionInput">
+            <option>只看香港本地</option>
+            <option>香港本地 + 大湾区都可以</option>
+            <option>香港 / 澳门 / 大湾区都可以</option>
+          </select>
+
+          <label class="label">是否接受港校内地分校</label>
+          <select class="input" id="branchInput">
+            <option>可以接受</option>
+            <option>暂时不考虑</option>
+            <option>看预算和专业再决定</option>
+          </select>
+        </div>
+
+        <button class="btn btn-primary" style="width:100%;margin-top:18px;" onclick="startScan()">查看我的申请状态</button>
 
         <div class="helper">
-          <h3 style="margin:0 0 10px;">我现在是哪种申请状态</h3>
+          <h3 style="margin:0 0 10px;">我现在的申请状态</h3>
           <div>当前画像：<b id="sideType">稳中带冲型</b></div>
           <div style="margin-top:10px;">最大变量：<b id="sideVariable">语言成绩</b></div>
           <div style="margin-top:10px;">建议策略：<b>先稳后冲</b></div>
         </div>
 
         <div class="helper">
-          <h3 style="margin:0 0 10px;">这份报告怎么看？</h3>
+          <h3 style="margin:0 0 10px;">接下来可以怎么看？</h3>
           <div>1. 先看自己属于哪种申请状态</div>
           <div>2. 再试试提高语言、增加实习会怎样</div>
           <div>3. 看哪些地方值得花钱</div>
@@ -1139,7 +1266,49 @@ a{color:inherit}
   </section>
 </main>
 
+
+<div id="scanOverlay" class="scan-overlay">
+  <div class="scan-box">
+    <div class="scan-orb"></div>
+    <div id="scanText" class="scan-text">正在读取你的申请背景……</div>
+    <div class="scan-sub">先别急，系统正在生成你的初步申请画像。</div>
+    <div class="scan-dots"><span></span><span></span><span></span></div>
+  </div>
+</div>
+
 <script>
+
+function toggleAdvanced(){
+  const box = document.getElementById("advancedFields");
+  box.classList.toggle("open");
+}
+function startScan(){
+  const overlay = document.getElementById("scanOverlay");
+  const text = document.getElementById("scanText");
+  const steps = [
+    "正在读取你的申请背景……",
+    "正在匹配港校项目偏好……",
+    "正在拆解你的风险变量……",
+    "正在生成你的申请画像……"
+  ];
+  overlay.classList.add("open");
+  let i = 0;
+  text.textContent = steps[i];
+  const timer = setInterval(()=>{
+    i++;
+    if(i < steps.length){
+      text.textContent = steps[i];
+    }else{
+      clearInterval(timer);
+      setTimeout(()=>{
+        overlay.classList.remove("open");
+        refreshProfile();
+        document.getElementById("engine").scrollIntoView({behavior:"smooth", block:"start"});
+      }, 450);
+    }
+  }, 520);
+}
+
 const stages = [
   {
     month:"1-3月", name:"探索定位期", round:"起点",
@@ -1276,7 +1445,7 @@ function renderSchools(){
   `).join("");
 }
 function refreshProfile(){
-  const budget = document.getElementById("budgetInput").value;
+  const budget = document.getElementById("budgetInput") ? document.getElementById("budgetInput").value : "优先香港本地";
   let type = "稳中带冲型";
   let variable = "语言成绩";
   let tags = "语言临界 · 实习加分 · 适合分层";
