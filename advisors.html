@@ -125,6 +125,95 @@ a{color:inherit}
   .hero h1{font-size:40px}
   .shell{padding:16px}
 }
+
+
+/* === 全站页面导航 v17 === */
+body{padding-bottom:96px !important;}
+.page-guide{
+  width:min(1180px,100%);
+  margin:14px auto 0;
+  padding:0 24px;
+}
+.page-guide-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+  padding:12px 14px;
+  border-radius:18px;
+  background:rgba(255,255,255,.72);
+  border:1px solid rgba(8,22,20,.08);
+  box-shadow:0 10px 30px rgba(8,22,20,.04);
+}
+.page-guide-title{
+  font-size:13px;
+  font-weight:950;
+  color:rgba(8,22,20,.72);
+}
+.page-guide-actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+.page-guide-actions a,
+.page-guide-actions button{
+  border:none;
+  text-decoration:none;
+  padding:9px 12px;
+  border-radius:999px;
+  background:#f1fffb;
+  color:#087b64;
+  font-size:12px;
+  font-weight:950;
+  cursor:pointer;
+  border:1px solid rgba(34,211,166,.18);
+}
+.quick-nav{
+  position:fixed;
+  left:50%;
+  bottom:18px;
+  transform:translateX(-50%);
+  z-index:200;
+  width:min(760px,calc(100% - 28px));
+  padding:9px;
+  border-radius:24px;
+  background:rgba(255,255,255,.92);
+  border:1px solid rgba(8,22,20,.1);
+  box-shadow:0 22px 70px rgba(8,22,20,.16);
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:8px;
+  backdrop-filter:blur(18px);
+}
+.quick-nav a{
+  text-decoration:none;
+  color:rgba(8,22,20,.68);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  min-height:50px;
+  border-radius:17px;
+  font-size:12px;
+  font-weight:950;
+  line-height:1.1;
+}
+.quick-nav a span:first-child{font-size:17px;line-height:1;}
+.quick-nav a.active,
+.quick-nav a:hover{
+  background:linear-gradient(135deg,#ecfff8,#eefcff);
+  color:#087b64;
+}
+@media(max-width:620px){
+  body{padding-bottom:88px !important;}
+  .page-guide{padding:0 16px;}
+  .quick-nav{bottom:10px;width:calc(100% - 18px);border-radius:20px;gap:4px;padding:7px;}
+  .quick-nav a{font-size:11px;min-height:46px;border-radius:14px;}
+  .quick-nav a span:first-child{font-size:16px;}
+}
+
 </style>
 </head>
 <body>
@@ -146,6 +235,14 @@ a{color:inherit}
     <a class="btn btn-primary" href="index.html">先生成画像</a>
   </div>
 </header>
+
+<div class="page-guide" aria-label="页面位置导航">
+  <div class="page-guide-inner">
+    <div class="page-guide-title">你在：学长学姐 / 顾问匹配</div>
+    <div class="page-guide-actions"><button onclick="history.back()">返回上一页</button><a href="index.html#advisor-entry">回到顾问入口</a><a href="status.html">先看状态</a></div>
+  </div>
+</div>
+
 
 <main class="shell">
   <section class="card hero">
@@ -294,5 +391,14 @@ a{color:inherit}
     </div>
   </section>
 </main>
+
+<nav class="quick-nav" aria-label="底部快速导航">
+  <a class="" href="index.html"><span>⌂</span><span>首页</span></a>
+  <a class="" href="status.html"><span>◎</span><span>状态</span></a>
+  <a class="" href="timeline.html"><span>▦</span><span>地图</span></a>
+  <a class="active" href="advisors.html"><span>✦</span><span>顾问</span></a>
+  <a class="" href="case-profile.html"><span>◌</span><span>案例</span></a>
+</nav>
+
 </body>
 </html>

@@ -5,61 +5,367 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Nexus AI｜顾问个人主页</title>
 <style>
-:root{--ink:#081614;--muted:#5b6865;--mint:#22d3a6;--cyan:#58d7ff;--warning:#fff4e5}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;background:radial-gradient(circle at 12% 8%, rgba(34,211,166,.16), transparent 26%),radial-gradient(circle at 88% 18%, rgba(88,215,255,.16), transparent 28%),linear-gradient(180deg,#f8fffd 0%,#effbf8 45%,#fbfefd 100%);color:var(--ink)}a{color:inherit}.topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);backdrop-filter:blur(18px);border-bottom:1px solid rgba(8,22,20,.08)}.shell{width:min(1180px,100%);margin:auto;padding:24px}.nav-shell{width:min(1180px,100%);margin:auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:18px}.logo{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,var(--mint),var(--cyan));font-weight:950}.navlinks{display:flex;gap:24px;font-size:14px;font-weight:900;color:rgba(8,22,20,.72)}.navlinks a{text-decoration:none}.card{position:relative;background:rgba(255,255,255,.86);border:1px solid rgba(8,22,20,.08);border-radius:26px;padding:26px;box-shadow:0 18px 60px rgba(8,22,20,.06);backdrop-filter:blur(14px)}.hero{overflow:hidden;padding:44px 38px}.hero:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(8,22,20,.045) 1px, transparent 1px),linear-gradient(90deg, rgba(8,22,20,.045) 1px, transparent 1px);background-size:30px 30px;mask-image:linear-gradient(to bottom, black, transparent 92%);pointer-events:none}.pill{display:inline-flex;align-items:center;gap:8px;padding:9px 13px;border-radius:999px;background:#ecfff8;color:#087b64;font-weight:950;font-size:13px;border:1px solid rgba(34,211,166,.16)}.btn{border:none;border-radius:16px;padding:14px 18px;font-weight:950;cursor:pointer;text-decoration:none;display:inline-flex;justify-content:center;align-items:center;gap:8px}.btn-primary{background:var(--ink);color:white;box-shadow:0 14px 38px rgba(8,22,20,.15)}.btn-soft{background:white;color:var(--ink);border:1px solid rgba(8,22,20,.1)}.hero-grid{display:grid;grid-template-columns:1fr 330px;gap:24px;align-items:stretch}.profile-head{position:relative;display:flex;gap:18px;align-items:center}.avatar{width:86px;height:86px;border-radius:28px;display:grid;place-items:center;background:linear-gradient(135deg,#dffdf5,#e8f7ff);font-weight:950;color:#087b64;font-size:28px;border:1px solid rgba(34,211,166,.22);box-shadow:0 18px 36px rgba(34,211,166,.16)}h1{font-size:clamp(36px,5vw,62px);line-height:1;margin:18px 0 12px;letter-spacing:-.06em}.lead{max-width:780px;font-size:17px;line-height:1.85;color:rgba(8,22,20,.64)}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.stat{background:white;border:1px solid rgba(8,22,20,.07);border-radius:18px;padding:16px}.stat b{display:block;font-size:26px;letter-spacing:-.04em}.stat span{display:block;margin-top:6px;color:rgba(8,22,20,.58);font-size:13px;line-height:1.45}.side-card{background:#f7fffd;border:1px solid rgba(34,211,166,.18);border-radius:24px;padding:22px}.section-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;margin-bottom:22px;flex-wrap:wrap}.section-title{font-size:30px;font-weight:950;letter-spacing:-.04em;margin:10px 0 6px}.section-sub{margin:0;color:rgba(8,22,20,.62);line-height:1.75;max-width:820px}.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.box{background:white;border:1px solid rgba(8,22,20,.07);border-radius:22px;padding:20px}.box h3{margin:0 0 12px;font-size:21px;letter-spacing:-.03em}.box p,.box li{color:rgba(8,22,20,.64);line-height:1.75}.tag-row{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.tag{padding:7px 10px;border-radius:999px;background:#f0fbf8;color:#087b64;font-size:12px;font-weight:900;border:1px solid rgba(34,211,166,.16)}.record{display:grid;gap:10px}.record-item{padding:14px;border-radius:16px;background:#f7fffd;border:1px solid rgba(34,211,166,.14);line-height:1.65;color:rgba(8,22,20,.68)}.quote{padding:16px;border-radius:18px;background:var(--warning);border:1px solid rgba(246,183,79,.28);color:#6b4b11;line-height:1.75}.price{padding:16px;border-radius:18px;background:#f6fffc;border:1px solid rgba(34,211,166,.18);font-weight:950;color:#087b64;line-height:1.7}.muted{color:rgba(8,22,20,.58);line-height:1.75}@media(max-width:920px){.hero-grid,.grid2,.grid3{grid-template-columns:1fr}.navlinks{display:none}.shell{padding:16px}.hero{padding:28px 22px}h1{font-size:38px}.stats{grid-template-columns:1fr}}
+:root{
+  --ink:#081614;
+  --muted:#5b6865;
+  --line:rgba(8,22,20,.08);
+  --mint:#22d3a6;
+  --cyan:#58d7ff;
+  --paper:#f7fffd;
+  --soft:#f1fffb;
+  --warning:#fff4e5;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(34,211,166,.14), transparent 26%),
+    radial-gradient(circle at 88% 18%, rgba(88,215,255,.14), transparent 28%),
+    linear-gradient(180deg,#f8fffd 0%,#effbf8 45%,#fbfefd 100%);
+  color:var(--ink);
+}
+a{color:inherit}
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:rgba(255,255,255,.9);
+  border-bottom:1px solid rgba(8,22,20,.08);
+}
+.shell{width:min(1120px,100%);margin:auto;padding:24px}
+.nav-shell{
+  width:min(1120px,100%);
+  margin:auto;
+  padding:14px 24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+}
+.logo{
+  width:44px;height:44px;border-radius:14px;
+  display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--mint),var(--cyan));
+  font-weight:950;
+}
+.navlinks{display:flex;gap:22px;font-size:14px;font-weight:900;color:rgba(8,22,20,.72)}
+.navlinks a{text-decoration:none}
+.card{
+  background:rgba(255,255,255,.88);
+  border:1px solid var(--line);
+  border-radius:28px;
+  padding:28px;
+  box-shadow:0 18px 60px rgba(8,22,20,.055);
+}
+.btn{
+  border:none;border-radius:16px;padding:14px 18px;font-weight:950;cursor:pointer;text-decoration:none;
+  display:inline-flex;justify-content:center;align-items:center;gap:8px;
+}
+.btn-primary{background:var(--ink);color:white;box-shadow:0 14px 38px rgba(8,22,20,.15)}
+.btn-soft{background:white;color:var(--ink);border:1px solid rgba(8,22,20,.1)}
+.pill{
+  display:inline-flex;align-items:center;gap:8px;padding:9px 13px;border-radius:999px;
+  background:#ecfff8;color:#087b64;font-weight:950;font-size:13px;border:1px solid rgba(34,211,166,.16)
+}
+.hero{position:relative;overflow:hidden;padding:38px}
+.hero:before{
+  content:"";position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(8,22,20,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(8,22,20,.04) 1px, transparent 1px);
+  background-size:30px 30px;
+  mask-image:linear-gradient(to bottom, black, transparent 88%);
+  pointer-events:none;
+}
+.hero-inner{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:28px;align-items:center}
+.profile-top{display:flex;gap:18px;align-items:center;min-width:0}
+.avatar{
+  flex:0 0 auto;
+  width:88px;height:88px;border-radius:30px;
+  display:grid;place-items:center;
+  background:linear-gradient(135deg,#dffdf5,#e8f7ff);
+  font-weight:950;color:#087b64;font-size:28px;
+  border:1px solid rgba(34,211,166,.22);
+  box-shadow:0 18px 36px rgba(34,211,166,.14);
+}
+h1{font-size:clamp(38px,5vw,60px);line-height:1.02;margin:14px 0 0;letter-spacing:-.06em}
+.lead{max-width:760px;font-size:17px;line-height:1.85;color:rgba(8,22,20,.64);margin:20px 0 0}
+.tag-row{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0}
+.tag{padding:7px 10px;border-radius:999px;background:#f0fbf8;color:#087b64;font-size:12px;font-weight:900;border:1px solid rgba(34,211,166,.16)}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.trust-panel{
+  background:linear-gradient(180deg,#ffffff,#f5fffc);
+  border:1px solid rgba(34,211,166,.18);
+  border-radius:24px;
+  padding:20px;
+}
+.trust-panel h3{margin:0 0 14px;font-size:22px;letter-spacing:-.03em}
+.trust-list{display:grid;gap:10px}
+.trust-item{
+  display:flex;justify-content:space-between;gap:16px;align-items:center;
+  padding:13px 14px;border-radius:16px;background:white;border:1px solid rgba(8,22,20,.06)
+}
+.trust-item span{color:rgba(8,22,20,.58);font-size:13px;line-height:1.45}
+.trust-item b{font-size:20px;letter-spacing:-.04em;text-align:right;white-space:nowrap}
+.note{margin:14px 0 0;color:rgba(8,22,20,.58);line-height:1.7;font-size:13px}
+.section{margin-top:24px}
+.section-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;margin-bottom:20px;flex-wrap:wrap}
+.section-title{font-size:30px;font-weight:950;letter-spacing:-.04em;margin:10px 0 6px}
+.section-sub{margin:0;color:rgba(8,22,20,.62);line-height:1.75;max-width:820px}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.box{background:white;border:1px solid rgba(8,22,20,.07);border-radius:22px;padding:20px;min-height:100%}
+.box h3{margin:0 0 12px;font-size:20px;letter-spacing:-.03em}
+.box p,.box li{color:rgba(8,22,20,.64);line-height:1.75}
+ul{margin:0;padding-left:20px}
+.service-grid .box{display:flex;flex-direction:column;gap:10px}
+.service-index{width:32px;height:32px;border-radius:12px;display:grid;place-items:center;background:#ecfff8;color:#087b64;font-weight:950}
+.record-layout{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(280px,.6fr);gap:18px;align-items:start}
+.record{display:grid;gap:12px}
+.record-item{padding:16px;border-radius:18px;background:#f7fffd;border:1px solid rgba(34,211,166,.14);line-height:1.7;color:rgba(8,22,20,.68)}
+.side-stack{display:grid;gap:14px}
+.quote{padding:16px;border-radius:18px;background:var(--warning);border:1px solid rgba(246,183,79,.28);color:#6b4b11;line-height:1.75}
+.price{padding:16px;border-radius:18px;background:#f6fffc;border:1px solid rgba(34,211,166,.18);font-weight:950;color:#087b64;line-height:1.7}
+.cta-card{text-align:center;padding:34px}
+@media(max-width:980px){
+  .hero-inner{grid-template-columns:1fr}
+  .grid3{grid-template-columns:1fr}
+  .record-layout{grid-template-columns:1fr}
+}
+@media(max-width:760px){
+  .navlinks{display:none}
+  .shell{padding:16px}
+  .nav-shell{padding:12px 16px}
+  .card{border-radius:24px;padding:20px}
+  .hero{padding:24px 20px}
+  .profile-top{align-items:flex-start}
+  .avatar{width:68px;height:68px;border-radius:22px;font-size:22px}
+  h1{font-size:36px}
+  .lead{font-size:16px}
+  .grid2{grid-template-columns:1fr}
+  .trust-item b{font-size:18px}
+}
+
+
+/* === 全站页面导航 v17 === */
+body{padding-bottom:96px !important;}
+.page-guide{
+  width:min(1180px,100%);
+  margin:14px auto 0;
+  padding:0 24px;
+}
+.page-guide-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+  padding:12px 14px;
+  border-radius:18px;
+  background:rgba(255,255,255,.72);
+  border:1px solid rgba(8,22,20,.08);
+  box-shadow:0 10px 30px rgba(8,22,20,.04);
+}
+.page-guide-title{
+  font-size:13px;
+  font-weight:950;
+  color:rgba(8,22,20,.72);
+}
+.page-guide-actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+.page-guide-actions a,
+.page-guide-actions button{
+  border:none;
+  text-decoration:none;
+  padding:9px 12px;
+  border-radius:999px;
+  background:#f1fffb;
+  color:#087b64;
+  font-size:12px;
+  font-weight:950;
+  cursor:pointer;
+  border:1px solid rgba(34,211,166,.18);
+}
+.quick-nav{
+  position:fixed;
+  left:50%;
+  bottom:18px;
+  transform:translateX(-50%);
+  z-index:200;
+  width:min(760px,calc(100% - 28px));
+  padding:9px;
+  border-radius:24px;
+  background:rgba(255,255,255,.92);
+  border:1px solid rgba(8,22,20,.1);
+  box-shadow:0 22px 70px rgba(8,22,20,.16);
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:8px;
+  backdrop-filter:blur(18px);
+}
+.quick-nav a{
+  text-decoration:none;
+  color:rgba(8,22,20,.68);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  min-height:50px;
+  border-radius:17px;
+  font-size:12px;
+  font-weight:950;
+  line-height:1.1;
+}
+.quick-nav a span:first-child{font-size:17px;line-height:1;}
+.quick-nav a.active,
+.quick-nav a:hover{
+  background:linear-gradient(135deg,#ecfff8,#eefcff);
+  color:#087b64;
+}
+@media(max-width:620px){
+  body{padding-bottom:88px !important;}
+  .page-guide{padding:0 16px;}
+  .quick-nav{bottom:10px;width:calc(100% - 18px);border-radius:20px;gap:4px;padding:7px;}
+  .quick-nav a{font-size:11px;min-height:46px;border-radius:14px;}
+  .quick-nav a span:first-child{font-size:16px;}
+}
+
 </style>
 </head>
 <body>
-<header class="topbar"><div class="nav-shell"><a href="advisors.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;"><div class="logo">NX</div><div><div style="font-weight:950;font-size:19px;">Nexus AI</div><div style="font-size:13px;color:rgba(8,22,20,.55);">顾问个人主页</div></div></a><nav class="navlinks"><a href="advisors.html">返回顾问列表</a><a href="#services">能做什么</a><a href="#records">顾问记录</a><a href="index.html">返回首页</a></nav><a class="btn btn-primary" href="advisors.html">返回列表</a></div></header>
+<header class="topbar">
+  <div class="nav-shell">
+    <a href="advisors.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+      <div class="logo">NX</div>
+      <div><div style="font-weight:950;font-size:19px;">Nexus AI</div><div style="font-size:13px;color:rgba(8,22,20,.55);">顾问个人主页</div></div>
+    </a>
+    <nav class="navlinks"><a href="advisors.html">返回顾问列表</a><a href="#services">能帮你什么</a><a href="#records">咨询记录</a><a href="index.html">返回首页</a></nav>
+    <a class="btn btn-primary" href="advisors.html">返回列表</a>
+  </div>
+</header>
+
+<div class="page-guide" aria-label="页面位置导航">
+  <div class="page-guide-inner">
+    <div class="page-guide-title">你在：顾问主页</div>
+    <div class="page-guide-actions"><button onclick="history.back()">返回上一页</button><a href="advisors.html">回到顾问列表</a><a href="status.html">先看状态</a></div>
+  </div>
+</div>
+
+
 <main class="shell">
   <section class="card hero">
-    <div class="hero-grid">
+    <div class="hero-inner">
       <div>
-        <div class="profile-head"><div class="avatar" id="avatar">CU</div><div><div class="pill" id="type">目标院校学长学姐</div><h1 id="name">港中文商学院学姐</h1></div></div>
+        <div class="profile-top">
+          <div class="avatar" id="avatar">CU</div>
+          <div style="min-width:0;">
+            <div class="pill" id="type">目标院校学长学姐</div>
+            <h1 id="name">港中文商学院学姐</h1>
+          </div>
+        </div>
         <p class="lead" id="intro"></p>
         <div class="tag-row" id="tags"></div>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#services">看看能帮我什么</a>
+          <a class="btn btn-soft" href="advisors.html">换一个人看看</a>
+        </div>
       </div>
-      <aside class="side-card">
-        <h3 style="margin:0 0 14px;font-size:22px;letter-spacing:-.03em;">主页可信度</h3>
-        <div class="stats"><div class="stat"><b id="school">CUHK</b><span>学校/方向</span></div><div class="stat"><b id="recordsCount">37</b><span>演示咨询记录</span></div><div class="stat"><b id="satisfaction">98%</b><span>演示满意度</span></div></div>
-        <p class="muted" style="margin-top:14px;">以下为演示主页，不代表真实入驻顾问。正式产品应接入身份核验、评价审核和咨询记录留痕。</p>
+
+      <aside class="trust-panel">
+        <h3>先看这个人靠不靠谱</h3>
+        <div class="trust-list">
+          <div class="trust-item"><span>学校 / 方向</span><b id="school">CUHK</b></div>
+          <div class="trust-item"><span>已记录咨询</span><b id="recordsCount">37</b></div>
+          <div class="trust-item"><span>满意度</span><b id="satisfaction">98%</b></div>
+        </div>
+        <p class="note">这是演示主页。正式上线后，学生身份、咨询记录和评价都需要经过平台核验。</p>
       </aside>
     </div>
   </section>
 
-  <section id="services" class="card" style="margin-top:24px;">
-    <div class="section-head"><div><div class="pill">第二层详情</div><h2 class="section-title">他具体能帮学生做什么？</h2><p class="section-sub">第一层先看背景和可信度；第二层再看服务边界、适合人群和过往记录，避免用户一上来只盯价格。</p></div></div>
-    <div class="grid3" id="serviceGrid"></div>
+  <section id="services" class="card section">
+    <div class="section-head">
+      <div>
+        <div class="pill">能帮你什么</div>
+        <h2 class="section-title">先看他解决的问题，别一上来只看价格。</h2>
+        <p class="section-sub">你可以把这个页面当作一次“是否值得聊”的判断：他是否懂你的目标方向，是否处理过类似背景，能不能把你的问题讲清楚。</p>
+      </div>
+    </div>
+    <div class="grid3 service-grid" id="serviceGrid"></div>
   </section>
 
-  <section class="card" style="margin-top:24px;">
-    <div class="section-head"><div><div class="pill">适合人群</div><h2 class="section-title">什么学生适合找他？</h2><p class="section-sub" id="fitText"></p></div></div>
-    <div class="grid2"><div class="box"><h3>适合咨询</h3><ul id="fitList"></ul></div><div class="box"><h3>不适合咨询</h3><ul id="notFitList"></ul></div></div>
+  <section class="card section">
+    <div class="section-head">
+      <div>
+        <div class="pill">适合谁问</div>
+        <h2 class="section-title">你的问题是不是适合找他？</h2>
+        <p class="section-sub" id="fitText"></p>
+      </div>
+    </div>
+    <div class="grid2">
+      <div class="box"><h3>比较适合咨询</h3><ul id="fitList"></ul></div>
+      <div class="box"><h3>不太适合咨询</h3><ul id="notFitList"></ul></div>
+    </div>
   </section>
 
-  <section id="records" class="card" style="margin-top:24px;">
-    <div class="section-head"><div><div class="pill">过往顾问记录</div><h2 class="section-title">看他以前主要帮过什么类型的问题。</h2><p class="section-sub">这里用演示记录表达产品结构：真实上线后应隐藏敏感个人信息，只展示问题类型、服务方式和结果反馈。</p></div></div>
-    <div class="record" id="recordList"></div>
+  <section id="records" class="card section">
+    <div class="section-head">
+      <div>
+        <div class="pill">过往咨询记录</div>
+        <h2 class="section-title">看他以前主要帮过什么类型的问题。</h2>
+        <p class="section-sub">这里用演示记录展示产品结构。真实上线后会隐藏敏感信息，只展示问题类型、服务方式和反馈。</p>
+      </div>
+    </div>
+    <div class="record-layout">
+      <div class="record" id="recordList"></div>
+      <aside class="side-stack">
+        <div class="box"><h3>满意度</h3><p id="scoreText"></p></div>
+        <div class="box"><h3>服务边界</h3><p id="boundary"></p></div>
+        <div class="box"><h3>参考价格</h3><div class="price" id="price"></div></div>
+      </aside>
+    </div>
   </section>
 
-  <section class="card" style="margin-top:24px;">
-    <div class="section-head"><div><div class="pill">满意度与服务边界</div><h2 class="section-title">信任来自边界清楚，而不是承诺录取。</h2></div></div>
-    <div class="grid3"><div class="box"><h3>满意度</h3><p id="scoreText"></p></div><div class="box"><h3>服务边界</h3><p id="boundary"></p></div><div class="box"><h3>价格放在最后</h3><div class="price" id="price"></div></div></div>
+  <section class="card section cta-card">
+    <h2 class="section-title">先看清自己的问题，再决定要不要预约。</h2>
+    <p class="section-sub" style="margin:auto;">这个页面不是为了强推服务，而是帮你判断：这个人是不是刚好能解决你现在最卡的那个问题。</p>
+    <div style="margin-top:22px;display:flex;justify-content:center;gap:12px;flex-wrap:wrap;">
+      <a class="btn btn-primary" href="advisors.html">返回顾问列表</a>
+      <a class="btn btn-soft" href="index.html">回到申请测评</a>
+    </div>
   </section>
-
-  <section class="card" style="margin-top:24px;text-align:center;"><h2 class="section-title">先看清自己的问题，再决定要不要预约。</h2><p class="section-sub" style="margin:auto;">这个页面的目的不是强推服务，而是让学生判断：这个人是否真的适合解决我当前的问题。</p><div style="margin-top:22px;display:flex;justify-content:center;gap:12px;flex-wrap:wrap;"><a class="btn btn-primary" href="advisors.html">返回顾问列表</a><a class="btn btn-soft" href="index.html">回到申请画像</a></div></section>
 </main>
+
 <script>
 const DATA={
-  "cuhk-business":{avatar:"CU",type:"目标院校学长学姐",name:"港中文商学院学姐",school:"CUHK",records:"37",satisfaction:"98%",intro:"从 211 财经背景申请到 CUHK 商科，熟悉商科项目偏好、面试节奏和文书主线。适合帮助背景不错但不知道怎么讲清楚自己的学生。",tags:["商科选校","面试准备","文书主线","同背景对照"],services:["结合用户背景，判断 CUHK / PolyU / CityU 商科项目匹配度。","帮学生梳理实习经历，把零散经历整理成申请主线。","基于真实就读体验，解释项目课程、面试和申请节奏。"],fit:"适合已经有一定商科背景，但不知道自己该冲哪一档、文书该突出什么的人。",fitList:["211/双非财经背景，想申港中文、港理工、港城商科。","有实习但经历表达混乱，需要文书主线建议。","想了解项目真实体验、面试形式和申请节奏。"],notFitList:["需要保录承诺或确定性录取预测。","还没有基本定位，只是想泛泛了解留学。","法律、医学等非商科细分方向。"],records:["学生 A：211 财经背景，目标 CUHK 商科，主要复核项目组合和面试准备。","学生 B：双非高 GPA，实习较弱，重点优化文书主线和主申/稳妥分层。","学生 C：已有港理工 offer，咨询 CUHK 面试和是否继续冲刺。"],score:"演示满意度 98%。用户反馈集中在：项目体验讲得具体、能把实习经历和申请方向连起来、不会盲目劝冲。",boundary:"可以提供经验判断、材料方向和面试准备建议；不代写文书，不承诺录取，不替用户做最终学校选择。",price:"参考价放在主页底部：¥99-299 / 次。用户先判断是否匹配，再决定是否花钱。"},
-  "hku-data":{avatar:"HK",type:"目标院校学长学姐",name:"港大数据方向学长",school:"HKU",records:"29",satisfaction:"96%",intro:"HKU 数据 / AI 方向在读，擅长判断技术经历、课程项目和科研经历如何服务申请。适合想冲港大、港科、港中文数据或 AI 相关项目的学生。",tags:["AI/CS","项目匹配","科研经历","技术面试"],services:["判断课程项目、科研、竞赛和实习是否支撑目标项目。","帮学生把技术经历从“做过项目”改成“解决过什么问题”。","解释数据、AI、CS 相关项目的课程差异和面试准备重点。"],fit:"适合技术方向申请者，尤其是经历不少但表达不聚焦、目标项目过多的人。",fitList:["AI/CS/数据方向申请者。","有课程项目或科研，但不知道怎样写进 CV / PS。","想冲港大、港科、港中文相关项目。"],notFitList:["纯商科、传媒、教育方向为主的申请。","只需要语言规划或签证行前问题。","期待顾问代写代码、代做项目或包装虚假经历。"],records:["学生 A：985 转数据方向，复核 HKU/HKUST 项目差异和技术经历表达。","学生 B：双非高绩点，科研较弱，重点建议增加课程项目展示。","学生 C：已有实习但技术含量表达不足，优化简历项目描述。"],score:"演示满意度 96%。用户反馈集中在：能讲清项目差异、技术经历表达更具体、面试准备更有方向。",boundary:"可以帮助解释项目偏好和技术经历表达；不包装虚假科研，不代做项目，不承诺港前三录取。",price:"参考价放在主页底部：¥129-399 / 次。适合在项目选择或面试前做一次复核。"},
-  "strategy-top":{avatar:"TOP",type:"顶级申请顾问",name:"复杂背景顶级申请顾问",school:"策略型",records:"64",satisfaction:"97%",intro:"主打复杂背景判断和策略复核，适合低绩点、跨专业、经历杂乱、目标过高或多个 offer 难选择的申请者。重点不是制造焦虑，而是判断什么值得冲、什么该放弃。",tags:["低绩点","跨专业","港前三冲刺","Offer选择"],services:["判断低 GPA、跨专业或经历断裂是否还有可解释空间。","设计项目组合：冲刺、主申、稳妥和预算友好路径。","复核文书主线、申请节奏和是否需要补申。"],fit:"适合问题复杂、单靠学长学姐经验不够判断的申请者。",fitList:["GPA 偏低但目标较高，需要判断冲刺价值。","跨专业申请，需要把经历讲成一条可信主线。","多个 offer 或补申选择困难，需要策略判断。"],notFitList:["只想了解某个项目真实课堂体验。","已经非常确定目标，只需要简单答疑。","期待保录、内推或确定性承诺。"],records:["学生 A：低 GPA + 两段实习，重做项目分层，放弃不合理冲刺。","学生 B：英语专业跨申传媒/商科，重构文书主线和选校策略。","学生 C：拿到多个 offer，按职业目标、预算和风险做最终选择。"],score:"演示满意度 97%。用户反馈集中在：不盲目鼓励、不制造焦虑、能把复杂背景拆成可执行策略。",boundary:"提供策略判断和风险复核；不承诺录取，不替代学校官方审核，不鼓励虚假包装。",price:"参考价放在主页底部：¥399-999 / 次。适合关键节点做深度策略咨询，而不是从一开始就购买。"}
+  "cuhk-business":{avatar:"CU",type:"目标院校学长学姐",name:"港中文商学院学姐",school:"CUHK",records:"37",satisfaction:"98%",intro:"从 211 财经背景申请到 CUHK 商科，熟悉商科项目偏好、面试节奏和文书主线。适合帮助背景不错但不知道怎么讲清楚自己的学生。",tags:["商科选校","面试准备","文书主线","同背景对照"],services:["结合你的背景，判断 CUHK / PolyU / CityU 商科项目大概适合放在哪一档。","帮你把零散实习经历整理成一条申请主线，让文书不只是堆经历。","从真实就读体验出发，告诉你项目课程、面试和申请节奏里哪些细节容易被忽略。"],fit:"适合已经有一定商科背景，但不知道自己该冲哪一档、文书该突出什么的人。",fitList:["211/双非财经背景，想申港中文、港理工、港城商科。","有实习但经历表达混乱，需要文书主线建议。","想了解项目真实体验、面试形式和申请节奏。"],notFitList:["需要保录承诺或确定性录取预测。","还没有基本定位，只是想泛泛了解留学。","法律、医学等非商科细分方向。"],records:["学生 A：211 财经背景，目标 CUHK 商科，主要复核项目组合和面试准备。","学生 B：双非高 GPA，实习较弱，重点优化文书主线和主申/稳妥分层。","学生 C：已有港理工 offer，咨询 CUHK 面试和是否继续冲刺。"],score:"演示满意度 98%。用户反馈集中在：项目体验讲得具体、能把实习经历和申请方向连起来、不会盲目劝冲。",boundary:"可以提供经验判断、材料方向和面试准备建议；不代写文书，不承诺录取，不替用户做最终学校选择。",price:"参考价：¥99-299 / 次。用户先判断是否匹配，再决定是否花钱。"},
+  "hku-data":{avatar:"HK",type:"目标院校学长学姐",name:"港大数据方向学长",school:"HKU",records:"29",satisfaction:"96%",intro:"HKU 数据 / AI 方向在读，擅长判断技术经历、课程项目和科研经历如何服务申请。适合想冲港大、港科、港中文数据或 AI 相关项目的学生。",tags:["AI/CS","项目匹配","科研经历","技术面试"],services:["判断你的课程项目、科研、竞赛和实习是否足够支撑目标项目。","帮你把技术经历从“做过项目”改成“解决过什么问题”。","解释数据、AI、CS 相关项目的课程差异和面试准备重点。"],fit:"适合技术方向申请者，尤其是经历不少但表达不聚焦、目标项目过多的人。",fitList:["AI/CS/数据方向申请者。","有课程项目或科研，但不知道怎样写进 CV / PS。","想冲港大、港科、港中文相关项目。"],notFitList:["纯商科、传媒、教育方向为主的申请。","只需要语言规划或签证行前问题。","期待顾问代写代码、代做项目或包装虚假经历。"],records:["学生 A：985 转数据方向，复核 HKU/HKUST 项目差异和技术经历表达。","学生 B：双非高绩点，科研较弱，重点建议增加课程项目展示。","学生 C：已有实习但技术含量表达不足，优化简历项目描述。"],score:"演示满意度 96%。用户反馈集中在：能讲清项目差异、技术经历表达更具体、面试准备更有方向。",boundary:"可以帮助解释项目偏好和技术经历表达；不包装虚假科研，不代做项目，不承诺港前三录取。",price:"参考价：¥129-399 / 次。适合在项目选择或面试前做一次复核。"},
+  "strategy-top":{avatar:"TOP",type:"顶级申请顾问",name:"复杂背景顶级申请顾问",school:"策略型",records:"64",satisfaction:"97%",intro:"主打复杂背景判断和策略复核，适合低绩点、跨专业、经历杂乱、目标过高或多个 offer 难选择的申请者。重点不是制造焦虑，而是判断什么值得冲、什么该放弃。",tags:["低绩点","跨专业","港前三冲刺","Offer选择"],services:["判断低 GPA、跨专业或经历断裂是否还有可解释空间。","帮你重新设计项目组合：哪些可以冲，哪些应该主申，哪些更适合稳妥。","复核文书主线、申请节奏和是否需要补申，避免把钱花在错误的环节。"],fit:"适合问题复杂、单靠学长学姐经验不够判断的申请者。",fitList:["GPA 偏低但目标较高，需要判断冲刺价值。","跨专业申请，需要把经历讲成一条可信主线。","多个 offer 或补申选择困难，需要策略判断。"],notFitList:["只想了解某个项目真实课堂体验。","已经非常确定目标，只需要简单答疑。","期待保录、内推或确定性承诺。"],records:["学生 A：低 GPA + 两段实习，重做项目分层，放弃不合理冲刺。","学生 B：英语专业跨申传媒/商科，重构文书主线和选校策略。","学生 C：拿到多个 offer，按职业目标、预算和风险做最终选择。"],score:"演示满意度 97%。用户反馈集中在：不盲目鼓励、不制造焦虑、能把复杂背景拆成可执行策略。",boundary:"提供策略判断和风险复核；不承诺录取，不替代学校官方审核，不鼓励虚假包装。",price:"参考价：¥399-999 / 次。适合关键节点做深度策略咨询，而不是从一开始就购买。"}
 };
-const id=new URLSearchParams(location.search).get('id')||'cuhk-business';const d=DATA[id]||DATA['cuhk-business'];
-function set(id,text){document.getElementById(id).textContent=text}set('avatar',d.avatar);set('type',d.type);set('name',d.name);set('intro',d.intro);set('school',d.school);set('recordsCount',d.records);set('satisfaction',d.satisfaction);set('fitText',d.fit);set('scoreText',d.score);set('boundary',d.boundary);set('price',d.price);document.title='Nexus AI｜'+d.name;
+const id=new URLSearchParams(location.search).get('id')||'cuhk-business';
+const d=DATA[id]||DATA['cuhk-business'];
+function set(id,text){document.getElementById(id).textContent=text}
+set('avatar',d.avatar);set('type',d.type);set('name',d.name);set('intro',d.intro);set('school',d.school);set('recordsCount',d.records);set('satisfaction',d.satisfaction);set('fitText',d.fit);set('scoreText',d.score);set('boundary',d.boundary);set('price',d.price);document.title='Nexus AI｜'+d.name;
 d.tags.forEach(t=>{const s=document.createElement('span');s.className='tag';s.textContent=t;document.getElementById('tags').appendChild(s)});
-d.services.forEach(x=>{const div=document.createElement('div');div.className='box';div.innerHTML='<h3>可帮助环节</h3><p>'+x+'</p>';document.getElementById('serviceGrid').appendChild(div)});
-d.fitList.forEach(x=>{const li=document.createElement('li');li.textContent=x;document.getElementById('fitList').appendChild(li)});d.notFitList.forEach(x=>{const li=document.createElement('li');li.textContent=x;document.getElementById('notFitList').appendChild(li)});d.records.forEach(x=>{const div=document.createElement('div');div.className='record-item';div.textContent=x;document.getElementById('recordList').appendChild(div)});
+d.services.forEach((x,i)=>{const div=document.createElement('div');div.className='box';div.innerHTML='<div class="service-index">'+(i+1)+'</div><h3>可以帮你看</h3><p>'+x+'</p>';document.getElementById('serviceGrid').appendChild(div)});
+d.fitList.forEach(x=>{const li=document.createElement('li');li.textContent=x;document.getElementById('fitList').appendChild(li)});
+d.notFitList.forEach(x=>{const li=document.createElement('li');li.textContent=x;document.getElementById('notFitList').appendChild(li)});
+d.records.forEach(x=>{const div=document.createElement('div');div.className='record-item';div.textContent=x;document.getElementById('recordList').appendChild(div)});
 </script>
+
+<nav class="quick-nav" aria-label="底部快速导航">
+  <a class="" href="index.html"><span>⌂</span><span>首页</span></a>
+  <a class="" href="status.html"><span>◎</span><span>状态</span></a>
+  <a class="" href="timeline.html"><span>▦</span><span>地图</span></a>
+  <a class="active" href="advisors.html"><span>✦</span><span>顾问</span></a>
+  <a class="" href="case-profile.html"><span>◌</span><span>案例</span></a>
+</nav>
+
 </body>
 </html>
