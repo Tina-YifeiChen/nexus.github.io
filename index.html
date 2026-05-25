@@ -1017,6 +1017,7 @@ a{color:inherit}
     <nav class="navlinks">
       <a href="#engine">申请画像</a>
       <a href="#effort">努力模拟</a>
+      <a href="effort.html">努力详情</a>
       <a href="#life-map">时间地图</a>
       <a href="timeline.html">阶段详情</a>
       <a href="#demo-profile">示例分析</a>
@@ -1156,16 +1157,70 @@ a{color:inherit}
       </section>
 
       <section class="grid2">
-        <div class="card">
-          <h2 style="margin:0 0 18px;font-size:24px;font-weight:950;">申请能量条</h2>
-          <div>学术基础 <b style="float:right" id="academicScore">86</b></div><div class="meter"><div class="fill" id="academicBar" style="width:86%"></div></div>
-          <div style="margin-top:18px;">语言准备 <b style="float:right" id="langScore">68</b></div><div class="meter"><div class="fill" id="langBar" style="width:68%"></div></div>
-          <div style="margin-top:18px;">实习科研 <b style="float:right" id="expScore">78</b></div><div class="meter"><div class="fill" id="expBar" style="width:78%"></div></div>
-          <div style="margin-top:18px;">申请节奏 <b style="float:right" id="paceScore">64</b></div><div class="meter"><div class="fill" id="paceBar" style="width:64%"></div></div>
+        <div class="card" id="status-overview">
+          <div class="pill">申请状态总览</div>
+          <h2 style="margin:12px 0 8px;font-size:24px;font-weight:950;letter-spacing:-.04em;">雷达图 + 能量条合并展示</h2>
+          <p style="margin:0 0 18px;color:rgba(8,22,20,.62);line-height:1.7;font-size:14px;">
+            这部分只保留一个综合视图：雷达图看整体形状，能量条看每个维度的具体分数，避免同一信息重复出现。
+          </p>
+          <div class="radar-wrap">
+            <svg class="radar-svg" viewBox="0 0 320 320" aria-label="申请状态雷达图">
+              <defs>
+                <linearGradient id="radarFillMain" x1="0" x2="1" y1="0" y2="1">
+                  <stop offset="0%" stop-color="#22d3a6" stop-opacity=".50"/>
+                  <stop offset="100%" stop-color="#58d7ff" stop-opacity=".38"/>
+                </linearGradient>
+              </defs>
+              <g transform="translate(160 160)">
+                <polygon points="0,-120 103.9,-60 103.9,60 0,120 -103.9,60 -103.9,-60" fill="none" stroke="#d8efea" stroke-width="1.4"/>
+                <polygon points="0,-96 83.1,-48 83.1,48 0,96 -83.1,48 -83.1,-48" fill="none" stroke="#d8efea" stroke-width="1"/>
+                <polygon points="0,-72 62.3,-36 62.3,36 0,72 -62.3,36 -62.3,-36" fill="none" stroke="#d8efea" stroke-width="1"/>
+                <polygon points="0,-48 41.6,-24 41.6,24 0,48 -41.6,24 -41.6,-24" fill="none" stroke="#d8efea" stroke-width="1"/>
+                <line x1="0" y1="0" x2="0" y2="-120" stroke="#d8efea"/>
+                <line x1="0" y1="0" x2="103.9" y2="-60" stroke="#d8efea"/>
+                <line x1="0" y1="0" x2="103.9" y2="60" stroke="#d8efea"/>
+                <line x1="0" y1="0" x2="0" y2="120" stroke="#d8efea"/>
+                <line x1="0" y1="0" x2="-103.9" y2="60" stroke="#d8efea"/>
+                <line x1="0" y1="0" x2="-103.9" y2="-60" stroke="#d8efea"/>
+                <polygon points="0,-103.2 70.7,-40.8 81.0,46.8 0,76.8 -85.2,49.2 -74.8,-43.2" fill="url(#radarFillMain)" stroke="#22d3a6" stroke-width="3"/>
+                <circle cx="0" cy="-103.2" r="4" fill="#22d3a6"/>
+                <circle cx="70.7" cy="-40.8" r="4" fill="#22d3a6"/>
+                <circle cx="81.0" cy="46.8" r="4" fill="#22d3a6"/>
+                <circle cx="0" cy="76.8" r="4" fill="#22d3a6"/>
+                <circle cx="-85.2" cy="49.2" r="4" fill="#22d3a6"/>
+                <circle cx="-74.8" cy="-43.2" r="4" fill="#22d3a6"/>
+              </g>
+              <text class="radar-label" x="160" y="20" text-anchor="middle">学术基础 86</text>
+              <text class="radar-label" x="290" y="92" text-anchor="middle">语言 68</text>
+              <text class="radar-label" x="292" y="232" text-anchor="middle">实习科研 78</text>
+              <text class="radar-label" x="160" y="310" text-anchor="middle">申请节奏 64</text>
+              <text class="radar-label" x="28" y="232" text-anchor="middle">预算适配 82</text>
+              <text class="radar-label" x="30" y="92" text-anchor="middle">文书潜力 72</text>
+            </svg>
+            <div class="radar-score">
+              <div class="radar-item"><div class="radar-item-row"><span>学术基础</span><b id="academicScore">86</b></div><div class="radar-bar"><div id="academicBar" style="width:86%"></div></div></div>
+              <div class="radar-item"><div class="radar-item-row"><span>语言准备</span><b id="langScore">68</b></div><div class="radar-bar"><div id="langBar" style="width:68%"></div></div></div>
+              <div class="radar-item"><div class="radar-item-row"><span>实习科研</span><b id="expScore">78</b></div><div class="radar-bar"><div id="expBar" style="width:78%"></div></div></div>
+              <div class="radar-item"><div class="radar-item-row"><span>申请节奏</span><b id="paceScore">64</b></div><div class="radar-bar"><div id="paceBar" style="width:64%"></div></div></div>
+              <div class="radar-item"><div class="radar-item-row"><span>预算适配</span><b>82</b></div><div class="radar-bar"><div style="width:82%"></div></div></div>
+              <div class="radar-item"><div class="radar-item-row"><span>文书潜力</span><b>72</b></div><div class="radar-bar"><div style="width:72%"></div></div></div>
+            </div>
+          </div>
+          <div class="test-result-grid">
+            <div class="test-result"><b>72</b><span>当前综合申请力，不是录取概率。</span></div>
+            <div class="test-result"><b>语言</b><span>当前最关键变量，先解决硬门槛。</span></div>
+            <div class="test-result"><b>分层</b><span>建议冲刺、主申、稳妥同时布局。</span></div>
+          </div>
         </div>
 
         <div class="card" id="effort">
-          <h2 style="margin:0;font-size:24px;font-weight:950;">如果我再努力一点，会怎样？</h2>
+          <div class="flex-head">
+            <div>
+              <div class="pill">努力模拟器</div>
+              <h2 style="margin:12px 0 0;font-size:24px;font-weight:950;">如果我再努力一点，会怎样？</h2>
+            </div>
+            <a class="btn btn-primary" href="effort.html">了解详情</a>
+          </div>
           <div class="big-score" id="effortScore">72 → 81</div>
           <p id="effortText" style="line-height:1.8;color:#52615d;">
             如果雅思提升到 7.0，语言风险会明显下降。港中文匹配度提高，港大冲刺理由也会更充分。
@@ -1175,6 +1230,12 @@ a{color:inherit}
             <button class="sim-btn" onclick="changeEffort('intern')">新增一段相关实习</button>
             <button class="sim-btn" onclick="changeEffort('cv')">提前完成 CV</button>
             <button class="sim-btn" onclick="changeEffort('budget')">预算有限怎么选</button>
+          </div>
+          <div style="margin-top:16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;">
+            <a class="link-card" href="effort.html?type=ielts"><strong>语言怎么补</strong><span>雅思/托福提分路径</span></a>
+            <a class="link-card" href="effort.html?type=intern"><strong>实习怎么补</strong><span>相关经历与项目匹配</span></a>
+            <a class="link-card" href="effort.html?type=cv"><strong>材料怎么提前</strong><span>CV、PS、推荐信节奏</span></a>
+            <a class="link-card" href="effort.html?type=budget"><strong>预算怎么选</strong><span>香港本地与大湾区路径</span></a>
           </div>
         </div>
       </section>
@@ -1186,7 +1247,7 @@ a{color:inherit}
             <div class="pill">真人顾问匹配</div>
             <h2 class="section-title">有些问题，适合问已经走过这条路的人。</h2>
             <p class="section-sub">
-              AI 先帮你看清自己的申请状态；如果你遇到低绩点、跨专业、港前三冲刺、面试准备或文书主线不清楚，可以再找目标院校学霸顾问或顶级申请顾问做复核。
+              AI 先帮你看清自己的申请状态；如果你遇到低绩点、跨专业、港前三冲刺、面试准备或文书主线不清楚，可以再找目标院校学长学姐或顶级申请顾问做复核。
             </p>
           </div>
           <a class="btn btn-primary" href="advisors.html">详情了解</a>
@@ -1313,63 +1374,6 @@ a{color:inherit}
 
             <div class="warning">
               系统解读：这个状态不是“没有机会”，而是“不适合盲冲”。当前最值得优先投入的是语言成绩与文书主线，而不是一开始购买高价全包套餐。
-            </div>
-          </div>
-
-          <div class="radar-panel">
-            <h3 style="margin:0;font-size:24px;font-weight:950;letter-spacing:-.04em;">申请状态雷达图</h3>
-            <p style="margin:8px 0 18px;color:rgba(8,22,20,.62);line-height:1.65;font-size:14px;">
-              用 6 个维度展示申请状态：越靠外代表该维度越强。以下为演示数据，仅用于展示分析方式。
-            </p>
-            <div class="radar-wrap">
-              <svg class="radar-svg" viewBox="0 0 320 320" aria-label="申请雷达图">
-                <defs>
-                  <linearGradient id="radarFill" x1="0" x2="1" y1="0" y2="1">
-                    <stop offset="0%" stop-color="#22d3a6" stop-opacity=".50"/>
-                    <stop offset="100%" stop-color="#58d7ff" stop-opacity=".38"/>
-                  </linearGradient>
-                </defs>
-                <g transform="translate(160 160)">
-                  <polygon points="0,-120 103.9,-60 103.9,60 0,120 -103.9,60 -103.9,-60" fill="none" stroke="#d8efea" stroke-width="1.4"/>
-                  <polygon points="0,-96 83.1,-48 83.1,48 0,96 -83.1,48 -83.1,-48" fill="none" stroke="#d8efea" stroke-width="1"/>
-                  <polygon points="0,-72 62.3,-36 62.3,36 0,72 -62.3,36 -62.3,-36" fill="none" stroke="#d8efea" stroke-width="1"/>
-                  <polygon points="0,-48 41.6,-24 41.6,24 0,48 -41.6,24 -41.6,-24" fill="none" stroke="#d8efea" stroke-width="1"/>
-                  <line x1="0" y1="0" x2="0" y2="-120" stroke="#d8efea"/>
-                  <line x1="0" y1="0" x2="103.9" y2="-60" stroke="#d8efea"/>
-                  <line x1="0" y1="0" x2="103.9" y2="60" stroke="#d8efea"/>
-                  <line x1="0" y1="0" x2="0" y2="120" stroke="#d8efea"/>
-                  <line x1="0" y1="0" x2="-103.9" y2="60" stroke="#d8efea"/>
-                  <line x1="0" y1="0" x2="-103.9" y2="-60" stroke="#d8efea"/>
-                  <polygon points="0,-103.2 70.7,-40.8 81.0,46.8 0,76.8 -85.2,49.2 -74.8,-43.2" fill="url(#radarFill)" stroke="#22d3a6" stroke-width="3"/>
-                  <circle cx="0" cy="-103.2" r="4" fill="#22d3a6"/>
-                  <circle cx="70.7" cy="-40.8" r="4" fill="#22d3a6"/>
-                  <circle cx="81.0" cy="46.8" r="4" fill="#22d3a6"/>
-                  <circle cx="0" cy="76.8" r="4" fill="#22d3a6"/>
-                  <circle cx="-85.2" cy="49.2" r="4" fill="#22d3a6"/>
-                  <circle cx="-74.8" cy="-43.2" r="4" fill="#22d3a6"/>
-                </g>
-                <text class="radar-label" x="160" y="20" text-anchor="middle">学术基础 86</text>
-                <text class="radar-label" x="290" y="92" text-anchor="middle">语言 68</text>
-                <text class="radar-label" x="292" y="232" text-anchor="middle">实习科研 78</text>
-                <text class="radar-label" x="160" y="310" text-anchor="middle">申请节奏 64</text>
-                <text class="radar-label" x="28" y="232" text-anchor="middle">预算适配 82</text>
-                <text class="radar-label" x="30" y="92" text-anchor="middle">文书潜力 72</text>
-              </svg>
-
-              <div class="radar-score">
-                <div class="radar-item"><div class="radar-item-row"><span>学术基础</span><b>86</b></div><div class="radar-bar"><div style="width:86%"></div></div></div>
-                <div class="radar-item"><div class="radar-item-row"><span>语言准备</span><b>68</b></div><div class="radar-bar"><div style="width:68%"></div></div></div>
-                <div class="radar-item"><div class="radar-item-row"><span>实习科研</span><b>78</b></div><div class="radar-bar"><div style="width:78%"></div></div></div>
-                <div class="radar-item"><div class="radar-item-row"><span>申请节奏</span><b>64</b></div><div class="radar-bar"><div style="width:64%"></div></div></div>
-                <div class="radar-item"><div class="radar-item-row"><span>预算适配</span><b>82</b></div><div class="radar-bar"><div style="width:82%"></div></div></div>
-                <div class="radar-item"><div class="radar-item-row"><span>文书潜力</span><b>72</b></div><div class="radar-bar"><div style="width:72%"></div></div></div>
-              </div>
-            </div>
-
-            <div class="test-result-grid">
-              <div class="test-result"><b>72→81</b><span>雅思提升与实习增强后的申请力变化。</span></div>
-              <div class="test-result"><b>3条</b><span>系统给出冲刺、主申、托底三层路径。</span></div>
-              <div class="test-result"><b>1个变量</b><span>当前最关键变量：语言成绩，而不是盲目包装。</span></div>
             </div>
           </div>
         </div>

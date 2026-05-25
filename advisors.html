@@ -97,6 +97,27 @@ a{color:inherit}
 .step strong{display:block;font-size:18px;margin-bottom:8px}
 .step span{color:rgba(8,22,20,.58);font-size:14px;line-height:1.6}
 .cta-card{text-align:center;padding:36px}
+
+.halo-card{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  text-decoration:none;
+  background:linear-gradient(180deg,#ffffff,#f7fffd);
+  border:1px solid rgba(8,22,20,.07);
+  border-radius:24px;
+  padding:22px;
+  transition:.2s ease;
+  min-height:360px;
+}
+.halo-card:hover{transform:translateY(-4px);box-shadow:0 18px 46px rgba(8,22,20,.09);border-color:rgba(34,211,166,.38)}
+.halo-top{display:flex;align-items:center;gap:14px}
+.halo-avatar{width:68px;height:68px;border-radius:22px;display:grid;place-items:center;background:linear-gradient(135deg,#dffdf5,#e8f7ff);font-weight:950;color:#087b64;font-size:22px;border:1px solid rgba(34,211,166,.22);box-shadow:0 12px 26px rgba(34,211,166,.12)}
+.halo-title h3{margin:0 0 6px;font-size:22px;letter-spacing:-.03em}.halo-title div{font-size:13px;color:rgba(8,22,20,.56);line-height:1.55}
+.halo-line{padding:14px 16px;border-radius:18px;background:#f2fffb;border:1px solid rgba(34,211,166,.16);font-weight:950;color:#087b64;line-height:1.55}
+.halo-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.halo-stat{background:white;border:1px solid rgba(8,22,20,.06);border-radius:16px;padding:12px}.halo-stat b{display:block;font-size:18px}.halo-stat span{display:block;margin-top:4px;font-size:12px;color:rgba(8,22,20,.56);line-height:1.4}
+.halo-link{margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding:13px 14px;border-radius:16px;background:var(--ink);color:white;font-weight:950}
+
 @media(max-width:920px){
   .grid2,.grid3,.flow{grid-template-columns:1fr}
   .navlinks{display:none}
@@ -131,7 +152,7 @@ a{color:inherit}
     <div class="pill">真人顾问匹配 · 在真正需要的时候再找人</div>
     <h1>有些问题，适合问已经走过这条路的人。</h1>
     <p>
-      先用 Nexus AI 看清自己的申请状态；如果你遇到低绩点、跨专业、港前三冲刺、面试准备或文书主线不清楚，再匹配目标院校学霸顾问或顶级申请顾问。
+      先用 Nexus AI 看清自己的申请状态；如果你遇到低绩点、跨专业、港前三冲刺、面试准备或文书主线不清楚，再匹配目标院校学长学姐或顶级申请顾问。
     </p>
     <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;">
       <a class="btn btn-primary" href="#cards">查看顾问类型</a>
@@ -149,7 +170,7 @@ a{color:inherit}
     </div>
     <div class="grid2">
       <div class="type-card">
-        <h3>目标院校学霸顾问</h3>
+        <h3>目标院校学长学姐</h3>
         <p>港大、港中文、港科、港理工等目标院校在读硕士/博士或已录取学生，主打真实路径经验。</p>
         <div class="tag-row">
           <span class="tag">项目真实体验</span><span class="tag">面试准备</span><span class="tag">申请关键点</span><span class="tag">同背景对照</span>
@@ -187,62 +208,65 @@ a{color:inherit}
     <div class="section-head">
       <div>
         <div class="pill">顾问卡片 Demo</div>
-        <h2 class="section-title">像认识一个可信任的人，而不是被销售推销。</h2>
-        <p class="section-sub">以下为演示卡片，不代表真实入驻顾问。正式产品会展示身份认证、擅长方向、评价与咨询方式。</p>
+        <h2 class="section-title">第一层先看人：背景、方向和可信度。</h2>
+        <p class="section-sub">这里不先展示价格，先展示顾问的个人光环、学校背景、方向标签和身份认证。用户点进个人主页后，再看他具体能做什么、过往顾问记录、满意度和服务边界。</p>
       </div>
     </div>
 
     <div class="grid3">
-      <article class="advisor-card">
-        <div class="advisor-head">
-          <div class="avatar">CU</div>
-          <div>
-            <h3>港中文商学院在读顾问</h3>
-            <div class="meta">MSc 商科方向｜已认证学生邮箱 + Offer证明</div>
+      <a class="halo-card" href="advisor-profile.html?id=cuhk-business">
+        <div class="halo-top">
+          <div class="halo-avatar">CU</div>
+          <div class="halo-title">
+            <h3>港中文商学院学姐</h3>
+            <div>MSc 商科方向｜学生邮箱 + Offer证明已核验</div>
           </div>
         </div>
-        <div class="tag-row"><span class="tag">商科选校</span><span class="tag">面试准备</span><span class="tag">文书主线</span></div>
-        <div class="info-list">
-          <div><b>适合：</b>想申请 CUHK 商科，但不确定自己定位的学生</div>
-          <div><b>可帮：</b>项目体验、面试题、申请节奏、文书方向</div>
-          <div><b>方式：</b>30分钟 / 60分钟线上咨询</div>
+        <div class="halo-line">从 211 财经背景申请到 CUHK 商科，擅长把“经历还可以但主线不清楚”的学生讲清楚。</div>
+        <div class="tag-row"><span class="tag">商科选校</span><span class="tag">面试准备</span><span class="tag">文书主线</span><span class="tag">同背景对照</span></div>
+        <div class="halo-stats">
+          <div class="halo-stat"><b>CUHK</b><span>目标院校</span></div>
+          <div class="halo-stat"><b>37</b><span>演示咨询记录</span></div>
+          <div class="halo-stat"><b>98%</b><span>演示满意度</span></div>
         </div>
-        <div class="price">参考价：¥99-299 / 次</div>
-      </article>
+        <div class="halo-link"><span>进入个人主页</span><span>→</span></div>
+      </a>
 
-      <article class="advisor-card">
-        <div class="advisor-head">
-          <div class="avatar">HK</div>
-          <div>
-            <h3>港大数据方向学霸顾问</h3>
-            <div class="meta">HKU 数据/AI方向｜已认证在读状态</div>
+      <a class="halo-card" href="advisor-profile.html?id=hku-data">
+        <div class="halo-top">
+          <div class="halo-avatar">HK</div>
+          <div class="halo-title">
+            <h3>港大数据方向学长</h3>
+            <div>HKU 数据 / AI 方向｜在读状态已核验</div>
           </div>
         </div>
-        <div class="tag-row"><span class="tag">AI/CS</span><span class="tag">项目匹配</span><span class="tag">科研经历</span></div>
-        <div class="info-list">
-          <div><b>适合：</b>想冲港大/港科数据、AI、CS相关项目的学生</div>
-          <div><b>可帮：</b>项目选择、技术经历表达、面试准备</div>
-          <div><b>方式：</b>简历诊断 + 一对一答疑</div>
+        <div class="halo-line">适合想冲港大、港科数据或 AI 相关项目，但不知道技术经历怎么表达的申请者。</div>
+        <div class="tag-row"><span class="tag">AI/CS</span><span class="tag">项目匹配</span><span class="tag">科研经历</span><span class="tag">技术面试</span></div>
+        <div class="halo-stats">
+          <div class="halo-stat"><b>HKU</b><span>目标院校</span></div>
+          <div class="halo-stat"><b>29</b><span>演示咨询记录</span></div>
+          <div class="halo-stat"><b>96%</b><span>演示满意度</span></div>
         </div>
-        <div class="price">参考价：¥129-399 / 次</div>
-      </article>
+        <div class="halo-link"><span>进入个人主页</span><span>→</span></div>
+      </a>
 
-      <article class="advisor-card">
-        <div class="advisor-head">
-          <div class="avatar">TOP</div>
-          <div>
+      <a class="halo-card" href="advisor-profile.html?id=strategy-top">
+        <div class="halo-top">
+          <div class="halo-avatar">TOP</div>
+          <div class="halo-title">
             <h3>复杂背景顶级申请顾问</h3>
-            <div class="meta">多年港校申请策略经验｜平台复核入驻</div>
+            <div>多年港校申请策略经验｜平台复核入驻</div>
           </div>
         </div>
-        <div class="tag-row"><span class="tag">低绩点</span><span class="tag">跨专业</span><span class="tag">港前三冲刺</span></div>
-        <div class="info-list">
-          <div><b>适合：</b>低 GPA、跨专业、经历杂乱、目标过高的申请者</div>
-          <div><b>可帮：</b>项目组合策略、文书主线、风险复核</div>
-          <div><b>方式：</b>60分钟深度策略咨询</div>
+        <div class="halo-line">专门处理低绩点、跨专业、经历杂乱和目标过高的问题，重点是先判断值不值得冲。</div>
+        <div class="tag-row"><span class="tag">低绩点</span><span class="tag">跨专业</span><span class="tag">港前三冲刺</span><span class="tag">Offer选择</span></div>
+        <div class="halo-stats">
+          <div class="halo-stat"><b>策略型</b><span>复杂背景</span></div>
+          <div class="halo-stat"><b>64</b><span>演示咨询记录</span></div>
+          <div class="halo-stat"><b>97%</b><span>演示满意度</span></div>
         </div>
-        <div class="price">参考价：¥399-999 / 次</div>
-      </article>
+        <div class="halo-link"><span>进入个人主页</span><span>→</span></div>
+      </a>
     </div>
   </section>
 
