@@ -1001,6 +1001,69 @@ a{color:inherit}
   }
 }
 
+
+
+/* === v8 status + effort coordination === */
+.status-effort-pair{
+  display:grid !important;
+  grid-template-columns:1fr 1fr !important;
+  gap:22px !important;
+  align-items:stretch !important;
+}
+.status-effort-pair > .card{
+  min-height:560px !important;
+  display:flex !important;
+  flex-direction:column !important;
+}
+.status-card-v8 .radar-center{
+  flex:1;
+  display:grid;
+  place-items:center;
+  padding:12px 0 6px;
+}
+.status-card-v8 .radar-svg{
+  width:min(360px,100%) !important;
+  max-width:360px !important;
+}
+.status-summary-v8{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+  margin-top:12px;
+}
+.status-chip-v8{
+  background:#f6fffc;
+  border:1px solid rgba(34,211,166,.16);
+  border-radius:16px;
+  padding:12px;
+}
+.status-chip-v8 b{display:block;font-size:12px;color:rgba(8,22,20,.55)}
+.status-chip-v8 span{display:block;margin-top:5px;font-size:18px;font-weight:950;color:#087b64}
+.effort-card-v8 .big-score{
+  margin-top:22px;
+  padding:18px 20px;
+  border-radius:22px;
+  background:linear-gradient(135deg,#effff8,#eefcff);
+  border:1px solid rgba(34,211,166,.18);
+  font-size:48px;
+}
+.effort-card-v8 .effort-links-v8{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+  margin-top:auto;
+  padding-top:18px;
+}
+.effort-card-v8 .link-card{
+  min-height:94px;
+}
+@media(max-width:900px){
+  .status-effort-pair{grid-template-columns:1fr !important;}
+  .status-effort-pair > .card{min-height:auto !important;}
+  .status-summary-v8{grid-template-columns:1fr !important;}
+  .effort-card-v8 .effort-links-v8{grid-template-columns:1fr !important;}
+}
+
 </style>
 </head>
 <body>
@@ -1145,14 +1208,20 @@ a{color:inherit}
         </div>
       </section>
 
-      <section class="grid2">
-        <div class="card" id="status-overview">
-          <div class="pill">申请状态总览</div>
-          <h2 style="margin:12px 0 8px;font-size:24px;font-weight:950;letter-spacing:-.04em;">只保留申请状态雷达图</h2>
-          <p style="margin:0 0 18px;color:rgba(8,22,20,.62);line-height:1.7;font-size:14px;">
-            这部分只保留一个综合雷达图，用来快速看清你的申请状态形状；具体学校分层、冲刺/主申/稳妥路径已经放到画像详情页。
-          </p>
-          <div class="radar-wrap">
+      <section class="status-effort-pair">
+        <div class="card status-card-v8" id="status-overview">
+          <div class="flex-head">
+            <div>
+              <div class="pill">申请状态总览</div>
+              <h2 style="margin:12px 0 8px;font-size:24px;font-weight:950;letter-spacing:-.04em;">用一张雷达图看清当前申请形状</h2>
+              <p style="margin:0;color:rgba(8,22,20,.62);line-height:1.7;font-size:14px;">
+                这里不再重复展示能量条，只保留雷达图作为总览。重点是让用户一眼看出：强项在哪里，短板在哪里，下一步该先补哪一块。
+              </p>
+            </div>
+            <button class="btn btn-soft" onclick="openShareModal()">分享画像图</button>
+          </div>
+
+          <div class="radar-center">
             <svg class="radar-svg" viewBox="0 0 320 320" aria-label="申请状态雷达图">
               <defs>
                 <linearGradient id="radarFillMain" x1="0" x2="1" y1="0" y2="1">
@@ -1186,31 +1255,44 @@ a{color:inherit}
               <text class="radar-label" x="28" y="232" text-anchor="middle">预算适配 82</text>
               <text class="radar-label" x="30" y="92" text-anchor="middle">文书潜力 72</text>
             </svg>
-          <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">
-            <button class="btn btn-soft" onclick="openShareModal()">分享雷达图</button>
+          </div>
+
+          <div class="status-summary-v8">
+            <div class="status-chip-v8"><b>当前优势</b><span>学术基础</span></div>
+            <div class="status-chip-v8"><b>优先补强</b><span>语言准备</span></div>
+            <div class="status-chip-v8"><b>下一步</b><span>定主申层</span></div>
+          </div>
+
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;">
             <a class="btn btn-primary" href="profile-detail.html">看画像与选校详情</a>
           </div>
         </div>
 
-        <div class="card" id="effort">
+        <div class="card effort-card-v8" id="effort">
           <div class="flex-head">
             <div>
               <div class="pill">努力模拟器</div>
-              <h2 style="margin:12px 0 0;font-size:24px;font-weight:950;">如果我再努力一点，会怎样？</h2>
+              <h2 style="margin:12px 0 8px;font-size:24px;font-weight:950;letter-spacing:-.04em;">如果我再努力一点，会怎样？</h2>
+              <p style="margin:0;color:rgba(8,22,20,.62);line-height:1.7;font-size:14px;">
+                这一块负责回答“还能不能变好”。用户先在首页快速点选变量，再进入详情页看语言、实习、材料和预算分别怎么补。
+              </p>
             </div>
             <a class="btn btn-primary" href="effort.html">了解详情</a>
           </div>
+
           <div class="big-score" id="effortScore">72 → 81</div>
-          <p id="effortText" style="line-height:1.8;color:#52615d;">
+          <p id="effortText" style="line-height:1.8;color:#52615d;margin:16px 0 0;">
             如果雅思提升到 7.0，语言风险会明显下降。港中文匹配度提高，港大冲刺理由也会更充分。
           </p>
+
           <div class="sim-actions">
             <button class="sim-btn" onclick="changeEffort('ielts')">雅思提高到 7.0</button>
             <button class="sim-btn" onclick="changeEffort('intern')">新增一段相关实习</button>
             <button class="sim-btn" onclick="changeEffort('cv')">提前完成 CV</button>
             <button class="sim-btn" onclick="changeEffort('budget')">预算有限怎么选</button>
           </div>
-          <div style="margin-top:16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;">
+
+          <div class="effort-links-v8">
             <a class="link-card" href="effort.html?type=ielts"><strong>语言怎么补</strong><span>雅思/托福提分路径</span></a>
             <a class="link-card" href="effort.html?type=intern"><strong>实习怎么补</strong><span>相关经历与项目匹配</span></a>
             <a class="link-card" href="effort.html?type=cv"><strong>材料怎么提前</strong><span>CV、PS、推荐信节奏</span></a>
@@ -1219,7 +1301,6 @@ a{color:inherit}
         </div>
       </section>
 
-      
       <section id="life-map" class="card map-card">
         <div class="section-head">
           <div>
