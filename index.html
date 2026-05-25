@@ -87,7 +87,7 @@ a{color:inherit}
 }
 .hero{
   overflow:hidden;
-  padding:40px;
+  padding:52px 40px;
 }
 .hero:before,.map-card:before{
   content:"";
@@ -771,152 +771,6 @@ a{color:inherit}
   .topbar .navlinks{display:none !important;}
 }
 
-
-/* Application state worldview modules */
-.status-hero-grid{
-  display:grid;
-  grid-template-columns:minmax(0,1.1fr) minmax(260px,.9fr);
-  gap:18px;
-  align-items:stretch;
-  margin-top:18px;
-}
-.status-main{
-  background:linear-gradient(135deg,#ffffff,#f2fffb);
-  border:1px solid rgba(8,22,20,.07);
-  border-radius:22px;
-  padding:20px;
-}
-.status-score-card{
-  background:#081614;
-  color:white;
-  border-radius:22px;
-  padding:20px;
-  min-height:100%;
-}
-.status-score-number{
-  font-size:58px;
-  line-height:1;
-  font-weight:950;
-  letter-spacing:-.06em;
-}
-.status-score-bar{
-  height:10px;
-  border-radius:999px;
-  background:rgba(255,255,255,.15);
-  overflow:hidden;
-  margin-top:14px;
-}
-.status-score-bar > div{
-  height:100%;
-  border-radius:999px;
-  background:linear-gradient(90deg,#22d3a6,#58d7ff);
-}
-.status-lines{
-  display:grid;
-  gap:10px;
-  margin-top:16px;
-}
-.status-line{
-  padding:13px 14px;
-  border-radius:16px;
-  background:white;
-  border:1px solid rgba(8,22,20,.06);
-  display:flex;
-  gap:10px;
-  align-items:flex-start;
-}
-.status-line b{
-  min-width:72px;
-  color:#087b64;
-}
-.world-grid{
-  display:grid;
-  grid-template-columns:repeat(6,minmax(0,1fr));
-  gap:12px;
-  margin-top:18px;
-}
-.world-card{
-  background:white;
-  border:1px solid rgba(8,22,20,.07);
-  border-radius:18px;
-  padding:14px;
-  min-height:150px;
-}
-.world-card strong{
-  display:block;
-  font-size:17px;
-  font-weight:950;
-  color:#081614;
-}
-.world-card span{
-  display:block;
-  margin-top:6px;
-  font-size:12px;
-  line-height:1.55;
-  color:rgba(8,22,20,.58);
-}
-.type-grid{
-  display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:12px;
-  margin-top:18px;
-}
-.type-card{
-  background:white;
-  border:1px solid rgba(8,22,20,.07);
-  border-radius:18px;
-  padding:14px;
-}
-.type-card.active{
-  border-color:rgba(34,211,166,.75);
-  box-shadow:0 0 0 4px rgba(34,211,166,.12);
-}
-.type-card strong{
-  display:block;
-  font-size:15px;
-  font-weight:950;
-}
-.type-card span{
-  display:block;
-  margin-top:6px;
-  color:rgba(8,22,20,.58);
-  font-size:12px;
-  line-height:1.45;
-}
-.variable-list{
-  display:grid;
-  gap:10px;
-  margin-top:14px;
-}
-.variable-row{
-  display:grid;
-  grid-template-columns:90px 1fr auto;
-  gap:12px;
-  align-items:center;
-  background:white;
-  border:1px solid rgba(8,22,20,.06);
-  border-radius:16px;
-  padding:12px;
-}
-.variable-row b{
-  font-size:13px;
-}
-.variable-row span{
-  color:rgba(8,22,20,.58);
-  font-size:13px;
-  line-height:1.45;
-}
-@media(max-width:1180px){
-  .status-hero-grid{grid-template-columns:1fr;}
-  .world-grid{grid-template-columns:repeat(3,minmax(0,1fr));}
-  .type-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
-}
-@media(max-width:760px){
-  .world-grid,.type-grid{grid-template-columns:1fr;}
-  .variable-row{grid-template-columns:1fr;}
-  .status-score-number{font-size:48px;}
-}
-
 </style>
 </head>
 <body>
@@ -943,22 +797,15 @@ a{color:inherit}
 </header>
 
 <main class="shell">
-  <section id="home" class="card hero" style="display:flex;flex-direction:column;justify-content:center;min-height:70vh;">
-    <h1 style="
-      font-size: clamp(44px, 6vw, 76px);
-      line-height: 1.05;
-      font-weight: 950;
-      letter-spacing: -0.05em;
-      max-width: 920px;
-      margin: 0;
-    ">
-      帮你看清港校申请的位置、风险与下一步。
-    </h1>
-
-    <div class="hero-actions" style="margin-top:48px;">
-      <a class="btn btn-primary" href="#engine" style="font-size:20px;padding:18px 28px;border-radius:18px;">
-        查看我的申请状态
-      </a>
+  <section id="home" class="card hero">
+    <div class="pill">3分钟看清你的港校申请位置</div>
+    <h1>帮你看清港校申请的位置、风险与下一步。</h1>
+    <p>
+      输入你的背景后，系统会生成申请画像、学校分层、努力模拟和时间地图。你会知道自己现在处于什么位置、风险在哪、哪些地方最值得投入。
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#engine">生成我的申请画像</a>
+      <a class="btn btn-soft" href="#life-map">先看申请时间地图</a>
     </div>
   </section>
 
@@ -1019,34 +866,14 @@ a{color:inherit}
       <section class="card">
         <div class="flex-head">
           <div>
-            <div class="pill">申请状态报告</div>
-            <h2 style="font-size:30px;letter-spacing:-.04em;margin:12px 0 0;">我的申请状态：<span id="profileType">稳中带冲型</span></h2>
+            <div class="pill">申请画像</div>
+            <h2 style="font-size:30px;letter-spacing:-.04em;margin:12px 0 0;">我的申请画像：<span id="profileType">稳中带冲型</span></h2>
           </div>
           <div class="pill" id="profileTags">语言临界 · 实习加分 · 适合分层</div>
         </div>
-
-        <div class="status-hero-grid">
-          <div class="status-main">
-            <p id="profileSummary" style="margin:0;color:#4f5c59;line-height:1.8;">
-              你不是没有机会，而是不适合盲目冲刺。当前最影响结果的变量是语言成绩和申请节奏。
-            </p>
-
-            <div class="status-lines">
-              <div class="status-line"><b>当前位置</b><span id="positionText">主申区间较稳，港前三属于选择性冲刺。</span></div>
-              <div class="status-line"><b>主要风险</b><span id="riskText">语言成绩刚过线，申请节奏容易拖慢第一轮提交。</span></div>
-              <div class="status-line"><b>下一步</b><span id="nextStepText">优先把雅思提升到 7.0，同时提前完成 CV 和推荐信沟通。</span></div>
-            </div>
-          </div>
-
-          <div class="status-score-card">
-            <div style="font-size:13px;font-weight:900;color:rgba(255,255,255,.66);">综合适配度</div>
-            <div class="status-score-number" id="overallScore">72</div>
-            <div style="margin-top:6px;color:rgba(255,255,255,.68);font-size:14px;line-height:1.6;">
-              分数保留用于参考，但真正要看的是：位置、风险、变量和下一步行动。
-            </div>
-            <div class="status-score-bar"><div id="overallScoreBar" style="width:72%"></div></div>
-          </div>
-        </div>
+        <p id="profileSummary" style="margin-top:16px;color:#4f5c59;line-height:1.8;">
+          你不是没有机会，而是不适合盲目冲刺。当前最影响结果的变量是语言成绩和申请节奏。
+        </p>
       </section>
 
       <section class="school-grid">
@@ -1071,15 +898,15 @@ a{color:inherit}
 
       <section class="grid2">
         <div class="card">
-          <h2 style="margin:0 0 8px;font-size:24px;font-weight:950;">我的申请状态六维图</h2><p style="margin:0 0 18px;color:rgba(8,22,20,.58);line-height:1.6;font-size:14px;">用位置、节奏、风险、匹配、投入和变量来理解自己，而不是只看“能不能申上”。</p>
-          <div>位置 <b style="float:right" id="academicScore">86</b></div><div class="meter"><div class="fill" id="academicBar" style="width:86%"></div></div>
-          <div style="margin-top:18px;">风险 <b style="float:right" id="langScore">68</b></div><div class="meter"><div class="fill" id="langBar" style="width:68%"></div></div>
-          <div style="margin-top:18px;">匹配度 <b style="float:right" id="expScore">78</b></div><div class="meter"><div class="fill" id="expBar" style="width:78%"></div></div>
-          <div style="margin-top:18px;">节奏 <b style="float:right" id="paceScore">64</b></div><div class="meter"><div class="fill" id="paceBar" style="width:64%"></div></div>
+          <h2 style="margin:0 0 18px;font-size:24px;font-weight:950;">申请能量条</h2>
+          <div>学术基础 <b style="float:right" id="academicScore">86</b></div><div class="meter"><div class="fill" id="academicBar" style="width:86%"></div></div>
+          <div style="margin-top:18px;">语言准备 <b style="float:right" id="langScore">68</b></div><div class="meter"><div class="fill" id="langBar" style="width:68%"></div></div>
+          <div style="margin-top:18px;">实习科研 <b style="float:right" id="expScore">78</b></div><div class="meter"><div class="fill" id="expBar" style="width:78%"></div></div>
+          <div style="margin-top:18px;">申请节奏 <b style="float:right" id="paceScore">64</b></div><div class="meter"><div class="fill" id="paceBar" style="width:64%"></div></div>
         </div>
 
         <div class="card" id="effort">
-          <h2 style="margin:0;font-size:24px;font-weight:950;">改变一个变量，看看申请状态怎么变。</h2>
+          <h2 style="margin:0;font-size:24px;font-weight:950;">如果我再努力一点，会怎样？</h2>
           <div class="big-score" id="effortScore">72 → 81</div>
           <p id="effortText" style="line-height:1.8;color:#52615d;">
             如果雅思提升到 7.0，语言风险会明显下降。港中文匹配度提高，港大冲刺理由也会更充分。
@@ -1090,50 +917,6 @@ a{color:inherit}
             <button class="sim-btn" onclick="changeEffort('cv')">提前完成 CV</button>
             <button class="sim-btn" onclick="changeEffort('budget')">预算有限怎么选</button>
           </div>
-        </div>
-      </section>
-
-      <section class="card">
-        <div class="flex-head">
-          <div>
-            <div class="pill">申请状态世界观</div>
-            <h2 class="section-title">申请不是一句“能不能上”，而是六个变量一起变化。</h2>
-            <p class="section-sub">
-              你之后看到的学校分层、努力模拟、时间地图和投入建议，都会围绕这六个变量展开。
-            </p>
-          </div>
-        </div>
-
-        <div class="world-grid">
-          <div class="world-card"><strong>位置</strong><span>我现在处于冲刺、主申还是稳妥区间。</span></div>
-          <div class="world-card"><strong>节奏</strong><span>我现在是否赶得上第一轮，是否已经拖慢。</span></div>
-          <div class="world-card"><strong>风险</strong><span>最可能拖后腿的因素，比如语言、GPA、转专业或DDL。</span></div>
-          <div class="world-card"><strong>匹配度</strong><span>我的背景和目标专业是不是对得上。</span></div>
-          <div class="world-card"><strong>投入</strong><span>现在最值得花时间和钱的地方是什么。</span></div>
-          <div class="world-card"><strong>变量</strong><span>如果我补语言、实习或提前提交，结果会怎么变。</span></div>
-        </div>
-      </section>
-
-      <section class="card">
-        <div class="flex-head">
-          <div>
-            <div class="pill">申请状态类型库</div>
-            <h2 class="section-title">你不是一个分数，你是一种申请状态。</h2>
-            <p class="section-sub">状态类型会帮助你理解自己的申请策略：先冲、先稳、先补短板，还是先重新分层。</p>
-          </div>
-        </div>
-
-        <div class="type-grid">
-          <div class="type-card active"><strong>稳中带冲型</strong><span>有基础，但需要分层申请。适合保留冲刺，同时稳住主申。</span></div>
-          <div class="type-card"><strong>语言卡点型</strong><span>最大变量是语言成绩。先补语言，比先买高价文书更有用。</span></div>
-          <div class="type-card"><strong>晚启动危险型</strong><span>背景不差，但时间线拖后腿。需要优先抢回申请节奏。</span></div>
-          <div class="type-card"><strong>预算敏感规划型</strong><span>需要同时考虑香港本地、大湾区和澳门替代路径。</span></div>
-        </div>
-
-        <div class="variable-list">
-          <div class="variable-row"><b>最大变量</b><span id="variableMain">语言成绩</span><strong>优先级 1</strong></div>
-          <div class="variable-row"><b>第二变量</b><span id="variableSecond">申请节奏：CV、推荐信、文书初稿需要提前推进</span><strong>优先级 2</strong></div>
-          <div class="variable-row"><b>第三变量</b><span id="variableThird">院校分层：不要只盯港前三，也要保留主申和稳妥路径</span><strong>优先级 3</strong></div>
         </div>
       </section>
 
@@ -1498,51 +1281,23 @@ function refreshProfile(){
   let variable = "语言成绩";
   let tags = "语言临界 · 实习加分 · 适合分层";
   let summary = "你不是没有机会，而是不适合盲目冲刺。当前最影响结果的变量是语言成绩和申请节奏。";
-  let position = "主申区间较稳，港前三属于选择性冲刺。";
-  let risk = "语言成绩刚过线，申请节奏容易拖慢第一轮提交。";
-  let next = "优先把雅思提升到 7.0，同时提前完成 CV 和推荐信沟通。";
-  let score = 72;
-  let second = "申请节奏：CV、推荐信、文书初稿需要提前推进";
-  let third = "院校分层：不要只盯港前三，也要保留主申和稳妥路径";
-
   if(budget.includes("预算有限")){
     type = "预算敏感规划型";
     variable = "路径选择";
     tags = "预算敏感 · 大湾区替代 · 稳妥推进";
     summary = "你更适合把香港本地院校与大湾区替代路径一起考虑，先控制成本和风险，再保留少量冲刺项目。";
-    position = "香港本地可保留主申，大湾区和澳门路径适合作为现实替代。";
-    risk = "如果只盯香港本地热门项目，预算和结果波动都会变大。";
-    next = "把港中深、港科广、北师港浸大、澳门大学加入路径池。";
-    score = 74;
-    second = "预算适配：优先选择性价比更高、路径更稳的项目";
-    third = "院校分层：香港本地 + 大湾区 + 澳门同时配置";
   }
   if(budget.includes("稳妥")){
     type = "低风险稳妥型";
     variable = "托底组合";
     tags = "稳妥优先 · 控制风险 · 分层申请";
     summary = "你更适合建立清晰的托底组合，不建议只盯港前三。当前重点是提高录取确定性。";
-    position = "主申和稳妥区间更适合当前状态，冲刺项目要控制数量。";
-    risk = "如果过度冲刺，可能导致申请结果不稳定。";
-    next = "先锁定 2-3 个主申项目，再加入 2 个稳妥项目。";
-    score = 76;
-    second = "托底组合：确保至少有现实可落地的院校路径";
-    third = "节奏控制：优先赶第一轮，不要拖到补申阶段";
   }
-
   document.getElementById("profileType").textContent = type;
   document.getElementById("profileTags").textContent = tags;
   document.getElementById("profileSummary").textContent = summary;
   document.getElementById("sideType").textContent = type;
   document.getElementById("sideVariable").textContent = variable;
-  document.getElementById("positionText").textContent = position;
-  document.getElementById("riskText").textContent = risk;
-  document.getElementById("nextStepText").textContent = next;
-  document.getElementById("overallScore").textContent = score;
-  document.getElementById("overallScoreBar").style.width = score + "%";
-  document.getElementById("variableMain").textContent = variable;
-  document.getElementById("variableSecond").textContent = second;
-  document.getElementById("variableThird").textContent = third;
   drawShareCard();
 }
 
@@ -1674,7 +1429,7 @@ async function drawShareCard(){
   ctx.fillText("Nexus AI",118,154);
   ctx.font = "800 28px -apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',Arial,sans-serif";
   ctx.fillStyle = "#087b64";
-  ctx.fillText("我的申请状态报告",118,198);
+  ctx.fillText("我的港校申请画像",118,198);
 
   ctx.fillStyle = "#081614";
   ctx.font = "950 66px -apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',Arial,sans-serif";
@@ -1705,7 +1460,7 @@ async function drawShareCard(){
 
   ctx.font = "750 28px -apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',Arial,sans-serif";
   ctx.fillStyle = "#40504d";
-  fitText(ctx,"综合适配度 72/100。当前最影响结果的变量是语言成绩和申请节奏。建议先稳住主申路径，再保留少量冲刺项目。",170,1174,730,42,3);
+  fitText(ctx,"当前最影响结果的变量是语言成绩和申请节奏。建议先稳住主申路径，再保留少量冲刺项目。",170,1174,730,42,3);
 
   // footer, no QR
   ctx.fillStyle = "#081614";
