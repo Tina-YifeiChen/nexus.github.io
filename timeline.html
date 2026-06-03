@@ -268,6 +268,33 @@ body{padding-bottom:96px !important;}
   .agent-title{font-size:24px}
 }
 
+.long-map-card{overflow:hidden;margin-top:24px}
+.long-map-card:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(8,22,20,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(8,22,20,.04) 1px,transparent 1px);background-size:32px 32px;mask-image:linear-gradient(to bottom,black,transparent 95%);pointer-events:none}
+.long-map-head{position:relative;display:flex;align-items:flex-end;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.map-legend{display:flex;gap:8px;flex-wrap:wrap}
+.map-legend span{padding:8px 10px;border-radius:999px;background:#f1fffb;color:#087b64;border:1px solid rgba(34,211,166,.16);font-size:12px;font-weight:950}
+.cycle-map{position:relative;margin-top:26px;padding:18px 0 6px;overflow-x:auto}
+.cycle-rail{position:absolute;left:24px;right:24px;top:64px;height:4px;border-radius:999px;background:linear-gradient(90deg,rgba(34,211,166,.26),rgba(88,215,255,.28),rgba(255,122,112,.2))}
+.cycle-grid{position:relative;display:grid;grid-template-columns:repeat(7,minmax(168px,1fr));gap:14px;min-width:1120px}
+.cycle-node{position:relative;border:1px solid rgba(8,22,20,.08);background:rgba(255,255,255,.9);border-radius:24px;padding:18px;min-height:188px;text-align:left;cursor:pointer;box-shadow:0 14px 42px rgba(8,22,20,.045);transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+.cycle-node:hover{transform:translateY(-3px);border-color:rgba(34,211,166,.42)}
+.cycle-node.active{border-color:rgba(34,211,166,.78);box-shadow:0 0 0 5px rgba(34,211,166,.12),0 18px 60px rgba(8,22,20,.08)}
+.cycle-dot{width:18px;height:18px;border-radius:999px;background:linear-gradient(135deg,var(--mint),var(--cyan));box-shadow:0 0 0 7px rgba(34,211,166,.12);margin-bottom:16px}
+.cycle-node b{display:block;font-size:13px;color:#087b64}
+.cycle-node strong{display:block;margin-top:7px;font-size:18px;letter-spacing:-.03em}
+.cycle-node p{margin:10px 0 0;color:rgba(8,22,20,.58);font-size:13px;line-height:1.6}
+.cycle-node em{display:inline-flex;margin-top:14px;font-style:normal;font-size:12px;font-weight:950;color:var(--ink);background:#f4fffc;border:1px solid rgba(34,211,166,.16);border-radius:999px;padding:7px 10px}
+.drill-card{margin-top:22px;background:linear-gradient(135deg,#ffffff,#f4fffc);border:1px solid rgba(8,22,20,.08);border-radius:24px;padding:20px}
+.drill-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:14px}
+.drill-tabs{display:flex;gap:8px;flex-wrap:wrap}
+.drill-tab{border:1px solid rgba(8,22,20,.08);background:white;border-radius:999px;padding:10px 12px;font-weight:950;color:rgba(8,22,20,.64);cursor:pointer}
+.drill-tab.active{background:var(--ink);color:white;border-color:var(--ink)}
+.drill-panel{display:grid;gap:12px;margin-top:14px}
+.drill-item{display:flex;gap:12px;align-items:flex-start;padding:15px;border:1px solid rgba(8,22,20,.07);background:white;border-radius:18px;line-height:1.7;color:rgba(8,22,20,.72)}
+.drill-item strong{color:var(--ink)}
+.detail-jump{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.detail-jump a{padding:9px 12px;border-radius:999px;text-decoration:none;background:#f1fffb;color:#087b64;border:1px solid rgba(34,211,166,.16);font-size:12px;font-weight:950}
+@media(max-width:980px){.cycle-grid{grid-template-columns:repeat(7,168px);min-width:1240px}.cycle-map{padding-bottom:12px}}
 </style>
 <link rel="stylesheet" href="nexus-clean-v22.css" />
 </head>
@@ -306,18 +333,38 @@ body{padding-bottom:96px !important;}
   </div>
 </section>
 
-<section class="card hero">
+  <section class="card hero">
     <div class="pill">大湾区升学导航地图 · 阶段详情页</div>
-    <h1>申请时间地图：每个阶段该做什么，一眼看清。</h1>
-    <p>首页地图负责让用户看到完整路径；这个详情页负责把每个阶段拆成具体任务、材料清单、风险提醒、花钱优先级和是否需要真人顾问。这样产品会更像“申请导航系统”，而不是普通展示页。</p>
+    <h1>申请时间地图：先看完整周期，再点进每个阶段。</h1>
+    <p>这页会先展示一张从 1 月到次年 6 月的长周期申请地图。用户点击某个阶段后，再进入该阶段的任务、材料、风险提醒、投入建议和顾问复核建议。</p>
     <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;position:relative;">
-      <a class="btn btn-primary" href="#details">查看当前阶段</a>
+      <a class="btn btn-primary" href="#long-cycle">查看长周期地图</a>
       <a class="btn btn-soft" href="index.html#life-map">返回时间地图</a>
     </div>
   </section>
-  <section class="card" style="margin-top:24px;" id="details">
+
+  <section class="card long-map-card" id="long-cycle" data-v22-folded="1">
+    <div class="long-map-head">
+      <div>
+        <div class="pill">长周期地图</div>
+        <h2 class="section-title">从探索定位到 Offer 决策，一张图看完整申请周期。</h2>
+        <p class="section-sub">先点选一个阶段进入详情，再在阶段内查看“要做什么”和“准备什么”。这比单纯时间线更接近真实申请导航。</p>
+      </div>
+      <div class="map-legend">
+        <span>点击阶段</span>
+        <span>进入详情</span>
+        <span>再看任务与材料</span>
+      </div>
+    </div>
+    <div class="cycle-map" aria-label="港校申请长周期地图">
+      <div class="cycle-rail"></div>
+      <div class="cycle-grid" id="cycleMap"></div>
+    </div>
+  </section>
+
+  <section class="card" style="margin-top:24px;" id="details" data-v22-folded="1">
     <div class="section-head">
-      <div><div class="pill">选择阶段</div><h2 class="section-title">从梦想期、探索期到申请期和 Offer 期，每个阶段都有不同的路况、材料和风险提醒。</h2><p class="section-sub">用户可以从首页点击某个时间节点进入这里，也可以在本页切换不同阶段。</p></div>
+      <div><div class="pill">阶段详情</div><h2 class="section-title">点进阶段后，再看这个阶段要做什么和准备什么。</h2><p class="section-sub">你可以从上方长周期地图进入某个阶段，也可以在这里快速切换不同阶段。</p></div>
     </div>
     <div class="stage-tabs" id="stageTabs"></div>
   </section>
@@ -330,6 +377,20 @@ body{padding-bottom:96px !important;}
       <div class="grid2" id="progressGrid" style="margin:20px 0;"></div>
       <h2 class="section-title" style="font-size:26px;">这个阶段具体要做什么</h2>
       <div class="task-list" id="taskList"></div>
+      <div class="drill-card" id="stage-drill">
+        <div class="drill-head">
+          <div>
+            <div class="pill">阶段内下钻</div>
+            <h2 class="section-title" style="font-size:24px;margin-bottom:0;">继续点开：任务、材料、风险与投入建议</h2>
+          </div>
+          <div class="detail-jump">
+            <a href="#long-cycle">回到长周期地图</a>
+            <a href="#details">切换阶段</a>
+          </div>
+        </div>
+        <div class="drill-tabs" id="drillTabs"></div>
+        <div class="drill-panel" id="drillPanel"></div>
+      </div>
     </div>
     <aside class="side-stack">
       <div class="side-card"><h3>要准备的材料</h3><div class="material-list" id="materialList"></div></div>
@@ -573,10 +634,63 @@ const stages = [
 ];
 let current = Number(new URLSearchParams(location.search).get('stage') || 1);
 if(!Number.isInteger(current) || current < 0 || current >= stages.length) current = 1;
+let currentDrill = 'tasks';
+const drillLabels = {
+  tasks: '要做什么',
+  materials: '准备什么',
+  risk: '风险提醒',
+  money: '投入建议',
+  advisor: '顾问复核'
+};
+function renderCycleMap(){
+  document.getElementById('cycleMap').innerHTML = stages.map((s,i)=>`
+    <button class="cycle-node ${i===current?'active':''}" onclick="selectStage(${i}, true)" type="button" aria-label="查看${s.name}">
+      <div class="cycle-dot"></div>
+      <b>${s.month}</b>
+      <strong>${s.name}</strong>
+      <p>${s.summary.slice(0, 58)}...</p>
+      <em>点进阶段</em>
+    </button>
+  `).join('');
+}
+function renderDrill(){
+  const s = stages[current];
+  document.getElementById('drillTabs').innerHTML = Object.keys(drillLabels).map(key=>`
+    <button class="drill-tab ${key===currentDrill?'active':''}" type="button" onclick="selectDrill('${key}')">${drillLabels[key]}</button>
+  `).join('');
+
+  let items = [];
+  if(currentDrill === 'tasks'){
+    items = s.tasks.map((text, index)=>({title:`任务 ${index + 1}`, body:text}));
+  }
+  if(currentDrill === 'materials'){
+    items = s.materials.map((text, index)=>({title:`材料 ${index + 1}`, body:text}));
+  }
+  if(currentDrill === 'risk'){
+    items = [{title:'本阶段最大风险', body:s.risk}];
+  }
+  if(currentDrill === 'money'){
+    items = [{title:'钱应该花在哪里', body:s.money}];
+  }
+  if(currentDrill === 'advisor'){
+    items = [{title:'什么时候需要真人顾问', body:s.advisor}];
+  }
+
+  document.getElementById('drillPanel').innerHTML = items.map(item=>`
+    <div class="drill-item">
+      <div class="check">✓</div>
+      <div><strong>${item.title}</strong><div>${item.body}</div></div>
+    </div>
+  `).join('');
+}
+function selectDrill(key){
+  currentDrill = key;
+  renderDrill();
+}
 function renderTabs(){
   document.getElementById('stageTabs').innerHTML = stages.map((s,i)=>`<a class="stage-tab ${i===current?'active':''}" href="timeline.html?stage=${i}" onclick="event.preventDefault(); selectStage(${i});"><b>${s.month}</b><span>${s.name}</span><small style="display:block;margin-top:7px;color:rgba(8,22,20,.55);font-weight:800;">${s.round}</small></a>`).join('');
 }
-function selectStage(i){
+function selectStage(i, shouldScroll){
   current = i;
   const s = stages[i];
   history.replaceState(null,'',`timeline.html?stage=${i}`);
@@ -591,7 +705,14 @@ function selectStage(i){
   document.getElementById('advisorBox').textContent = s.advisor;
   document.getElementById('moneyBox').textContent = s.money;
   renderTabs();
+  renderCycleMap();
+  renderDrill();
+  if(shouldScroll){
+    document.getElementById('details').scrollIntoView({behavior:'smooth', block:'start'});
+  }
 }
+window.selectStage = selectStage;
+window.selectDrill = selectDrill;
 selectStage(current);
 </script>
 
