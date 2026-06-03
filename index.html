@@ -1,13 +1,2155 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Nexus AI 智航湾区｜首页</title><link rel="stylesheet" href="assets/css/style.css"></head><body><header class="topbar"><div class="nav-shell"><a class="brand" href="index.html"><div class="logo">N</div><div class="brand-text"><b>Nexus AI 智航湾区</b><span>Multi-Agent 升学导航平台</span></div></a><nav class="navlinks"><a href="index.html">首页</a><a href="status.html">状态</a><a href="timeline.html">地图</a><a href="advisors.html">顾问</a></nav><a class="nav-cta" href="status.html">查看状态</a></div></header>
-<nav class="quick-nav"><a href="index.html">首页<span>入口</span></a><a href="status.html">状态<span>诊断</span></a><a href="timeline.html">地图<span>节点</span></a><a href="advisors.html">顾问<span>复核</span></a></nav>
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Nexus AI 智航湾区｜Multi-Agent升学决策平台</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+<style>
+:root{
+  --ink:#081614;
+  --muted:#5b6865;
+  --line:#d9ede8;
+  --mint:#22d3a6;
+  --cyan:#58d7ff;
+  --blue:#5a7cff;
+  --lemon:#ffe7a8;
+  --coral:#ff8a7a;
+  --paper:#f7fffd;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:
+    radial-gradient(circle at 10% 7%, rgba(34,211,166,.16), transparent 26%),
+    radial-gradient(circle at 88% 18%, rgba(88,215,255,.16), transparent 28%),
+    linear-gradient(180deg,#f8fffd 0%,#effbf8 45%,#fbfefd 100%);
+  color:var(--ink);
+}
+a{color:inherit}
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:80;
+  background:rgba(255,255,255,.88);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(8,22,20,.08);
+}
+.shell{
+  width:min(1460px,100%);
+  margin:auto;
+  padding:28px;
+}
+.nav-shell{
+  width:min(1460px,100%);
+  margin:auto;
+  padding:14px 28px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+}
+.logo{
+  width:44px;height:44px;border-radius:14px;
+  display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--mint),var(--cyan));
+  font-weight:950;
+}
+.navlinks{
+  display:flex;
+  gap:24px;
+  font-size:14px;
+  font-weight:900;
+  color:rgba(8,22,20,.72);
+}
+.navlinks a{text-decoration:none}
+.nav-cta{
+  background:var(--ink);
+  color:white;
+  padding:12px 18px;
+  border-radius:14px;
+  text-decoration:none;
+  font-weight:950;
+  box-shadow:0 12px 32px rgba(8,22,20,.15);
+}
+.card{
+  position:relative;
+  background:rgba(255,255,255,.84);
+  border:1px solid rgba(8,22,20,.08);
+  border-radius:26px;
+  padding:24px;
+  box-shadow:0 18px 60px rgba(8,22,20,.06);
+  backdrop-filter:blur(14px);
+}
+.hero{
+  overflow:hidden;
+  padding:52px 40px;
+}
+.hero:before,.map-card:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(8,22,20,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(8,22,20,.045) 1px, transparent 1px);
+  background-size:30px 30px;
+  mask-image:linear-gradient(to bottom, black, transparent 92%);
+  pointer-events:none;
+}
+.pill{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:9px 13px;
+  border-radius:999px;
+  background:#ecfff8;
+  color:#087b64;
+  font-weight:950;
+  font-size:13px;
+  border:1px solid rgba(34,211,166,.16);
+}
+.hero h1{
+  position:relative;
+  font-size:clamp(38px,6vw,76px);
+  line-height:.98;
+  margin:24px 0 18px;
+  letter-spacing:-.06em;
+  max-width:980px;
+}
+.hero p{
+  position:relative;
+  max-width:850px;
+  font-size:18px;
+  line-height:1.85;
+  color:rgba(8,22,20,.64);
+}
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:26px;
+}
+.btn{
+  border:none;
+  border-radius:16px;
+  padding:14px 18px;
+  font-weight:950;
+  cursor:pointer;
+  text-decoration:none;
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+}
+.btn-primary{
+  background:var(--ink);
+  color:white;
+  box-shadow:0 14px 38px rgba(8,22,20,.15);
+}
+.btn-soft{
+  background:white;
+  color:var(--ink);
+  border:1px solid rgba(8,22,20,.1);
+}
+.app-layout{
+  display:grid;
+  grid-template-columns:minmax(330px,420px) minmax(0,1fr);
+  gap:24px;
+  align-items:start;
+}
+.left-panel{
+  position:sticky;
+  top:94px;
+  align-self:start;
+}
+.input{
+  width:100%;
+  padding:13px 14px;
+  border-radius:14px;
+  border:1px solid rgba(8,22,20,.1);
+  margin-top:8px;
+  background:white;
+  outline:none;
+}
+.input:focus{border-color:rgba(34,211,166,.75);box-shadow:0 0 0 4px rgba(34,211,166,.12)}
+.label{
+  font-size:14px;
+  font-weight:850;
+  margin-top:15px;
+  display:block;
+  color:rgba(8,22,20,.74);
+}
+.helper{
+  margin-top:16px;
+  padding:16px;
+  border-radius:18px;
+  background:linear-gradient(135deg,#e9fff8,#eefcff);
+  border:1px solid rgba(34,211,166,.18);
+}
+.right-stack{
+  display:grid;
+  gap:20px;
+}
+.flex-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:14px;
+  flex-wrap:wrap;
+}
+.school-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:16px;
+}
+.school-card{
+  padding:18px;
+  border-radius:20px;
+  background:white;
+  border:1px solid rgba(8,22,20,.07);
+}
+.school-card h3{margin:0 0 10px;font-size:18px}
+.school-card div{line-height:1.7;color:rgba(8,22,20,.68)}
+.grid2{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:20px;
+}
+.meter{
+  height:10px;
+  border-radius:999px;
+  background:#e8f0ef;
+  overflow:hidden;
+}
+.fill{
+  height:100%;
+  border-radius:999px;
+  background:linear-gradient(90deg,var(--mint),var(--cyan));
+  transition:width .35s ease;
+}
+.big-score{
+  font-size:54px;
+  font-weight:950;
+  letter-spacing:-.05em;
+}
+.sim-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:14px;
+}
+.sim-btn{
+  border:none;
+  padding:11px 14px;
+  border-radius:999px;
+  background:#e7faf6;
+  cursor:pointer;
+  font-weight:850;
+  color:#087b64;
+  transition:.18s ease;
+}
+.sim-btn:hover{transform:translateY(-2px);background:#dff8f2}
+
+/* Life map */
+.map-card{
+  overflow:hidden;
+}
+.section-head{
+  position:relative;
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  align-items:flex-start;
+  margin-bottom:22px;
+}
+.section-title{
+  font-size:30px;
+  font-weight:950;
+  letter-spacing:-.04em;
+  margin:10px 0 6px;
+}
+.section-sub{
+  margin:0;
+  color:rgba(8,22,20,.62);
+  line-height:1.75;
+  max-width:780px;
+}
+.stage-board{
+  position:relative;
+  display:grid;
+  grid-template-columns:minmax(0,1.2fr) minmax(300px,.8fr);
+  gap:22px;
+  align-items:stretch;
+}
+.map-track{
+  position:relative;
+  padding:24px 18px 18px;
+  border-radius:24px;
+  background:rgba(255,255,255,.74);
+  border:1px solid rgba(8,22,20,.08);
+  overflow-x:auto;
+  overflow-y:visible;
+}
+.route{
+  position:absolute;
+  top:82px;
+  left:72px;
+  right:72px;
+  height:8px;
+  border-radius:999px;
+  background:linear-gradient(90deg,#d8eee8,#b7efe1,#a6eefd,#d8eee8);
+  z-index:1;
+}
+.stage-row{
+  position:relative;
+  z-index:2;
+  display:grid;
+  grid-template-columns:repeat(7,minmax(160px,1fr));
+  gap:14px;
+  min-width:1180px;
+  padding-bottom:8px;
+}
+.stage-node{
+  cursor:pointer;
+  display:block;
+  text-decoration:none;
+  color:inherit;
+  border:1px solid rgba(8,22,20,.08);
+  background:rgba(255,255,255,.96);
+  border-radius:22px;
+  min-height:180px;
+  padding:16px 14px;
+  transition:.22s ease;
+  position:relative;
+}
+.stage-node:hover{transform:translateY(-4px);box-shadow:0 16px 32px rgba(8,22,20,.08)}
+.stage-node.active{
+  border-color:rgba(34,211,166,.72);
+  box-shadow:0 0 0 4px rgba(34,211,166,.12),0 18px 36px rgba(34,211,166,.13);
+}
+.node-dot{
+  width:30px;height:30px;border-radius:999px;background:#fff;border:6px solid var(--mint);
+  box-shadow:0 0 0 5px rgba(34,211,166,.12);
+  margin-bottom:12px;
+}
+.node-month{font-size:12px;font-weight:950;color:#0a7a65}
+.node-name{font-size:15px;font-weight:950;margin-top:6px;line-height:1.25}
+.node-desc{font-size:12px;color:rgba(8,22,20,.58);line-height:1.45;margin-top:8px}
+.round-badge{
+  display:inline-flex;margin-top:10px;padding:5px 8px;border-radius:999px;font-size:11px;font-weight:950;
+  background:#f1fffb;color:#087b64;border:1px solid rgba(34,211,166,.18);
+}
+.detail-panel{
+  position:relative;
+  border-radius:24px;
+  background:linear-gradient(180deg,#ffffff,#f4fffc);
+  border:1px solid rgba(8,22,20,.08);
+  padding:22px;
+  min-height:360px;
+}
+.detail-kicker{font-size:12px;font-weight:950;letter-spacing:.16em;color:#0a9074;text-transform:uppercase}
+.detail-title{font-size:26px;font-weight:950;margin:8px 0 6px;letter-spacing:-.04em}
+.detail-time{color:rgba(8,22,20,.58);font-size:14px;font-weight:850}
+.progress-strip{
+  margin-top:18px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+.mini-progress{
+  background:white;
+  border:1px solid rgba(8,22,20,.06);
+  border-radius:16px;
+  padding:12px;
+}
+.mini-progress b{font-size:12px}
+.mini-progress span{display:block;margin-top:6px;font-size:18px;font-weight:950}
+.task-list{margin-top:18px;display:grid;gap:10px}
+.task{
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  padding:13px;
+  border-radius:16px;
+  background:white;
+  border:1px solid rgba(8,22,20,.06);
+}
+.check{
+  flex:0 0 auto;
+  width:22px;height:22px;border-radius:50%;
+  background:linear-gradient(135deg,var(--mint),var(--cyan));
+  color:white;font-size:13px;font-weight:950;display:grid;place-items:center;
+}
+.warning{
+  margin-top:16px;
+  padding:14px;
+  border-radius:16px;
+  background:#fffaf0;
+  border:1px solid rgba(246,183,79,.28);
+  color:#6b4b11;
+  line-height:1.65;
+  font-size:14px;
+}
+.rounds{
+  margin-top:18px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+.round-card{
+  background:white;
+  border:1px solid rgba(8,22,20,.07);
+  border-radius:18px;
+  padding:14px;
+}
+.round-card strong{display:block;font-size:14px}
+.round-card p{margin:7px 0 0;color:rgba(8,22,20,.58);font-size:12px;line-height:1.45}
+
+/* Demo profile and radar */
+.demo-grid{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:20px;
+  align-items:stretch;
+}
+.profile-card,.radar-panel{
+  background:linear-gradient(180deg,#ffffff,#f5fffc);
+  border:1px solid rgba(8,22,20,.08);
+  border-radius:24px;
+  padding:22px;
+}
+.demo-badge{
+  display:inline-flex;
+  padding:8px 11px;
+  border-radius:999px;
+  background:#fff4e5;
+  color:#8a5b00;
+  font-size:12px;
+  font-weight:950;
+  border:1px solid rgba(246,183,79,.24);
+}
+.profile-name{
+  font-size:26px;
+  font-weight:950;
+  letter-spacing:-.04em;
+  margin:8px 0 6px;
+}
+.profile-meta{
+  color:rgba(8,22,20,.62);
+  line-height:1.65;
+  font-size:14px;
+}
+.profile-facts{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+  margin-top:18px;
+}
+.fact{
+  background:white;
+  border:1px solid rgba(8,22,20,.06);
+  border-radius:16px;
+  padding:13px;
+}
+.fact b{display:block;font-size:12px;color:rgba(8,22,20,.5)}
+.fact span{display:block;margin-top:6px;font-size:17px;font-weight:950}
+.path-cards{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+  margin-top:18px;
+}
+.path-card{
+  border-radius:18px;
+  padding:14px;
+  background:white;
+  border:1px solid rgba(8,22,20,.07);
+}
+.path-card strong{display:block;font-size:14px}
+.path-card p{margin:7px 0 0;font-size:12px;line-height:1.45;color:rgba(8,22,20,.58)}
+.radar-wrap{
+  display:grid;
+  grid-template-columns:330px minmax(0,1fr);
+  gap:18px;
+  align-items:center;
+}
+.radar-svg{
+  width:100%;
+  max-width:330px;
+  aspect-ratio:1/1;
+  display:block;
+}
+.radar-label{
+  font-size:11px;
+  font-weight:900;
+  fill:rgba(8,22,20,.72);
+}
+.radar-score{display:grid;gap:10px}
+.radar-item{
+  padding:12px;
+  border-radius:16px;
+  background:white;
+  border:1px solid rgba(8,22,20,.06);
+}
+.radar-item-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  font-size:13px;
+  font-weight:900;
+}
+.radar-bar{
+  margin-top:8px;
+  height:8px;
+  border-radius:999px;
+  background:#e8f0ef;
+  overflow:hidden;
+}
+.radar-bar > div{
+  height:100%;
+  border-radius:999px;
+  background:linear-gradient(90deg,var(--mint),var(--cyan));
+}
+.test-result-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+  margin-top:18px;
+}
+.test-result{
+  background:white;
+  border:1px solid rgba(8,22,20,.06);
+  border-radius:18px;
+  padding:14px;
+}
+.test-result b{display:block;font-size:22px;font-weight:950;letter-spacing:-.04em}
+.test-result span{display:block;margin-top:6px;font-size:12px;line-height:1.45;color:rgba(8,22,20,.58)}
+
+/* School links */
+.school-directory{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:14px;
+}
+.link-card{
+  display:block;
+  text-decoration:none;
+  background:white;
+  border:1px solid rgba(8,22,20,.07);
+  border-radius:18px;
+  padding:16px;
+  transition:.18s ease;
+}
+.link-card:hover{transform:translateY(-3px);box-shadow:0 14px 28px rgba(8,22,20,.08)}
+.link-card strong{display:block;font-size:15px}
+.link-card span{display:block;margin-top:6px;color:rgba(8,22,20,.58);font-size:12px}
+
+/* Share card */
+.share-layout{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 420px;
+  gap:20px;
+  align-items:start;
+}
+.share-preview{
+  width:100%;
+  max-width:420px;
+  aspect-ratio:3/4;
+  border-radius:24px;
+  background:white;
+  border:1px solid rgba(8,22,20,.08);
+  box-shadow:0 18px 60px rgba(8,22,20,.08);
+}
+.share-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:16px;
+}
+
+
+/* Share image modal */
+.share-simple{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:22px;
+  flex-wrap:wrap;
+}
+.share-modal{
+  position:fixed;
+  inset:0;
+  z-index:120;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:22px;
+  background:rgba(8,22,20,.58);
+  backdrop-filter:blur(14px);
+}
+.share-modal.open{
+  display:flex;
+}
+.share-modal-panel{
+  width:min(520px,96vw);
+  max-height:92vh;
+  overflow:auto;
+  background:white;
+  border-radius:28px;
+  padding:18px;
+  box-shadow:0 30px 110px rgba(0,0,0,.28);
+  border:1px solid rgba(255,255,255,.22);
+}
+.share-modal-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-bottom:12px;
+}
+.share-modal-head strong{
+  font-size:18px;
+  font-weight:950;
+}
+.close-btn{
+  width:38px;
+  height:38px;
+  border:none;
+  border-radius:999px;
+  background:#eef8f5;
+  cursor:pointer;
+  font-size:20px;
+  font-weight:900;
+}
+.share-popup-canvas{
+  width:100%;
+  height:auto;
+  display:block;
+  border-radius:22px;
+  border:1px solid rgba(8,22,20,.08);
+  background:#f7fffd;
+}
+.share-modal-actions{
+  display:flex;
+  gap:10px;
+  margin-top:14px;
+}
+
+@media(max-width:1180px){
+  .app-layout{grid-template-columns:1fr}
+  .left-panel{position:relative;top:0}
+  .stage-board{grid-template-columns:1fr}
+  .demo-grid,.share-layout{grid-template-columns:1fr}
+  .radar-wrap{grid-template-columns:1fr}
+  .radar-svg,.share-preview{margin:auto}
+  .school-directory{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:860px){
+  .navlinks{display:none}
+  .shell{padding:18px}
+  .nav-shell{padding:12px 18px}
+  .hero{padding:26px}
+  .school-grid,.grid2,.profile-facts,.path-cards,.test-result-grid{grid-template-columns:1fr}
+  .school-directory{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .progress-strip,.rounds{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .card{border-radius:20px;padding:18px}
+  .hero h1{font-size:38px}
+  .hero p{font-size:16px}
+  .stage-row{
+    min-width:0;
+    display:grid;
+    grid-template-columns:1fr;
+  }
+  .map-track{overflow:visible}
+  .route{display:none}
+  .stage-node{
+    min-height:auto;
+    display:grid;
+    grid-template-columns:44px minmax(0,1fr);
+    gap:8px 10px;
+    align-items:start;
+  }
+  .node-dot{grid-row:span 4;margin:0}
+  .school-directory{grid-template-columns:1fr}
+  .big-score{font-size:42px}
+  .share-preview{max-width:100%}
+}
+
+/* Unified three-device layout patch */
+.shell{
+  width:min(1240px,100%) !important;
+  margin:auto !important;
+  padding:24px !important;
+}
+.app-layout{
+  display:block !important;
+}
+.left-panel{
+  position:relative !important;
+  top:auto !important;
+  width:100% !important;
+  margin-bottom:22px !important;
+}
+.right-stack{
+  display:grid !important;
+  gap:22px !important;
+}
+.left-panel .card{
+  display:block !important;
+}
+.left-panel .card form,
+.left-panel .card{
+  max-width:none !important;
+}
+.left-panel .helper{
+  display:block !important;
+}
+.school-grid,
+.grid2,
+.demo-grid,
+.stage-board,
+.school-directory{
+  display:grid !important;
+}
+.school-grid{
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr)) !important;
+}
+.grid2{
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr)) !important;
+}
+.demo-grid{
+  grid-template-columns:1fr !important;
+}
+.stage-board{
+  grid-template-columns:1fr !important;
+}
+.school-directory{
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr)) !important;
+}
+.radar-wrap{
+  grid-template-columns:1fr !important;
+}
+.radar-svg{
+  margin:auto !important;
+}
+.stage-row{
+  grid-template-columns:repeat(7,minmax(150px,1fr)) !important;
+  min-width:1100px !important;
+}
+.map-track{
+  overflow-x:auto !important;
+}
+.share-modal-panel{
+  width:min(520px,96vw) !important;
+}
+.share-popup-canvas{
+  width:100% !important;
+  max-height:78vh !important;
+  object-fit:contain !important;
+}
+@media(max-width:760px){
+  .shell{padding:16px !important;}
+  .hero{padding:22px !important;}
+  .hero h1{font-size:36px !important;}
+  .stage-row{
+    grid-template-columns:1fr !important;
+    min-width:0 !important;
+  }
+  .route{display:none !important;}
+  .map-track{overflow:visible !important;}
+  .stage-node{
+    min-height:auto !important;
+    display:grid !important;
+    grid-template-columns:44px 1fr !important;
+  }
+  .node-dot{grid-row:span 4 !important;margin:0 !important;}
+  .nav-cta{padding:10px 14px !important;}
+  .topbar .navlinks{display:none !important;}
+}
+
+
+/* Simple-first form + generating ritual */
+.advanced-toggle{
+  margin-top:14px;
+  width:100%;
+  border:none;
+  background:#f0fbf8;
+  color:#087b64;
+  border-radius:14px;
+  padding:13px 14px;
+  font-weight:900;
+  cursor:pointer;
+  text-align:left;
+}
+.advanced-fields{
+  display:none;
+  margin-top:8px;
+}
+.advanced-fields.open{
+  display:block;
+}
+.input-hint{
+  margin-top:12px;
+  color:rgba(8,22,20,.58);
+  font-size:14px;
+  line-height:1.65;
+}
+.scan-overlay{
+  position:fixed;
+  inset:0;
+  z-index:150;
+  display:none;
+  place-items:center;
+  background:rgba(248,255,253,.74);
+  backdrop-filter:blur(18px);
+  padding:22px;
+}
+.scan-overlay.open{
+  display:grid;
+}
+.scan-box{
+  width:min(520px,92vw);
+  border-radius:30px;
+  background:rgba(255,255,255,.92);
+  border:1px solid rgba(8,22,20,.08);
+  box-shadow:0 30px 110px rgba(8,22,20,.18);
+  padding:28px;
+  text-align:center;
+}
+.scan-orb{
+  width:132px;
+  height:132px;
+  margin:0 auto 20px;
+  border-radius:999px;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(34,211,166,.9), rgba(88,215,255,.35) 45%, transparent 68%),
+    conic-gradient(from 0deg, rgba(34,211,166,.1), rgba(88,215,255,.75), rgba(34,211,166,.1));
+  animation:spinScan 1.4s linear infinite;
+  position:relative;
+}
+.scan-orb:after{
+  content:"";
+  position:absolute;
+  inset:26px;
+  border-radius:999px;
+  background:white;
+  box-shadow:inset 0 0 0 1px rgba(8,22,20,.06);
+}
+.scan-text{
+  font-size:22px;
+  font-weight:950;
+  letter-spacing:-.03em;
+}
+.scan-sub{
+  margin-top:10px;
+  font-size:14px;
+  color:rgba(8,22,20,.58);
+}
+.scan-dots{
+  margin-top:18px;
+  display:flex;
+  justify-content:center;
+  gap:8px;
+}
+.scan-dots span{
+  width:8px;
+  height:8px;
+  border-radius:999px;
+  background:#c8ebe3;
+  animation:pulseDot 1s infinite ease-in-out;
+}
+.scan-dots span:nth-child(2){animation-delay:.15s}
+.scan-dots span:nth-child(3){animation-delay:.3s}
+@keyframes spinScan{to{transform:rotate(360deg)}}
+@keyframes pulseDot{50%{transform:translateY(-4px);background:#22d3a6}}
+
+
+/* === FINAL UNIFIED RESPONSIVE OVERRIDE v2 === */
+/* 三端统一原则：同一内容顺序，同一功能，不隐藏核心模块。桌面只允许更宽，不允许变成另一套结构。 */
+.shell{
+  width:min(1180px,100%) !important;
+  margin:0 auto !important;
+  padding:24px !important;
+}
+.app-layout{
+  display:block !important;
+}
+.left-panel{
+  position:relative !important;
+  top:auto !important;
+  width:100% !important;
+  margin:0 0 22px 0 !important;
+}
+.left-panel > .card{
+  width:100% !important;
+}
+.right-stack{
+  display:grid !important;
+  grid-template-columns:1fr !important;
+  gap:22px !important;
+}
+.hero{
+  padding:52px 40px !important;
+}
+.hero h1{
+  max-width:980px !important;
+}
+.hero-actions{
+  margin-top:30px !important;
+}
+.school-grid,
+.grid2,
+.demo-grid,
+.stage-board,
+.school-directory,
+.share-layout{
+  display:grid !important;
+  grid-template-columns:1fr !important;
+  gap:20px !important;
+}
+.radar-wrap{
+  display:grid !important;
+  grid-template-columns:1fr !important;
+}
+.radar-svg{
+  margin:0 auto !important;
+}
+.stage-row{
+  display:grid !important;
+  grid-template-columns:repeat(7,minmax(150px,1fr)) !important;
+  min-width:1100px !important;
+}
+.map-track{
+  overflow-x:auto !important;
+  overflow-y:visible !important;
+}
+.route{
+  display:block !important;
+}
+.school-directory{
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr)) !important;
+}
+.profile-facts,
+.path-cards,
+.test-result-grid,
+.progress-strip,
+.rounds{
+  display:grid !important;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr)) !important;
+}
+.share-preview{
+  max-width:420px !important;
+  margin:0 auto !important;
+}
+
+/* 桌面端也保持相同信息顺序，只在局部卡片做多列，提高利用率 */
+@media (min-width: 1024px){
+  .school-grid{grid-template-columns:repeat(3,minmax(0,1fr)) !important;}
+  .grid2{grid-template-columns:repeat(2,minmax(0,1fr)) !important;}
+  .demo-grid{grid-template-columns:1fr !important;}
+  .stage-board{grid-template-columns:1fr !important;}
+  .profile-facts{grid-template-columns:repeat(3,minmax(0,1fr)) !important;}
+  .path-cards{grid-template-columns:repeat(3,minmax(0,1fr)) !important;}
+  .test-result-grid{grid-template-columns:repeat(3,minmax(0,1fr)) !important;}
+}
+
+/* iPad 端不切换成另一套页面，只压缩卡片宽度 */
+@media (min-width: 700px) and (max-width: 1023px){
+  .school-grid{grid-template-columns:repeat(2,minmax(0,1fr)) !important;}
+  .grid2{grid-template-columns:1fr !important;}
+  .school-directory{grid-template-columns:repeat(2,minmax(0,1fr)) !important;}
+}
+
+/* 手机端时间地图改为纵向，避免横向挤压 */
+@media (max-width: 699px){
+  .shell{padding:16px !important;}
+  .hero{padding:28px 22px !important;}
+  .hero h1{font-size:38px !important;line-height:1.04 !important;}
+  .navlinks{display:none !important;}
+  .stage-row{
+    grid-template-columns:1fr !important;
+    min-width:0 !important;
+  }
+  .map-track{
+    overflow:visible !important;
+  }
+  .route{display:none !important;}
+  .stage-node{
+    display:grid !important;
+    grid-template-columns:44px 1fr !important;
+    gap:8px 10px !important;
+    min-height:auto !important;
+  }
+  .node-dot{
+    grid-row:span 4 !important;
+    margin:0 !important;
+  }
+  .profile-facts,
+  .path-cards,
+  .test-result-grid,
+  .progress-strip,
+  .rounds,
+  .school-directory{
+    grid-template-columns:1fr !important;
+  }
+}
+
+
+
+/* === v8 status + effort coordination === */
+.status-effort-pair{
+  display:grid !important;
+  grid-template-columns:1fr 1fr !important;
+  gap:22px !important;
+  align-items:stretch !important;
+}
+.status-effort-pair > .card{
+  min-height:560px !important;
+  display:flex !important;
+  flex-direction:column !important;
+}
+.status-card-v8 .radar-center{
+  flex:1;
+  display:grid;
+  place-items:center;
+  padding:12px 0 6px;
+}
+.status-card-v8 .radar-svg{
+  width:min(360px,100%) !important;
+  max-width:360px !important;
+}
+.status-summary-v8{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+  margin-top:12px;
+}
+.status-chip-v8{
+  background:#f6fffc;
+  border:1px solid rgba(34,211,166,.16);
+  border-radius:16px;
+  padding:12px;
+}
+.status-chip-v8 b{display:block;font-size:12px;color:rgba(8,22,20,.55)}
+.status-chip-v8 span{display:block;margin-top:5px;font-size:18px;font-weight:950;color:#087b64}
+.effort-card-v8 .big-score{
+  margin-top:22px;
+  padding:18px 20px;
+  border-radius:22px;
+  background:linear-gradient(135deg,#effff8,#eefcff);
+  border:1px solid rgba(34,211,166,.18);
+  font-size:48px;
+}
+.effort-card-v8 .effort-links-v8{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+  margin-top:auto;
+  padding-top:18px;
+}
+.effort-card-v8 .link-card{
+  min-height:94px;
+}
+@media(max-width:900px){
+  .status-effort-pair{grid-template-columns:1fr !important;}
+  .status-effort-pair > .card{min-height:auto !important;}
+  .status-summary-v8{grid-template-columns:1fr !important;}
+  .effort-card-v8 .effort-links-v8{grid-template-columns:1fr !important;}
+}
+
+
+/* === v9 desktop/tablet coordination fix === */
+/* 之前 900px 以下就变成上下排，很多电脑窗口/浏览器缩放后会被误判成窄屏。
+   现在只在真正手机宽度才上下排；电脑和 iPad 横屏保持左右协调。 */
+.status-effort-pair{
+  display:grid !important;
+  grid-template-columns:minmax(360px,0.95fr) minmax(420px,1.05fr) !important;
+  gap:24px !important;
+  align-items:stretch !important;
+  width:100% !important;
+}
+.status-effort-pair > .card{
+  min-height:620px !important;
+  height:100% !important;
+  display:flex !important;
+  flex-direction:column !important;
+}
+.status-card-v8 .flex-head,
+.effort-card-v8 .flex-head{
+  display:flex !important;
+  align-items:flex-start !important;
+  justify-content:space-between !important;
+  gap:14px !important;
+}
+.status-card-v8 .radar-center{
+  min-height:330px !important;
+  padding:6px 0 0 !important;
+}
+.status-card-v8 .radar-svg{
+  width:min(330px,100%) !important;
+  max-width:330px !important;
+}
+.status-summary-v8{
+  margin-top:auto !important;
+  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+}
+.effort-card-v8 .big-score{
+  font-size:clamp(52px,5vw,72px) !important;
+  line-height:1 !important;
+  margin-top:26px !important;
+  padding:22px 24px !important;
+}
+.effort-card-v8 .sim-actions{
+  margin-top:18px !important;
+}
+.effort-card-v8 .effort-links-v8{
+  margin-top:auto !important;
+  grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+}
+@media(max-width:760px){
+  .status-effort-pair{
+    grid-template-columns:1fr !important;
+  }
+  .status-effort-pair > .card{
+    min-height:auto !important;
+  }
+  .status-summary-v8,
+  .effort-card-v8 .effort-links-v8{
+    grid-template-columns:1fr !important;
+  }
+  .status-card-v8 .radar-center{
+    min-height:auto !important;
+  }
+}
+
+
+/* === v11 final layout lock ===
+   电脑端/平板横屏强制左右并排；只有很窄手机才上下排列。
+   这一段放在 CSS 最末尾，覆盖前面所有 grid2 / 响应式规则。 */
+#statusEffortPair.status-effort-pair{
+  display:grid !important;
+  grid-template-columns:minmax(420px,1fr) minmax(420px,1fr) !important;
+  gap:24px !important;
+  align-items:stretch !important;
+  width:100% !important;
+}
+#statusEffortPair.status-effort-pair > .card{
+  min-height:620px !important;
+  height:100% !important;
+  display:flex !important;
+  flex-direction:column !important;
+}
+#statusEffortPair .radar-center{
+  flex:1 1 auto !important;
+  display:grid !important;
+  place-items:center !important;
+  min-height:340px !important;
+}
+#statusEffortPair .radar-svg{
+  width:min(360px,100%) !important;
+  max-width:360px !important;
+}
+#statusEffortPair .effort-links-v8{
+  margin-top:auto !important;
+  display:grid !important;
+  grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  gap:10px !important;
+}
+@media(max-width:640px){
+  #statusEffortPair.status-effort-pair{
+    grid-template-columns:1fr !important;
+  }
+  #statusEffortPair.status-effort-pair > .card{
+    min-height:auto !important;
+  }
+  #statusEffortPair .effort-links-v8,
+  #statusEffortPair .status-summary-v8{
+    grid-template-columns:1fr !important;
+  }
+}
+
+
+
+/* === 全站页面导航 v18：底部四项 + 顶部小导航 === */
+body{padding-bottom:96px !important;}
+.page-guide{
+  width:min(1180px,100%);
+  margin:14px auto 0;
+  padding:0 24px;
+}
+.page-guide-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+  padding:12px 14px;
+  border-radius:18px;
+  background:rgba(255,255,255,.72);
+  border:1px solid rgba(8,22,20,.08);
+  box-shadow:0 10px 30px rgba(8,22,20,.04);
+}
+.page-guide-title{
+  font-size:13px;
+  font-weight:950;
+  color:rgba(8,22,20,.72);
+}
+.page-guide-actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+.page-guide-actions a,
+.page-guide-actions button{
+  border:none;
+  text-decoration:none;
+  padding:9px 12px;
+  border-radius:999px;
+  background:#f1fffb;
+  color:#087b64;
+  font-size:12px;
+  font-weight:950;
+  cursor:pointer;
+  border:1px solid rgba(34,211,166,.18);
+}
+.quick-nav{
+  position:fixed;
+  left:50%;
+  bottom:18px;
+  transform:translateX(-50%);
+  z-index:200;
+  width:min(620px,calc(100% - 28px));
+  padding:9px;
+  border-radius:24px;
+  background:rgba(255,255,255,.92);
+  border:1px solid rgba(8,22,20,.1);
+  box-shadow:0 22px 70px rgba(8,22,20,.16);
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+  backdrop-filter:blur(18px);
+}
+.quick-nav a{
+  text-decoration:none;
+  color:rgba(8,22,20,.68);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  min-height:50px;
+  border-radius:17px;
+  font-size:12px;
+  font-weight:950;
+  line-height:1.1;
+}
+.quick-nav a span:first-child{font-size:17px;line-height:1;}
+.quick-nav a.active,
+.quick-nav a:hover{
+  background:linear-gradient(135deg,#ecfff8,#eefcff);
+  color:#087b64;
+}
+@media(max-width:620px){
+  body{padding-bottom:88px !important;}
+  .page-guide{padding:0 16px;}
+  .quick-nav{bottom:10px;width:calc(100% - 18px);border-radius:20px;gap:4px;padding:7px;}
+  .quick-nav a{font-size:11px;min-height:46px;border-radius:14px;}
+  .quick-nav a span:first-child{font-size:16px;}
+}
+
+
+
+/* === v20 手机端更深嵌套：电脑保持展开，手机减少一屏信息密度 === */
+.mobile-fold{display:block;margin-top:22px;}
+.mobile-fold>summary{display:none;}
+.mobile-fold>.fold-content{display:block;}
+@media(max-width:760px){
+  .topbar{position:relative !important;}
+  .nav-shell{padding:12px 16px !important;}
+  .page-guide-inner{align-items:flex-start !important;}
+  .page-guide-actions{width:100%;overflow-x:auto;flex-wrap:nowrap;padding-bottom:2px;}
+  .page-guide-actions a,.page-guide-actions button{white-space:nowrap;}
+  .mobile-fold{border:1px solid rgba(8,22,20,.08);border-radius:24px;background:rgba(255,255,255,.84);box-shadow:0 16px 46px rgba(8,22,20,.055);overflow:hidden;margin-top:16px;}
+  .mobile-fold>summary{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 18px;cursor:pointer;list-style:none;font-weight:950;color:var(--ink);}
+  .mobile-fold>summary::-webkit-details-marker{display:none;}
+  .mobile-fold>summary:after{content:'展开';font-size:12px;color:#087b64;background:#ecfff8;border:1px solid rgba(34,211,166,.18);border-radius:999px;padding:7px 10px;white-space:nowrap;}
+  .mobile-fold[open]>summary:after{content:'收起';}
+  .mobile-fold>.fold-content{padding:0 14px 14px;}
+  .mobile-fold>.fold-content>.card,
+  .mobile-fold>.fold-content>section.card,
+  .mobile-fold>.fold-content>section{margin-top:0 !important;box-shadow:none !important;border-radius:20px !important;}
+  .mobile-fold .section-title{font-size:24px !important;line-height:1.18 !important;}
+  .mobile-fold .section-head{margin-bottom:14px !important;}
+  .mobile-fold .btn{width:100%;}
+  .map-track{max-height:520px;overflow:auto !important;}
+  .rounds{display:none !important;}
+  .detail-panel{display:none !important;}
+  .share-simple{display:block !important;}
+}
+@media(min-width:761px){
+  .mobile-fold:not([open])>.fold-content{display:block !important;}
+}
+
+
+/* === v21 Multi-Agent 协同升级：前台导航体验 + 后台智能体协作 === */
+.agent-panel{
+  margin-top:24px;
+  overflow:hidden;
+}
+.agent-panel:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(8,22,20,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(8,22,20,.035) 1px, transparent 1px);
+  background-size:28px 28px;
+  mask-image:linear-gradient(to bottom, black, transparent 90%);
+  pointer-events:none;
+}
+.agent-head{
+  position:relative;
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  align-items:flex-start;
+  flex-wrap:wrap;
+}
+.agent-kicker{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:9px 13px;
+  border-radius:999px;
+  background:#ecfff8;
+  color:#087b64;
+  font-weight:950;
+  font-size:13px;
+  border:1px solid rgba(34,211,166,.16);
+}
+.agent-title{
+  font-size:30px;
+  font-weight:950;
+  letter-spacing:-.04em;
+  margin:12px 0 8px;
+}
+.agent-sub{
+  margin:0;
+  color:rgba(8,22,20,.62);
+  line-height:1.75;
+  max-width:850px;
+}
+.agent-grid{
+  position:relative;
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:14px;
+  margin-top:20px;
+}
+.agent-card{
+  background:white;
+  border:1px solid rgba(8,22,20,.07);
+  border-radius:20px;
+  padding:18px;
+  min-height:142px;
+}
+.agent-card strong{
+  display:block;
+  font-size:17px;
+  letter-spacing:-.03em;
+  margin-bottom:8px;
+}
+.agent-card span{
+  display:block;
+  color:rgba(8,22,20,.62);
+  line-height:1.65;
+  font-size:13px;
+}
+.agent-num{
+  width:28px;
+  height:28px;
+  border-radius:999px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,var(--mint),var(--cyan));
+  color:white;
+  font-weight:950;
+  font-size:12px;
+  margin-bottom:10px;
+}
+.agent-flow{
+  position:relative;
+  display:grid;
+  grid-template-columns:repeat(6,minmax(0,1fr));
+  gap:10px;
+  margin-top:18px;
+}
+.agent-step{
+  background:#f7fffd;
+  border:1px solid rgba(34,211,166,.16);
+  color:#087b64;
+  border-radius:16px;
+  padding:12px 10px;
+  font-size:12px;
+  line-height:1.45;
+  font-weight:950;
+  text-align:center;
+}
+.agent-note{
+  position:relative;
+  margin-top:18px;
+  padding:16px;
+  border-radius:18px;
+  background:linear-gradient(135deg,#effff8,#eefcff);
+  border:1px solid rgba(34,211,166,.18);
+  color:#31524b;
+  line-height:1.75;
+  font-size:14px;
+}
+.agent-badge-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:14px;
+}
+.agent-badge{
+  padding:7px 10px;
+  border-radius:999px;
+  background:#f0fbf8;
+  color:#087b64;
+  font-size:12px;
+  font-weight:900;
+  border:1px solid rgba(34,211,166,.16);
+}
+@media(max-width:980px){
+  .agent-grid{grid-template-columns:1fr 1fr}
+  .agent-flow{grid-template-columns:1fr 1fr 1fr}
+}
+@media(max-width:560px){
+  .agent-grid,.agent-flow{grid-template-columns:1fr}
+  .agent-title{font-size:24px}
+}
+
+</style>
+<link rel="stylesheet" href="nexus-clean-v22.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="nav-shell">
+    <a href="#home" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+      <div class="logo">NX</div>
+      <div>
+        <div style="font-weight:950;font-size:19px;">Nexus AI</div>
+        <div style="font-size:13px;color:rgba(8,22,20,.55);">大湾区全周期升学决策平台</div>
+      </div>
+    </a>
+    <nav class="navlinks"><a href="#engine">填写背景</a><a href="#agent-system">Agent协同</a><a href="status.html">状态</a><a href="#life-map">地图</a><a href="advisors.html">顾问</a></nav>
+    <a class="nav-cta" href="#engine">开始测评</a>
+  </div>
+</header>
+
+<div class="page-guide" aria-label="页面位置导航">
+  <div class="page-guide-inner">
+    <div class="page-guide-title">你在：首页</div>
+    <div class="page-guide-actions"><button onclick="history.back()">返回上一页</button><a href="index.html">首页</a><a href="status.html">状态</a><a href="timeline.html">地图</a><a href="advisors.html">顾问</a></div>
+  </div>
+</div>
+
+
 <main class="shell">
-<section class="card hero"><span class="pill">留学申请版高德地图 · Multi-Agent 协同</span><h1>从一个升学想法开始，看清位置、路线、风险与下一步。</h1><p class="lead">Nexus AI 智航湾区是基于 Multi-Agent 协同的大湾区全周期升学决策平台。用户看到的是清晰的申请导航图，后台由背景诊断、路径规划、风险识别、时间导航、案例匹配与真人复核等智能体共同工作。</p><div class="hero-actions"><button class="btn btn-primary" data-start>查看我的申请状态</button><a class="btn btn-soft" href="timeline.html">查看申请时间地图</a></div></section>
-<section class="section form-layout">
-<aside class="card left-sticky"><span class="pill">3 分钟低门槛定位</span><h2 class="section-title">先不用填很准，系统先给你一张初步导航图。</h2><label class="label">本科学校</label><input class="input" placeholder="例如：211 / 双非 / 海外本科"><label class="label">GPA / 均分</label><input class="input" placeholder="例如：3.45 / 86"><label class="label">语言成绩</label><input class="input" placeholder="例如：雅思 6.5 / 未考"><label class="label">目标方向</label><input class="input" placeholder="例如：金融 / 商业分析 / 传媒"><details class="fold section"><summary>补充高级信息<span></span></summary><div class="fold-body"><label class="label">实习 / 科研</label><input class="input" placeholder="简要描述即可"><label class="label">预算偏好</label><input class="input" placeholder="例如：预算敏感 / 可接受港校内地分校"></div></details><button class="btn btn-primary" data-start style="width:100%;margin-top:16px">开始生成申请导航图</button></aside>
-<div class="main-stack">
-<section class="card"><div class="section-head"><div><span class="pill">核心主线</span><h2 class="section-title">用户最需要的不是更多信息，而是一条适合自己的路线。</h2><p class="section-sub">产品只保留主线：自我定位、路线规划、风险路况、时间导航、真人复核。其他功能全部折叠在详情页里，避免页面复杂。</p></div></div><div class="grid3"><div class="box"><h3>我现在在哪</h3><p>生成申请状态画像，告诉用户当前属于语言卡点型、稳中带冲型、背景错配型还是预算敏感型。</p></div><div class="box"><h3>有哪些路可以走</h3><p>拆出冲刺、主申、稳妥、澳门/大湾区替代路径，避免用户只盯港前三。</p></div><div class="box"><h3>下一步做什么</h3><p>按月份展示任务、风险、材料和是否需要真人复核，让申请变成可执行路线。</p></div></div></section>
-<section class="card"><span class="pill">Multi-Agent 后台逻辑</span><h2 class="section-title">前台是导航图，后台是多个 Agent 协同。</h2><div class="agent-flow"><div class="agent-step"><b>背景诊断</b><span>读取学校、GPA、语言和经历</span></div><div class="agent-step"><b>项目匹配</b><span>匹配港校、澳门与大湾区项目</span></div><div class="agent-step"><b>风险识别</b><span>识别语言、预算、文书等卡点</span></div><div class="agent-step"><b>努力模拟</b><span>模拟提分、实习和路径变化</span></div><div class="agent-step"><b>时间导航</b><span>拆解阶段任务与提醒</span></div><div class="agent-step"><b>真人复核</b><span>复杂问题交给学长学姐/顾问</span></div></div></section>
-<section class="card"><div class="section-head"><div><span class="pill">申请地图</span><h2 class="section-title">从梦想期到 Offer 期的全周期导航。</h2></div><a class="btn btn-soft" href="timeline.html">进入地图详情</a></div><div class="stage-scroll"><div class="stage-row"><a class="stage" href="timeline.html#s1"><small>1-3月</small><b>探索定位</b><span>判断自己在哪，是否值得走这条路。</span></a><a class="stage" href="timeline.html#s2"><small>4-6月</small><b>背景补强</b><span>语言、实习、科研优先级排序。</span></a><a class="stage" href="timeline.html#s3"><small>7-8月</small><b>材料准备</b><span>CV、PS、推荐信和项目清单。</span></a><a class="stage" href="timeline.html#s4"><small>9-10月</small><b>开放冲刺</b><span>首批项目开放，抓住早轮优势。</span></a><a class="stage" href="timeline.html#s5"><small>11-12月</small><b>第一轮提交</b><span>主申递交，检查材料风险。</span></a><a class="stage" href="timeline.html#s6"><small>1-3月</small><b>等待面试</b><span>准备面试、补申和状态管理。</span></a><a class="stage" href="timeline.html#s7"><small>4-6月</small><b>Offer 选择</b><span>预算、就业和长期发展比较。</span></a></div></div></section>
-<details class="card fold"><summary>次级内容：官网直达、分享图、少花冤枉钱建议</summary><div class="fold-body grid3"><div class="box"><h3>官网直达</h3><p>所有判断最终链接到官网，降低信息黑箱风险。</p></div><div class="box"><h3>分享图</h3><p>生成申请画像图，用于朋友、家长和顾问沟通。</p></div><div class="box"><h3>少花冤枉钱</h3><p>先判断真正卡点，再决定要不要找人或付费。</p></div></div></details>
-</div></section>
-</main><div class="scan-overlay" id="scanOverlay"><div class="scan-box"><div class="scan-title">Agent 正在协同生成申请导航图</div><div class="scan-line"><div>背景诊断 Agent 正在读取申请背景……</div><div>项目匹配 Agent 正在匹配大湾区路径……</div><div>风险识别 Agent 正在拆解核心变量……</div><div>时间导航 Agent 正在生成阶段任务……</div></div><div class="progress"><i></i></div></div></div><script src="assets/js/app.js"></script></body></html>
+  <section id="home" class="card hero">
+    <div class="pill">Multi-Agent 协同 · 留学申请版高德地图</div>
+    <h1>Nexus AI 智航湾区：生成你的升学申请导航图。</h1>
+    <p>从一个留学想法开始，系统先用多智能体协同拆解你的背景、目标、预算和时间节点，再生成一张能执行的专属申请导航图。</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#engine">开始生成申请画像</a>
+    </div>
+  </section>
+
+
+  <section id="agent-system" class="card agent-panel">
+    <div class="agent-head">
+      <div>
+        <div class="agent-kicker">后台技术架构</div>
+        <h2 class="agent-title">后台由 Multi-Agent 协同，前台只给你清晰路线</h2>
+        <p class="agent-sub">前台用户看到的是“留学申请版高德地图”；后台由多个 Agent 分工协作，把申请流程拆成可诊断、可规划、可提醒、可复核的业务节点。</p>
+      </div>
+      <a class="btn btn-primary" href="status.html">看一次导航结果</a>
+    </div>
+    <div class="agent-grid">
+      <div class="agent-card"><div class="agent-num">1</div><strong>背景诊断 Agent</strong><span>读取学校、GPA、语言、经历和预算，生成当前申请画像。</span></div>
+      <div class="agent-card"><div class="agent-num">2</div><strong>路径规划 Agent</strong><span>拆分冲刺、主申、稳妥和大湾区/澳门替代路线。</span></div>
+      <div class="agent-card"><div class="agent-num">3</div><strong>风险识别 Agent</strong><span>判断语言、GPA、实习、文书、节奏和预算中的关键卡点。</span></div>
+      <div class="agent-card"><div class="agent-num">4</div><strong>努力模拟 Agent</strong><span>模拟雅思提升、实习补强、提前准备后，路线是否重算。</span></div>
+      <div class="agent-card"><div class="agent-num">5</div><strong>时间导航 Agent</strong><span>把 1-3 月到 Offer 选择的全周期拆成阶段任务与提醒。</span></div>
+      <div class="agent-card"><div class="agent-num">6</div><strong>相似路径参考</strong><span>匹配相似背景案例，让用户看到“像我这样的人怎么走”。</span></div>
+      <div class="agent-card"><div class="agent-num">7</div><strong>真人复核模块</strong><span>复杂路口转入学长学姐或顾问复核，明确服务边界。</span></div>
+      <div class="agent-card"><div class="agent-num">∞</div><strong>路况数据库</strong><span>官方项目、脱敏案例、访谈、顾问复核和用户反馈持续沉淀。</span></div>
+    </div>
+    <div class="agent-flow">
+      <div class="agent-step">定位：我在哪</div>
+      <div class="agent-step">路线：怎么选</div>
+      <div class="agent-step">路况：哪里卡</div>
+      <div class="agent-step">重算：怎么补</div>
+      <div class="agent-step">提醒：何时做</div>
+      <div class="agent-step">复核：问谁更值</div>
+    </div>
+    <div class="agent-note">这套结构让 Nexus AI 不再只是“港校申请工具”，而是以港校与大湾区申请为首个落地场景的全周期升学决策平台。</div>
+  </section>
+
+
+  <section id="engine" class="app-layout" style="margin-top:26px;">
+    <aside class="left-panel">
+      <div class="card">
+        <h2 style="font-size:30px;margin:0;">生成我的申请导航图</h2>
+
+        <label class="label">学校</label>
+        <input class="input" id="schoolName" placeholder="例如：四川大学 / 某211 / 某双非院校" value="211 / 双一流"/>
+
+        <label class="label">GPA</label>
+        <input class="input" id="gpaInput" placeholder="例如：3.55 / 4.0 或 86 / 100" value="3.55"/>
+
+        <label class="label">语言成绩</label>
+        <input class="input" id="languageInput" placeholder="例如：雅思 6.5 / 托福 95 / 暂无" value="雅思 6.5"/>
+
+        <label class="label">目标方向</label>
+        <select class="input" id="directionInput">
+          <option>商科 / 金融</option>
+          <option>AI / CS</option>
+          <option>传媒 / 社科</option>
+          <option>教育 / TESOL</option>
+        </select>
+
+        <div class="input-hint">先不用填很准，系统会先给你一个初步画像。</div>
+
+        <button class="advanced-toggle" type="button" onclick="toggleAdvanced()">
+          继续补充更多信息，可让画像更细 →
+        </button>
+
+        <div id="advancedFields" class="advanced-fields">
+          <label class="label">实习经历</label>
+          <select class="input" id="internshipInput">
+            <option>暂时没有</option>
+            <option selected>1-2段相关经历</option>
+            <option>3段及以上，方向较匹配</option>
+          </select>
+
+          <label class="label">科研 / 项目 / 竞赛</label>
+          <select class="input" id="researchInput">
+            <option>暂时没有</option>
+            <option selected>有课程项目或校级经历</option>
+            <option>有较完整科研 / 竞赛 / 论文</option>
+          </select>
+
+          <label class="label">预算偏好</label>
+          <select class="input" id="budgetInput">
+            <option>优先香港本地</option>
+            <option>预算有限，接受大湾区路径</option>
+            <option>希望更稳妥</option>
+          </select>
+
+          <label class="label">地区偏好</label>
+          <select class="input" id="regionInput">
+            <option>只看香港本地</option>
+            <option>香港本地 + 大湾区都可以</option>
+            <option>香港 / 澳门 / 大湾区都可以</option>
+          </select>
+
+          <label class="label">是否接受港校内地分校</label>
+          <select class="input" id="branchInput">
+            <option>可以接受</option>
+            <option>暂时不考虑</option>
+            <option>看预算和专业再决定</option>
+          </select>
+        </div>
+
+        <button class="btn btn-primary" style="width:100%;margin-top:18px;" onclick="startScan()">生成我的申请导航图</button>
+      </div>
+    </aside>
+
+    <div class="right-stack">
+      <details class="mobile-fold"><summary>港校申请时间地图</summary><div class="fold-content">
+<section id="life-map" class="card map-card">
+        <div class="section-head">
+          <div>
+            <div class="pill">全流程进度地图</div>
+            <h2 class="section-title">大湾区升学导航地图</h2>
+            <p class="section-sub">
+              从准备到拿到 Offer，把每个阶段该做的事放到一张地图里。点击节点进入阶段详情页，查看这个时间段具体要做什么、哪些材料要准备、什么时候该找真人顾问、哪些钱先别乱花。
+            </p>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+            <a class="btn btn-primary" href="timeline.html">查看全部阶段详情</a>
+            <div class="pill">你现在更适合：先补语言，再推进推荐信</div>
+          </div>
+        </div>
+
+        <div class="stage-board">
+          <div class="map-track">
+            <div class="route"></div>
+            <div id="stageRow" class="stage-row"></div>
+            <div class="rounds">
+              <div class="round-card">
+                <strong>第一轮 R1</strong>
+                <p>通常 9-12 月集中开放与提交。越早准备，节奏越舒服。</p>
+              </div>
+              <div class="round-card">
+                <strong>第二轮 R2</strong>
+                <p>通常 1-3 月继续审理，竞争加剧，适合补申与面试跟进。</p>
+              </div>
+              <div class="round-card">
+                <strong>第三轮 / 收尾</strong>
+                <p>通常 4-6 月进入 offer 选择、留位费、签证与行前准备。</p>
+              </div>
+            </div>
+          </div>
+
+          <aside class="detail-panel">
+            <div class="detail-kicker" id="detailKicker">黄金补强</div>
+            <div class="detail-title" id="detailTitle">背景补强期</div>
+            <div class="detail-time" id="detailTime">4-6月｜申请前关键窗口</div>
+
+            <div class="progress-strip">
+              <div class="mini-progress"><b>语言</b><span id="pLang">60%</span></div>
+              <div class="mini-progress"><b>材料</b><span id="pDoc">35%</span></div>
+              <div class="mini-progress"><b>选校</b><span id="pSchool">50%</span></div>
+              <div class="mini-progress"><b>节奏</b><span id="pPace">68%</span></div>
+            </div>
+
+            <div class="task-list" id="taskList"></div>
+            <div class="warning" id="warningBox"></div>
+            <a class="btn btn-primary" id="detailPageLink" href="timeline.html?stage=1" style="margin-top:16px;width:100%;">进入这个阶段详情页</a>
+          </aside>
+        </div>
+      </section>
+</div></details>
+
+
+
+      <details class="mobile-fold"><summary>找学长学姐或顾问聊聊</summary><div class="fold-content">
+<section id="advisor-entry" class="card">
+        <div class="section-head">
+          <div>
+            <div class="pill">真人顾问匹配</div>
+            <h2 class="section-title">有些问题，适合问已经走过这条路的人。</h2>
+            <p class="section-sub">
+              AI 先帮你看清自己的申请状态；如果你遇到低绩点、跨专业、港前三冲刺、面试准备或文书主线不清楚，可以再找目标院校学长学姐或顶级申请顾问做复核。
+            </p>
+          </div>
+          <a class="btn btn-primary" href="advisors.html">详情了解</a>
+        </div>
+      </section>
+</div></details>
+
+
+
+
+      <details class="mobile-fold"><summary>哪里值得花钱，哪里先别急</summary><div class="fold-content">
+<section class="card">
+        <h2 style="margin:0;font-size:24px;font-weight:950;">哪里值得花钱，哪里先别急</h2>
+        <p style="line-height:1.9;color:#55625f;margin-top:14px;">
+          你当前的核心问题不是文书，而是语言成绩。现阶段不建议一上来购买高价全包套餐，先把语言和关键材料补稳，会比盲目加服务更有效。
+        </p>
+        <div style="margin-top:16px;padding:16px;border-radius:16px;background:#effff8;font-weight:900;">
+          更值得投入：雅思提升 + 面试模拟 + 最终材料复核
+        </div>
+      </section>
+</div></details>
+
+
+
+      <details class="mobile-fold"><summary>生成申请画像分享图</summary><div class="fold-content">
+<section id="share" class="card">
+        <div class="share-simple">
+          <div>
+            <div class="pill">生成分享图</div>
+            <h2 class="section-title">一键生成我的申请导航图图</h2>
+            <p class="section-sub">
+              点击后会弹出一张可保存的图片，里面包含申请画像、个人雷达图和关键结论。图片不会展示隐私细节，适合直接保存或分享。
+            </p>
+          </div>
+          <button class="btn btn-primary" onclick="openShareModal()">生成我的申请导航图图</button>
+        </div>
+      </section>
+</div></details>
+
+
+
+      <div id="shareModal" class="share-modal" onclick="closeShareModal(event)">
+        <div class="share-modal-panel" onclick="event.stopPropagation()">
+          <div class="share-modal-head">
+            <strong>我的申请画像分享图</strong>
+            <button class="close-btn" onclick="closeShareModal()">×</button>
+          </div>
+          <canvas id="shareCanvas" class="share-popup-canvas" width="1080" height="1440"></canvas>
+          <div class="share-modal-actions">
+            <button class="btn btn-primary" onclick="downloadShareCard()">下载 PNG</button>
+            <button class="btn btn-soft" onclick="closeShareModal()">关闭</button>
+          </div>
+        </div>
+      </div>
+
+      <details class="mobile-fold"><summary>学校官网直达</summary><div class="fold-content">
+<section id="schools" class="card">
+        <div class="section-head">
+          <div>
+            <div class="pill">学校官网一键直达</div>
+            <h2 class="section-title">查看目标学校官网</h2>
+            <p class="section-sub">官网链接放在测评结果之后，是为了让你先知道自己适合看哪些学校，再直接进入官网确认专业、DDL 和申请要求。</p>
+          </div>
+        </div>
+        <div class="school-directory" id="schoolDirectory"></div>
+      </section>
+</div></details>
+
+
+    </div>
+  </section>
+</main>
+
+
+<div id="scanOverlay" class="scan-overlay">
+  <div class="scan-box">
+    <div class="scan-orb"></div>
+    <div id="scanText" class="scan-text">背景诊断 Agent 正在读取你的申请背景……</div>
+    <div class="scan-sub">多智能体正在协同生成可执行的升学路线。</div>
+    <div class="scan-dots"><span></span><span></span><span></span></div>
+  </div>
+</div>
+
+<script>
+
+function toggleAdvanced(){
+  const box = document.getElementById("advancedFields");
+  box.classList.toggle("open");
+}
+function startScan(){
+  const overlay = document.getElementById("scanOverlay");
+  const text = document.getElementById("scanText");
+  const steps = [
+    "背景诊断 Agent 正在读取你的申请背景……",
+    "路径规划 Agent 正在匹配港校与大湾区项目……",
+    "风险识别 Agent 正在拆解关键路况变量……",
+    "时间导航 Agent 正在生成你的申请导航图……"
+  ];
+  overlay.classList.add("open");
+  let i = 0;
+  text.textContent = steps[i];
+  const timer = setInterval(()=>{
+    i++;
+    if(i < steps.length){
+      text.textContent = steps[i];
+    }else{
+      clearInterval(timer);
+      setTimeout(()=>{
+        overlay.classList.remove("open");
+        refreshProfile();
+        saveStatusSnapshot();
+        window.location.href = "status.html";
+      }, 450);
+    }
+  }, 520);
+}
+
+function saveStatusSnapshot(){
+  const budget = document.getElementById("budgetInput") ? document.getElementById("budgetInput").value : "优先香港本地";
+  let type = "稳中带冲型";
+  let tags = "语言临界 · 实习加分 · 适合分层";
+  let summary = "你不是没有机会，而是不适合盲目冲刺。当前最影响结果的变量是语言成绩和申请节奏。";
+  if(budget.includes("预算有限")){
+    type = "预算敏感规划型";
+    tags = "预算敏感 · 大湾区替代 · 稳妥推进";
+    summary = "你更适合把香港本地院校与大湾区替代路径一起考虑，先控制成本和风险，再保留少量冲刺项目。";
+  }
+  if(budget.includes("稳妥")){
+    type = "低风险稳妥型";
+    tags = "稳妥优先 · 控制风险 · 分层申请";
+    summary = "你更适合建立清晰的托底组合，不建议只盯港前三。当前重点是提高录取确定性。";
+  }
+  const snapshot = {
+    school: document.getElementById("schoolName")?.value || "未填写",
+    gpa: document.getElementById("gpaInput")?.value || "未填写",
+    language: document.getElementById("languageInput")?.value || "未填写",
+    direction: document.getElementById("directionInput")?.value || "未填写",
+    profileType: type,
+    profileTags: tags,
+    profileSummary: summary
+  };
+  try{ localStorage.setItem("nexusStatusSnapshot", JSON.stringify(snapshot)); }catch(e){}
+}
+
+const stages = [
+  {
+    month:"1-3月", name:"探索定位期", round:"起点",
+    desc:"先看清自己的位置，再决定怎么投入。",
+    title:"探索定位期", time:"1-3月｜确定方向与初步定位",
+    progress:["20%","10%","20%","30%"],
+    tasks:["确定目标方向：商科/CS/传媒/教育等","粗筛港校层级：冲刺、主申、稳妥","判断是否需要考雅思/托福","初步估算预算和是否接受大湾区替代路径"],
+    warning:"这个阶段最怕还没看清自己，就先被各种建议带着走。先明确位置，再决定是否需要顾问。"
+  },
+  {
+    month:"4-6月", name:"背景补强期", round:"黄金补强",
+    desc:"最适合补短板的窗口。",
+    title:"背景补强期", time:"4-6月｜申请前关键窗口",
+    progress:["60%","25%","45%","68%"],
+    tasks:["优先补语言成绩，锁定最近考试窗口","补一段相关实习/科研/课程项目","维护 GPA，准备成绩单与排名证明","确认推荐人范围，不要临近DDL才联系"],
+    warning:"这个阶段最值得花的是能改变硬变量的钱，比如语言、实习、项目；不建议过早购买高价全包套餐。"
+  },
+  {
+    month:"7-8月", name:"材料准备期", round:"R1准备",
+    desc:"材料开始成型。",
+    title:"材料准备期", time:"7-8月｜R1提交前的材料窗口",
+    progress:["70%","55%","62%","72%"],
+    tasks:["完成 CV 初稿和经历素材库","整理 PS 主题：为什么这个专业、为什么这个学校","正式联系推荐人并确认推荐信节奏","建立目标项目清单，标记开放时间和DDL"],
+    warning:"这个阶段最怕一边改方向，一边改文书。先确定主线，再推进材料。"
+  },
+  {
+    month:"9-10月", name:"开放冲刺期", round:"第一轮 R1",
+    desc:"项目陆续开放，节奏开始变紧。",
+    title:"港校开放冲刺期", time:"9-10月｜项目开放与第一轮准备",
+    progress:["78%","72%","80%","76%"],
+    tasks:["检查港大、港中文、港科、港理工等项目是否开放","优先提交主申项目，不要等所有材料完美","确认推荐信是否成功提交","准备可能出现的面试问题"],
+    warning:"R1 阶段不要无限拖延。港校很多项目 rolling，早提交通常更舒服。"
+  },
+  {
+    month:"11-12月", name:"第一轮提交期", round:"R1 黄金期",
+    desc:"主申项目开始集中提交。",
+    title:"第一轮黄金提交期", time:"11-12月｜主申与冲刺并行",
+    progress:["85%","86%","88%","82%"],
+    tasks:["完成主申项目提交","保留 1-2 个冲刺项目和 2-3 个主申项目","持续查看邮箱和系统状态","准备面试、自我介绍和项目动机回答"],
+    warning:"这个阶段最怕只冲不保。正确策略是冲刺、主申、稳妥同时存在。"
+  },
+  {
+    month:"1-3月", name:"等待与面试期", round:"第二轮 R2",
+    desc:"等待结果、准备面试、判断是否补申。",
+    title:"等待面试与补申期", time:"1-3月｜R2审理与补申窗口",
+    progress:["88%","90%","92%","70%"],
+    tasks:["准备英文面试和常见问题","根据 R1 结果决定是否补申","跟进申请系统状态和补材料要求","不要因等待焦虑而盲目加申过多项目"],
+    warning:"等待期最容易因为焦虑乱花钱。先看真实短板，再决定是否需要真人顾问。"
+  },
+  {
+    month:"4-6月", name:"Offer选择与行前准备", round:"收尾 / 行前",
+    desc:"留位费、签证、租房、银行卡。",
+    title:"Offer选择与行前准备", time:"4-6月｜结果选择与落地准备",
+    progress:["95%","94%","92%","88%"],
+    tasks:["比较 offer：排名、课程、费用、就业、城市","确认留位费和签证时间","准备租房、银行卡、保险、电话卡","加入校友群，提前了解求职和生活信息"],
+    warning:"Offer 之后不是结束。预算、租房和就业信息会影响真实体验。"
+  }
+];
+
+const schools = [
+  ["香港大学 HKU","https://www.hku.hk/","港八大 / 冲刺"],
+  ["香港中文大学 CUHK","https://www.cuhk.edu.hk/","港八大 / 主申"],
+  ["香港科技大学 HKUST","https://hkust.edu.hk/","港八大 / 冲刺"],
+  ["香港城市大学 CityU","https://www.cityu.edu.hk/","港八大 / 主申"],
+  ["香港理工大学 PolyU","https://www.polyu.edu.hk/","港八大 / 主申"],
+  ["香港浸会大学 HKBU","https://www.hkbu.edu.hk/","港八大 / 主申"],
+  ["岭南大学 Lingnan","https://www.ln.edu.hk/","港八大 / 稳妥"],
+  ["香港教育大学 EdUHK","https://www.eduhk.hk/","教育方向"],
+  ["香港都会大学 HKMU","https://www.hkmu.edu.hk/","低风险路径"],
+  ["香港恒生大学 HSUHK","https://www.hsu.edu.hk/","低绩点友好"],
+  ["香港树仁大学 HKSYU","https://www.hksyu.edu/","低风险路径"],
+  ["香港珠海学院 CHC","https://www.chuhai.edu.hk/","低风险路径"],
+  ["香港中文大学（深圳）","https://www.cuhk.edu.cn/","大湾区替代"],
+  ["香港科技大学（广州）","https://www.hkust-gz.edu.cn/","大湾区替代"],
+  ["北师港浸大 UIC","https://www.uic.edu.cn/","大湾区替代"],
+  ["澳门大学 UM","https://www.um.edu.mo/","预算替代"],
+  ["澳门科技大学 MUST","https://www.must.edu.mo/","预算替代"]
+];
+
+
+function openShareModal(){
+  const modal = document.getElementById("shareModal");
+  modal.classList.add("open");
+  drawShareCard();
+}
+function closeShareModal(event){
+  if(event && event.target && event.target.id !== "shareModal") return;
+  document.getElementById("shareModal").classList.remove("open");
+}
+
+function renderStages(active=1){
+  const row = document.getElementById("stageRow");
+  row.innerHTML = stages.map((s,i)=>`
+    <a class="stage-node ${i===active?'active':''}" href="timeline.html?stage=${i}" aria-label="查看${s.month}${s.name}详情">
+      <div class="node-dot"></div>
+      <div class="node-month">${s.month}</div>
+      <div class="node-name">${s.name}</div>
+      <div class="node-desc">${s.desc}</div>
+      <div class="round-badge">${s.round}</div>
+      <div style="margin-top:12px;font-size:12px;font-weight:950;color:#087b64;">点击进入详情页 →</div>
+    </a>
+  `).join("");
+}
+function openStageDetail(i){
+  window.location.href = `timeline.html?stage=${i}`;
+}
+function selectStage(i){
+  renderStages(i);
+  const s = stages[i];
+  document.getElementById("detailKicker").textContent = s.round;
+  document.getElementById("detailTitle").textContent = s.title;
+  document.getElementById("detailTime").textContent = s.time;
+  document.getElementById("pLang").textContent = s.progress[0];
+  document.getElementById("pDoc").textContent = s.progress[1];
+  document.getElementById("pSchool").textContent = s.progress[2];
+  document.getElementById("pPace").textContent = s.progress[3];
+  document.getElementById("taskList").innerHTML = s.tasks.map(t=>`<div class="task"><div class="check">✓</div><div>${t}</div></div>`).join("");
+  document.getElementById("warningBox").textContent = s.warning;
+  const detailLink = document.getElementById("detailPageLink");
+  if(detailLink) detailLink.href = `timeline.html?stage=${i}`;
+}
+function changeEffort(type){
+  const score = document.getElementById("effortScore");
+  const text = document.getElementById("effortText");
+  const data = {
+    ielts:["72 → 78","如果雅思提升到 7.0，语言风险会明显下降。港中文匹配度提高，港大冲刺理由也会更充分。"],
+    intern:["72 → 80","如果新增一段强相关实习，商科和管理类项目的经历匹配度会上升，文书也更容易讲清职业动机。"],
+    cv:["72 → 76","如果提前完成 CV 和主文书框架，申请节奏风险会下降，更适合赶第一轮，而不是拖到补申阶段。"],
+    budget:["72 → 74","如果预算有限，可以加入港中深、港科广、北师港浸大、澳门大学等路径。选择会更现实，风险也更可控。"]
+  };
+  score.textContent = data[type][0];
+  text.textContent = data[type][1];
+}
+function renderSchools(){
+  document.getElementById("schoolDirectory").innerHTML = schools.map(([name,url,tag])=>`
+    <a class="link-card" href="${url}" target="_blank" rel="noopener noreferrer">
+      <strong>${name}</strong>
+      <span>${tag} · 一键直达官网 ↗</span>
+    </a>
+  `).join("");
+}
+function refreshProfile(){
+  const budget = document.getElementById("budgetInput") ? document.getElementById("budgetInput").value : "优先香港本地";
+  let type = "稳中带冲型";
+  let variable = "语言成绩";
+  let tags = "语言临界 · 实习加分 · 适合分层";
+  let summary = "你不是没有机会，而是不适合盲目冲刺。当前最影响结果的变量是语言成绩和申请节奏。";
+  if(budget.includes("预算有限")){
+    type = "预算敏感规划型";
+    variable = "路径选择";
+    tags = "预算敏感 · 大湾区替代 · 稳妥推进";
+    summary = "你更适合把香港本地院校与大湾区替代路径一起考虑，先控制成本和风险，再保留少量冲刺项目。";
+  }
+  if(budget.includes("稳妥")){
+    type = "低风险稳妥型";
+    variable = "托底组合";
+    tags = "稳妥优先 · 控制风险 · 分层申请";
+    summary = "你更适合建立清晰的托底组合，不建议只盯港前三。当前重点是提高录取确定性。";
+  }
+  const profileTypeEl = document.getElementById("profileType");
+  const profileTagsEl = document.getElementById("profileTags");
+  const profileSummaryEl = document.getElementById("profileSummary");
+  if(profileTypeEl) profileTypeEl.textContent = type;
+  if(profileTagsEl) profileTagsEl.textContent = tags;
+  if(profileSummaryEl) profileSummaryEl.textContent = summary;
+  const sideTypeEl = document.getElementById("sideType");
+  const sideVariableEl = document.getElementById("sideVariable");
+  if(sideTypeEl) sideTypeEl.textContent = type;
+  if(sideVariableEl) sideVariableEl.textContent = variable;
+  drawShareCard();
+}
+
+
+/* Share image generation: no QR, no text overlap */
+function openShareModal(){
+  const modal = document.getElementById("shareModal");
+  modal.classList.add("open");
+  drawShareCard();
+}
+function closeShareModal(event){
+  if(event && event.target && event.target.id !== "shareModal") return;
+  document.getElementById("shareModal").classList.remove("open");
+}
+function roundRect(ctx,x,y,w,h,r){
+  ctx.beginPath();
+  ctx.moveTo(x+r,y);
+  ctx.lineTo(x+w-r,y);
+  ctx.quadraticCurveTo(x+w,y,x+w,y+r);
+  ctx.lineTo(x+w,y+h-r);
+  ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+  ctx.lineTo(x+r,y+h);
+  ctx.quadraticCurveTo(x,y+h,x,y+h-r);
+  ctx.lineTo(x,y+r);
+  ctx.quadraticCurveTo(x,y,x+r,y);
+  ctx.closePath();
+}
+function fitText(ctx, text, x, y, maxWidth, lineHeight, maxLines){
+  const chars = String(text).split("");
+  let line = "";
+  let lines = [];
+  for(let i=0;i<chars.length;i++){
+    const test = line + chars[i];
+    if(ctx.measureText(test).width > maxWidth && line){
+      lines.push(line);
+      line = chars[i];
+      if(lines.length === maxLines - 1) break;
+    }else{
+      line = test;
+    }
+  }
+  if(line) lines.push(line);
+  if(lines.length > maxLines){
+    lines = lines.slice(0,maxLines);
+  }
+  for(let i=0;i<lines.length;i++){
+    let finalLine = lines[i];
+    if(i === maxLines - 1 && chars.join("").length > lines.join("").length){
+      while(ctx.measureText(finalLine + "…").width > maxWidth && finalLine.length > 0){
+        finalLine = finalLine.slice(0,-1);
+      }
+      finalLine += "…";
+    }
+    ctx.fillText(finalLine,x,y+i*lineHeight);
+  }
+  return y + lines.length * lineHeight;
+}
+function drawRadarOnCanvas(ctx,cx,cy,r,scores){
+  const labels = ["学术","语言","实习","节奏","预算","文书"];
+  const n = scores.length;
+  ctx.save();
+  ctx.strokeStyle = "#d8efea";
+  ctx.lineWidth = 3;
+  for(let layer=1; layer<=4; layer++){
+    ctx.beginPath();
+    const rr = r*layer/4;
+    for(let i=0;i<n;i++){
+      const a = -Math.PI/2 + i*2*Math.PI/n;
+      const x = cx + rr*Math.cos(a);
+      const y = cy + rr*Math.sin(a);
+      if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+    }
+    ctx.closePath();
+    ctx.stroke();
+  }
+  for(let i=0;i<n;i++){
+    const a = -Math.PI/2 + i*2*Math.PI/n;
+    ctx.beginPath();
+    ctx.moveTo(cx,cy);
+    ctx.lineTo(cx+r*Math.cos(a),cy+r*Math.sin(a));
+    ctx.stroke();
+    ctx.fillStyle = "#23322f";
+    ctx.font = "700 24px -apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',Arial,sans-serif";
+    ctx.textAlign = Math.cos(a) > .4 ? "left" : Math.cos(a) < -.4 ? "right" : "center";
+    ctx.textBaseline = Math.sin(a) > .4 ? "top" : Math.sin(a) < -.4 ? "bottom" : "middle";
+    ctx.fillText(labels[i] + " " + scores[i], cx+(r+36)*Math.cos(a), cy+(r+36)*Math.sin(a));
+  }
+  ctx.beginPath();
+  for(let i=0;i<n;i++){
+    const a = -Math.PI/2 + i*2*Math.PI/n;
+    const rr = r*scores[i]/100;
+    const x = cx + rr*Math.cos(a);
+    const y = cy + rr*Math.sin(a);
+    if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+  }
+  ctx.closePath();
+  ctx.fillStyle = "rgba(34,211,166,.34)";
+  ctx.strokeStyle = "#22d3a6";
+  ctx.lineWidth = 6;
+  ctx.fill();
+  ctx.stroke();
+  ctx.restore();
+}
+async function drawShareCard(){
+  const canvas = document.getElementById("shareCanvas");
+  if(!canvas) return;
+  const ctx = canvas.getContext("2d");
+  const W = canvas.width, H = canvas.height;
+  const type = document.getElementById("profileType")?.textContent || "稳中带冲型";
+  const tags = document.getElementById("profileTags")?.textContent || "语言临界 · 实习加分 · 适合分层";
+
+  ctx.clearRect(0,0,W,H);
+  const g = ctx.createLinearGradient(0,0,W,H);
+  g.addColorStop(0,"#f7fffd");
+  g.addColorStop(.58,"#e9fff8");
+  g.addColorStop(1,"#effbff");
+  ctx.fillStyle = g;
+  ctx.fillRect(0,0,W,H);
+
+  ctx.fillStyle = "rgba(255,255,255,.92)";
+  roundRect(ctx,72,72,W-144,H-144,56);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(8,22,20,.10)";
+  ctx.lineWidth = 3;
+  ctx.stroke();
+
+  ctx.fillStyle = "#081614";
+  ctx.font = "950 48px -apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',Arial,sans-serif";
+  ctx.fillText("Nexus AI",118,154);
+  ctx.font = "800 28px -apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',Arial,sans-serif";
+  ctx.fillStyle = "#087b64";
+  ctx.fillText("我的港校申请画像",118,198);
+
+  ctx.fillStyle = "#081614";
+  ctx.font = "950 66px -apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',Arial,sans-serif";
+  fitText(ctx,type,118,305,840,76,2);
+
+  ctx.fillStyle = "#40504d";
+  ctx.font = "800 30px -apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',Arial,sans-serif";
+  fitText(ctx,tags,118,430,840,44,2);
+
+  // radar area
+  ctx.fillStyle = "rgba(255,255,255,.85)";
+  roundRect(ctx,130,505,820,510,42);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(8,22,20,.07)";
+  ctx.stroke();
+  drawRadarOnCanvas(ctx,540,750,205,[86,68,78,64,82,72]);
+
+  // conclusion box
+  ctx.fillStyle = "rgba(255,255,255,.96)";
+  roundRect(ctx,130,1060,820,210,36);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(8,22,20,.08)";
+  ctx.stroke();
+
+  ctx.fillStyle = "#081614";
+  ctx.font = "950 34px -apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',Arial,sans-serif";
+  ctx.fillText("关键结论",170,1120);
+
+  ctx.font = "750 28px -apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',Arial,sans-serif";
+  ctx.fillStyle = "#40504d";
+  fitText(ctx,"当前最影响结果的变量是语言成绩和申请节奏。建议先稳住主申路径，再保留少量冲刺项目。",170,1174,730,42,3);
+
+  // footer, no QR
+  ctx.fillStyle = "#081614";
+  roundRect(ctx,130,1310,820,72,24);
+  ctx.fill();
+  ctx.fillStyle = "white";
+  ctx.font = "900 28px -apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',Arial,sans-serif";
+  ctx.fillText("扫码入口已隐藏 · 可直接保存分享这张申请画像",166,1356);
+}
+function downloadShareCard(){
+  drawShareCard().then(()=>{
+    const canvas = document.getElementById("shareCanvas");
+    const a = document.createElement("a");
+    a.download = "nexus-ai-申请画像.png";
+    a.href = canvas.toDataURL("image/png");
+    a.click();
+  });
+}
+
+renderStages(1);
+selectStage(1);
+renderSchools();
+window.addEventListener("load", drawShareCard);
+</script>
+
+<nav class="quick-nav" aria-label="底部快速导航">
+  <a class="active" href="index.html"><span>⌂</span><span>首页</span></a>
+  <a class="" href="status.html"><span>◎</span><span>状态</span></a>
+  <a class="" href="timeline.html"><span>▦</span><span>地图</span></a>
+  <a class="" href="advisors.html"><span>✦</span><span>顾问</span></a>
+</nav>
+
+<script src="nexus-clean-v22.js"></script>
+</body>
+</html>

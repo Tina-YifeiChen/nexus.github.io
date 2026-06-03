@@ -1,7 +1,607 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Nexus AI｜申请时间地图</title><link rel="stylesheet" href="assets/css/style.css"></head><body><header class="topbar"><div class="nav-shell"><a class="brand" href="index.html"><div class="logo">N</div><div class="brand-text"><b>Nexus AI 智航湾区</b><span>Multi-Agent 升学导航平台</span></div></a><nav class="navlinks"><a href="index.html">首页</a><a href="status.html">状态</a><a href="timeline.html">地图</a><a href="advisors.html">顾问</a></nav><a class="nav-cta" href="status.html">查看状态</a></div></header>
-<nav class="quick-nav"><a href="index.html">首页<span>入口</span></a><a href="status.html">状态<span>诊断</span></a><a href="timeline.html">地图<span>节点</span></a><a href="advisors.html">顾问<span>复核</span></a></nav>
-<div class="page-guide"><div class="page-guide-inner"><div class="page-guide-title">当前位置：申请地图 · 时间导航 Agent</div><div class="page-guide-actions"><a href="status.html">状态</a><a href="effort.html">努力方案</a><a href="advisors.html">顾问</a></div></div></div>
-<main class="shell"><section class="card hero"><span class="pill">时间导航 Agent 贯穿全周期</span><h1>把抽象申请进度，变成每一阶段可执行的任务。</h1><p class="lead">从探索定位到 Offer 选择，系统将每个阶段拆成任务、材料、风险和是否需要真人复核。</p></section>
-<section class="section card"><div class="stage-scroll"><div class="stage-row"><a class="stage active-card" href="#s1"><small>1-3月</small><b>探索定位</b><span>判断自己在哪。</span></a><a class="stage" href="#s2"><small>4-6月</small><b>背景补强</b><span>确定补强优先级。</span></a><a class="stage" href="#s3"><small>7-8月</small><b>材料准备</b><span>完成 CV / PS。</span></a><a class="stage" href="#s4"><small>9-10月</small><b>开放冲刺</b><span>抢首轮窗口。</span></a><a class="stage" href="#s5"><small>11-12月</small><b>第一轮提交</b><span>材料检查。</span></a><a class="stage" href="#s6"><small>1-3月</small><b>等待面试</b><span>面试与补申。</span></a><a class="stage" href="#s7"><small>4-6月</small><b>Offer 选择</b><span>预算与就业比较。</span></a></div></div></section>
-<section class="section grid2"><div class="card"><h2 class="section-title">当前阶段任务</h2><div class="timeline-list"><div class="timeline-item" id="s1"><b>探索定位</b><span>完成低门槛测评，明确自己适合冲刺、主申还是稳妥。</span></div><div class="timeline-item" id="s2"><b>背景补强</b><span>决定语言、实习、科研、文书主线的优先级。</span></div><div class="timeline-item" id="s3"><b>材料准备</b><span>准备 CV、PS、推荐信、成绩单和项目清单。</span></div><div class="timeline-item" id="s4"><b>开放冲刺</b><span>根据项目开放时间优先递交高匹配项目。</span></div><div class="timeline-item" id="s5"><b>第一轮提交</b><span>避免材料遗漏，开始准备可能的面试问题。</span></div><div class="timeline-item" id="s6"><b>等待面试</b><span>跟踪结果，准备补申、面试和材料更新。</span></div><div class="timeline-item" id="s7"><b>Offer 选择</b><span>比较学费、城市、就业、家庭预算和长期发展。</span></div></div></div><div class="card"><h2 class="section-title">阶段风险</h2><div class="notice">时间地图的意义不是提醒日期，而是告诉用户在每个阶段最不该错过什么。越早开始，越能减少焦虑性补救和无效消费。</div><details class="fold section"><summary>每阶段需要真人复核的情况</summary><div class="fold-body"><p>低 GPA、跨专业、港前三冲刺、多 Offer 选择、家长预算分歧等情况，建议进入顾问复核。</p></div></details></div></section>
-</main><script src="assets/js/app.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Nexus AI 智航湾区｜时间导航Agent</title>
+<style>
+:root{--ink:#081614;--muted:#5b6865;--line:#d9ede8;--mint:#22d3a6;--cyan:#58d7ff;--paper:#f7fffd;--warning:#fff4e5}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;background:radial-gradient(circle at 12% 8%, rgba(34,211,166,.16), transparent 26%),radial-gradient(circle at 88% 18%, rgba(88,215,255,.16), transparent 28%),linear-gradient(180deg,#f8fffd 0%,#effbf8 45%,#fbfefd 100%);color:var(--ink)}a{color:inherit}.topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.9);backdrop-filter:blur(18px);border-bottom:1px solid rgba(8,22,20,.08)}.shell{width:min(1180px,100%);margin:auto;padding:24px}.nav-shell{width:min(1180px,100%);margin:auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:18px}.logo{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,var(--mint),var(--cyan));font-weight:950}.navlinks{display:flex;gap:22px;font-size:14px;font-weight:900;color:rgba(8,22,20,.72)}.navlinks a{text-decoration:none}.card{position:relative;background:rgba(255,255,255,.86);border:1px solid rgba(8,22,20,.08);border-radius:26px;padding:26px;box-shadow:0 18px 60px rgba(8,22,20,.06);backdrop-filter:blur(14px)}.hero{overflow:hidden;padding:48px 40px}.hero:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(8,22,20,.045) 1px, transparent 1px),linear-gradient(90deg, rgba(8,22,20,.045) 1px, transparent 1px);background-size:30px 30px;mask-image:linear-gradient(to bottom, black, transparent 92%);pointer-events:none}.pill{display:inline-flex;align-items:center;gap:8px;padding:9px 13px;border-radius:999px;background:#ecfff8;color:#087b64;font-weight:950;font-size:13px;border:1px solid rgba(34,211,166,.16)}.hero h1{position:relative;font-size:clamp(38px,6vw,72px);line-height:.98;margin:24px 0 18px;letter-spacing:-.06em;max-width:980px}.hero p{position:relative;max-width:850px;font-size:18px;line-height:1.85;color:rgba(8,22,20,.64)}.btn{border:none;border-radius:16px;padding:14px 18px;font-weight:950;cursor:pointer;text-decoration:none;display:inline-flex;justify-content:center;align-items:center;gap:8px}.btn-primary{background:var(--ink);color:white;box-shadow:0 14px 38px rgba(8,22,20,.15)}.btn-soft{background:white;color:var(--ink);border:1px solid rgba(8,22,20,.1)}.section-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;margin-bottom:22px;flex-wrap:wrap}.section-title{font-size:32px;font-weight:950;letter-spacing:-.04em;margin:10px 0 6px}.section-sub{margin:0;color:rgba(8,22,20,.62);line-height:1.75;max-width:820px}.stage-tabs{display:grid;grid-template-columns:repeat(7,minmax(120px,1fr));gap:12px;margin-top:22px}.stage-tab{border:1px solid rgba(8,22,20,.08);background:white;border-radius:18px;padding:14px;cursor:pointer;text-align:left;text-decoration:none;color:inherit;display:block}.stage-tab.active{border-color:rgba(34,211,166,.72);box-shadow:0 0 0 4px rgba(34,211,166,.12)}.stage-tab b{display:block;font-size:13px;color:#087b64}.stage-tab span{display:block;margin-top:6px;font-size:14px;font-weight:950}.layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);gap:22px;margin-top:24px}.big-title{font-size:36px;font-weight:950;letter-spacing:-.05em;margin:8px 0}.summary{font-size:16px;line-height:1.9;color:rgba(8,22,20,.64)}.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.mini-card,.task,.side-card{background:white;border:1px solid rgba(8,22,20,.07);border-radius:20px;padding:18px}.mini-card b{display:block;font-size:12px;color:rgba(8,22,20,.52)}.mini-card span{display:block;margin-top:6px;font-size:20px;font-weight:950}.task-list{display:grid;gap:12px}.task{display:flex;gap:12px;align-items:flex-start;line-height:1.65}.check{flex:0 0 auto;width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--mint),var(--cyan));color:white;font-size:13px;font-weight:950;display:grid;place-items:center}.warning{padding:16px;border-radius:18px;background:var(--warning);border:1px solid rgba(246,183,79,.28);color:#6b4b11;line-height:1.75}.side-stack{display:grid;gap:16px}.side-card h3{margin:0 0 10px;font-size:20px;letter-spacing:-.03em}.side-card p,.side-card li{color:rgba(8,22,20,.62);line-height:1.75}.material-list{display:grid;gap:9px}.material{padding:10px 12px;border-radius:14px;background:#f4fffc;border:1px solid rgba(34,211,166,.14);font-weight:850;color:#087b64}.cta-card{text-align:center;padding:34px}@media(max-width:980px){.layout,.grid2,.grid3{grid-template-columns:1fr}.stage-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}.navlinks{display:none}.hero{padding:30px 24px}.shell{padding:16px}}@media(max-width:560px){.stage-tabs{grid-template-columns:1fr}.hero h1{font-size:38px}.card{padding:20px;border-radius:22px}}
+
+
+/* === 全站页面导航 v18：底部四项 + 顶部小导航 === */
+body{padding-bottom:96px !important;}
+.page-guide{
+  width:min(1180px,100%);
+  margin:14px auto 0;
+  padding:0 24px;
+}
+.page-guide-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+  padding:12px 14px;
+  border-radius:18px;
+  background:rgba(255,255,255,.72);
+  border:1px solid rgba(8,22,20,.08);
+  box-shadow:0 10px 30px rgba(8,22,20,.04);
+}
+.page-guide-title{
+  font-size:13px;
+  font-weight:950;
+  color:rgba(8,22,20,.72);
+}
+.page-guide-actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+.page-guide-actions a,
+.page-guide-actions button{
+  border:none;
+  text-decoration:none;
+  padding:9px 12px;
+  border-radius:999px;
+  background:#f1fffb;
+  color:#087b64;
+  font-size:12px;
+  font-weight:950;
+  cursor:pointer;
+  border:1px solid rgba(34,211,166,.18);
+}
+.quick-nav{
+  position:fixed;
+  left:50%;
+  bottom:18px;
+  transform:translateX(-50%);
+  z-index:200;
+  width:min(620px,calc(100% - 28px));
+  padding:9px;
+  border-radius:24px;
+  background:rgba(255,255,255,.92);
+  border:1px solid rgba(8,22,20,.1);
+  box-shadow:0 22px 70px rgba(8,22,20,.16);
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+  backdrop-filter:blur(18px);
+}
+.quick-nav a{
+  text-decoration:none;
+  color:rgba(8,22,20,.68);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  min-height:50px;
+  border-radius:17px;
+  font-size:12px;
+  font-weight:950;
+  line-height:1.1;
+}
+.quick-nav a span:first-child{font-size:17px;line-height:1;}
+.quick-nav a.active,
+.quick-nav a:hover{
+  background:linear-gradient(135deg,#ecfff8,#eefcff);
+  color:#087b64;
+}
+@media(max-width:620px){
+  body{padding-bottom:88px !important;}
+  .page-guide{padding:0 16px;}
+  .quick-nav{bottom:10px;width:calc(100% - 18px);border-radius:20px;gap:4px;padding:7px;}
+  .quick-nav a{font-size:11px;min-height:46px;border-radius:14px;}
+  .quick-nav a span:first-child{font-size:16px;}
+}
+
+
+
+/* === v20 手机端更深嵌套：电脑保持展开，手机减少一屏信息密度 === */
+.mobile-fold{display:block;margin-top:22px;}
+.mobile-fold>summary{display:none;}
+.mobile-fold>.fold-content{display:block;}
+@media(max-width:760px){
+  .topbar{position:relative !important;}
+  .nav-shell{padding:12px 16px !important;}
+  .page-guide-inner{align-items:flex-start !important;}
+  .page-guide-actions{width:100%;overflow-x:auto;flex-wrap:nowrap;padding-bottom:2px;}
+  .page-guide-actions a,.page-guide-actions button{white-space:nowrap;}
+  .mobile-fold{border:1px solid rgba(8,22,20,.08);border-radius:24px;background:rgba(255,255,255,.84);box-shadow:0 16px 46px rgba(8,22,20,.055);overflow:hidden;margin-top:16px;}
+  .mobile-fold>summary{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 18px;cursor:pointer;list-style:none;font-weight:950;color:var(--ink);}
+  .mobile-fold>summary::-webkit-details-marker{display:none;}
+  .mobile-fold>summary:after{content:'展开';font-size:12px;color:#087b64;background:#ecfff8;border:1px solid rgba(34,211,166,.18);border-radius:999px;padding:7px 10px;white-space:nowrap;}
+  .mobile-fold[open]>summary:after{content:'收起';}
+  .mobile-fold>.fold-content{padding:0 14px 14px;}
+  .mobile-fold>.fold-content>.card,
+  .mobile-fold>.fold-content>section.card,
+  .mobile-fold>.fold-content>section{margin-top:0 !important;box-shadow:none !important;border-radius:20px !important;}
+  .mobile-fold .section-title{font-size:24px !important;line-height:1.18 !important;}
+  .mobile-fold .section-head{margin-bottom:14px !important;}
+  .mobile-fold .btn{width:100%;}
+  .map-track{max-height:520px;overflow:auto !important;}
+  .rounds{display:none !important;}
+  .detail-panel{display:none !important;}
+  .share-simple{display:block !important;}
+}
+@media(min-width:761px){
+  .mobile-fold:not([open])>.fold-content{display:block !important;}
+}
+
+
+/* === v21 Multi-Agent 协同升级：前台导航体验 + 后台智能体协作 === */
+.agent-panel{
+  margin-top:24px;
+  overflow:hidden;
+}
+.agent-panel:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(8,22,20,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(8,22,20,.035) 1px, transparent 1px);
+  background-size:28px 28px;
+  mask-image:linear-gradient(to bottom, black, transparent 90%);
+  pointer-events:none;
+}
+.agent-head{
+  position:relative;
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  align-items:flex-start;
+  flex-wrap:wrap;
+}
+.agent-kicker{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:9px 13px;
+  border-radius:999px;
+  background:#ecfff8;
+  color:#087b64;
+  font-weight:950;
+  font-size:13px;
+  border:1px solid rgba(34,211,166,.16);
+}
+.agent-title{
+  font-size:30px;
+  font-weight:950;
+  letter-spacing:-.04em;
+  margin:12px 0 8px;
+}
+.agent-sub{
+  margin:0;
+  color:rgba(8,22,20,.62);
+  line-height:1.75;
+  max-width:850px;
+}
+.agent-grid{
+  position:relative;
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:14px;
+  margin-top:20px;
+}
+.agent-card{
+  background:white;
+  border:1px solid rgba(8,22,20,.07);
+  border-radius:20px;
+  padding:18px;
+  min-height:142px;
+}
+.agent-card strong{
+  display:block;
+  font-size:17px;
+  letter-spacing:-.03em;
+  margin-bottom:8px;
+}
+.agent-card span{
+  display:block;
+  color:rgba(8,22,20,.62);
+  line-height:1.65;
+  font-size:13px;
+}
+.agent-num{
+  width:28px;
+  height:28px;
+  border-radius:999px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,var(--mint),var(--cyan));
+  color:white;
+  font-weight:950;
+  font-size:12px;
+  margin-bottom:10px;
+}
+.agent-flow{
+  position:relative;
+  display:grid;
+  grid-template-columns:repeat(6,minmax(0,1fr));
+  gap:10px;
+  margin-top:18px;
+}
+.agent-step{
+  background:#f7fffd;
+  border:1px solid rgba(34,211,166,.16);
+  color:#087b64;
+  border-radius:16px;
+  padding:12px 10px;
+  font-size:12px;
+  line-height:1.45;
+  font-weight:950;
+  text-align:center;
+}
+.agent-note{
+  position:relative;
+  margin-top:18px;
+  padding:16px;
+  border-radius:18px;
+  background:linear-gradient(135deg,#effff8,#eefcff);
+  border:1px solid rgba(34,211,166,.18);
+  color:#31524b;
+  line-height:1.75;
+  font-size:14px;
+}
+.agent-badge-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:14px;
+}
+.agent-badge{
+  padding:7px 10px;
+  border-radius:999px;
+  background:#f0fbf8;
+  color:#087b64;
+  font-size:12px;
+  font-weight:900;
+  border:1px solid rgba(34,211,166,.16);
+}
+@media(max-width:980px){
+  .agent-grid{grid-template-columns:1fr 1fr}
+  .agent-flow{grid-template-columns:1fr 1fr 1fr}
+}
+@media(max-width:560px){
+  .agent-grid,.agent-flow{grid-template-columns:1fr}
+  .agent-title{font-size:24px}
+}
+
+</style>
+<link rel="stylesheet" href="nexus-clean-v22.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="nav-shell">
+    <a href="index.html#life-map" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+      <div class="logo">NX</div>
+      <div><div style="font-weight:950;font-size:19px;">Nexus AI</div><div style="font-size:13px;color:rgba(8,22,20,.55);">申请时间地图</div></div>
+    </a>
+    <nav class="navlinks"><a href="index.html">首页</a><a href="status.html">状态</a><a href="timeline.html">地图</a><a href="advisors.html">顾问</a></nav>
+    <a class="btn btn-primary" href="index.html#engine">生成画像</a>
+  </div>
+</header>
+
+<div class="page-guide" aria-label="页面位置导航">
+  <div class="page-guide-inner">
+    <div class="page-guide-title">你在：申请时间地图</div>
+    <div class="page-guide-actions"><button onclick="history.back()">返回上一页</button><a href="index.html">首页</a><a href="status.html">状态</a><a href="timeline.html">地图</a><a href="advisors.html">顾问</a></div>
+  </div>
+</div>
+
+<main class="shell">
+  
+<section class="card agent-panel">
+  <div class="agent-head">
+    <div>
+      <div class="agent-kicker">时间导航 Agent</div>
+      <h2 class="agent-title">申请不是一个按钮，而是一条有节点的路线</h2>
+      <p class="agent-sub">系统把 1-3 月探索定位、4-6 月背景补强、7-8 月材料准备、9-10 月开放冲刺、11-12 月第一轮提交、1-3 月等待面试、4-6 月 Offer 选择，拆成可执行任务。</p>
+    </div>
+    <a class="btn btn-primary" href="advisors.html">复杂节点找人复核</a>
+  </div>
+  <div class="agent-flow">
+    <div class="agent-step">探索定位</div><div class="agent-step">背景补强</div><div class="agent-step">材料准备</div><div class="agent-step">开放冲刺</div><div class="agent-step">等待面试</div><div class="agent-step">Offer决策</div>
+  </div>
+</section>
+
+<section class="card hero">
+    <div class="pill">大湾区升学导航地图 · 阶段详情页</div>
+    <h1>申请时间地图：每个阶段该做什么，一眼看清。</h1>
+    <p>首页地图负责让用户看到完整路径；这个详情页负责把每个阶段拆成具体任务、材料清单、风险提醒、花钱优先级和是否需要真人顾问。这样产品会更像“申请导航系统”，而不是普通展示页。</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;position:relative;">
+      <a class="btn btn-primary" href="#details">查看当前阶段</a>
+      <a class="btn btn-soft" href="index.html#life-map">返回时间地图</a>
+    </div>
+  </section>
+  <section class="card" style="margin-top:24px;" id="details">
+    <div class="section-head">
+      <div><div class="pill">选择阶段</div><h2 class="section-title">从梦想期、探索期到申请期和 Offer 期，每个阶段都有不同的路况、材料和风险提醒。</h2><p class="section-sub">用户可以从首页点击某个时间节点进入这里，也可以在本页切换不同阶段。</p></div>
+    </div>
+    <div class="stage-tabs" id="stageTabs"></div>
+  </section>
+  <section class="layout">
+    <div class="card">
+      <div class="pill" id="roundPill">黄金补强</div>
+      <div class="big-title" id="stageTitle">背景补强期</div>
+      <div style="font-weight:850;color:rgba(8,22,20,.58);" id="stageTime">4-6月｜申请前关键窗口</div>
+      <p class="summary" id="stageSummary"></p>
+      <div class="grid2" id="progressGrid" style="margin:20px 0;"></div>
+      <h2 class="section-title" style="font-size:26px;">这个阶段具体要做什么</h2>
+      <div class="task-list" id="taskList"></div>
+    </div>
+    <aside class="side-stack">
+      <div class="side-card"><h3>要准备的材料</h3><div class="material-list" id="materialList"></div></div>
+      <div class="warning" id="riskBox"></div>
+      <div class="side-card"><h3>什么时候需要真人顾问</h3><p id="advisorBox"></p><a class="btn btn-primary" href="advisors.html" style="margin-top:12px;width:100%;">查看顾问匹配</a></div>
+      <div class="side-card"><h3>钱应该花在哪里</h3><p id="moneyBox"></p></div>
+    </aside>
+  </section>
+  <section class="card cta-card" style="margin-top:24px;">
+    <h2 class="section-title">先看清阶段，再决定行动。</h2>
+    <p class="section-sub" style="margin:auto;">Nexus AI 的价值不是让用户做更多事，而是让用户在正确时间做最重要的事。</p>
+    <div style="margin-top:22px;display:flex;justify-content:center;gap:12px;flex-wrap:wrap;"><a class="btn btn-primary" href="index.html#engine">返回生成申请画像</a><a class="btn btn-soft" href="index.html#life-map">返回导航地图</a></div>
+  </section>
+</main>
+<script>
+const stages = [
+  {
+    "slug": "positioning",
+    "month": "1-3月",
+    "name": "探索定位期",
+    "round": "起点",
+    "title": "探索定位期",
+    "time": "1-3月｜确定方向与初步定位",
+    "summary": "这个阶段的核心不是马上买服务或疯狂看项目，而是先建立一张自己的申请坐标图：我在哪个层级、目标是否合理、硬伤是什么、预算能承受什么。",
+    "progress": [
+      "语言 20%",
+      "材料 10%",
+      "选校 20%",
+      "节奏 30%"
+    ],
+    "tasks": [
+      "确定目标方向：商科、AI/CS、传媒、教育、社科等，不要同时追太多方向。",
+      "把学校粗分为冲刺、主申、稳妥、预算友好四层。",
+      "判断语言成绩是否已达基本门槛，决定雅思/托福考试窗口。",
+      "初步估算预算：学费、住宿、生活费、留位费，并判断是否接受大湾区/澳门替代路径。",
+      "建立申请文件夹，开始收集成绩单、在读证明、实习证明、获奖证明。"
+    ],
+    "materials": [
+      "成绩单/均分证明",
+      "语言考试计划",
+      "目标专业关键词表",
+      "预算范围表",
+      "初版项目清单"
+    ],
+    "risk": "最大风险是还没看清自己，就被外部建议带着走。这个阶段不要急着承诺高价套餐，先确认自己的真实短板。",
+    "advisor": "通常不需要深度顾问。若目标严重不清、跨专业跨度很大，可以做一次低成本定位咨询。",
+    "money": "值得花：语言诊断、低成本定位复核。不建议花：完整文书套餐、保录承诺、过早的高价全包。"
+  },
+  {
+    "slug": "upgrade",
+    "month": "4-6月",
+    "name": "背景补强期",
+    "round": "黄金补强",
+    "title": "背景补强期",
+    "time": "4-6月｜申请前关键窗口",
+    "summary": "这是最能改变申请结果的窗口。第一性原理是：申请不是最后一刻靠文书包装，而是在提交前把能改变的硬变量尽量补上。",
+    "progress": [
+      "语言 60%",
+      "材料 25%",
+      "选校 45%",
+      "节奏 68%"
+    ],
+    "tasks": [
+      "优先锁定语言考试时间，目标不是“考过一次”，而是尽快接近项目要求。",
+      "补一段方向相关实习、科研、课程项目或竞赛，把经历和目标专业连起来。",
+      "维护 GPA，准备成绩单、排名证明或均分说明。",
+      "确认推荐人范围，提前建立沟通，不要到 DDL 前临时索要。",
+      "根据当前背景调整项目分层，不要只盯港前三热门项目。"
+    ],
+    "materials": [
+      "语言成绩/考试报名记录",
+      "实习或项目证明",
+      "推荐人名单",
+      "经历素材库",
+      "项目分层清单"
+    ],
+    "risk": "最大风险是把钱花在不能改变核心变量的地方。如果短板是语言或经历，先补硬变量，再谈文书包装。",
+    "advisor": "适合找目标院校学长学姐问项目真实偏好，也可以找策略顾问判断“补什么最值”。",
+    "money": "值得花：语言提分、强相关实习/项目、一次策略复核。不建议花：在语言没达标前购买重文书包装。"
+  },
+  {
+    "slug": "documents",
+    "month": "7-8月",
+    "name": "材料准备期",
+    "round": "R1准备",
+    "title": "材料准备期",
+    "time": "7-8月｜R1提交前的材料窗口",
+    "summary": "这个阶段的目标是把申请从“想法”变成“可提交材料”。材料不是堆经历，而是形成一个能被招生官理解的主线。",
+    "progress": [
+      "语言 70%",
+      "材料 55%",
+      "选校 62%",
+      "节奏 72%"
+    ],
+    "tasks": [
+      "完成 CV 初稿，把经历按目标方向重排，而不是简单罗列。",
+      "整理 PS/SOP 主线：为什么这个专业、为什么这所学校、为什么现在申请。",
+      "正式联系推荐人，说明目标项目、推荐重点和时间安排。",
+      "建立项目表：学校、专业、开放时间、DDL、语言要求、材料要求、申请费。",
+      "准备文书素材库：项目经历、实习成果、课程论文、职业目标、失败与转折。"
+    ],
+    "materials": [
+      "CV 初稿",
+      "PS/SOP 大纲",
+      "推荐信沟通材料",
+      "项目追踪表",
+      "文书素材库"
+    ],
+    "risk": "最大风险是一边换方向一边写文书，导致所有材料都像模板。先定主线，再开始规模化改文书。",
+    "advisor": "适合找顶级申请顾问复核文书主线，或者找学长学姐确认项目偏好。",
+    "money": "值得花：CV/PS 主线复核、推荐信策略、项目清单复核。不建议花：模板化文书批改。"
+  },
+  {
+    "slug": "opening",
+    "month": "9-10月",
+    "name": "开放冲刺期",
+    "round": "第一轮 R1",
+    "title": "港校开放冲刺期",
+    "time": "9-10月｜项目开放与第一轮准备",
+    "summary": "项目陆续开放后，节奏开始变紧。这个阶段的本质是用时间优势换确定性，不能等所有东西完美才提交。",
+    "progress": [
+      "语言 78%",
+      "材料 72%",
+      "选校 80%",
+      "节奏 76%"
+    ],
+    "tasks": [
+      "每天/每周检查目标项目是否开放，优先确认港大、港中文、港科、港理工等项目。",
+      "优先提交主申项目，不要把所有项目都拖到最后。",
+      "确认推荐信是否成功提交，避免系统卡在推荐信环节。",
+      "准备可能出现的面试问题：自我介绍、项目动机、经历细节、职业规划。",
+      "根据开放项目微调文书，不要为每个项目完全重写。"
+    ],
+    "materials": [
+      "最终 CV",
+      "分项目 PS/SOP",
+      "推荐信提交状态",
+      "申请系统账号",
+      "面试题库"
+    ],
+    "risk": "最大风险是无限拖延。港校很多项目 rolling，早提交通常比完美主义更重要。",
+    "advisor": "适合找顾问做提交前复核，尤其是港前三冲刺、跨专业解释和面试准备。",
+    "money": "值得花：提交前材料复核、面试模拟。不建议花：临时大改方向。"
+  },
+  {
+    "slug": "r1",
+    "month": "11-12月",
+    "name": "第一轮提交期",
+    "round": "R1 黄金期",
+    "title": "第一轮黄金提交期",
+    "time": "11-12月｜主申与冲刺并行",
+    "summary": "这是主申和冲刺并行的关键阶段。正确策略不是孤注一掷，而是让冲刺、主申、稳妥同时存在。",
+    "progress": [
+      "语言 85%",
+      "材料 86%",
+      "选校 88%",
+      "节奏 82%"
+    ],
+    "tasks": [
+      "完成主申项目提交，确保申请费、材料、推荐信全部到位。",
+      "保留 1-2 个冲刺项目，同时配置 2-3 个主申和稳妥项目。",
+      "持续查看邮箱和申请系统状态，及时补材料。",
+      "准备面试、自我介绍、项目动机和经历追问。",
+      "记录每个项目的提交时间、状态、面试邀请和结果。"
+    ],
+    "materials": [
+      "已提交项目列表",
+      "申请系统截图",
+      "面试准备文档",
+      "补材料清单",
+      "项目状态追踪表"
+    ],
+    "risk": "最大风险是只冲不保，或者因为焦虑乱加项目。项目组合要有层级，而不是越多越好。",
+    "advisor": "适合做一次项目组合复核，判断是否冲得过多、稳妥不足，或是否需要补申。",
+    "money": "值得花：项目组合复核、面试模拟。不建议花：无差别加申大量项目。"
+  },
+  {
+    "slug": "interview",
+    "month": "1-3月",
+    "name": "等待与面试期",
+    "round": "第二轮 R2",
+    "title": "等待面试与补申期",
+    "time": "1-3月｜R2审理与补申窗口",
+    "summary": "等待期最考验心态。这个阶段不是被动焦虑，而是根据 R1 反馈判断是否补申、补哪里、还要不要投入真人帮助。",
+    "progress": [
+      "语言 88%",
+      "材料 90%",
+      "选校 92%",
+      "节奏 70%"
+    ],
+    "tasks": [
+      "准备英文面试和常见问题，尤其是项目动机、职业规划和经历细节。",
+      "根据 R1 结果决定是否补申，不要因为焦虑盲目加申过多项目。",
+      "跟进申请系统状态，及时处理补材料、面试邀请和邮件回复。",
+      "复盘已提交项目：文书主线是否清楚、项目层级是否合理。",
+      "准备 offer 到来后的选择标准：费用、课程、城市、就业、身份路径。"
+    ],
+    "materials": [
+      "面试答案库",
+      "补申项目清单",
+      "邮件模板",
+      "R1 反馈记录",
+      "Offer选择标准表"
+    ],
+    "risk": "最大风险是把等待焦虑转化成冲动消费。先看真实反馈，再决定是否需要顾问或补申。",
+    "advisor": "适合找学长学姐做面试模拟，或找策略顾问判断是否补申与补哪些项目。",
+    "money": "值得花：面试模拟、补申策略。不建议花：重复购买没有新信息的定位服务。"
+  },
+  {
+    "slug": "offer",
+    "month": "4-6月",
+    "name": "Offer选择与行前准备",
+    "round": "收尾 / 行前",
+    "title": "Offer选择与行前准备",
+    "time": "4-6月｜结果选择与落地准备",
+    "summary": "拿到 offer 不是结束，而是从“申请决策”进入“真实就读决策”。好选择不是看排名一个指标，而是看课程、成本、就业和个人约束的组合。",
+    "progress": [
+      "语言 95%",
+      "材料 94%",
+      "选校 92%",
+      "节奏 88%"
+    ],
+    "tasks": [
+      "比较 offer：排名、课程设置、费用、就业资源、城市、校友网络。",
+      "确认留位费、签证、宿舍/租房、保险和入学注册时间。",
+      "准备租房、银行卡、电话卡、疫苗/体检等行前事项。",
+      "加入校友群或项目群，了解真实课程强度和求职节奏。",
+      "如果有多个 offer，建立评分表，不要只按“名气”选择。"
+    ],
+    "materials": [
+      "Offer对比表",
+      "留位费/签证时间表",
+      "租房清单",
+      "行前文件夹",
+      "校友/项目群信息"
+    ],
+    "risk": "最大风险是只看排名，不看真实成本和发展路径。预算、课程和就业信息会影响真实体验。",
+    "advisor": "适合找目标院校学长学姐了解真实就读体验，或找策略顾问做多个 offer 选择。",
+    "money": "值得花：Offer选择咨询、行前信息核对。不建议花：已经不影响录取结果的重复包装服务。"
+  }
+];
+let current = Number(new URLSearchParams(location.search).get('stage') || 1);
+if(!Number.isInteger(current) || current < 0 || current >= stages.length) current = 1;
+function renderTabs(){
+  document.getElementById('stageTabs').innerHTML = stages.map((s,i)=>`<a class="stage-tab ${i===current?'active':''}" href="timeline.html?stage=${i}" onclick="event.preventDefault(); selectStage(${i});"><b>${s.month}</b><span>${s.name}</span><small style="display:block;margin-top:7px;color:rgba(8,22,20,.55);font-weight:800;">${s.round}</small></a>`).join('');
+}
+function selectStage(i){
+  current = i;
+  const s = stages[i];
+  history.replaceState(null,'',`timeline.html?stage=${i}`);
+  document.getElementById('roundPill').textContent = s.round;
+  document.getElementById('stageTitle').textContent = s.title;
+  document.getElementById('stageTime').textContent = s.time;
+  document.getElementById('stageSummary').textContent = s.summary;
+  document.getElementById('progressGrid').innerHTML = s.progress.map(p=>{const parts=p.split(' '); return `<div class="mini-card"><b>${parts[0]}</b><span>${parts.slice(1).join(' ')}</span></div>`}).join('');
+  document.getElementById('taskList').innerHTML = s.tasks.map(t=>`<div class="task"><div class="check">✓</div><div>${t}</div></div>`).join('');
+  document.getElementById('materialList').innerHTML = s.materials.map(m=>`<div class="material">${m}</div>`).join('');
+  document.getElementById('riskBox').textContent = s.risk;
+  document.getElementById('advisorBox').textContent = s.advisor;
+  document.getElementById('moneyBox').textContent = s.money;
+  renderTabs();
+}
+selectStage(current);
+</script>
+
+<nav class="quick-nav" aria-label="底部快速导航">
+  <a class="" href="index.html"><span>⌂</span><span>首页</span></a>
+  <a class="" href="status.html"><span>◎</span><span>状态</span></a>
+  <a class="active" href="timeline.html"><span>▦</span><span>地图</span></a>
+  <a class="" href="advisors.html"><span>✦</span><span>顾问</span></a>
+</nav>
+
+<script src="nexus-clean-v22.js"></script>
+</body>
+</html>
