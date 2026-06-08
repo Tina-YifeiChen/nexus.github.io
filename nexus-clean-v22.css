@@ -64,14 +64,14 @@ body:before{
   border-bottom:1px solid var(--bbg-line-soft)!important;
 }
 .logo{
-  background:linear-gradient(135deg,#172033,#2f5f8f)!important;
+  background:#2D6A4F!important;
   color:#fff!important;
   box-shadow:none!important;
 }
 .navlinks a,.navlinks{color:rgba(17,24,39,.72)!important;}
 .navlinks a:hover{color:var(--bbg-accent)!important;}
 .nav-cta,.btn-primary{
-  background:#172033!important;
+  background:#2D6A4F!important;
   color:white!important;
   box-shadow:0 10px 24px rgba(17,24,39,.12)!important;
 }
@@ -152,7 +152,7 @@ h1,.hero h1{font-size:clamp(32px,4.4vw,56px)!important;}
   box-shadow:0 14px 40px rgba(17,24,39,.13)!important;
 }
 .quick-nav a{color:rgba(17,24,39,.68)!important;}
-.quick-nav a.active,.quick-nav a:hover{background:#172033!important;color:#fff!important;}
+.quick-nav a.active,.quick-nav a:hover{background:#EEF5F1!important;color:#2D6A4F!important;}
 .page-guide-inner{
   background:rgba(255,253,247,.9)!important;
   border:1px solid rgba(17,24,39,.08)!important;

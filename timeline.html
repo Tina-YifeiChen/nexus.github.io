@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Nexus AI 智航湾区｜时间导航Agent</title>
+<script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
 <style>
 :root{--ink:#081614;--muted:#5b6865;--line:#d9ede8;--mint:#22d3a6;--cyan:#58d7ff;--paper:#f7fffd;--warning:#fff4e5}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;background:radial-gradient(circle at 12% 8%, rgba(34,211,166,.16), transparent 26%),radial-gradient(circle at 88% 18%, rgba(88,215,255,.16), transparent 28%),linear-gradient(180deg,#f8fffd 0%,#effbf8 45%,#fbfefd 100%);color:var(--ink)}a{color:inherit}.topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.9);backdrop-filter:blur(18px);border-bottom:1px solid rgba(8,22,20,.08)}.shell{width:min(1180px,100%);margin:auto;padding:24px}.nav-shell{width:min(1180px,100%);margin:auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:18px}.logo{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,var(--mint),var(--cyan));font-weight:950}.navlinks{display:flex;gap:22px;font-size:14px;font-weight:900;color:rgba(8,22,20,.72)}.navlinks a{text-decoration:none}.card{position:relative;background:rgba(255,255,255,.86);border:1px solid rgba(8,22,20,.08);border-radius:26px;padding:26px;box-shadow:0 18px 60px rgba(8,22,20,.06);backdrop-filter:blur(14px)}.hero{overflow:hidden;padding:48px 40px}.hero:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(8,22,20,.045) 1px, transparent 1px),linear-gradient(90deg, rgba(8,22,20,.045) 1px, transparent 1px);background-size:30px 30px;mask-image:linear-gradient(to bottom, black, transparent 92%);pointer-events:none}.pill{display:inline-flex;align-items:center;gap:8px;padding:9px 13px;border-radius:999px;background:#ecfff8;color:#087b64;font-weight:950;font-size:13px;border:1px solid rgba(34,211,166,.16)}.hero h1{position:relative;font-size:clamp(38px,6vw,72px);line-height:.98;margin:24px 0 18px;letter-spacing:-.06em;max-width:980px}.hero p{position:relative;max-width:850px;font-size:18px;line-height:1.85;color:rgba(8,22,20,.64)}.btn{border:none;border-radius:16px;padding:14px 18px;font-weight:950;cursor:pointer;text-decoration:none;display:inline-flex;justify-content:center;align-items:center;gap:8px}.btn-primary{background:var(--ink);color:white;box-shadow:0 14px 38px rgba(8,22,20,.15)}.btn-soft{background:white;color:var(--ink);border:1px solid rgba(8,22,20,.1)}.section-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;margin-bottom:22px;flex-wrap:wrap}.section-title{font-size:32px;font-weight:950;letter-spacing:-.04em;margin:10px 0 6px}.section-sub{margin:0;color:rgba(8,22,20,.62);line-height:1.75;max-width:820px}.stage-tabs{display:grid;grid-template-columns:repeat(7,minmax(120px,1fr));gap:12px;margin-top:22px}.stage-tab{border:1px solid rgba(8,22,20,.08);background:white;border-radius:18px;padding:14px;cursor:pointer;text-align:left;text-decoration:none;color:inherit;display:block}.stage-tab.active{border-color:rgba(34,211,166,.72);box-shadow:0 0 0 4px rgba(34,211,166,.12)}.stage-tab b{display:block;font-size:13px;color:#087b64}.stage-tab span{display:block;margin-top:6px;font-size:14px;font-weight:950}.layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);gap:22px;margin-top:24px}.big-title{font-size:36px;font-weight:950;letter-spacing:-.05em;margin:8px 0}.summary{font-size:16px;line-height:1.9;color:rgba(8,22,20,.64)}.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.mini-card,.task,.side-card{background:white;border:1px solid rgba(8,22,20,.07);border-radius:20px;padding:18px}.mini-card b{display:block;font-size:12px;color:rgba(8,22,20,.52)}.mini-card span{display:block;margin-top:6px;font-size:20px;font-weight:950}.task-list{display:grid;gap:12px}.task{display:flex;gap:12px;align-items:flex-start;line-height:1.65}.check{flex:0 0 auto;width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--mint),var(--cyan));color:white;font-size:13px;font-weight:950;display:grid;place-items:center}.warning{padding:16px;border-radius:18px;background:var(--warning);border:1px solid rgba(246,183,79,.28);color:#6b4b11;line-height:1.75}.side-stack{display:grid;gap:16px}.side-card h3{margin:0 0 10px;font-size:20px;letter-spacing:-.03em}.side-card p,.side-card li{color:rgba(8,22,20,.62);line-height:1.75}.material-list{display:grid;gap:9px}.material{padding:10px 12px;border-radius:14px;background:#f4fffc;border:1px solid rgba(34,211,166,.14);font-weight:850;color:#087b64}.cta-card{text-align:center;padding:34px}@media(max-width:980px){.layout,.grid2,.grid3{grid-template-columns:1fr}.stage-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}.navlinks{display:none}.hero{padding:30px 24px}.shell{padding:16px}}@media(max-width:560px){.stage-tabs{grid-template-columns:1fr}.hero h1{font-size:38px}.card{padding:20px;border-radius:22px}}
 
@@ -284,6 +285,14 @@ body{padding-bottom:96px !important;}
 .cycle-node strong{display:block;margin-top:7px;font-size:18px;letter-spacing:-.03em}
 .cycle-node p{margin:10px 0 0;color:rgba(8,22,20,.58);font-size:13px;line-height:1.6}
 .cycle-node em{display:inline-flex;margin-top:14px;font-style:normal;font-size:12px;font-weight:950;color:var(--ink);background:#f4fffc;border:1px solid rgba(34,211,166,.16);border-radius:999px;padding:7px 10px}
+.cycle-node{min-height:142px}
+.cycle-phase-meta{display:block;margin-top:9px;color:rgba(8,22,20,.52);font-size:12px;font-weight:700}
+.cycle-expand{display:none;margin-top:16px;padding-top:14px;border-top:1px solid rgba(8,22,20,.08);text-align:left}
+.cycle-node.expanded .cycle-expand{display:grid;gap:12px}
+.cycle-expand-section strong{display:block!important;margin:0!important;font-size:12px!important}
+.cycle-expand-section p{display:block!important;margin:5px 0 0!important;font-size:12px!important;line-height:1.6!important}
+.cycle-expand-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:7px}
+.cycle-expand-tags span{padding:6px 8px;border-radius:9px;background:#F1F3F2;color:#66716B;font-size:10px}
 .drill-card{margin-top:22px;background:linear-gradient(135deg,#ffffff,#f4fffc);border:1px solid rgba(8,22,20,.08);border-radius:24px;padding:20px}
 .drill-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:14px}
 .drill-tabs{display:flex;gap:8px;flex-wrap:wrap}
@@ -295,10 +304,953 @@ body{padding-bottom:96px !important;}
 .detail-jump{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
 .detail-jump a{padding:9px 12px;border-radius:999px;text-decoration:none;background:#f1fffb;color:#087b64;border:1px solid rgba(34,211,166,.16);font-size:12px;font-weight:950}
 @media(max-width:980px){.cycle-grid{grid-template-columns:repeat(7,168px);min-width:1240px}.cycle-map{padding-bottom:12px}}
+/* === Figma pass: quiet, content-first timeline UI === */
+@media(max-width:760px){
+  body.nexus-timeline-page{
+    --tl-bg:#F9FAFC;
+    --tl-card:#FFFFFF;
+    --tl-ink:#17211C;
+    --tl-muted:#6F7B74;
+    --tl-primary:#2D6A4F;
+    --tl-soft:#EEF5F1;
+    --tl-line:#E8ECE9;
+    --tl-shadow:0 2px 10px rgba(23,33,28,.055);
+    --tl-shadow-raised:0 8px 24px rgba(23,33,28,.075);
+    background:var(--tl-bg)!important;
+    color:var(--tl-ink)!important;
+  }
+  body.nexus-timeline-page .mobile-app-dashboard{
+    display:block!important;
+    padding:calc(env(safe-area-inset-top,0px) + 10px) 16px 6px!important;
+  }
+  body.nexus-timeline-page .mobile-app-head{
+    min-height:52px!important;
+    align-items:center!important;
+    padding:0 0 14px!important;
+  }
+  body.nexus-timeline-page .mobile-brand-mark{
+    width:34px!important;
+    height:34px!important;
+    border-radius:12px!important;
+    color:#fff!important;
+    background:var(--tl-primary)!important;
+  }
+  body.nexus-timeline-page .mobile-brand-lockup strong{
+    color:var(--tl-ink)!important;
+    font-size:17px!important;
+    font-weight:760!important;
+  }
+  body.nexus-timeline-page .mobile-brand-lockup small{
+    color:var(--tl-muted)!important;
+    font-size:11px!important;
+  }
+  body.nexus-timeline-page .mobile-icon-button{
+    color:var(--tl-primary)!important;
+    background:#fff!important;
+    border:0!important;
+    box-shadow:var(--tl-shadow)!important;
+  }
+  body.nexus-timeline-page .mobile-profile-card{
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) 82px!important;
+    gap:14px!important;
+    margin:0 0 14px!important;
+    padding:20px!important;
+    border:0!important;
+    border-radius:24px!important;
+    color:#fff!important;
+    background:var(--tl-primary)!important;
+    box-shadow:0 8px 24px rgba(45,106,79,.18)!important;
+  }
+  body.nexus-timeline-page .mobile-profile-card .mobile-eyebrow,
+  body.nexus-timeline-page .mobile-profile-card .mobile-profile-meta,
+  body.nexus-timeline-page .mobile-profile-card .mobile-readiness small{
+    color:rgba(255,255,255,.72)!important;
+  }
+  body.nexus-timeline-page .mobile-profile-name{
+    margin-top:8px!important;
+    color:#fff!important;
+    font-size:24px!important;
+    line-height:1.18!important;
+    font-weight:800!important;
+  }
+  body.nexus-timeline-page .mobile-score-row span{
+    color:rgba(255,255,255,.75)!important;
+    background:rgba(255,255,255,.12)!important;
+  }
+  body.nexus-timeline-page .mobile-score-row b{color:#fff!important}
+  body.nexus-timeline-page .mobile-readiness-ring{
+    background:conic-gradient(#fff 0 58%,rgba(255,255,255,.2) 58% 100%)!important;
+  }
+  body.nexus-timeline-page .mobile-readiness-ring:after{background:var(--tl-primary)!important}
+  body.nexus-timeline-page .mobile-readiness-ring span{color:#fff!important}
+  body.nexus-timeline-page .mobile-generate{
+    display:flex!important;
+    margin:0 0 24px!important;
+    min-height:56px!important;
+    border-radius:16px!important;
+    color:#fff!important;
+    background:var(--tl-primary)!important;
+    box-shadow:0 6px 18px rgba(45,106,79,.16)!important;
+  }
+  body.nexus-timeline-page .mobile-tools-head,
+  body.nexus-timeline-page .mobile-feature-grid{display:none!important}
+  body.nexus-timeline-page .mobile-priority-card{
+    margin-bottom:28px!important;
+    padding:20px!important;
+    border-radius:24px!important;
+    background:#fff!important;
+    box-shadow:var(--tl-shadow-raised)!important;
+  }
+  body.nexus-timeline-page .mobile-section-head h2,
+  body.nexus-timeline-page .section-title,
+  body.nexus-timeline-page .big-title{
+    color:var(--tl-ink)!important;
+    font-weight:760!important;
+    letter-spacing:0!important;
+  }
+  body.nexus-timeline-page .mobile-stage-count,
+  body.nexus-timeline-page .mobile-priority-index,
+  body.nexus-timeline-page .cycle-node em,
+  body.nexus-timeline-page .pill,
+  body.nexus-timeline-page .material,
+  body.nexus-timeline-page .detail-jump a{
+    color:var(--tl-primary)!important;
+    background:var(--tl-soft)!important;
+    border:0!important;
+  }
+  body.nexus-timeline-page .mobile-stage-number,
+  body.nexus-timeline-page .check{
+    color:#fff!important;
+    background:var(--tl-primary)!important;
+  }
+  body.nexus-timeline-page .mobile-priority-item{
+    min-height:58px!important;
+    border-top:1px solid #F0F2F1!important;
+  }
+  body.nexus-timeline-page .mobile-app-dashboard+.shell{
+    padding:0 16px 32px!important;
+  }
+  body.nexus-timeline-page .mobile-app-dashboard+.shell>.agent-panel,
+  body.nexus-timeline-page .mobile-app-dashboard+.shell>.hero,
+  body.nexus-timeline-page .mobile-app-dashboard+.shell>#details,
+  body.nexus-timeline-page .mobile-app-dashboard+.shell>.layout,
+  body.nexus-timeline-page .mobile-app-dashboard+.shell>.cta-card{
+    display:none!important;
+  }
+  body.nexus-timeline-page #long-cycle{
+    margin-top:0!important;
+    padding:0!important;
+    border:0!important;
+    background:transparent!important;
+    box-shadow:none!important;
+  }
+  body.nexus-timeline-page .long-map-head{display:none!important}
+  body.nexus-timeline-page .cycle-map{
+    margin-top:0!important;
+    overflow:visible!important;
+    padding:0!important;
+  }
+  body.nexus-timeline-page .cycle-rail{
+    left:8px!important;
+    top:16px!important;
+    bottom:16px!important;
+    width:2px!important;
+    height:auto!important;
+    background:#DDE4E0!important;
+  }
+  body.nexus-timeline-page .cycle-grid{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    min-width:0!important;
+    gap:10px!important;
+    padding-left:30px!important;
+  }
+  body.nexus-timeline-page .cycle-node{
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) 44px!important;
+    min-height:0!important;
+    padding:16px!important;
+    border:0!important;
+    border-radius:24px!important;
+    color:var(--tl-ink)!important;
+    background:#fff!important;
+    box-shadow:var(--tl-shadow)!important;
+    text-align:left!important;
+  }
+  body.nexus-timeline-page .cycle-node.active{
+    box-shadow:var(--tl-shadow-raised)!important;
+  }
+  body.nexus-timeline-page .cycle-dot{
+    position:absolute!important;
+    left:-28px!important;
+    top:22px!important;
+    width:12px!important;
+    height:12px!important;
+    background:#AAB5AF!important;
+    box-shadow:0 0 0 4px var(--tl-bg)!important;
+  }
+  body.nexus-timeline-page .cycle-node.active .cycle-dot{background:var(--tl-primary)!important}
+  body.nexus-timeline-page .cycle-node b{
+    color:var(--tl-muted)!important;
+    font-size:11px!important;
+    font-weight:560!important;
+  }
+  body.nexus-timeline-page .cycle-node strong{
+    margin-top:6px!important;
+    color:var(--tl-ink)!important;
+    font-size:16px!important;
+    font-weight:730!important;
+  }
+  body.nexus-timeline-page .cycle-node p{
+    max-width:42ch!important;
+    margin-top:7px!important;
+    color:var(--tl-muted)!important;
+    font-size:12px!important;
+    line-height:1.55!important;
+    display:-webkit-box;
+    overflow:hidden;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2;
+  }
+  body.nexus-timeline-page .cycle-node em{
+    grid-column:2!important;
+    grid-row:1/4!important;
+    align-self:center!important;
+    width:44px!important;
+    height:44px!important;
+    display:grid!important;
+    place-items:center!important;
+    margin:0!important;
+    border-radius:14px!important;
+    font-size:0!important;
+  }
+  body.nexus-timeline-page .cycle-node em:after{
+    content:"›";
+    font-size:24px;
+    line-height:1;
+  }
+  body.nexus-timeline-page .quick-nav{
+    width:calc(100% - 24px)!important;
+    padding:4px 4px calc(4px + env(safe-area-inset-bottom,0px))!important;
+    border:0!important;
+    border-radius:18px!important;
+    background:rgba(255,255,255,.98)!important;
+    box-shadow:0 10px 32px rgba(23,33,28,.11)!important;
+  }
+  body.nexus-timeline-page .quick-nav a{
+    min-height:52px!important;
+    color:#8A958F!important;
+    font-size:11px!important;
+    font-weight:500!important;
+  }
+  body.nexus-timeline-page .quick-nav a.active{
+    color:var(--tl-primary)!important;
+    font-weight:650!important;
+  }
+  body.nexus-timeline-page .quick-nav a.active:before{display:none!important}
+}
+@media(min-width:761px){
+  body.nexus-timeline-page{
+    background:#F9FAFC!important;
+  }
+  body.nexus-timeline-page .card,
+  body.nexus-timeline-page .cycle-node,
+  body.nexus-timeline-page .drill-card,
+  body.nexus-timeline-page .side-card{
+    border-color:#E8ECE9!important;
+    border-radius:24px!important;
+    box-shadow:0 4px 18px rgba(23,33,28,.055)!important;
+  }
+  body.nexus-timeline-page .btn-primary,
+  body.nexus-timeline-page .stage-tab.active,
+  body.nexus-timeline-page .drill-tab.active{
+    background:#2D6A4F!important;
+    border-color:#2D6A4F!important;
+  }
+  body.nexus-timeline-page .cycle-node.active{
+    border-color:#2D6A4F!important;
+    box-shadow:0 0 0 4px rgba(45,106,79,.1),0 8px 24px rgba(23,33,28,.07)!important;
+  }
+  body.nexus-timeline-page .cycle-dot,
+  body.nexus-timeline-page .check{
+    background:#2D6A4F!important;
+  }
+}
 </style>
 <link rel="stylesheet" href="nexus-clean-v22.css" />
+<style id="nexus-mobile-app-ui">
+.mobile-app-dashboard{display:none}
+.quick-nav.mobile-five{grid-template-columns:repeat(4,1fr)}
+
+@media(max-width:760px){
+  :root{
+    --mobile-bg:#F9FAFC;
+    --mobile-panel:#FFFFFF;
+    --mobile-panel-2:#FFFFFF;
+    --mobile-line:#E7EBE8;
+    --mobile-text:#17211C;
+    --mobile-muted:#6F7B74;
+    --mobile-mint:#2D6A4F;
+    --mobile-blue:#527A67;
+    --app-bg:#F9FAFC;
+    --app-surface:#FFFFFF;
+    --app-surface-raised:#FFFFFF;
+    --app-border:#E7EBE8;
+    --app-primary:#2D6A4F;
+    --app-accent:#527A67;
+    --app-text:#17211C;
+    --app-muted:#6F7B74;
+  }
+  html{background:#F9FAFC!important}
+  body{
+    color:#17211C!important;
+    background:#F9FAFC!important;
+    font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif!important;
+  }
+  .mobile-brand-lockup{color:#17211C}
+  .mobile-brand-mark{color:#fff;background:#2D6A4F;box-shadow:0 4px 12px rgba(45,106,79,.15)}
+  .mobile-brand-lockup strong,.mobile-profile-name,.mobile-section-head h2{color:#17211C!important;font-weight:800!important}
+  .mobile-brand-lockup small,.mobile-profile-meta,.mobile-readiness small,.mobile-priority-top p,.mobile-feature small{color:#6F7B74!important}
+  .mobile-icon-button{color:#2D6A4F;background:#fff;border-color:#E7EBE8;box-shadow:0 1px 3px rgba(23,33,28,.06)}
+  .mobile-profile-card,
+  .mobile-priority-card,
+  .mobile-feature,
+  .card,.side-card,.mini-card,.task,.drill-card,.drill-item{
+    color:#17211C!important;
+    background:#fff!important;
+    border-color:#EBEEEC!important;
+    border-radius:24px!important;
+    box-shadow:0 2px 10px rgba(23,33,28,.055)!important;
+  }
+  .mobile-profile-card{display:grid!important;grid-template-columns:minmax(0,1fr) 84px!important;border-radius:24px!important}
+  .mobile-eyebrow{color:#2D6A4F;font-weight:600}
+  .mobile-score-row span{color:#6F7B74;background:#F4F7F5}
+  .mobile-score-row b{color:#17211C}
+  .mobile-readiness-ring{background:conic-gradient(#2D6A4F 0 42%,#E8EDE9 42% 100%)}
+  .mobile-readiness-ring:after{background:#fff}
+  .mobile-readiness-ring span{color:#17211C}
+  .mobile-generate{
+    display:flex!important;
+    width:100%!important;
+    min-height:64px!important;
+    align-items:center!important;
+    justify-content:space-between!important;
+    padding:12px 16px!important;
+    margin:12px 0 24px!important;
+    text-decoration:none!important;
+    color:#fff!important;
+    background:#2D6A4F!important;
+    border-color:#2D6A4F!important;
+    border-radius:20px!important;
+    box-shadow:0 4px 12px rgba(45,106,79,.16)!important;
+  }
+  .mobile-generate small{color:rgba(255,255,255,.72)}
+  .mobile-generate strong{color:#fff!important}
+  .mobile-generate svg{color:#fff}
+  .mobile-section-head>a{color:#2D6A4F;font-weight:600}
+  .mobile-priority-top{border-bottom-color:#E9EDEA}
+  .mobile-stage-number{color:#2D6A4F;background:#EEF5F1}
+  .mobile-priority-top strong,.mobile-priority-item,.mobile-feature strong{color:#17211C!important}
+  .mobile-priority-item{border-bottom-color:#EEF1EF}
+  .mobile-priority-index{color:#2D6A4F;background:#EEF5F1}
+  .mobile-priority-item svg,.mobile-feature-arrow{color:#89958E}
+  .mobile-feature-icon{color:#2D6A4F;background:#EEF5F1}
+  .mobile-feature:active,.cycle-node:active{background:#F3F7F4!important}
+  .mobile-stage-count{color:#657169;background:#EEF2EF;font-weight:600}
+  .long-map-card{background:transparent!important;border:0!important;box-shadow:none!important}
+  .cycle-rail{background:linear-gradient(#2D6A4F,#8CAD9B,#DDE7E1)!important}
+  .cycle-node{
+    color:#17211C!important;
+    background:#fff!important;
+    border-color:#E8ECE9!important;
+    border-radius:24px!important;
+    box-shadow:0 2px 10px rgba(23,33,28,.05)!important;
+  }
+  .cycle-node.active{border-color:#2D6A4F!important;box-shadow:0 0 0 3px rgba(45,106,79,.09),0 2px 10px rgba(23,33,28,.055)!important}
+  .cycle-dot{background:#2D6A4F!important;box-shadow:0 0 0 5px #E2EEE7!important}
+  .cycle-node b,.mini-card span{color:#2D6A4F!important}
+  .cycle-node strong,.long-map-head .section-title,.section-title,.big-title,.side-card h3,.agent-title{color:#17211C!important;font-weight:800!important}
+  .section-sub,.summary,.side-card p,.side-card li,.cycle-node p,.drill-item{color:#6F7B74!important}
+  .cycle-node em,.map-legend span,.pill,.material,.detail-jump a{
+    color:#2D6A4F!important;
+    background:#EEF5F1!important;
+    border-color:#DCE9E1!important;
+    font-weight:600!important;
+  }
+  .stage-tab,.drill-tab{
+    color:#59655E!important;
+    background:#F7F9F8!important;
+    border-color:#E7EBE8!important;
+    border-radius:16px!important;
+    box-shadow:none!important;
+    font-weight:600!important;
+  }
+  .stage-tab.active,.drill-tab.active{
+    color:#fff!important;
+    background:#2D6A4F!important;
+    border-color:#2D6A4F!important;
+    box-shadow:0 3px 10px rgba(45,106,79,.14)!important;
+  }
+  .check{color:#fff!important;background:#2D6A4F!important}
+  .warning{color:#795B25!important;background:#FFF9EC!important;border-color:#F0E4C7!important}
+  .quick-nav{
+    background:rgba(255,255,255,.97)!important;
+    border-color:#E5E9E6!important;
+    border-radius:24px!important;
+    box-shadow:0 8px 28px rgba(23,33,28,.1)!important;
+    backdrop-filter:blur(18px)!important;
+    -webkit-backdrop-filter:blur(18px)!important;
+  }
+  .quick-nav a{color:#8A958F!important}
+  .quick-nav a.active,.quick-nav a:hover{color:#2D6A4F!important;background:transparent!important}
+  .quick-nav a.active:before{background:#2D6A4F!important}
+}
+
+@media(max-width:760px){
+  body{
+    --nx-shadow-low:0 2px 8px rgba(23,33,28,.045);
+    --nx-shadow-mid:0 8px 24px rgba(23,33,28,.07);
+    --nx-title:22px;
+    --nx-body:14px;
+    --nx-caption:11px;
+  }
+  .shell{padding:0 16px 32px!important}
+  .mobile-app-dashboard{padding:calc(env(safe-area-inset-top,0px) + 8px) 16px 4px!important}
+  .mobile-app-head{min-height:48px!important;padding-bottom:16px!important}
+  .mobile-brand-mark{width:32px;height:32px;border-radius:12px;font-size:14px;box-shadow:none}
+  .mobile-brand-lockup strong{font-size:16px!important;font-weight:700!important}
+  .mobile-icon-button{width:44px;height:44px;border:0;border-radius:12px;box-shadow:var(--nx-shadow-low)}
+  .mobile-profile-card,
+  .mobile-priority-card,
+  .mobile-feature,
+  .card,.side-card,.mini-card,.task,.drill-card,.drill-item,.cycle-node{
+    border:0!important;
+    border-radius:16px!important;
+    box-shadow:var(--nx-shadow-low)!important;
+  }
+  .mobile-profile-card{padding:20px!important;box-shadow:var(--nx-shadow-mid)!important}
+  .mobile-eyebrow{
+    color:#7A857F!important;
+    font-size:var(--nx-caption)!important;
+    font-weight:500!important;
+    letter-spacing:.08em!important;
+  }
+  .mobile-profile-name,.mobile-section-head h2,.section-title,.big-title,.side-card h3,.agent-title{
+    font-size:var(--nx-title)!important;
+    font-weight:750!important;
+    line-height:1.32!important;
+    letter-spacing:0!important;
+  }
+  .mobile-profile-meta,.mobile-readiness small,.mobile-priority-top p,.mobile-feature small,
+  .section-sub,.summary,.side-card p,.side-card li,.cycle-node p,.drill-item{
+    font-size:var(--nx-body)!important;
+    line-height:1.7!important;
+  }
+  .mobile-score-row{margin-top:16px;gap:8px}
+  .mobile-score-row span{
+    padding:8px 12px;
+    border-radius:12px;
+    color:#66716B;
+    background:#F1F3F2;
+    font-size:var(--nx-caption);
+    font-weight:500;
+  }
+  .mobile-generate{
+    min-height:56px!important;
+    margin:16px 0 28px!important;
+    border:0!important;
+    border-radius:12px!important;
+    box-shadow:0 6px 18px rgba(45,106,79,.16)!important;
+  }
+  .mobile-generate small{font-size:var(--nx-caption)!important}
+  .mobile-generate strong{font-size:16px!important;font-weight:700!important}
+  .mobile-section-head{margin-bottom:12px}
+  .mobile-section-head>a{color:#5E6963;font-size:var(--nx-caption);font-weight:550}
+  .mobile-priority-card{padding:20px;box-shadow:var(--nx-shadow-mid)!important}
+  .mobile-priority-top{padding-bottom:16px;border:0}
+  .mobile-stage-number{border-radius:12px}
+  .mobile-priority-item{
+    min-height:60px;
+    border:0;
+    border-top:1px solid #F0F2F1;
+    font-size:var(--nx-body);
+    line-height:1.6;
+  }
+  .mobile-priority-index{color:#66716B;background:#F1F3F2;border-radius:8px}
+  .mobile-tools-head{margin-top:32px}
+  .mobile-feature-grid{gap:12px!important}
+  .mobile-feature{min-height:80px!important;padding:16px!important}
+  .mobile-feature-icon{color:#5E6963;background:#F1F3F2;border-radius:12px}
+  .mobile-feature strong{font-size:var(--nx-body)!important;font-weight:700!important}
+  .mobile-timeline-head{margin-top:36px}
+  .mobile-stage-count{
+    padding:8px 12px;
+    border-radius:12px;
+    color:#66716B;
+    background:#F1F3F2;
+    font-size:var(--nx-caption);
+    font-weight:500;
+  }
+  .cycle-rail{background:#DDE4E0!important}
+  .cycle-node{padding:16px!important}
+  .cycle-node.active{
+    border:0!important;
+    box-shadow:0 8px 24px rgba(23,33,28,.08)!important;
+  }
+  .cycle-dot{width:12px!important;height:12px!important;background:#AAB5AF!important;box-shadow:0 0 0 4px #F9FAFC!important}
+  .cycle-node.active .cycle-dot{background:#2D6A4F!important}
+  .cycle-node b{color:#7A857F!important;font-size:var(--nx-caption)!important;font-weight:500!important}
+  .cycle-node strong{font-size:16px!important;font-weight:700!important}
+  .cycle-node em,.map-legend span,.pill,.material,.detail-jump a{
+    color:#66716B!important;
+    background:#F1F3F2!important;
+    border:0!important;
+    border-radius:12px!important;
+    font-size:var(--nx-caption)!important;
+    font-weight:500!important;
+  }
+  .stage-tab,.drill-tab{
+    border:0!important;
+    border-radius:12px!important;
+    background:#F1F3F2!important;
+    box-shadow:none!important;
+    font-size:var(--nx-caption)!important;
+    font-weight:550!important;
+  }
+  .stage-tab.active,.drill-tab.active{background:#2D6A4F!important;box-shadow:none!important}
+  .quick-nav{
+    width:calc(100% - 24px)!important;
+    padding:4px 4px calc(4px + env(safe-area-inset-bottom,0px))!important;
+    border:0!important;
+    border-radius:16px!important;
+    box-shadow:0 10px 32px rgba(23,33,28,.11)!important;
+  }
+  .quick-nav.mobile-five{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+  .quick-nav a{font-size:var(--nx-caption)!important;font-weight:500!important}
+  .quick-nav a.active:before{display:none}
+  .quick-nav a.active{font-weight:650!important}
+
+  /* Focus this screen on current tasks and the long-cycle route. */
+  .mobile-profile-card,
+  .mobile-generate,
+  .mobile-tools-head,
+  .mobile-feature-grid{display:none!important}
+  .mobile-app-dashboard{padding-bottom:0!important}
+  .mobile-app-head{padding-bottom:20px!important}
+  .mobile-section-head{align-items:center!important;margin-bottom:12px!important}
+  .mobile-priority-card{margin-bottom:30px}
+  .mobile-timeline-head{margin-top:0!important}
+  .mobile-stage-count b{color:inherit;font-weight:700}
+  .mobile-app-dashboard+.shell{padding-top:0!important}
+  .mobile-app-dashboard+.shell>#details,
+  .mobile-app-dashboard+.shell>.layout,
+  .mobile-app-dashboard+.shell>.cta-card{display:none!important}
+  .mobile-app-dashboard+.shell>#long-cycle{margin-top:0!important}
+  .mobile-app-dashboard+.shell>#long-cycle .cycle-map{margin-top:0!important}
+  .mobile-app-dashboard+.shell>#long-cycle .cycle-node>p{display:none!important}
+  .mobile-app-dashboard+.shell>#long-cycle .cycle-node{
+    grid-template-columns:minmax(0,1fr) 44px!important;
+    min-height:88px!important;
+    align-content:center!important;
+  }
+  .mobile-app-dashboard+.shell>#long-cycle .cycle-node.expanded{
+    min-height:0!important;
+    align-content:start!important;
+  }
+  .mobile-app-dashboard+.shell>#long-cycle .cycle-node b,
+  .mobile-app-dashboard+.shell>#long-cycle .cycle-node strong,
+  .mobile-app-dashboard+.shell>#long-cycle .cycle-node .cycle-phase-meta{grid-column:1}
+  .mobile-app-dashboard+.shell>#long-cycle .cycle-node em{
+    grid-column:2!important;
+    grid-row:1/4!important;
+    align-self:center!important;
+  }
+  .mobile-app-dashboard+.shell>#long-cycle .cycle-node.expanded em:after{content:"⌃"!important;font-size:16px!important}
+  .mobile-app-dashboard+.shell>#long-cycle .cycle-phase-meta{
+    margin-top:5px;
+    color:#8A958F;
+    font-size:10px;
+    font-weight:550;
+  }
+  .mobile-app-dashboard+.shell>#long-cycle .cycle-expand{
+    grid-column:1/-1;
+    grid-row:auto;
+    margin-top:14px;
+    padding-top:14px;
+    border-top-color:#EEF1EF;
+  }
+  .mobile-app-dashboard+.shell>#long-cycle .cycle-expand-section strong{
+    color:#17211C!important;
+    font-size:12px!important;
+    font-weight:680!important;
+  }
+  .mobile-app-dashboard+.shell>#long-cycle .cycle-expand-section p{
+    display:block!important;
+    color:#68746D!important;
+    font-size:11px!important;
+    line-height:1.65!important;
+    -webkit-line-clamp:unset!important;
+  }
+  .mobile-task-head{margin-top:32px!important}
+  .mobile-task-head button{
+    min-height:44px;
+    padding:0 4px;
+    border:0;
+    color:#5E6963;
+    background:transparent;
+    font-size:11px;
+    font-weight:550;
+    cursor:pointer;
+  }
+  .mobile-task-nav{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px;
+  }
+  .mobile-task-card{
+    position:relative;
+    min-height:108px;
+    padding:14px;
+    border:0;
+    border-radius:16px;
+    color:#17211C;
+    background:#fff;
+    box-shadow:var(--nx-shadow-low);
+    text-align:left;
+    cursor:pointer;
+  }
+  .mobile-task-card.active{box-shadow:0 8px 24px rgba(23,33,28,.08)}
+  .mobile-task-card.active:after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border:2px solid rgba(45,106,79,.32);
+    border-radius:inherit;
+    pointer-events:none;
+  }
+  .mobile-task-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+  .mobile-task-icon{
+    width:36px;
+    height:36px;
+    display:grid;
+    place-items:center;
+    border-radius:11px;
+    color:#5E6963;
+    background:#F1F3F2;
+  }
+  .mobile-task-card.active .mobile-task-icon{color:#2D6A4F;background:#EEF5F1}
+  .mobile-task-icon svg{width:18px;height:18px;stroke-width:1.8}
+  .mobile-task-status{
+    padding:5px 7px;
+    border-radius:8px;
+    color:#7A857F;
+    background:#F3F5F4;
+    font-size:9px;
+    font-weight:600;
+    white-space:nowrap;
+  }
+  .mobile-task-status.focus{color:#2D6A4F;background:#EAF2ED}
+  .mobile-task-status.done{color:#5E6963;background:#EDF0EE}
+  .mobile-task-card strong{display:block;margin-top:11px;color:#17211C!important;font-size:14px!important;font-weight:700!important}
+  .mobile-task-progress{height:4px;margin-top:10px;overflow:hidden;border-radius:99px;background:#E9EDEA}
+  .mobile-task-progress{display:block!important;width:100%!important}
+  .mobile-task-progress span{display:block!important;height:100%!important;border-radius:inherit;background:#97A39C}
+  .mobile-task-card.active .mobile-task-progress span{background:#2D6A4F}
+  .mobile-task-card small{display:block;margin-top:5px;color:#8A958F;font-size:10px}
+  .mobile-task-detail{
+    margin-top:12px;
+    padding:18px;
+    border-radius:16px;
+    background:#fff;
+    box-shadow:var(--nx-shadow-mid);
+  }
+  .mobile-task-detail-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+  .mobile-task-detail-head span{color:#7A857F;font-size:10px;font-weight:550}
+  .mobile-task-detail-head h3{margin:4px 0 0!important;color:#17211C!important;font-size:17px!important;font-weight:720!important}
+  .mobile-task-detail-head b{padding:6px 8px;border-radius:9px;color:#2D6A4F;background:#EEF5F1;font-size:10px;white-space:nowrap}
+  .mobile-task-detail-section{margin-top:16px;padding-top:14px;border-top:1px solid #EEF1EF}
+  .mobile-task-detail-section strong{display:block;color:#17211C!important;font-size:12px!important;font-weight:680!important}
+  .mobile-task-detail-section p{margin:6px 0 0!important;color:#68746D!important;font-size:12px!important;line-height:1.65!important}
+  .mobile-task-materials{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+  .mobile-task-materials span{padding:6px 8px;border-radius:9px;color:#66716B;background:#F1F3F2;font-size:10px}
+  .mobile-timeline-head{margin-top:36px!important}
+}
+
+.application-task-map{margin-top:24px}
+.application-task-head{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.application-task-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:20px}
+.application-task-card{padding:16px;border:1px solid rgba(8,22,20,.07);border-radius:18px;background:#fff}
+.application-task-card strong{display:block;margin-top:10px;font-size:15px}
+.application-task-card span{display:block;margin-top:5px;color:rgba(8,22,20,.58);font-size:12px}
+.application-task-card .mobile-task-progress{height:5px;margin-top:12px;overflow:hidden;border-radius:99px;background:#E9EDEA}
+.application-task-card .mobile-task-progress i{display:block;height:100%;border-radius:inherit;background:#2D6A4F}
+@media(max-width:980px){.application-task-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.application-task-map{display:none!important}}
+</style>
+<style id="nexus-navigation-v3">
+@media(max-width:760px){
+  body.nexus-timeline-page{
+    padding-bottom:92px!important;
+    background:#F7F8F7!important;
+  }
+  body.nexus-timeline-page .topbar,
+  body.nexus-timeline-page .page-guide{display:none!important}
+  body.nexus-timeline-page .mobile-app-dashboard{
+    display:block!important;
+    padding:calc(env(safe-area-inset-top,0px) + 10px) 16px 24px!important;
+  }
+  body.nexus-timeline-page .mobile-app-head{
+    min-height:52px!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:space-between!important;
+    padding:0 0 12px!important;
+  }
+  body.nexus-timeline-page .mobile-brand-lockup{
+    display:flex!important;
+    align-items:center!important;
+    gap:10px!important;
+    text-decoration:none!important;
+  }
+  body.nexus-timeline-page .mobile-brand-mark{
+    width:34px!important;
+    height:34px!important;
+    display:grid!important;
+    place-items:center!important;
+    border-radius:11px!important;
+    color:#fff!important;
+    background:#2D6A4F!important;
+    font-size:14px!important;
+    font-weight:750!important;
+  }
+  body.nexus-timeline-page .mobile-brand-lockup strong{
+    display:block!important;
+    color:#17211C!important;
+    font-size:17px!important;
+    font-weight:750!important;
+    line-height:1.25!important;
+  }
+  body.nexus-timeline-page .mobile-brand-lockup small{
+    display:block!important;
+    margin-top:1px!important;
+    color:#849088!important;
+    font-size:10px!important;
+  }
+  body.nexus-timeline-page .mobile-icon-button{
+    width:42px!important;
+    height:42px!important;
+    display:grid!important;
+    place-items:center!important;
+    border:0!important;
+    border-radius:14px!important;
+    color:#2D6A4F!important;
+    background:#fff!important;
+    box-shadow:0 2px 10px rgba(23,33,28,.055)!important;
+  }
+  body.nexus-timeline-page .mobile-icon-button svg{width:19px!important;height:19px!important}
+
+  .nav-stage-overview{
+    padding:20px;
+    border-radius:20px;
+    color:#fff;
+    background:#2D6A4F;
+    box-shadow:0 8px 24px rgba(45,106,79,.16);
+  }
+  .nav-stage-meta{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .nav-stage-meta span,.nav-stage-meta small{color:rgba(255,255,255,.7);font-size:10px;font-weight:550}
+  .nav-stage-meta b{color:inherit}
+  .nav-stage-title-row{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;margin-top:10px}
+  .nav-stage-title-row h1{
+    margin:0!important;
+    color:#fff!important;
+    font-size:25px!important;
+    font-weight:760!important;
+    line-height:1.2!important;
+    letter-spacing:0!important;
+  }
+  .nav-stage-title-row>span{color:#fff;font-size:15px;font-weight:700}
+  .nav-stage-progress{height:4px;margin-top:15px;overflow:hidden;border-radius:99px;background:rgba(255,255,255,.2)}
+  .nav-stage-progress span{display:block;height:100%;border-radius:inherit;background:#fff;transition:width .25s ease}
+  .nav-next-node{
+    display:grid;
+    grid-template-columns:34px minmax(0,1fr) 18px;
+    align-items:center;
+    gap:10px;
+    margin-top:16px;
+    padding-top:14px;
+    border-top:1px solid rgba(255,255,255,.15);
+  }
+  .nav-next-icon{width:34px;height:34px;display:grid;place-items:center;border-radius:11px;background:rgba(255,255,255,.13)}
+  .nav-next-icon svg,.nav-next-node>svg{width:17px;height:17px}
+  .nav-next-node small{display:block;color:rgba(255,255,255,.62);font-size:9px}
+  .nav-next-node strong{display:block;margin-top:2px;color:#fff!important;font-size:13px;font-weight:650}
+
+  .mobile-nav-switch{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:4px;
+    margin-top:16px;
+    padding:4px;
+    border-radius:14px;
+    background:#E9EDEB;
+  }
+  .mobile-nav-switch button{
+    min-height:44px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:7px;
+    border:0;
+    border-radius:11px;
+    color:#748078;
+    background:transparent;
+    font-size:12px;
+    font-weight:650;
+    cursor:pointer;
+  }
+  .mobile-nav-switch button.active{color:#17211C;background:#fff;box-shadow:0 2px 8px rgba(23,33,28,.07)}
+  .mobile-nav-switch svg{width:16px;height:16px}
+  .mobile-nav-panel{margin-top:16px}
+  .mobile-nav-panel[hidden]{display:none!important}
+  .mobile-panel-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;margin:0 2px 10px}
+  .mobile-panel-heading span{display:block;color:#8A958F;font-size:9px;font-weight:650;letter-spacing:.06em}
+  .mobile-panel-heading h2{margin:3px 0 0!important;color:#17211C!important;font-size:18px!important;font-weight:720!important;letter-spacing:0!important}
+  .mobile-panel-heading button{min-height:36px;padding:0 8px;border:0;color:#2D6A4F;background:transparent;font-size:11px;font-weight:650}
+
+  .mobile-cycle-peek{
+    position:relative;
+    display:grid;
+    grid-template-columns:repeat(7,minmax(0,1fr));
+    padding:18px 10px 14px;
+    border-radius:18px;
+    background:#fff;
+    box-shadow:0 2px 10px rgba(23,33,28,.05);
+  }
+  .mobile-cycle-peek:before{content:"";position:absolute;left:31px;right:31px;top:31px;height:2px;background:#E1E7E3}
+  .mobile-cycle-peek button{position:relative;z-index:1;display:grid;justify-items:center;gap:7px;padding:0;border:0;background:transparent;color:#8A958F}
+  .mobile-cycle-peek button span{width:26px;height:26px;display:grid;place-items:center;border:4px solid #fff;border-radius:50%;color:#7A857F;background:#E5EAE7;font-size:9px;font-weight:700}
+  .mobile-cycle-peek button.active span{color:#fff;background:#2D6A4F;box-shadow:0 0 0 3px #DDEAE2}
+  .mobile-cycle-peek button small{font-size:9px;white-space:nowrap}
+
+  .mobile-stage-actions{margin-top:10px;border-radius:18px;background:#fff;box-shadow:0 2px 10px rgba(23,33,28,.05)}
+  .mobile-stage-actions>summary{min-height:62px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 14px;list-style:none;cursor:pointer}
+  .mobile-stage-actions>summary::-webkit-details-marker{display:none}
+  .mobile-stage-actions>summary small{display:block;color:#8A958F;font-size:9px}
+  .mobile-stage-actions>summary strong{display:block;margin-top:2px;color:#17211C!important;font-size:13px;font-weight:680}
+  .mobile-stage-actions>summary>svg{width:17px;height:17px;color:#97A19B;transition:transform .18s ease}
+  .mobile-stage-actions[open]>summary>svg{transform:rotate(180deg)}
+  .mobile-stage-actions .mobile-priority-list{padding:0 14px 10px}
+  .mobile-stage-actions .mobile-priority-item{
+    min-height:50px!important;
+    display:grid!important;
+    grid-template-columns:24px minmax(0,1fr)!important;
+    gap:10px!important;
+    padding:10px 0!important;
+    border-top:1px solid #EEF1EF!important;
+    color:#4F5C55!important;
+    font-size:12px!important;
+    line-height:1.5!important;
+  }
+  .mobile-stage-actions .mobile-priority-item>svg{display:none!important}
+  .mobile-stage-actions .mobile-priority-index{width:24px;height:24px;display:grid;place-items:center;border-radius:8px;color:#2D6A4F;background:#EEF5F1;font-size:10px}
+
+  .mobile-task-nav{
+    display:flex!important;
+    gap:9px!important;
+    overflow-x:auto!important;
+    padding:2px 1px 10px!important;
+    scroll-snap-type:x proximity;
+    scrollbar-width:none;
+  }
+  .mobile-task-nav::-webkit-scrollbar{display:none}
+  .mobile-task-card{
+    flex:0 0 142px!important;
+    min-height:104px!important;
+    padding:13px!important;
+    border-radius:16px!important;
+    scroll-snap-align:start;
+  }
+  .mobile-task-card small{font-size:9px!important;line-height:1.4!important}
+  .mobile-task-detail{margin-top:2px!important;border-radius:18px!important;box-shadow:0 2px 10px rgba(23,33,28,.05)!important}
+
+  .mobile-nav-shortcuts{display:grid;gap:8px;margin-top:18px}
+  .mobile-nav-shortcuts>a{
+    min-height:62px;
+    display:grid;
+    grid-template-columns:36px minmax(0,1fr) 18px;
+    align-items:center;
+    gap:11px;
+    padding:10px 14px;
+    border-radius:16px;
+    color:inherit;
+    background:#fff;
+    box-shadow:0 2px 10px rgba(23,33,28,.045);
+    text-decoration:none;
+  }
+  .mobile-nav-shortcuts>a>span{width:36px;height:36px;display:grid;place-items:center;border-radius:11px;color:#2D6A4F;background:#EEF5F1}
+  .mobile-nav-shortcuts svg{width:17px;height:17px}
+  .mobile-nav-shortcuts>a>svg{color:#9BA49F}
+  .mobile-nav-shortcuts strong{display:block;color:#17211C!important;font-size:13px;font-weight:680}
+  .mobile-nav-shortcuts small{display:block;margin-top:2px;color:#849088;font-size:10px}
+
+  body.nexus-timeline-page .mobile-app-dashboard+.shell{padding:0 16px 24px!important}
+  body.nexus-timeline-page .mobile-app-dashboard+.shell>#long-cycle{display:none!important}
+  body.nexus-timeline-page.mobile-map-open .mobile-app-dashboard+.shell>#long-cycle{display:block!important}
+  body.nexus-timeline-page.mobile-map-open .mobile-app-dashboard+.shell>#long-cycle:before{
+    content:"完整时间地图";
+    display:block;
+    margin:6px 2px 10px;
+    color:#17211C;
+    font-size:18px;
+    font-weight:720;
+  }
+  body.nexus-timeline-page .mobile-app-dashboard+.shell>.agent-panel,
+  body.nexus-timeline-page .mobile-app-dashboard+.shell>.hero,
+  body.nexus-timeline-page .mobile-app-dashboard+.shell>#details,
+  body.nexus-timeline-page .mobile-app-dashboard+.shell>.layout,
+  body.nexus-timeline-page .mobile-app-dashboard+.shell>.cta-card{display:none!important}
+}
+</style>
+<style>
+.stage-detail-sheet{display:none}
+@media(max-width:760px){
+  body.stage-detail-open{overflow:hidden!important}
+  .stage-detail-sheet{
+    position:fixed;inset:0;z-index:300;display:block;overflow:hidden;
+    visibility:hidden;transform:translateX(100%);
+    background:#F9FAFC;transition:transform .28s ease,visibility .28s;
+  }
+  .stage-detail-sheet.open{visibility:visible;transform:translateX(0)}
+  .stage-detail-nav{
+    position:sticky;top:0;z-index:2;min-height:58px;display:grid;
+    grid-template-columns:44px minmax(0,1fr) 44px;align-items:center;
+    padding:env(safe-area-inset-top,0) 12px 0;background:rgba(249,250,252,.94);
+    border-bottom:1px solid rgba(23,33,28,.06);backdrop-filter:blur(16px);
+  }
+  .stage-detail-nav button{width:40px;height:40px;display:grid;place-items:center;border:0;border-radius:50%;color:#17211C;background:transparent}
+  .stage-detail-nav strong{text-align:center;color:#17211C;font-size:15px;font-weight:700}
+  .stage-detail-nav svg{width:20px;height:20px}
+  .stage-detail-scroll{height:calc(100% - 58px);overflow-y:auto;padding:16px 16px calc(30px + env(safe-area-inset-bottom,0px))}
+  .stage-detail-cover{padding:22px;border-radius:20px;background:#EAF2ED;box-shadow:0 7px 22px rgba(45,106,79,.08)}
+  .stage-detail-cover small{color:#2D6A4F;font-size:10px;font-weight:700}
+  .stage-detail-cover h1{margin:7px 0 0!important;color:#17211C!important;font-size:23px!important;line-height:1.25!important}
+  .stage-detail-cover p{margin:9px 0 0!important;color:#65736B!important;font-size:12px!important;line-height:1.65!important}
+  .stage-detail-priority{display:flex;align-items:center;gap:9px;margin-top:14px;padding-top:14px;border-top:1px solid rgba(45,106,79,.1);color:#2D6A4F;font-size:11px;font-weight:650}
+  .stage-detail-priority svg{width:17px;height:17px}
+  .stage-detail-section{margin-top:12px;padding:18px;border-radius:18px;background:#fff;box-shadow:0 3px 14px rgba(23,33,28,.05)}
+  .stage-detail-section h2{margin:0!important;color:#17211C!important;font-size:15px!important}
+  .stage-detail-list{display:grid;gap:12px;margin-top:14px}
+  .stage-detail-list div{display:grid;grid-template-columns:22px minmax(0,1fr);gap:9px;color:#526159;font-size:12px;line-height:1.55}
+  .stage-detail-list b{width:20px;height:20px;display:grid;place-items:center;border-radius:50%;color:#2D6A4F;background:#EAF2ED;font-size:9px}
+  .stage-detail-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:13px}
+  .stage-detail-tags span{padding:8px 10px;border-radius:10px;color:#526159;background:#F1F4F2;font-size:10px}
+  .stage-detail-note{margin:11px 0 0!important;color:#65736B!important;font-size:12px!important;line-height:1.65!important}
+  .cycle-node em{display:inline-flex!important;align-items:center;gap:3px}
+}
+</style>
 </head>
-<body>
+<body class="nexus-timeline-page">
 <header class="topbar">
   <div class="nav-shell">
     <a href="index.html#life-map" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
@@ -316,6 +1268,89 @@ body{padding-bottom:96px !important;}
     <div class="page-guide-actions"><button onclick="history.back()">返回上一页</button><a href="index.html">首页</a><a href="status.html">状态</a><a href="timeline.html">地图</a><a href="advisors.html">顾问</a></div>
   </div>
 </div>
+
+<section class="mobile-app-dashboard" aria-label="Nexus 智析移动端工作台">
+  <div class="mobile-app-head">
+    <a class="mobile-brand-lockup" href="index.html" aria-label="返回 Nexus AI 首页">
+      <span class="mobile-brand-mark">N</span>
+      <span>
+        <strong>申请导航</strong>
+        <small>你的申请路径</small>
+      </span>
+    </a>
+    <a class="mobile-icon-button" href="profile-detail.html" aria-label="查看我的申请画像">
+      <i data-lucide="user-round"></i>
+    </a>
+  </div>
+
+  <section class="nav-stage-overview" aria-label="当前申请阶段">
+    <div class="nav-stage-meta">
+      <span>当前阶段 · 第 <b id="mobileStageNumberText">2</b> / 7 阶段</span>
+      <small id="mobileStageTime">4-6月 · 黄金补强窗口</small>
+    </div>
+    <div class="nav-stage-title-row">
+      <h1 id="mobileStageName">背景补强期</h1>
+      <span id="mobileReadinessValue">42%</span>
+    </div>
+    <div class="nav-stage-progress"><span id="mobileStageProgress" style="width:42%"></span></div>
+    <div class="nav-next-node">
+      <span class="nav-next-icon"><i data-lucide="flag"></i></span>
+      <span><small>最近关键节点</small><strong id="mobileNextAction">锁定语言考试时间</strong></span>
+      <i data-lucide="chevron-right"></i>
+    </div>
+  </section>
+
+  <div class="mobile-nav-switch" role="tablist" aria-label="导航方式">
+    <button class="active" type="button" role="tab" aria-selected="true" data-mobile-nav="time" onclick="setMobileNavMode('time')">
+      <i data-lucide="calendar-range"></i><span>时间地图</span>
+    </button>
+    <button type="button" role="tab" aria-selected="false" data-mobile-nav="task" onclick="setMobileNavMode('task')">
+      <i data-lucide="list-checks"></i><span>任务导航</span>
+    </button>
+  </div>
+
+  <section class="mobile-nav-panel active" id="mobileTimePanel" data-mobile-panel="time">
+    <div class="mobile-panel-heading">
+      <div><span>18 MONTH ROADMAP</span><h2>先看时间位置</h2></div>
+      <button type="button" onclick="toggleFullMap(true)">展开地图</button>
+    </div>
+    <div class="mobile-cycle-peek" aria-label="七阶段申请进度">
+      <button type="button" onclick="openMapStage(0)"><span>1</span><small>定位</small></button>
+      <button class="active" type="button" onclick="openMapStage(1)"><span>2</span><small>补强</small></button>
+      <button type="button" onclick="openMapStage(2)"><span>3</span><small>材料</small></button>
+      <button type="button" onclick="openMapStage(3)"><span>4</span><small>开放</small></button>
+      <button type="button" onclick="openMapStage(4)"><span>5</span><small>提交</small></button>
+      <button type="button" onclick="openMapStage(5)"><span>6</span><small>面试</small></button>
+      <button type="button" onclick="openMapStage(6)"><span>7</span><small>Offer</small></button>
+    </div>
+    <details class="mobile-stage-actions" open>
+      <summary><span><small>本阶段重点</small><strong>优先完成这三件事</strong></span><i data-lucide="chevron-down"></i></summary>
+      <div class="mobile-priority-list" id="mobilePriorityList"></div>
+    </details>
+  </section>
+
+  <section class="mobile-nav-panel" id="mobileTaskPanel" data-mobile-panel="task" hidden>
+    <div class="mobile-panel-heading">
+      <div><span>APPLICATION TASKS</span><h2>按事项推进</h2></div>
+      <button type="button" onclick="focusCurrentTask()">定位重点</button>
+    </div>
+    <div class="mobile-task-nav" id="mobileTaskNav" aria-label="留学申请任务导航"></div>
+    <div class="mobile-task-detail" id="mobileTaskDetail" aria-live="polite"></div>
+  </section>
+
+  <div class="mobile-nav-shortcuts" aria-label="导航相关工具">
+    <a href="status.html">
+      <span><i data-lucide="school"></i></span>
+      <div><strong>院校组合</strong><small>冲刺、匹配与稳妥</small></div>
+      <i data-lucide="chevron-right"></i>
+    </a>
+    <a href="index.html#engine">
+      <span><i data-lucide="scan-search"></i></span>
+      <div><strong>更新画像</strong><small>背景变化后重新分析</small></div>
+      <i data-lucide="chevron-right"></i>
+    </a>
+  </div>
+</section>
 
 <main class="shell">
   
@@ -341,6 +1376,17 @@ body{padding-bottom:96px !important;}
       <a class="btn btn-primary" href="#long-cycle">查看长周期地图</a>
       <a class="btn btn-soft" href="index.html#life-map">返回时间地图</a>
     </div>
+  </section>
+
+  <section class="card application-task-map" id="task-navigation">
+    <div class="application-task-head">
+      <div>
+        <div class="pill">任务导航</div>
+        <h2 class="section-title">留学申请不只是一条时间线，也是一组要持续推进的任务。</h2>
+        <p class="section-sub">选校、语言、经历、文书、推荐信、网申、面试与 Offer 决策并不是依次开始。系统会根据当前阶段，告诉你哪些应立即推进、哪些只需提前准备。</p>
+      </div>
+    </div>
+    <div class="application-task-grid" id="desktopTaskNav"></div>
   </section>
 
   <section class="card long-map-card" id="long-cycle" data-v22-folded="1">
@@ -642,16 +1688,242 @@ const drillLabels = {
   money: '投入建议',
   advisor: '顾问复核'
 };
+const stageTaskFocus = ['school','language','essay','application','application','interview','offer'];
+let currentTask = stageTaskFocus[current] || 'language';
+const applicationTasks = [
+  {
+    id:'school', icon:'school', title:'选校定位',
+    subtitle:'目标项目与冲匹稳组合',
+    progress:[35,55,70,82,92,96,100],
+    materials:['项目清单','冲刺/匹配/稳妥分层','DDL 表'],
+    actions:[
+      '先确定申请方向和可接受地区，不要同时追太多方向。',
+      '根据 GPA、语言和经历，把学校组合调整成冲刺、匹配、稳妥三层。',
+      '锁定主申项目，确认每个项目的语言、材料和申请费。',
+      '项目开放后优先提交主申，不要等所有材料都“完美”。',
+      '检查组合是否只冲不保，必要时加入稳妥项目。',
+      '根据 R1 结果判断是否补申，不要因为焦虑乱加项目。',
+      '用课程、费用、就业和城市维度比较 offer。'
+    ]
+  },
+  {
+    id:'language', icon:'languages', title:'语言考试',
+    subtitle:'雅思/托福与小分门槛',
+    progress:[20,60,70,78,85,88,95],
+    materials:['考试报名记录','成绩单','目标小分要求'],
+    actions:[
+      '确定最近一次考试窗口，先判断目标项目最低语言门槛。',
+      '当前最优先：把语言成绩拉到项目要求附近，尤其关注小分。',
+      '如果已有合格成绩，确认是否需要继续刷分冲更高档项目。',
+      '开放期前确认成绩是否能送分或上传，不要卡在语言材料。',
+      '提交前复核每个项目是否接受当前成绩。',
+      '等待期不建议盲目刷分，除非补申项目明确需要。',
+      'Offer 后只需确认入学语言条件和补交截止时间。'
+    ]
+  },
+  {
+    id:'experience', icon:'briefcase-business', title:'经历补强',
+    subtitle:'实习/科研/项目/竞赛',
+    progress:[15,55,75,84,90,95,100],
+    materials:['实习证明','项目描述','成果数据'],
+    actions:[
+      '梳理已有经历，判断它们是否能支撑目标专业。',
+      '当前适合补一段强相关实习、科研、课程项目或竞赛。',
+      '把经历整理成素材库：职责、动作、结果、可量化成果。',
+      '将经历转成 CV 和文书中的能力证据，而不是简单罗列。',
+      '提交期只做表达优化，不建议临时包装虚假经历。',
+      '面试期重点复盘经历细节，准备被追问。',
+      'Offer 后可关注项目实习、求职和校友资源。'
+    ]
+  },
+  {
+    id:'essay', icon:'file-pen-line', title:'文书主线',
+    subtitle:'CV / PS / SOP',
+    progress:[0,10,55,78,90,96,100],
+    materials:['CV 初稿','PS 大纲','经历素材库'],
+    actions:[
+      '暂时不用急着买文书，先把方向和经历素材理清楚。',
+      '可以开始记录经历素材，但不建议在硬变量未稳前重金做文书。',
+      '当前要完成 CV 初稿和 PS 主线：为什么专业、为什么学校、为什么你。',
+      '按项目微调文书，不要每个项目完全重写。',
+      '提交前检查文书是否和项目偏好匹配。',
+      '等待期复盘文书主线，为补申或面试做准备。',
+      'Offer 后文书任务基本结束，保留材料归档即可。'
+    ]
+  },
+  {
+    id:'recommendation', icon:'mail-check', title:'推荐信',
+    subtitle:'推荐人沟通与提交节奏',
+    progress:[0,20,55,78,95,100,100],
+    materials:['推荐人名单','推荐信要点','提交链接状态'],
+    actions:[
+      '先列出可能推荐人，不需要立刻催老师写。',
+      '当前应提前确认推荐人意愿，避免后期 DDL 前临时找人。',
+      '正式联系推荐人，提供项目清单、CV 和推荐重点。',
+      '项目开放后确认推荐信提交方式和截止时间。',
+      '提交期持续跟进推荐信状态，确保系统显示完成。',
+      '等待期只需处理个别补交或学校额外要求。',
+      'Offer 后推荐信任务结束，保留感谢和关系维护。'
+    ]
+  },
+  {
+    id:'application', icon:'send', title:'网申材料',
+    subtitle:'系统填写/上传/申请费',
+    progress:[0,0,25,70,92,98,100],
+    materials:['申请系统账号','材料上传清单','申请费记录'],
+    actions:[
+      '目前只需了解目标学校网申入口和基础材料。',
+      '暂时不用大量填系统，重点仍是语言、经历和推荐人。',
+      '建立项目追踪表，记录开放时间、DDL 和材料要求。',
+      '项目开放后开始填系统，优先主申项目。',
+      '当前重点是提交主申项目，确认申请费、材料、推荐信全部到位。',
+      '等待期关注系统状态、补材料和邮件提醒。',
+      'Offer 后整理已提交材料，用于签证和入学注册。'
+    ]
+  },
+  {
+    id:'interview', icon:'messages-square', title:'面试准备',
+    subtitle:'英文表达与经历追问',
+    progress:[0,0,10,35,65,90,100],
+    materials:['自我介绍','项目动机答案','经历追问题库'],
+    actions:[
+      '定位期只需了解目标项目是否常见面试。',
+      '补强期可以积累英文表达素材，不必过早大量模拟。',
+      '材料期开始整理项目动机和自我介绍。',
+      '开放期准备常见问题，尤其是经历细节和职业规划。',
+      '提交后保持每周面试练习，收到邀请后快速强化。',
+      '当前重点是模拟面试和英文回答，避免临场才准备。',
+      'Offer 后面试任务结束，可以转向行前和求职准备。'
+    ]
+  },
+  {
+    id:'offer', icon:'badge-check', title:'Offer / 签证',
+    subtitle:'留位费、签证、租房行前',
+    progress:[0,0,0,5,15,35,85],
+    materials:['Offer 对比表','留位费时间表','签证与租房清单'],
+    actions:[
+      '现在只需了解预算范围，避免后面拿到 offer 才发现成本不匹配。',
+      '补强期继续确认预算上限和是否接受替代路径。',
+      '材料期可以建立未来 offer 对比维度。',
+      '提交期记录每个项目的留位费和预计出结果时间。',
+      '等待期开始准备 offer 选择标准，不只看排名。',
+      '收到结果后比较课程、费用、城市、就业与个人约束。',
+      '当前重点是确认留位费、签证、租房、保险和行前材料。'
+    ]
+  }
+];
+function getTaskStatus(task){
+  const value = task.progress[current] || 0;
+  if(value >= 98) return {label:'已完成', cls:'done'};
+  if(task.id === stageTaskFocus[current]) return {label:'当前重点', cls:'focus'};
+  if(value === 0) return {label:'未开始', cls:''};
+  if(value < 35) return {label:'提前准备', cls:''};
+  return {label:'进行中', cls:''};
+}
+function renderApplicationTaskNav(){
+  const mobile = document.getElementById('mobileTaskNav');
+  const desktop = document.getElementById('desktopTaskNav');
+  const detail = document.getElementById('mobileTaskDetail');
+  if(!applicationTasks.some(task=>task.id===currentTask)) currentTask = stageTaskFocus[current] || 'language';
+  const cards = applicationTasks.map(task=>{
+    const status = getTaskStatus(task);
+    const value = task.progress[current] || 0;
+    return `
+      <button class="mobile-task-card ${task.id===currentTask?'active':''}" type="button" onclick="selectApplicationTask('${task.id}')" aria-label="查看${task.title}">
+        <span class="mobile-task-card-top">
+          <span class="mobile-task-icon"><i data-lucide="${task.icon}"></i></span>
+          <span class="mobile-task-status ${status.cls}">${status.label}</span>
+        </span>
+        <strong>${task.title}</strong>
+        <small>${task.subtitle}</small>
+        <span class="mobile-task-progress"><span style="width:${value}%"></span></span>
+      </button>
+    `;
+  }).join('');
+  if(mobile) mobile.innerHTML = cards;
+  if(desktop){
+    desktop.innerHTML = applicationTasks.map(task=>{
+      const status = getTaskStatus(task);
+      const value = task.progress[current] || 0;
+      return `
+        <div class="application-task-card">
+          <span class="mobile-task-icon"><i data-lucide="${task.icon}"></i></span>
+          <strong>${task.title}</strong>
+          <span>${status.label} · ${task.subtitle}</span>
+          <div class="mobile-task-progress"><i style="width:${value}%"></i></div>
+        </div>
+      `;
+    }).join('');
+  }
+  const task = applicationTasks.find(item=>item.id===currentTask) || applicationTasks[0];
+  const status = getTaskStatus(task);
+  if(detail){
+    detail.innerHTML = `
+      <div class="mobile-task-detail-head">
+        <div><span>当前任务</span><h3>${task.title}</h3></div>
+        <b>${status.label}</b>
+      </div>
+      <div class="mobile-task-detail-section">
+        <strong>现在要做什么</strong>
+        <p>${task.actions[current]}</p>
+      </div>
+      <div class="mobile-task-detail-section">
+        <strong>需要准备什么</strong>
+        <div class="mobile-task-materials">${task.materials.map(item=>`<span>${item}</span>`).join('')}</div>
+      </div>
+    `;
+  }
+  if(window.lucide) lucide.createIcons();
+}
+function selectApplicationTask(id){
+  currentTask = id;
+  renderApplicationTaskNav();
+}
+function focusCurrentTask(){
+  currentTask = stageTaskFocus[current] || 'language';
+  renderApplicationTaskNav();
+  const detail = document.getElementById('mobileTaskDetail');
+  if(detail) detail.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
 function renderCycleMap(){
   document.getElementById('cycleMap').innerHTML = stages.map((s,i)=>`
-    <button class="cycle-node ${i===current?'active':''}" onclick="selectStage(${i}, true)" type="button" aria-label="查看${s.name}">
+    <button class="cycle-node ${i===current?'active':''}" onclick="openMapStage(${i})" type="button" aria-label="查看${s.name}详情">
       <div class="cycle-dot"></div>
       <b>${s.month}</b>
       <strong>${s.name}</strong>
+      <span class="cycle-phase-meta">${s.round}</span>
       <p>${s.summary.slice(0, 58)}...</p>
-      <em>点进阶段</em>
+      <em>查看详情 <i data-lucide="chevron-right"></i></em>
     </button>
   `).join('');
+}
+function openMapStage(i){
+  selectStage(i, false);
+  openStageDetail(i);
+}
+function openStageDetail(i){
+  const s = stages[i];
+  const sheet = document.getElementById('stageDetailSheet');
+  if(!sheet || !s) return;
+  document.getElementById('stageDetailMeta').textContent = `${s.month} · ${s.round}`;
+  document.getElementById('stageDetailTitle').textContent = s.name;
+  document.getElementById('stageDetailSummary').textContent = s.summary;
+  document.getElementById('stageDetailPriority').textContent = `当前优先：${s.tasks[0]}`;
+  document.getElementById('stageDetailTasks').innerHTML = s.tasks.map((item,index)=>`<div><b>${index+1}</b><span>${item}</span></div>`).join('');
+  document.getElementById('stageDetailMaterials').innerHTML = s.materials.map(item=>`<span>${item}</span>`).join('');
+  document.getElementById('stageDetailRisk').innerHTML = `<strong>风险：</strong>${s.risk}`;
+  document.getElementById('stageDetailMoney').innerHTML = `<strong>投入：</strong>${s.money}`;
+  sheet.classList.add('open');
+  sheet.setAttribute('aria-hidden','false');
+  document.body.classList.add('stage-detail-open');
+  if(window.lucide) lucide.createIcons();
+}
+function closeStageDetail(){
+  const sheet = document.getElementById('stageDetailSheet');
+  if(!sheet) return;
+  sheet.classList.remove('open');
+  sheet.setAttribute('aria-hidden','true');
+  document.body.classList.remove('stage-detail-open');
 }
 function renderDrill(){
   const s = stages[current];
@@ -690,8 +1962,44 @@ function selectDrill(key){
 function renderTabs(){
   document.getElementById('stageTabs').innerHTML = stages.map((s,i)=>`<a class="stage-tab ${i===current?'active':''}" href="timeline.html?stage=${i}" onclick="event.preventDefault(); selectStage(${i});"><b>${s.month}</b><span>${s.name}</span><small style="display:block;margin-top:7px;color:rgba(8,22,20,.55);font-weight:800;">${s.round}</small></a>`).join('');
 }
+function updateMobileStage(i){
+  const s = stages[i];
+  const values = s.progress.map(item => Number((item.match(/\d+/)||[0])[0]));
+  const readiness = Math.round(values.reduce((sum,value)=>sum+value,0)/values.length);
+  const stageName = document.getElementById('mobileStageName');
+  const stageNumber = document.getElementById('mobileStageNumber');
+  const stageTime = document.getElementById('mobileStageTime');
+  const readinessValue = document.getElementById('mobileReadinessValue');
+  const readinessRing = document.querySelector('.mobile-readiness-ring');
+  const readinessBar = document.getElementById('mobileStageProgress');
+  const nextAction = document.getElementById('mobileNextAction');
+  const priorityList = document.getElementById('mobilePriorityList');
+  if(stageName) stageName.textContent = s.name;
+  if(stageNumber) stageNumber.textContent = String(i+1).padStart(2,'0');
+  const stageNumberText = document.getElementById('mobileStageNumberText');
+  if(stageNumberText) stageNumberText.textContent = String(i+1);
+  if(stageTime) stageTime.textContent = s.time.replace('｜',' · ');
+  if(readinessValue) readinessValue.textContent = `${readiness}%`;
+  if(readinessRing) readinessRing.style.background = `conic-gradient(var(--app-primary) 0 ${readiness}%,rgba(255,255,255,.09) ${readiness}% 100%)`;
+  if(readinessBar) readinessBar.style.width = `${readiness}%`;
+  if(nextAction) nextAction.textContent = s.tasks[0] || '查看当前阶段任务';
+  document.querySelectorAll('.mobile-cycle-peek button').forEach((button,index)=>{
+    button.classList.toggle('active', index === i);
+  });
+  if(priorityList){
+    priorityList.innerHTML = s.tasks.slice(0,3).map((task,index)=>`
+      <div class="mobile-priority-item">
+        <span class="mobile-priority-index">${index+1}</span>
+        <span>${task}</span>
+        <i data-lucide="chevron-right"></i>
+      </div>
+    `).join('');
+  }
+  if(window.lucide) lucide.createIcons();
+}
 function selectStage(i, shouldScroll){
   current = i;
+  currentTask = stageTaskFocus[i] || currentTask;
   const s = stages[i];
   history.replaceState(null,'',`timeline.html?stage=${i}`);
   document.getElementById('roundPill').textContent = s.round;
@@ -707,22 +2015,88 @@ function selectStage(i, shouldScroll){
   renderTabs();
   renderCycleMap();
   renderDrill();
+  updateMobileStage(i);
+  renderApplicationTaskNav();
   if(shouldScroll){
-    document.getElementById('details').scrollIntoView({behavior:'smooth', block:'start'});
+    const target = window.matchMedia('(max-width:760px)').matches
+      ? document.querySelector('.mobile-section-head')
+      : document.getElementById('details');
+    if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+}
+function setMobileNavMode(mode){
+  document.querySelectorAll('[data-mobile-nav]').forEach(button=>{
+    const active = button.dataset.mobileNav === mode;
+    button.classList.toggle('active', active);
+    button.setAttribute('aria-selected', String(active));
+  });
+  document.querySelectorAll('[data-mobile-panel]').forEach(panel=>{
+    const active = panel.dataset.mobilePanel === mode;
+    panel.classList.toggle('active', active);
+    panel.hidden = !active;
+  });
+  if(mode === 'task') requestAnimationFrame(()=>renderApplicationTaskNav());
+  if(window.lucide) lucide.createIcons();
+}
+function toggleFullMap(open){
+  document.body.classList.toggle('mobile-map-open', open);
+  if(open){
+    requestAnimationFrame(()=>{
+      const map = document.getElementById('long-cycle');
+      if(map) map.scrollIntoView({behavior:'smooth',block:'start'});
+    });
   }
 }
 window.selectStage = selectStage;
 window.selectDrill = selectDrill;
+window.openMapStage = openMapStage;
+window.closeStageDetail = closeStageDetail;
+window.selectApplicationTask = selectApplicationTask;
+window.focusCurrentTask = focusCurrentTask;
+window.setMobileNavMode = setMobileNavMode;
+window.toggleFullMap = toggleFullMap;
 selectStage(current);
 </script>
 
-<nav class="quick-nav" aria-label="底部快速导航">
-  <a class="" href="index.html"><span>⌂</span><span>首页</span></a>
-  <a class="" href="status.html"><span>◎</span><span>状态</span></a>
-  <a class="active" href="timeline.html"><span>▦</span><span>地图</span></a>
-  <a class="" href="advisors.html"><span>✦</span><span>顾问</span></a>
+<section class="stage-detail-sheet" id="stageDetailSheet" aria-hidden="true">
+  <header class="stage-detail-nav">
+    <button type="button" onclick="closeStageDetail()" aria-label="返回时间地图"><i data-lucide="chevron-left"></i></button>
+    <strong>阶段详情</strong>
+    <span></span>
+  </header>
+  <div class="stage-detail-scroll">
+    <div class="stage-detail-cover">
+      <small id="stageDetailMeta"></small>
+      <h1 id="stageDetailTitle"></h1>
+      <p id="stageDetailSummary"></p>
+      <div class="stage-detail-priority"><i data-lucide="move-right"></i><span id="stageDetailPriority"></span></div>
+    </div>
+    <section class="stage-detail-section">
+      <h2>现在要做什么</h2>
+      <div class="stage-detail-list" id="stageDetailTasks"></div>
+    </section>
+    <section class="stage-detail-section">
+      <h2>需要准备什么</h2>
+      <div class="stage-detail-tags" id="stageDetailMaterials"></div>
+    </section>
+    <section class="stage-detail-section">
+      <h2>风险与投入判断</h2>
+      <p class="stage-detail-note" id="stageDetailRisk"></p>
+      <p class="stage-detail-note" id="stageDetailMoney"></p>
+    </section>
+  </div>
+</section>
+
+<nav class="quick-nav mobile-five" aria-label="底部快速导航">
+  <a class="" href="index.html"><i data-lucide="house"></i><span>首页</span></a>
+  <a class="active" href="timeline.html" aria-current="page"><i data-lucide="route"></i><span>导航</span></a>
+  <a class="" href="advisors.html"><i data-lucide="messages-square"></i><span>社区</span></a>
+  <a class="" href="profile-detail.html"><i data-lucide="user-round"></i><span>我的</span></a>
 </nav>
 
 <script src="nexus-clean-v22.js"></script>
+<script>
+if(window.lucide){lucide.createIcons()}
+</script>
 </body>
 </html>

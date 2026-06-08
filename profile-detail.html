@@ -270,8 +270,60 @@ body{padding-bottom:96px !important;}
 
 </style>
 <link rel="stylesheet" href="nexus-clean-v22.css" />
+<link rel="stylesheet" href="nexus-mobile-workspace.css" />
+<script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
 </head>
-<body>
+<body class="nexus-mobile-page nexus-profile">
+<section class="mobile-workspace-head" aria-label="Nexus AI 我的">
+  <div class="mobile-workspace-bar">
+    <a class="mobile-workspace-brand" href="index.html"><span class="mobile-workspace-mark">NX</span><span><strong>Nexus AI</strong><small>港校申请导航</small></span></a>
+    <a class="mobile-workspace-action" href="index.html#engine" aria-label="更新申请画像"><i data-lucide="settings-2"></i></a>
+  </div>
+  <div class="mobile-workspace-intro"><span>MY PROFILE</span><h1>我的申请画像</h1><p>查看当前定位、学校组合、风险变量和下一步任务。</p></div>
+</section>
+
+<section class="mobile-profile-screen" aria-label="我的 Nexus">
+  <header class="profile-appbar">
+    <h1>我的</h1>
+    <a href="index.html#engine" aria-label="编辑申请背景"><i data-lucide="settings-2"></i></a>
+  </header>
+
+  <div class="profile-identity">
+    <div class="profile-avatar">陈</div>
+    <div class="profile-person"><h2>陈奕斐</h2><p>四川大学 · 商科方向</p><span><i data-lucide="badge-check"></i>申请画像已生成</span></div>
+    <a href="index.html#engine" aria-label="编辑个人资料"><i data-lucide="chevron-right"></i></a>
+  </div>
+
+  <a class="profile-status-card" href="timeline.html?stage=1">
+    <div><span>当前申请状态</span><h2>稳中带冲型</h2><p>背景补强期 · 准备度 50%</p></div>
+    <div class="profile-status-ring"><strong>50</strong><small>%</small></div>
+  </a>
+
+  <div class="profile-metrics">
+    <a href="status.html"><strong>9</strong><span>目标项目</span></a>
+    <a href="timeline.html"><strong>3</strong><span>待办任务</span></a>
+    <a href="advisors.html"><strong>12</strong><span>收藏内容</span></a>
+  </div>
+
+  <div class="profile-section">
+    <h2>我的申请</h2>
+    <div class="profile-menu">
+      <a href="status.html"><span class="profile-menu-icon"><i data-lucide="school"></i></span><span><strong>院校组合</strong><small>冲刺、匹配与稳妥项目</small></span><i data-lucide="chevron-right"></i></a>
+      <a href="timeline.html"><span class="profile-menu-icon"><i data-lucide="route"></i></span><span><strong>申请进度</strong><small>阶段任务与关键节点</small></span><i data-lucide="chevron-right"></i></a>
+      <a href="effort.html"><span class="profile-menu-icon"><i data-lucide="chart-no-axes-combined"></i></span><span><strong>努力模拟</strong><small>语言、实习和材料方案</small></span><i data-lucide="chevron-right"></i></a>
+    </div>
+  </div>
+
+  <div class="profile-section">
+    <h2>内容与服务</h2>
+    <div class="profile-menu">
+      <a href="advisors.html"><span class="profile-menu-icon"><i data-lucide="bookmark"></i></span><span><strong>我的收藏</strong><small>案例、顾问与经验帖</small></span><i data-lucide="chevron-right"></i></a>
+      <a href="advisors.html"><span class="profile-menu-icon"><i data-lucide="message-circle"></i></span><span><strong>咨询记录</strong><small>查看真人复核与沟通</small></span><i data-lucide="chevron-right"></i></a>
+    </div>
+  </div>
+
+  <p class="profile-trust-note">AI 结果用于辅助判断申请风险，不代表录取概率或承诺。</p>
+</section>
 <header class="topbar"><div class="nav-shell"><a href="index.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;"><div class="logo">NX</div><div><div style="font-weight:950;font-size:19px;">Nexus AI</div><div style="font-size:13px;color:rgba(8,22,20,.55);">路径规划与画像详情</div></div></a><nav class="navlinks"><a href="index.html">首页</a><a href="status.html">状态</a><a href="timeline.html">地图</a><a href="advisors.html">顾问</a></nav><a class="btn btn-primary" href="index.html#engine">重新生成画像</a></div></header>
 
 <div class="page-guide" aria-label="页面位置导航">
@@ -308,13 +360,14 @@ function drawShareCard(){const c=document.getElementById('shareCanvas'),x=c.getC
 function downloadShareCard(){const a=document.createElement('a');a.download='nexus-ai-申请画像.png';a.href=document.getElementById('shareCanvas').toDataURL('image/png');a.click()}
 </script>
 
-<nav class="quick-nav" aria-label="底部快速导航">
-  <a class="" href="index.html"><span>⌂</span><span>首页</span></a>
-  <a class="active" href="status.html"><span>◎</span><span>状态</span></a>
-  <a class="" href="timeline.html"><span>▦</span><span>地图</span></a>
-  <a class="" href="advisors.html"><span>✦</span><span>顾问</span></a>
+<nav class="quick-nav mobile-five" aria-label="底部快速导航">
+  <a href="index.html"><i data-lucide="house"></i><span>首页</span></a>
+  <a href="timeline.html"><i data-lucide="route"></i><span>导航</span></a>
+  <a href="advisors.html"><i data-lucide="messages-square"></i><span>社区</span></a>
+  <a class="active" href="profile-detail.html" aria-current="page"><i data-lucide="user-round"></i><span>我的</span></a>
 </nav>
 
 <script src="nexus-clean-v22.js"></script>
+<script>if(window.lucide){lucide.createIcons()}</script>
 </body>
 </html>

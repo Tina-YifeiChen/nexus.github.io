@@ -1439,8 +1439,97 @@ body{padding-bottom:96px !important;}
 
 </style>
 <link rel="stylesheet" href="nexus-clean-v22.css" />
+<link rel="stylesheet" href="nexus-mobile-workspace.css" />
+<script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
 </head>
-<body>
+<body class="nexus-mobile-page nexus-home">
+
+<section class="mobile-workspace-head" aria-label="Nexus AI 首页">
+  <div class="mobile-workspace-bar">
+    <a class="mobile-workspace-brand" href="index.html"><span class="mobile-workspace-mark">NX</span><span><strong>Nexus AI</strong><small>港校申请导航</small></span></a>
+    <a class="mobile-workspace-action" href="#engine" aria-label="更新申请背景"><i data-lucide="scan-search"></i></a>
+  </div>
+  <div class="mobile-workspace-intro"><span>HOME</span><h1>你的港校申请工作台</h1><p>从背景输入开始，看清申请位置、风险与下一步行动路径。</p></div>
+</section>
+
+<section class="mobile-home-feed" aria-label="Nexus AI 首页内容">
+  <header class="home-appbar">
+    <div><span>早上好，陈奕斐</span><h1>今天的申请进度</h1></div>
+    <a href="profile-detail.html" aria-label="查看我的申请画像"><i data-lucide="user-round"></i></a>
+  </header>
+
+  <a class="home-profile-oracle" href="profile-detail.html" aria-label="查看完整申请画像">
+    <div class="home-oracle-person">
+      <span class="home-oracle-avatar">陈</span>
+      <span><strong>陈奕斐</strong><small>四川大学 · 211 · 商科方向</small><em>GPA 3.55 · IELTS 7.0</em></span>
+    </div>
+    <div class="home-oracle-radar" aria-hidden="true">
+      <svg viewBox="0 0 120 108">
+        <g transform="translate(60 54)">
+          <polygon points="0,-42 36,-21 36,21 0,42 -36,21 -36,-21" fill="none" stroke="rgba(45,106,79,.24)"/>
+          <polygon points="0,-28 24,-14 24,14 0,28 -24,14 -24,-14" fill="none" stroke="rgba(45,106,79,.14)"/>
+          <line x1="0" y1="0" x2="0" y2="-42"/><line x1="0" y1="0" x2="36" y2="-21"/><line x1="0" y1="0" x2="36" y2="21"/><line x1="0" y1="0" x2="0" y2="42"/><line x1="0" y1="0" x2="-36" y2="21"/><line x1="0" y1="0" x2="-36" y2="-21"/>
+          <polygon points="0,-36 25,-14 30,17 0,25 -29,17 -24,-14" fill="rgba(45,106,79,.13)" stroke="#2D6A4F" stroke-width="2"/>
+        </g>
+      </svg>
+    </div>
+    <div class="home-oracle-result">
+      <span><small>申请画像</small><strong>稳中带冲型</strong></span>
+      <span><small>综合评分</small><strong>78</strong></span>
+      <span><small>录取可能区间</small><strong>55–70%</strong></span>
+    </div>
+    <p>当前优势是学术基础，优先补语言与申请节奏。区间仅用于辅助判断，不等于录取概率承诺。</p>
+  </a>
+
+  <div class="home-primary-grid" aria-label="核心功能">
+    <details class="home-primary-details" id="homePortraitDetails">
+      <summary class="home-primary-card portrait">
+        <span class="home-primary-icon"><i data-lucide="scan-line"></i></span>
+        <span><small>AI 画像</small><strong>看清申请位置</strong><em>点击填写背景，生成档位、风险与行动顺序</em></span>
+        <i data-lucide="chevron-down"></i>
+      </summary>
+      <div class="home-inline-portrait" id="homeInlinePortrait"></div>
+    </details>
+    <a class="home-primary-card navigator" href="timeline.html?stage=1">
+      <span class="home-primary-icon"><i data-lucide="route"></i></span>
+      <span><small>申请导航</small><strong>知道下一步做什么</strong><em>时间地图与任务清单</em></span>
+      <i data-lucide="arrow-up-right"></i>
+    </a>
+  </div>
+
+  <div class="home-compact-actions" aria-label="高频功能">
+    <a href="status.html"><i data-lucide="school"></i><span><strong>院校组合</strong><small>冲刺 / 匹配 / 稳妥</small></span></a>
+    <a href="effort.html"><i data-lucide="sliders-horizontal"></i><span><strong>努力模拟</strong><small>比较补强回报</small></span></a>
+  </div>
+
+  <details class="home-toolbox">
+    <summary><span><i data-lucide="layout-grid"></i><strong>更多工具</strong></span><small>咨询、投入建议与分享</small><i data-lucide="chevron-down"></i></summary>
+    <div class="home-toolbox-grid">
+      <a href="advisors.html"><i data-lucide="messages-square"></i><span><strong>找人复核</strong><small>学长学姐与专业顾问</small></span></a>
+      <a href="effort.html"><i data-lucide="badge-dollar-sign"></i><span><strong>投入建议</strong><small>哪些值得花，哪些先别急</small></span></a>
+      <button type="button" onclick="openShareModal()"><i data-lucide="share-2"></i><span><strong>画像分享图</strong><small>生成可保存的申请卡片</small></span></button>
+      <a href="status.html"><i data-lucide="external-link"></i><span><strong>院校信息</strong><small>确认项目组合与申请要求</small></span></a>
+    </div>
+  </details>
+
+  <details class="home-reading">
+    <summary><span><strong>申请灵感与真实经验</strong><small>根据商科方向与当前阶段推荐</small></span><i data-lucide="chevron-down"></i></summary>
+    <div class="home-content-grid">
+      <a class="home-content-card featured" href="status.html">
+        <img src="https://images.unsplash.com/photo-1564981797816-1043664bf78d?auto=format&fit=crop&w=700&q=80" alt="香港高校校园" />
+        <div><span>选校策略</span><h3>港前三应该冲几所？先看你的主申区是否稳固</h3><small>申请导航 · 6 分钟阅读</small></div>
+      </a>
+      <a class="home-content-card" href="effort.html?type=ielts">
+        <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=500&q=80" alt="语言考试学习计划" />
+        <div><span>语言规划</span><h3>雅思 6.5 到 7.0，最值得优先突破什么？</h3><small>128 人收藏</small></div>
+      </a>
+      <a class="home-content-card" href="advisors.html">
+        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=500&q=80" alt="学生交流申请经验" />
+        <div><span>真实经验</span><h3>211 商科背景申请 CUHK 的关键节点</h3><small>港中文学姐分享</small></div>
+      </a>
+    </div>
+  </details>
+</section>
 
 <header class="topbar">
   <div class="nav-shell">
@@ -1509,24 +1598,34 @@ body{padding-bottom:96px !important;}
   <section id="engine" class="app-layout" style="margin-top:26px;">
     <aside class="left-panel">
       <div class="card">
-        <h2 style="font-size:30px;margin:0;">生成我的申请导航图</h2>
+        <div class="portrait-form-head">
+          <span>AI 申请画像</span>
+          <h2>生成我的申请导航图</h2>
+          <p>不是录取预测，而是结合你的背景，判断当前档位、关键风险和行动顺序。</p>
+        </div>
 
-        <label class="label">学校</label>
-        <input class="input" id="schoolName" placeholder="例如：四川大学 / 某211 / 某双非院校" value="211 / 双一流"/>
+        <div class="portrait-form-group">
+          <div class="portrait-group-title"><span>01</span><strong>学术底盘</strong><small>先看你的基础位置</small></div>
+          <label class="label">本科院校</label>
+          <input class="input" id="schoolName" placeholder="例如：四川大学 / 某211 / 某双非院校" value="211 / 双一流"/>
 
-        <label class="label">GPA</label>
-        <input class="input" id="gpaInput" placeholder="例如：3.55 / 4.0 或 86 / 100" value="3.55"/>
+          <label class="label">GPA / 均分</label>
+          <input class="input" id="gpaInput" placeholder="例如：3.55 / 4.0 或 86 / 100" value="3.55"/>
+        </div>
 
-        <label class="label">语言成绩</label>
-        <input class="input" id="languageInput" placeholder="例如：雅思 6.5 / 托福 95 / 暂无" value="雅思 6.5"/>
+        <div class="portrait-form-group">
+          <div class="portrait-group-title"><span>02</span><strong>申请方向</strong><small>理解你的目标与门槛</small></div>
+          <label class="label">语言成绩</label>
+          <input class="input" id="languageInput" placeholder="例如：雅思 6.5 / 托福 95 / 暂无" value="雅思 6.5"/>
 
-        <label class="label">目标方向</label>
-        <select class="input" id="directionInput">
-          <option>商科 / 金融</option>
-          <option>AI / CS</option>
-          <option>传媒 / 社科</option>
-          <option>教育 / TESOL</option>
-        </select>
+          <label class="label">目标方向</label>
+          <select class="input" id="directionInput">
+            <option>商科 / 金融</option>
+            <option>AI / CS</option>
+            <option>传媒 / 社科</option>
+            <option>教育 / TESOL</option>
+          </select>
+        </div>
 
         <div class="input-hint">先不用填很准，系统会先给你一个初步画像。</div>
 
@@ -1571,7 +1670,7 @@ body{padding-bottom:96px !important;}
           </select>
         </div>
 
-        <button class="btn btn-primary" style="width:100%;margin-top:18px;" onclick="startScan()">生成我的申请导航图</button>
+        <button class="portrait-generate-button" type="button" onclick="startScan()"><i data-lucide="sparkles"></i><span><strong>生成我的申请画像</strong><small>几秒完成初步分析</small></span><i data-lucide="arrow-right"></i></button>
       </div>
     </aside>
 
@@ -1716,12 +1815,61 @@ body{padding-bottom:96px !important;}
 </main>
 
 
-<div id="scanOverlay" class="scan-overlay">
-  <div class="scan-box">
-    <div class="scan-orb"></div>
-    <div id="scanText" class="scan-text">背景诊断 Agent 正在读取你的申请背景……</div>
-    <div class="scan-sub">多智能体正在协同生成可执行的升学路线。</div>
-    <div class="scan-dots"><span></span><span></span><span></span></div>
+<div id="scanOverlay" class="scan-overlay" aria-hidden="true">
+  <div class="portrait-ritual" role="dialog" aria-modal="true" aria-labelledby="scanTitle">
+    <button class="portrait-close" type="button" aria-label="关闭画像生成" onclick="closePortraitFlow()"><i data-lucide="x"></i></button>
+    <div class="portrait-progress"><span id="scanProgress"></span></div>
+
+    <section id="portraitGenerating" class="portrait-generating">
+      <div class="portrait-kicker">NEXUS PROFILE</div>
+      <h2 id="scanTitle">正在推演你的申请画像</h2>
+      <p id="scanText">读取学术背景与目标方向</p>
+
+      <div class="portrait-chart" aria-hidden="true">
+        <div class="portrait-orbit orbit-one"></div>
+        <div class="portrait-orbit orbit-two"></div>
+        <div class="portrait-axis axis-x"></div>
+        <div class="portrait-axis axis-y"></div>
+        <div class="portrait-core"><span>NX</span><small id="scanPercent">12%</small></div>
+        <span class="portrait-node node-academic"><i data-lucide="graduation-cap"></i><em>学术</em></span>
+        <span class="portrait-node node-language"><i data-lucide="languages"></i><em>语言</em></span>
+        <span class="portrait-node node-experience"><i data-lucide="briefcase-business"></i><em>经历</em></span>
+        <span class="portrait-node node-timing"><i data-lucide="calendar-clock"></i><em>节奏</em></span>
+      </div>
+
+      <div class="portrait-step-list">
+        <span class="active"><i data-lucide="circle-check"></i>背景归位</span>
+        <span><i data-lucide="circle"></i>风险扫描</span>
+        <span><i data-lucide="circle"></i>路径推演</span>
+        <span><i data-lucide="circle"></i>生成画像</span>
+      </div>
+      <small class="portrait-disclaimer">基于结构化信息提供风险区间判断，不等于录取概率。</small>
+    </section>
+
+    <section id="portraitReveal" class="portrait-reveal" aria-hidden="true">
+      <div class="reveal-mark"><i data-lucide="sparkles"></i></div>
+      <span class="reveal-overline">你的申请画像已生成</span>
+      <h2 id="revealType">稳中带冲型</h2>
+      <p id="revealSummary">基础位置具备竞争力，但语言与申请节奏决定最终上限。</p>
+
+      <div class="reveal-score-row">
+        <div><strong id="revealScore">76</strong><span>综合位置</span></div>
+        <div><strong id="revealMatch">匹配</strong><span>当前档位</span></div>
+        <div><strong id="revealWindow">4–6月</strong><span>关键窗口</span></div>
+      </div>
+
+      <div class="reveal-insight">
+        <span><i data-lucide="triangle-alert"></i>首要风险</span>
+        <strong id="revealRisk">语言成绩仍在临界区间</strong>
+        <p id="revealAction">优先锁定下一次语言考试，再开始投入高价文书服务。</p>
+      </div>
+
+      <div class="reveal-actions">
+        <a href="status.html" onclick="saveStatusSnapshot()">查看完整画像 <i data-lucide="arrow-right"></i></a>
+        <button type="button" onclick="closePortraitFlow()">返回调整背景</button>
+      </div>
+      <small class="portrait-disclaimer">AI 负责初步分析，复杂背景建议结合真人复核。</small>
+    </section>
   </div>
 </div>
 
@@ -1731,32 +1879,96 @@ function toggleAdvanced(){
   const box = document.getElementById("advancedFields");
   box.classList.toggle("open");
 }
+let portraitTimer = null;
 function startScan(){
   const overlay = document.getElementById("scanOverlay");
   const text = document.getElementById("scanText");
+  const progress = document.getElementById("scanProgress");
+  const percent = document.getElementById("scanPercent");
+  const generating = document.getElementById("portraitGenerating");
+  const reveal = document.getElementById("portraitReveal");
+  const chart = document.querySelector(".portrait-chart");
+  const stepItems = [...document.querySelectorAll(".portrait-step-list span")];
   const steps = [
-    "背景诊断 Agent 正在读取你的申请背景……",
-    "路径规划 Agent 正在匹配港校与大湾区项目……",
-    "风险识别 Agent 正在拆解关键路况变量……",
-    "时间导航 Agent 正在生成你的申请导航图……"
+    ["读取学术背景与目标方向", "24%"],
+    ["识别语言、经历与项目匹配风险", "49%"],
+    ["推演冲刺、匹配与稳妥路径", "76%"],
+    ["整理下一步行动优先级", "100%"]
   ];
+  clearInterval(portraitTimer);
   overlay.classList.add("open");
+  overlay.setAttribute("aria-hidden","false");
+  document.body.classList.add("portrait-flow-open");
+  generating.hidden = false;
+  generating.setAttribute("aria-hidden","false");
+  reveal.classList.remove("visible");
+  reveal.setAttribute("aria-hidden","true");
+  chart.className = "portrait-chart phase-1";
   let i = 0;
-  text.textContent = steps[i];
-  const timer = setInterval(()=>{
+  text.textContent = steps[i][0];
+  progress.style.width = steps[i][1];
+  percent.textContent = steps[i][1];
+  stepItems.forEach((item,index)=>item.classList.toggle("active",index===0));
+  portraitTimer = setInterval(()=>{
     i++;
     if(i < steps.length){
-      text.textContent = steps[i];
+      text.classList.remove("changing");
+      void text.offsetWidth;
+      text.classList.add("changing");
+      text.textContent = steps[i][0];
+      progress.style.width = steps[i][1];
+      percent.textContent = steps[i][1];
+      chart.className = `portrait-chart phase-${i+1}`;
+      stepItems.forEach((item,index)=>{
+        item.classList.toggle("active",index===i);
+        item.classList.toggle("done",index<i);
+        item.innerHTML = `<i data-lucide="${index<=i?'circle-check':'circle'}"></i>${["背景归位","风险扫描","路径推演","生成画像"][index]}`;
+      });
+      if(window.lucide)lucide.createIcons();
     }else{
-      clearInterval(timer);
+      clearInterval(portraitTimer);
+      portraitTimer = null;
       setTimeout(()=>{
-        overlay.classList.remove("open");
         refreshProfile();
         saveStatusSnapshot();
-        window.location.href = "status.html";
-      }, 450);
+        populatePortraitReveal();
+        generating.hidden = true;
+        generating.setAttribute("aria-hidden","true");
+        reveal.classList.add("visible");
+        reveal.setAttribute("aria-hidden","false");
+        if(window.lucide)lucide.createIcons();
+      }, 380);
     }
-  }, 520);
+  }, 720);
+}
+function populatePortraitReveal(){
+  const language = document.getElementById("languageInput")?.value || "";
+  const budget = document.getElementById("budgetInput")?.value || "";
+  const gpa = parseFloat(document.getElementById("gpaInput")?.value) || 3.4;
+  let score = Math.max(64,Math.min(88,Math.round(52 + gpa * 7)));
+  let type = "稳中带冲型";
+  let match = "匹配";
+  let risk = "语言成绩仍在临界区间";
+  let action = "优先锁定下一次语言考试，再开始投入高价文书服务。";
+  if(/7(?:\\.0)?|105|110/.test(language)){ score += 5; risk = "经历与目标项目的匹配度"; action = "优先补一段强相关经历，并开始整理推荐信与材料素材。"; }
+  if(budget.includes("预算有限")){ type = "预算敏感规划型"; match = "稳妥"; risk = "项目组合与预算边界"; action = "加入大湾区与澳门路径，先建立可承受的稳妥组合。"; }
+  if(budget.includes("稳妥")){ type = "低风险稳妥型"; match = "稳妥"; risk = "托底项目数量不足"; action = "先补齐稳妥项目，再保留少量高价值冲刺选择。"; }
+  document.getElementById("revealType").textContent = type;
+  document.getElementById("revealScore").textContent = Math.min(score,92);
+  document.getElementById("revealMatch").textContent = match;
+  document.getElementById("revealRisk").textContent = risk;
+  document.getElementById("revealAction").textContent = action;
+  document.getElementById("revealSummary").textContent = type === "稳中带冲型"
+    ? "基础位置具备竞争力，但关键短板与申请节奏决定最终上限。"
+    : "当前更适合先控制风险，再有选择地保留冲刺空间。";
+}
+function closePortraitFlow(){
+  clearInterval(portraitTimer);
+  portraitTimer = null;
+  const overlay = document.getElementById("scanOverlay");
+  overlay.classList.remove("open");
+  overlay.setAttribute("aria-hidden","true");
+  document.body.classList.remove("portrait-flow-open");
 }
 
 function saveStatusSnapshot(){
@@ -2141,15 +2353,32 @@ renderStages(1);
 selectStage(1);
 renderSchools();
 window.addEventListener("load", drawShareCard);
+function mountMobilePortrait(){
+  const engine=document.getElementById("engine");
+  const target=document.getElementById("homeInlinePortrait");
+  const desktopHome=engine?.parentElement;
+  if(!engine||!target||!desktopHome)return;
+  const sync=()=>{
+    if(window.matchMedia("(max-width:760px)").matches){
+      if(engine.parentElement!==target)target.appendChild(engine);
+    }else if(engine.parentElement!==desktopHome){
+      desktopHome.appendChild(engine);
+    }
+  };
+  sync();
+  window.addEventListener("resize",sync);
+}
+mountMobilePortrait();
 </script>
 
-<nav class="quick-nav" aria-label="底部快速导航">
-  <a class="active" href="index.html"><span>⌂</span><span>首页</span></a>
-  <a class="" href="status.html"><span>◎</span><span>状态</span></a>
-  <a class="" href="timeline.html"><span>▦</span><span>地图</span></a>
-  <a class="" href="advisors.html"><span>✦</span><span>顾问</span></a>
+<nav class="quick-nav mobile-five" aria-label="底部快速导航">
+  <a class="active" href="index.html" aria-current="page"><i data-lucide="house"></i><span>首页</span></a>
+  <a href="timeline.html"><i data-lucide="route"></i><span>导航</span></a>
+  <a href="advisors.html"><i data-lucide="messages-square"></i><span>社区</span></a>
+  <a href="profile-detail.html"><i data-lucide="user-round"></i><span>我的</span></a>
 </nav>
 
 <script src="nexus-clean-v22.js"></script>
+<script>if(window.lucide){lucide.createIcons()}</script>
 </body>
 </html>

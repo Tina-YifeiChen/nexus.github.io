@@ -271,8 +271,66 @@ body{padding-bottom:96px !important;}
 
 </style>
 <link rel="stylesheet" href="nexus-clean-v22.css" />
+<link rel="stylesheet" href="nexus-mobile-workspace.css" />
+<script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
 </head>
-<body>
+<body class="nexus-mobile-page nexus-schools">
+<section class="mobile-workspace-head" aria-label="Nexus AI 择校">
+  <div class="mobile-workspace-bar">
+    <a class="mobile-workspace-brand" href="index.html"><span class="mobile-workspace-mark">NX</span><span><strong>Nexus AI</strong><small>港校申请导航</small></span></a>
+    <a class="mobile-workspace-action" href="index.html#engine" aria-label="更新申请背景"><i data-lucide="refresh-cw"></i></a>
+  </div>
+  <div class="mobile-workspace-intro"><span>SCHOOL MATCH</span><h1>院校组合与风险地图</h1><p>查看冲刺、匹配、稳妥档位，以及影响当前组合的关键变量。</p></div>
+</section>
+<section class="schools-mobile-app" aria-label="院校组合">
+  <header class="mobile-product-bar">
+    <a href="index.html" aria-label="返回首页"><i data-lucide="chevron-left"></i></a>
+    <div><strong>院校组合</strong><small>基于当前申请画像</small></div>
+    <a href="index.html#engine" aria-label="更新背景"><i data-lucide="refresh-cw"></i></a>
+  </header>
+
+  <section class="school-combo-summary">
+    <div><small>当前策略</small><h1>稳中带冲</h1><p>2 所冲刺 · 3 所匹配 · 2 所稳妥</p></div>
+    <div class="school-combo-score"><span>78</span><small>组合健康度</small></div>
+  </section>
+
+  <div class="school-segment" role="tablist" aria-label="院校档位">
+    <button class="active" type="button" data-school-tier="all" onclick="filterSchools('all')">全部 <span>7</span></button>
+    <button type="button" data-school-tier="reach" onclick="filterSchools('reach')">冲刺 <span>2</span></button>
+    <button type="button" data-school-tier="match" onclick="filterSchools('match')">匹配 <span>3</span></button>
+    <button type="button" data-school-tier="safe" onclick="filterSchools('safe')">稳妥 <span>2</span></button>
+  </div>
+
+  <section class="school-list" id="mobileSchoolList">
+    <a class="school-match-card" data-tier="reach" href="#">
+      <span class="school-mark">港大</span><div><small>冲刺 · 商学院</small><strong>香港大学</strong><p>语言达标后更有竞争力，经历匹配仍需加强。</p></div><span class="school-chance"><b>42%</b><small>参考区间</small></span>
+    </a>
+    <a class="school-match-card" data-tier="reach" href="#">
+      <span class="school-mark">科大</span><div><small>冲刺 · 商科</small><strong>香港科技大学</strong><p>学术基础可支撑，建议补强量化或相关实习。</p></div><span class="school-chance"><b>48%</b><small>参考区间</small></span>
+    </a>
+    <a class="school-match-card" data-tier="match" href="#">
+      <span class="school-mark">中大</span><div><small>匹配 · 商学院</small><strong>香港中文大学</strong><p>当前主申优先级较高，注意材料与推荐信节奏。</p></div><span class="school-chance"><b>66%</b><small>参考区间</small></span>
+    </a>
+    <a class="school-match-card" data-tier="match" href="#">
+      <span class="school-mark">城大</span><div><small>匹配 · 商科</small><strong>香港城市大学</strong><p>整体适配度较好，可作为主申组合的重要支点。</p></div><span class="school-chance"><b>72%</b><small>参考区间</small></span>
+    </a>
+    <a class="school-match-card" data-tier="match" href="#">
+      <span class="school-mark">理大</span><div><small>匹配 · 管理</small><strong>香港理工大学</strong><p>经历与项目方向较匹配，材料表达是关键。</p></div><span class="school-chance"><b>74%</b><small>参考区间</small></span>
+    </a>
+    <a class="school-match-card" data-tier="safe" href="#">
+      <span class="school-mark">浸会</span><div><small>稳妥 · 商科</small><strong>香港浸会大学</strong><p>适合作为稳妥层，仍需确认专业课程与就业偏好。</p></div><span class="school-chance"><b>82%</b><small>参考区间</small></span>
+    </a>
+    <a class="school-match-card" data-tier="safe" href="#">
+      <span class="school-mark">岭南</span><div><small>稳妥 · 商科</small><strong>岭南大学</strong><p>录取风险较低，建议结合预算和课程设置判断。</p></div><span class="school-chance"><b>86%</b><small>参考区间</small></span>
+    </a>
+  </section>
+
+  <details class="school-risk-note">
+    <summary><span><i data-lucide="shield-alert"></i><strong>组合风险与调整建议</strong></span><i data-lucide="chevron-down"></i></summary>
+    <div><p>当前冲刺比例合理，但语言成绩与材料节奏会直接影响港大、科大的有效冲刺空间。</p><a href="effort.html?type=ielts">查看最值得补强的变量</a></div>
+  </details>
+  <p class="mobile-trust-copy">匹配结果用于辅助判断风险区间，不等于录取承诺。最终要求以学校官网为准。</p>
+</section>
 <header class="topbar"><div class="nav-shell"><a href="index.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;"><div class="logo">NX</div><div><div style="font-weight:950;font-size:19px;">Nexus AI</div><div style="font-size:13px;color:rgba(8,22,20,.55);">我的升学导航状态</div></div></a><nav class="navlinks"><a href="index.html">首页</a><a href="status.html">状态</a><a href="timeline.html">地图</a><a href="advisors.html">顾问</a></nav><a class="btn btn-primary" href="index.html#engine">重新填写</a></div></header>
 
 <div class="page-guide" aria-label="页面位置导航">
@@ -400,18 +458,26 @@ body{padding-bottom:96px !important;}
 function getSnapshot(){try{return JSON.parse(localStorage.getItem('nexusStatusSnapshot')||'{}')}catch(e){return {}}}
 function fill(){const s=getSnapshot();const type=s.profileType||'稳中带冲型';const summary=s.profileSummary||'你不是没有机会，而是不适合盲目冲刺。当前最影响结果的变量是语言成绩和申请节奏。';document.getElementById('heroType').textContent=type;document.getElementById('mainType').textContent=type;document.getElementById('nestedType').textContent=type;document.getElementById('shareType').textContent=type;document.getElementById('heroSummary').textContent=summary;document.getElementById('mainSummary').textContent=summary;document.getElementById('nestedSummary').textContent=summary;document.getElementById('schoolText').textContent=s.school||'211 / 双一流';document.getElementById('gpaText').textContent=s.gpa||'3.55';document.getElementById('languageText').textContent=s.language||'雅思 6.5';document.getElementById('directionText').textContent=s.direction||'商科 / 金融';document.getElementById('shareText').textContent=`${type}：${summary} 接下来建议先看当前画像，再看雷达图，最后用努力模拟判断最值得补强的变量。`;}
 function changeEffort(type){const score=document.getElementById('effortScore');const text=document.getElementById('effortText');const data={ielts:['72 → 81','如果雅思提升到 7.0，语言风险会明显下降。主申项目会更稳，冲刺项目也更有理由。'],intern:['72 → 78','新增一段方向相关实习，会让文书和项目匹配度更好，但它不能替代语言达标。'],cv:['72 → 76','提前完成 CV 和材料，会降低赶截止的风险，也能给推荐信和文书留出修改时间。'],budget:['72 → 79','如果你接受大湾区或澳门路径，整体风险会下降，预算压力也会更可控。']};score.textContent=data[type][0];text.textContent=data[type][1];}
+function filterSchools(tier){
+  document.querySelectorAll('[data-school-tier]').forEach(button=>button.classList.toggle('active',button.dataset.schoolTier===tier));
+  document.querySelectorAll('.school-match-card').forEach(card=>{
+    card.hidden=tier!=='all'&&card.dataset.tier!==tier;
+  });
+}
 function openShare(){document.getElementById('shareModal').classList.add('open')}
 function closeShare(event){if(event&&event.target&&event.target.id!=='shareModal')return;document.getElementById('shareModal').classList.remove('open')}
 fill();
+window.filterSchools=filterSchools;
 </script>
 
-<nav class="quick-nav" aria-label="底部快速导航">
-  <a class="" href="index.html"><span>⌂</span><span>首页</span></a>
-  <a class="active" href="status.html"><span>◎</span><span>状态</span></a>
-  <a class="" href="timeline.html"><span>▦</span><span>地图</span></a>
-  <a class="" href="advisors.html"><span>✦</span><span>顾问</span></a>
+<nav class="quick-nav mobile-five" aria-label="底部快速导航">
+  <a href="index.html"><i data-lucide="house"></i><span>首页</span></a>
+  <a href="timeline.html"><i data-lucide="route"></i><span>导航</span></a>
+  <a href="advisors.html"><i data-lucide="messages-square"></i><span>社区</span></a>
+  <a href="profile-detail.html"><i data-lucide="user-round"></i><span>我的</span></a>
 </nav>
 
 <script src="nexus-clean-v22.js"></script>
+<script>if(window.lucide){lucide.createIcons()}</script>
 </body>
 </html>

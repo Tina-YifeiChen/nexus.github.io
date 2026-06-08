@@ -269,8 +269,10 @@ body{padding-bottom:96px !important;}
 
 </style>
 <link rel="stylesheet" href="nexus-clean-v22.css" />
+<link rel="stylesheet" href="nexus-mobile-workspace.css?v=20260609-secondary-nav" />
+<script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
 </head>
-<body>
+<body class="nexus-mobile-page nexus-case-profile">
 <header class="topbar"><div class="nav-shell"><a href="advisors.html#case-ref" style="display:flex;align-items:center;gap:12px;text-decoration:none;"><div class="logo">NX</div><div><div style="font-weight:950;font-size:19px;">Nexus AI</div><div style="font-size:13px;color:rgba(8,22,20,.55);">顾问 · 案例参考</div></div></a><nav class="navlinks"><a href="index.html">首页</a><a href="status.html">状态</a><a href="timeline.html">地图</a><a href="advisors.html">顾问</a></nav><a class="btn btn-primary" href="profile-detail.html">看画像详情</a></div></header>
 
 <div class="page-guide" aria-label="页面位置导航">
@@ -301,13 +303,14 @@ body{padding-bottom:96px !important;}
 <section class="card"><div class="pill">下一步行动</div><h2 class="section-title">这个案例下一步应该怎么做？</h2><div class="grid3"><div class="box"><h3>语言</h3><p>优先冲雅思 7.0，至少避免语言成为热门项目的明显短板。</p></div><div class="box"><h3>文书</h3><p>把两段实习串成“金融分析 + 数据辅助决策”的主线，而不是简单罗列经历。</p></div><div class="box"><h3>选校</h3><p>建立 2-3 个冲刺、3-4 个主申、2-3 个稳妥项目组合。</p></div></div><div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;"><a class="btn btn-primary" href="profile-detail.html">查看画像详情</a><a class="btn btn-soft" href="effort.html">查看努力路径</a></div></section>
 </main>
 
-<nav class="quick-nav" aria-label="底部快速导航">
-  <a class="" href="index.html"><span>⌂</span><span>首页</span></a>
-  <a class="" href="status.html"><span>◎</span><span>状态</span></a>
-  <a class="" href="timeline.html"><span>▦</span><span>地图</span></a>
-  <a class="active" href="advisors.html"><span>✦</span><span>顾问</span></a>
+<nav class="quick-nav mobile-five" aria-label="底部快速导航">
+  <a href="index.html"><i data-lucide="house"></i><span>首页</span></a>
+  <a href="timeline.html"><i data-lucide="route"></i><span>导航</span></a>
+  <a class="active" href="advisors.html" aria-current="page"><i data-lucide="messages-square"></i><span>社区</span></a>
+  <a href="profile-detail.html"><i data-lucide="user-round"></i><span>我的</span></a>
 </nav>
 
 <script src="nexus-clean-v22.js"></script>
+<script>if(window.lucide){lucide.createIcons()}</script>
 </body>
 </html>

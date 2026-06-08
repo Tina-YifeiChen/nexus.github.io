@@ -272,8 +272,51 @@ body{padding-bottom:96px !important;}
 
 </style>
 <link rel="stylesheet" href="nexus-clean-v22.css" />
+<link rel="stylesheet" href="nexus-mobile-workspace.css" />
+<script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
 </head>
-<body>
+<body class="nexus-mobile-page nexus-tools">
+<section class="mobile-workspace-head" aria-label="Nexus AI 工具">
+  <div class="mobile-workspace-bar">
+    <a class="mobile-workspace-brand" href="index.html"><span class="mobile-workspace-mark">NX</span><span><strong>Nexus AI</strong><small>港校申请导航</small></span></a>
+    <a class="mobile-workspace-action" href="status.html" aria-label="查看当前申请状态"><i data-lucide="activity"></i></a>
+  </div>
+  <div class="mobile-workspace-intro"><span>DECISION TOOLS</span><h1>努力与投入模拟工具</h1><p>比较语言、实习、材料和预算调整，判断哪一步更值得先做。</p></div>
+</section>
+<section class="effort-mobile-app" aria-label="努力模拟">
+  <header class="mobile-product-bar">
+    <a href="index.html" aria-label="返回首页"><i data-lucide="chevron-left"></i></a>
+    <div><strong>努力模拟</strong><small>比较每一步的真实回报</small></div>
+    <a href="status.html" aria-label="查看申请状态"><i data-lucide="activity"></i></a>
+  </header>
+
+  <section class="effort-mobile-result">
+    <div class="effort-result-head"><span><small>当前优先变量</small><h1 id="mobileEffortLabel">语言提分</h1></span><span class="effort-result-score" id="mobileEffortScore">72 → 81</span></div>
+    <div class="effort-score-track"><span id="mobileEffortTrack" style="width:81%"></span></div>
+    <p id="mobileEffortImpact">降低硬门槛风险，让主申项目更稳。</p>
+  </section>
+
+  <div class="effort-mobile-picker" id="mobileEffortPicker" aria-label="选择模拟变量"></div>
+
+  <section class="effort-advice-card">
+    <div class="effort-advice-title"><span><i data-lucide="sparkles"></i></span><div><small>AI 建议</small><strong id="mobileEffortTitle">雅思/托福怎么补，才真的影响申请？</strong></div></div>
+    <p id="mobileEffortSub"></p>
+    <div class="effort-advice-grid">
+      <div><small>适合你吗</small><strong id="mobileEffortFit">适合语言临界、其他背景不弱的申请者</strong></div>
+      <div><small>建议投入</small><strong id="mobileEffortMoney">语言专项训练</strong></div>
+    </div>
+  </section>
+
+  <details class="effort-mobile-details" open>
+    <summary><span><small>下一步行动</small><strong>按顺序完成</strong></span><i data-lucide="chevron-down"></i></summary>
+    <div id="mobileEffortActions"></div>
+  </details>
+  <details class="effort-mobile-details">
+    <summary><span><small>投入判断</small><strong>值得花与先别急</strong></span><i data-lucide="chevron-down"></i></summary>
+    <div id="mobileEffortMoneyList"></div>
+  </details>
+  <p class="mobile-trust-copy">模拟结果用于比较不同动作的相对影响，不代表实际录取结果。</p>
+</section>
 <header class="topbar">
   <div class="nav-shell">
     <a href="index.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
@@ -357,18 +400,36 @@ const plans={
   cv:{label:'材料提前',title:'CV、PS、推荐信怎么提前准备？',sub:'材料不是最后一周包装出来的，而是把你的背景、目标和证据提前组织成一条线。',score:'72 → 78',impact:'影响：提高表达清晰度',fit:'适合背景不差但表达混乱、经历多但主线不清、或者申请节奏容易拖延的用户。',standard:'7-8 月完成 CV 和 PS 初稿，9 月能根据不同项目快速微调，而不是从零开始。',avoid:'不要等项目开放后才开始写第一版材料。那时你会同时被选校、网申、推荐信和语言成绩压住。',actions:['先做一版一页 CV，把教育、实习、科研、项目、技能全部结构化。','写一个 200 字申请主线：我是谁、为什么这个方向、我凭什么适合。','提前联系推荐人，确认推荐信意愿、邮箱和提交方式。','为不同方向准备可替换素材，避免所有项目用一份 PS。'],times:[['1周','整理经历库和基础 CV。'],['2-4周','完成 PS 主线和第一版材料。'],['7-8月','让顾问或有经验的人做一次结构复核。']],money:[['值得花','材料结构诊断、CV 复核、PS 主线复核。'],['先别急','在没有确定目标方向前购买整套文书润色。'],['判断标准','服务能不能帮你把经历讲清楚，而不是只改语法。']],advisors:['如果只是语法问题，不需要申请顾问。','如果经历很多但主线很散，适合找顾问做一次材料结构复核。','如果目标项目很具体，可以找学长学姐看项目偏好。']},
   budget:{label:'预算路径',title:'预算有限时，怎么选才不是被迫降级？',sub:'预算限制不等于申请失败。真正要做的是把香港本地、港校内地分校、大湾区和澳门路径组合起来。',score:'72 → 76',impact:'影响：提高路径安全感',fit:'适合家庭预算有限、不确定是否能承担香港本地高学费生活费、但仍希望保留升学质量的用户。',standard:'形成冲刺、主申、稳妥、预算友好四层组合，同时明确学费、生活费、留位费和地区接受度。',avoid:'不要只因为预算压力就盲目放弃好项目，也不要只看排名忽略总成本。',actions:['先算总成本：学费、住宿、生活费、留位费、签证、机票和机会成本。','把学校分成香港本地、港校内地分校、大湾区合作办学、澳门院校四类。','为每类路径设置上限预算和可接受专业。','优先保留性价比高、就业地点匹配、项目资源清晰的选择。'],times:[['1周','做预算上限和家庭承受范围确认。'],['2-3周','建立预算友好学校清单。'],['Offer后','比较留位费、奖学金、城市成本和长期回报。']],money:[['值得花','预算规划、Offer 对比、奖学金和住宿信息确认。'],['先别急','因为焦虑购买超预算服务或盲目交多个留位费。'],['判断标准','这笔钱是否降低决策失误，而不是只降低焦虑。']],advisors:['如果不清楚项目真实体验和就业回报，适合问目标院校学长学姐。','如果手里有多个 Offer 且成本差异很大，适合做一次 Offer 选择咨询。']}
 };
-function render(type){const data=plans[type]||plans.ielts;document.querySelectorAll('.nav-card').forEach(x=>x.classList.remove('active'));const active=document.querySelector(`[data-type="${type}"]`);if(active)active.classList.add('active');detailPill.textContent=data.label;detailTitle.textContent=data.title;detailSub.textContent=data.sub;detailScore.textContent=data.score;detailImpact.textContent=data.impact;fitText.textContent=data.fit;standardText.textContent=data.standard;avoidText.textContent=data.avoid;actionList.innerHTML=data.actions.map((x,i)=>`<div class="check"><span class="dot">${i+1}</span><span>${x}</span></div>`).join('');timeList.innerHTML=data.times.map(x=>`<div class="time-item"><b>${x[0]}</b><span>${x[1]}</span></div>`).join('');moneyList.innerHTML=data.money.map(x=>`<div class="row"><b>${x[0]}</b><span>${x[1]}</span></div>`).join('');advisorList.innerHTML=data.advisors.map((x,i)=>`<div class="check"><span class="dot">${i+1}</span><span>${x}</span></div>`).join('');history.replaceState(null,'',`effort.html?type=${type}`)}
+function render(type){const data=plans[type]||plans.ielts;document.querySelectorAll('.nav-card').forEach(x=>x.classList.remove('active'));const active=document.querySelector(`[data-type="${type}"]`);if(active)active.classList.add('active');detailPill.textContent=data.label;detailTitle.textContent=data.title;detailSub.textContent=data.sub;detailScore.textContent=data.score;detailImpact.textContent=data.impact;fitText.textContent=data.fit;standardText.textContent=data.standard;avoidText.textContent=data.avoid;actionList.innerHTML=data.actions.map((x,i)=>`<div class="check"><span class="dot">${i+1}</span><span>${x}</span></div>`).join('');timeList.innerHTML=data.times.map(x=>`<div class="time-item"><b>${x[0]}</b><span>${x[1]}</span></div>`).join('');moneyList.innerHTML=data.money.map(x=>`<div class="row"><b>${x[0]}</b><span>${x[1]}</span></div>`).join('');advisorList.innerHTML=data.advisors.map((x,i)=>`<div class="check"><span class="dot">${i+1}</span><span>${x}</span></div>`).join('');renderMobileEffort(type,data);history.replaceState(null,'',`effort.html?type=${type}`)}
+function renderMobileEffort(type,data){
+  document.querySelectorAll('.effort-picker-button').forEach(button=>button.classList.toggle('active',button.dataset.type===type));
+  const scoreEnd=Number((data.score.match(/→\s*(\d+)/)||[0,72])[1]);
+  const moneyWorth=data.money.find(item=>item[0]==='值得花');
+  mobileEffortLabel.textContent=data.label;
+  mobileEffortScore.textContent=data.score;
+  mobileEffortTrack.style.width=`${scoreEnd}%`;
+  mobileEffortImpact.textContent=data.impact.replace('影响：','')+'。';
+  mobileEffortTitle.textContent=data.title;
+  mobileEffortSub.textContent=data.sub;
+  mobileEffortFit.textContent=data.fit.split('。')[0];
+  mobileEffortMoney.textContent=moneyWorth?moneyWorth[1].split('、').slice(0,2).join('、'):'按当前短板投入';
+  mobileEffortActions.innerHTML=data.actions.slice(0,3).map((item,index)=>`<div class="effort-mobile-row"><span>${index+1}</span><p>${item}</p></div>`).join('');
+  mobileEffortMoneyList.innerHTML=data.money.map(item=>`<div class="effort-money-row"><strong>${item[0]}</strong><p>${item[1]}</p></div>`).join('');
+  if(window.lucide)lucide.createIcons();
+}
 const nav=document.getElementById('effortNav');nav.innerHTML=Object.entries(plans).map(([k,v])=>`<a class="nav-card" data-type="${k}" href="javascript:void(0)" onclick="render('${k}')"><strong>${v.label}</strong><span>${v.impact}</span></a>`).join('');
+const mobilePicker=document.getElementById('mobileEffortPicker');mobilePicker.innerHTML=Object.entries(plans).map(([k,v])=>`<button class="effort-picker-button" data-type="${k}" type="button" onclick="render('${k}')"><i data-lucide="${k==='ielts'?'languages':k==='intern'?'briefcase-business':k==='cv'?'file-text':'wallet-cards'}"></i><span>${v.label}</span></button>`).join('');
 const params=new URLSearchParams(location.search);render(params.get('type')||'ielts');
 </script>
 
-<nav class="quick-nav" aria-label="底部快速导航">
-  <a class="" href="index.html"><span>⌂</span><span>首页</span></a>
-  <a class="active" href="status.html"><span>◎</span><span>状态</span></a>
-  <a class="" href="timeline.html"><span>▦</span><span>地图</span></a>
-  <a class="" href="advisors.html"><span>✦</span><span>顾问</span></a>
+<nav class="quick-nav mobile-five" aria-label="底部快速导航">
+  <a href="index.html"><i data-lucide="house"></i><span>首页</span></a>
+  <a href="timeline.html"><i data-lucide="route"></i><span>导航</span></a>
+  <a href="advisors.html"><i data-lucide="messages-square"></i><span>社区</span></a>
+  <a href="profile-detail.html"><i data-lucide="user-round"></i><span>我的</span></a>
 </nav>
 
 <script src="nexus-clean-v22.js"></script>
+<script>if(window.lucide){lucide.createIcons()}</script>
 </body>
 </html>

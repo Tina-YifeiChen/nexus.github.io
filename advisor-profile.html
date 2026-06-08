@@ -411,8 +411,79 @@ body{padding-bottom:96px !important;}
 
 </style>
 <link rel="stylesheet" href="nexus-clean-v22.css" />
+<link rel="stylesheet" href="nexus-mobile-workspace.css?v=20260609-secondary-nav" />
+<script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
 </head>
-<body>
+<body class="nexus-mobile-page nexus-advisor-profile">
+
+<section class="mobile-advisor-profile" aria-label="申请伙伴主页">
+  <header class="advisor-mobile-nav">
+    <a href="advisors.html" aria-label="返回社区"><i data-lucide="chevron-left"></i></a>
+    <strong>个人主页</strong>
+    <button type="button" aria-label="收藏主页" onclick="toggleAdvisorFavorite(this)"><i data-lucide="bookmark"></i></button>
+  </header>
+
+  <div class="advisor-mobile-hero">
+    <img id="mobileAdvisorPhoto" src="" alt="" />
+    <div class="advisor-mobile-info">
+      <span class="advisor-verified"><i data-lucide="badge-check"></i><span id="mobileAdvisorType">身份已核验</span></span>
+      <h1 id="mobileAdvisorName">港中文商学院学姐</h1>
+      <p id="mobileAdvisorSchool">CUHK · MSc 商科</p>
+      <div class="advisor-mobile-tags" id="mobileAdvisorTags"></div>
+    </div>
+  </div>
+
+  <div class="advisor-mobile-stats">
+          <div><strong data-advisor-consult-count>37</strong><span>咨询记录</span></div>
+    <div><strong id="mobileSatisfaction">98%</strong><span>满意度</span></div>
+    <div><strong>4.9</strong><span>综合评分</span></div>
+  </div>
+
+  <section class="advisor-mobile-about">
+    <div class="advisor-section-head"><h2>关于 TA</h2><span>已通过平台核验</span></div>
+    <p id="mobileAdvisorIntro"></p>
+  </section>
+
+  <nav class="advisor-profile-tabs" aria-label="主页内容导航">
+    <a class="active" href="#mobile-notes">笔记</a>
+    <a href="#mobile-services">可咨询</a>
+    <a href="#mobile-boundary">服务说明</a>
+  </nav>
+
+  <section id="mobile-notes" class="advisor-mobile-section">
+    <div class="advisor-section-head"><h2>TA 的经验笔记</h2><span id="mobileNoteCount">3 篇</span></div>
+    <div class="advisor-note-grid" id="mobileNotes"></div>
+  </section>
+
+  <section id="mobile-services" class="advisor-mobile-section">
+    <div class="advisor-section-head"><h2>可以聊什么</h2><span>按次咨询</span></div>
+    <div class="advisor-service-list" id="mobileServices"></div>
+  </section>
+
+  <section id="mobile-boundary" class="advisor-boundary-card">
+    <span><i data-lucide="shield-check"></i>服务边界</span>
+    <p id="mobileBoundary"></p>
+  </section>
+</section>
+
+<div class="advisor-action-bar" aria-label="主页操作">
+  <button type="button" class="advisor-message-button" onclick="openAdvisorSheet('message')"><i data-lucide="message-circle"></i><span>发消息</span></button>
+  <button type="button" class="advisor-book-button" onclick="openAdvisorSheet('book')">预约咨询</button>
+</div>
+
+<div class="advisor-sheet" id="advisorSheet" aria-hidden="true" onclick="closeAdvisorSheet(event)">
+  <div class="advisor-sheet-panel" role="dialog" aria-modal="true" aria-labelledby="advisorSheetTitle" onclick="event.stopPropagation()">
+    <div class="advisor-sheet-handle"></div>
+    <div class="advisor-sheet-head">
+      <div><span>联系申请伙伴</span><h2 id="advisorSheetTitle">预约咨询</h2></div>
+      <button type="button" aria-label="关闭" onclick="closeAdvisorSheet()"><i data-lucide="x"></i></button>
+    </div>
+    <div class="advisor-sheet-option"><i data-lucide="clock-3"></i><div><strong>30 分钟语音咨询</strong><span id="mobileAdvisorPrice">¥99 起 / 次</span></div></div>
+    <div class="advisor-sheet-option"><i data-lucide="file-text"></i><div><strong>预约前先填写问题</strong><span>让对方提前了解你的背景</span></div></div>
+    <button type="button" class="advisor-sheet-confirm" onclick="confirmAdvisorContact()">继续</button>
+  </div>
+</div>
+
 <header class="topbar">
   <div class="nav-shell">
     <a href="advisors.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
@@ -529,28 +600,113 @@ body{padding-bottom:96px !important;}
 
 <script>
 const DATA={
-  "cuhk-business":{avatar:"CU",type:"目标院校学长学姐",name:"港中文商学院学姐",school:"CUHK",records:"37",satisfaction:"98%",intro:"从 211 财经背景申请到 CUHK 商科，熟悉商科项目偏好、面试节奏和文书主线。适合帮助背景不错但不知道怎么讲清楚自己的学生。",tags:["商科选校","面试准备","文书主线","同背景对照"],services:["结合你的背景，判断 CUHK / PolyU / CityU 商科项目大概适合放在哪一档。","帮你把零散实习经历整理成一条申请主线，让文书不只是堆经历。","从真实就读体验出发，告诉你项目课程、面试和申请节奏里哪些细节容易被忽略。"],fit:"适合已经有一定商科背景，但不知道自己该冲哪一档、文书该突出什么的人。",fitList:["211/双非财经背景，想申港中文、港理工、港城商科。","有实习但经历表达混乱，需要文书主线建议。","想了解项目真实体验、面试形式和申请节奏。"],notFitList:["需要保录承诺或确定性录取预测。","还没有基本定位，只是想泛泛了解留学。","法律、医学等非商科细分方向。"],records:["学生 A：211 财经背景，目标 CUHK 商科，主要复核项目组合和面试准备。","学生 B：双非高 GPA，实习较弱，重点优化文书主线和主申/稳妥分层。","学生 C：已有港理工 offer，咨询 CUHK 面试和是否继续冲刺。"],score:"演示满意度 98%。用户反馈集中在：项目体验讲得具体、能把实习经历和申请方向连起来、不会盲目劝冲。",boundary:"可以提供经验判断、材料方向和面试准备建议；不代写文书，不承诺录取，不替用户做最终学校选择。",price:"参考价：¥99-299 / 次。用户先判断是否匹配，再决定是否花钱。"},
-  "hku-data":{avatar:"HK",type:"目标院校学长学姐",name:"港大数据方向学长",school:"HKU",records:"29",satisfaction:"96%",intro:"HKU 数据 / AI 方向在读，擅长判断技术经历、课程项目和科研经历如何服务申请。适合想冲港大、港科、港中文数据或 AI 相关项目的学生。",tags:["AI/CS","项目匹配","科研经历","技术面试"],services:["判断你的课程项目、科研、竞赛和实习是否足够支撑目标项目。","帮你把技术经历从“做过项目”改成“解决过什么问题”。","解释数据、AI、CS 相关项目的课程差异和面试准备重点。"],fit:"适合技术方向申请者，尤其是经历不少但表达不聚焦、目标项目过多的人。",fitList:["AI/CS/数据方向申请者。","有课程项目或科研，但不知道怎样写进 CV / PS。","想冲港大、港科、港中文相关项目。"],notFitList:["纯商科、传媒、教育方向为主的申请。","只需要语言规划或签证行前问题。","期待顾问代写代码、代做项目或包装虚假经历。"],records:["学生 A：985 转数据方向，复核 HKU/HKUST 项目差异和技术经历表达。","学生 B：双非高绩点，科研较弱，重点建议增加课程项目展示。","学生 C：已有实习但技术含量表达不足，优化简历项目描述。"],score:"演示满意度 96%。用户反馈集中在：能讲清项目差异、技术经历表达更具体、面试准备更有方向。",boundary:"可以帮助解释项目偏好和技术经历表达；不包装虚假科研，不代做项目，不承诺港前三录取。",price:"参考价：¥129-399 / 次。适合在项目选择或面试前做一次复核。"},
-  "strategy-top":{avatar:"TOP",type:"顶级申请顾问",name:"复杂背景顶级申请顾问",school:"策略型",records:"64",satisfaction:"97%",intro:"主打复杂背景判断和策略复核，适合低绩点、跨专业、经历杂乱、目标过高或多个 offer 难选择的申请者。重点不是制造焦虑，而是判断什么值得冲、什么该放弃。",tags:["低绩点","跨专业","港前三冲刺","Offer选择"],services:["判断低 GPA、跨专业或经历断裂是否还有可解释空间。","帮你重新设计项目组合：哪些可以冲，哪些应该主申，哪些更适合稳妥。","复核文书主线、申请节奏和是否需要补申，避免把钱花在错误的环节。"],fit:"适合问题复杂、单靠学长学姐经验不够判断的申请者。",fitList:["GPA 偏低但目标较高，需要判断冲刺价值。","跨专业申请，需要把经历讲成一条可信主线。","多个 offer 或补申选择困难，需要策略判断。"],notFitList:["只想了解某个项目真实课堂体验。","已经非常确定目标，只需要简单答疑。","期待保录、内推或确定性承诺。"],records:["学生 A：低 GPA + 两段实习，重做项目分层，放弃不合理冲刺。","学生 B：英语专业跨申传媒/商科，重构文书主线和选校策略。","学生 C：拿到多个 offer，按职业目标、预算和风险做最终选择。"],score:"演示满意度 97%。用户反馈集中在：不盲目鼓励、不制造焦虑、能把复杂背景拆成可执行策略。",boundary:"提供策略判断和风险复核；不承诺录取，不替代学校官方审核，不鼓励虚假包装。",price:"参考价：¥399-999 / 次。适合关键节点做深度策略咨询，而不是从一开始就购买。"}
+  "cuhk-business":{avatar:"CU",type:"目标院校学长学姐",name:"港中文商学院学姐",school:"CUHK",recordCount:"37",satisfaction:"98%",intro:"从 211 财经背景申请到 CUHK 商科，熟悉商科项目偏好、面试节奏和文书主线。适合帮助背景不错但不知道怎么讲清楚自己的学生。",tags:["商科选校","面试准备","文书主线","同背景对照"],services:["结合你的背景，判断 CUHK / PolyU / CityU 商科项目大概适合放在哪一档。","帮你把零散实习经历整理成一条申请主线，让文书不只是堆经历。","从真实就读体验出发，告诉你项目课程、面试和申请节奏里哪些细节容易被忽略。"],fit:"适合已经有一定商科背景，但不知道自己该冲哪一档、文书该突出什么的人。",fitList:["211/双非财经背景，想申港中文、港理工、港城商科。","有实习但经历表达混乱，需要文书主线建议。","想了解项目真实体验、面试形式和申请节奏。"],notFitList:["需要保录承诺或确定性录取预测。","还没有基本定位，只是想泛泛了解留学。","法律、医学等非商科细分方向。"],records:["学生 A：211 财经背景，目标 CUHK 商科，主要复核项目组合和面试准备。","学生 B：双非高 GPA，实习较弱，重点优化文书主线和主申/稳妥分层。","学生 C：已有港理工 offer，咨询 CUHK 面试和是否继续冲刺。"],score:"演示满意度 98%。用户反馈集中在：项目体验讲得具体、能把实习经历和申请方向连起来、不会盲目劝冲。",boundary:"可以提供经验判断、材料方向和面试准备建议；不代写文书，不承诺录取，不替用户做最终学校选择。",price:"参考价：¥99-299 / 次。用户先判断是否匹配，再决定是否花钱。"},
+  "hku-data":{avatar:"HK",type:"目标院校学长学姐",name:"港大数据方向学长",school:"HKU",recordCount:"29",satisfaction:"96%",intro:"HKU 数据 / AI 方向在读，擅长判断技术经历、课程项目和科研经历如何服务申请。适合想冲港大、港科、港中文数据或 AI 相关项目的学生。",tags:["AI/CS","项目匹配","科研经历","技术面试"],services:["判断你的课程项目、科研、竞赛和实习是否足够支撑目标项目。","帮你把技术经历从“做过项目”改成“解决过什么问题”。","解释数据、AI、CS 相关项目的课程差异和面试准备重点。"],fit:"适合技术方向申请者，尤其是经历不少但表达不聚焦、目标项目过多的人。",fitList:["AI/CS/数据方向申请者。","有课程项目或科研，但不知道怎样写进 CV / PS。","想冲港大、港科、港中文相关项目。"],notFitList:["纯商科、传媒、教育方向为主的申请。","只需要语言规划或签证行前问题。","期待顾问代写代码、代做项目或包装虚假经历。"],records:["学生 A：985 转数据方向，复核 HKU/HKUST 项目差异和技术经历表达。","学生 B：双非高绩点，科研较弱，重点建议增加课程项目展示。","学生 C：已有实习但技术含量表达不足，优化简历项目描述。"],score:"演示满意度 96%。用户反馈集中在：能讲清项目差异、技术经历表达更具体、面试准备更有方向。",boundary:"可以帮助解释项目偏好和技术经历表达；不包装虚假科研，不代做项目，不承诺港前三录取。",price:"参考价：¥129-399 / 次。适合在项目选择或面试前做一次复核。"},
+  "strategy-top":{avatar:"TOP",type:"顶级申请顾问",name:"复杂背景顶级申请顾问",school:"策略型",recordCount:"64",satisfaction:"97%",intro:"主打复杂背景判断和策略复核，适合低绩点、跨专业、经历杂乱、目标过高或多个 offer 难选择的申请者。重点不是制造焦虑，而是判断什么值得冲、什么该放弃。",tags:["低绩点","跨专业","港前三冲刺","Offer选择"],services:["判断低 GPA、跨专业或经历断裂是否还有可解释空间。","帮你重新设计项目组合：哪些可以冲，哪些应该主申，哪些更适合稳妥。","复核文书主线、申请节奏和是否需要补申，避免把钱花在错误的环节。"],fit:"适合问题复杂、单靠学长学姐经验不够判断的申请者。",fitList:["GPA 偏低但目标较高，需要判断冲刺价值。","跨专业申请，需要把经历讲成一条可信主线。","多个 offer 或补申选择困难，需要策略判断。"],notFitList:["只想了解某个项目真实课堂体验。","已经非常确定目标，只需要简单答疑。","期待保录、内推或确定性承诺。"],records:["学生 A：低 GPA + 两段实习，重做项目分层，放弃不合理冲刺。","学生 B：英语专业跨申传媒/商科，重构文书主线和选校策略。","学生 C：拿到多个 offer，按职业目标、预算和风险做最终选择。"],score:"演示满意度 97%。用户反馈集中在：不盲目鼓励、不制造焦虑、能把复杂背景拆成可执行策略。",boundary:"提供策略判断和风险复核；不承诺录取，不替代学校官方审核，不鼓励虚假包装。",price:"参考价：¥399-999 / 次。适合关键节点做深度策略咨询，而不是从一开始就购买。"}
 };
 const id=new URLSearchParams(location.search).get('id')||'cuhk-business';
 const d=DATA[id]||DATA['cuhk-business'];
+const MOBILE_MEDIA={
+  "cuhk-business":{
+    photo:"https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=640&q=85",
+    alt:"港中文商学院学姐头像",
+    school:"CUHK · MSc 商科",
+    notes:[
+      ["选校策略","211 商科背景，CUHK 应该放在主申还是冲刺？","先看语言、GPA 与实习主线，再决定学校档位。","https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=420&q=80"],
+      ["面试复盘","商学院面试最常追问的，不是你的标准答案","真实项目偏好与准备节奏拆解。","https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=420&q=80"],
+      ["文书主线","实习不少，但为什么文书还是显得很散？","把经历组织成项目相信的能力证据。","https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=420&q=80"]
+    ]
+  },
+  "hku-data":{
+    photo:"https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=640&q=85",
+    alt:"港大数据方向学长头像",
+    school:"HKU · Data / AI",
+    notes:[
+      ["项目表达","技术经历怎么写，才不像简单罗列项目？","从方法、结果到项目匹配的完整结构。","https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=420&q=80"],
+      ["科研经历","课程项目和科研经历，哪个更影响数据申请？","按项目要求判断真正有效的增量。","https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=420&q=80"],
+      ["技术面试","数据方向面试前，应该重点复习哪些内容？","建立可解释的技术能力清单。","https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=420&q=80"]
+    ]
+  },
+  "strategy-top":{
+    photo:"https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=640&q=85",
+    alt:"复杂背景申请顾问头像",
+    school:"复杂背景 · 策略复核",
+    notes:[
+      ["策略判断","低绩点或跨专业，什么时候值得购买咨询？","先确认问题是否真的需要策略判断。","https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=420&q=80"],
+      ["项目组合","目标过高时，如何重做冲刺、主申和稳妥？","不制造焦虑的组合调整方法。","https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=420&q=80"],
+      ["Offer 选择","多个 Offer 怎么选，不能只比较排名","预算、方向与长期回报一起评估。","https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=420&q=80"]
+    ]
+  }
+};
+const mobileMedia=MOBILE_MEDIA[id]||MOBILE_MEDIA['cuhk-business'];
 function set(id,text){document.getElementById(id).textContent=text}
-set('avatar',d.avatar);set('type',d.type);set('name',d.name);set('intro',d.intro);set('school',d.school);set('recordsCount',d.records);set('satisfaction',d.satisfaction);set('fitText',d.fit);set('scoreText',d.score);set('boundary',d.boundary);set('price',d.price);document.title='Nexus AI 智航湾区｜'+d.name;
+set('avatar',d.avatar);set('type',d.type);set('name',d.name);set('intro',d.intro);set('school',d.school);set('recordsCount',d.recordCount);set('satisfaction',d.satisfaction);set('fitText',d.fit);set('scoreText',d.score);set('boundary',d.boundary);set('price',d.price);document.title='Nexus AI 智航湾区｜'+d.name;
 d.tags.forEach(t=>{const s=document.createElement('span');s.className='tag';s.textContent=t;document.getElementById('tags').appendChild(s)});
 d.services.forEach((x,i)=>{const div=document.createElement('div');div.className='box';div.innerHTML='<div class="service-index">'+(i+1)+'</div><h3>可以帮你看</h3><p>'+x+'</p>';document.getElementById('serviceGrid').appendChild(div)});
 d.fitList.forEach(x=>{const li=document.createElement('li');li.textContent=x;document.getElementById('fitList').appendChild(li)});
 d.notFitList.forEach(x=>{const li=document.createElement('li');li.textContent=x;document.getElementById('notFitList').appendChild(li)});
 d.records.forEach(x=>{const div=document.createElement('div');div.className='record-item';div.textContent=x;document.getElementById('recordList').appendChild(div)});
+document.getElementById('mobileAdvisorPhoto').src=mobileMedia.photo;
+document.getElementById('mobileAdvisorPhoto').alt=mobileMedia.alt;
+document.getElementById('mobileAdvisorName').textContent=d.name;
+document.getElementById('mobileAdvisorType').textContent=d.type;
+document.getElementById('mobileAdvisorSchool').textContent=mobileMedia.school;
+document.querySelector('[data-advisor-consult-count]').textContent=d.recordCount;
+document.getElementById('mobileSatisfaction').textContent=d.satisfaction;
+document.getElementById('mobileAdvisorIntro').textContent=d.intro;
+document.getElementById('mobileBoundary').textContent=d.boundary;
+document.getElementById('mobileAdvisorPrice').textContent=d.price.replace('参考价：','').split('。')[0];
+document.getElementById('mobileAdvisorTags').innerHTML=d.tags.slice(0,3).map(tag=>`<span>${tag}</span>`).join('');
+document.getElementById('mobileServices').innerHTML=d.services.map((service,index)=>`
+  <div class="advisor-service-item">
+    <span>${String(index+1).padStart(2,'0')}</span>
+    <p>${service}</p>
+  </div>
+`).join('');
+document.getElementById('mobileNotes').innerHTML=mobileMedia.notes.map(note=>`
+  <a class="advisor-note-card" href="#mobile-services">
+    <img src="${note[3]}" alt="${note[0]}" />
+    <div><span>${note[0]}</span><h3>${note[1]}</h3><p>${note[2]}</p></div>
+  </a>
+`).join('');
+function toggleAdvisorFavorite(button){
+  const saved=button.classList.toggle('is-saved');
+  button.setAttribute('aria-label',saved?'取消收藏主页':'收藏主页');
+  button.innerHTML=`<i data-lucide="${saved?'bookmark-check':'bookmark'}"></i>`;
+  if(window.lucide)lucide.createIcons();
+}
+function openAdvisorSheet(mode){
+  const sheet=document.getElementById('advisorSheet');
+  document.getElementById('advisorSheetTitle').textContent=mode==='message'?'先发个消息':'预约咨询';
+  sheet.classList.add('open');
+  sheet.setAttribute('aria-hidden','false');
+  document.body.classList.add('sheet-open');
+}
+function closeAdvisorSheet(event){
+  if(event&&event.target&&event.target.id!=='advisorSheet')return;
+  const sheet=document.getElementById('advisorSheet');
+  sheet.classList.remove('open');
+  sheet.setAttribute('aria-hidden','true');
+  document.body.classList.remove('sheet-open');
+}
+function confirmAdvisorContact(){
+  const button=document.querySelector('.advisor-sheet-confirm');
+  button.textContent='已记录，稍后联系你';
+  button.disabled=true;
+  setTimeout(closeAdvisorSheet,900);
+}
 </script>
 
-<nav class="quick-nav" aria-label="底部快速导航">
-  <a class="" href="index.html"><span>⌂</span><span>首页</span></a>
-  <a class="" href="status.html"><span>◎</span><span>状态</span></a>
-  <a class="" href="timeline.html"><span>▦</span><span>地图</span></a>
-  <a class="active" href="advisors.html"><span>✦</span><span>顾问</span></a>
+<nav class="quick-nav mobile-five" aria-label="底部快速导航">
+  <a href="index.html"><i data-lucide="house"></i><span>首页</span></a>
+  <a href="timeline.html"><i data-lucide="route"></i><span>导航</span></a>
+  <a class="active" href="advisors.html" aria-current="page"><i data-lucide="messages-square"></i><span>社区</span></a>
+  <a href="profile-detail.html"><i data-lucide="user-round"></i><span>我的</span></a>
 </nav>
 
 <script src="nexus-clean-v22.js"></script>
+<script>
+if(window.lucide){lucide.createIcons()}
+</script>
 </body>
 </html>
