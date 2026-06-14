@@ -1438,8 +1438,8 @@ body{padding-bottom:96px !important;}
 }
 
 </style>
-<link rel="stylesheet" href="nexus-clean-v22.css" />
-<link rel="stylesheet" href="nexus-mobile-workspace.css" />
+<link rel="stylesheet" href="nexus-clean-v22.css?v=20260610-sage-only" />
+<link rel="stylesheet" href="nexus-mobile-workspace.css?v=20260610-home-portrait-lock" />
 <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
 </head>
 <body class="nexus-mobile-page nexus-home">
@@ -1449,12 +1449,12 @@ body{padding-bottom:96px !important;}
     <a class="mobile-workspace-brand" href="index.html"><span class="mobile-workspace-mark">NX</span><span><strong>Nexus AI</strong><small>港校申请导航</small></span></a>
     <a class="mobile-workspace-action" href="#engine" aria-label="更新申请背景"><i data-lucide="scan-search"></i></a>
   </div>
-  <div class="mobile-workspace-intro"><span>HOME</span><h1>你的港校申请工作台</h1><p>从背景输入开始，看清申请位置、风险与下一步行动路径。</p></div>
+  <div class="mobile-workspace-intro"><span>HOME</span><h1>你的港校申请陪伴站</h1><p>陪你看清方向，也陪你走好每一步。</p></div>
 </section>
 
 <section class="mobile-home-feed" aria-label="Nexus AI 首页内容">
   <header class="home-appbar">
-    <div><span>早上好，陈奕斐</span><h1>今天的申请进度</h1></div>
+    <div><span>今天完成一件就很好</span><h1>早上好，陈奕斐</h1></div>
     <a href="profile-detail.html" aria-label="查看我的申请画像"><i data-lucide="user-round"></i></a>
   </header>
 
@@ -1463,13 +1463,22 @@ body{padding-bottom:96px !important;}
       <span class="home-oracle-avatar">陈</span>
       <span><strong>陈奕斐</strong><small>四川大学 · 211 · 商科方向</small><em>GPA 3.55 · IELTS 7.0</em></span>
     </div>
-    <div class="home-oracle-radar" aria-hidden="true">
-      <svg viewBox="0 0 120 108">
-        <g transform="translate(60 54)">
-          <polygon points="0,-42 36,-21 36,21 0,42 -36,21 -36,-21" fill="none" stroke="rgba(45,106,79,.24)"/>
-          <polygon points="0,-28 24,-14 24,14 0,28 -24,14 -24,-14" fill="none" stroke="rgba(45,106,79,.14)"/>
-          <line x1="0" y1="0" x2="0" y2="-42"/><line x1="0" y1="0" x2="36" y2="-21"/><line x1="0" y1="0" x2="36" y2="21"/><line x1="0" y1="0" x2="0" y2="42"/><line x1="0" y1="0" x2="-36" y2="21"/><line x1="0" y1="0" x2="-36" y2="-21"/>
-          <polygon points="0,-36 25,-14 30,17 0,25 -29,17 -24,-14" fill="rgba(45,106,79,.13)" stroke="#2D6A4F" stroke-width="2"/>
+    <div class="home-oracle-radar" aria-label="六维申请雷达：学术86，语言68，经历78，节奏64，预算82，文书72">
+      <svg viewBox="0 0 160 142" role="img">
+        <g transform="translate(80 70)">
+          <polygon points="0,-44 38,-22 38,22 0,44 -38,22 -38,-22" fill="none" stroke="rgba(45,106,79,.24)"/>
+          <polygon points="0,-29 25,-14.5 25,14.5 0,29 -25,14.5 -25,-14.5" fill="none" stroke="rgba(45,106,79,.13)"/>
+          <line x1="0" y1="0" x2="0" y2="-44"/><line x1="0" y1="0" x2="38" y2="-22"/><line x1="0" y1="0" x2="38" y2="22"/><line x1="0" y1="0" x2="0" y2="44"/><line x1="0" y1="0" x2="-38" y2="22"/><line x1="0" y1="0" x2="-38" y2="-22"/>
+          <polygon points="0,-38 26,-15 30,17 0,28 -31,18 -26,-15" fill="rgba(45,106,79,.15)" stroke="#2D6A4F" stroke-width="2"/>
+          <circle cx="0" cy="-38" r="2.4"/><circle cx="26" cy="-15" r="2.4"/><circle cx="30" cy="17" r="2.4"/><circle cx="0" cy="28" r="2.4"/><circle cx="-31" cy="18" r="2.4"/><circle cx="-26" cy="-15" r="2.4"/>
+        </g>
+        <g class="home-radar-labels">
+          <text x="80" y="12" text-anchor="middle">学术 86</text>
+          <text x="134" y="48" text-anchor="middle">语言 68</text>
+          <text x="136" y="103" text-anchor="middle">经历 78</text>
+          <text x="80" y="137" text-anchor="middle">节奏 64</text>
+          <text x="24" y="103" text-anchor="middle">预算 82</text>
+          <text x="25" y="48" text-anchor="middle">文书 72</text>
         </g>
       </svg>
     </div>
@@ -1478,56 +1487,43 @@ body{padding-bottom:96px !important;}
       <span><small>综合评分</small><strong>78</strong></span>
       <span><small>录取可能区间</small><strong>55–70%</strong></span>
     </div>
-    <p>当前优势是学术基础，优先补语言与申请节奏。区间仅用于辅助判断，不等于录取概率承诺。</p>
+    <p>学术基础很稳。接下来一起把语言和申请节奏慢慢补齐。</p>
   </a>
 
-  <div class="home-primary-grid" aria-label="核心功能">
-    <details class="home-primary-details" id="homePortraitDetails">
-      <summary class="home-primary-card portrait">
-        <span class="home-primary-icon"><i data-lucide="scan-line"></i></span>
-        <span><small>AI 画像</small><strong>看清申请位置</strong><em>点击填写背景，生成档位、风险与行动顺序</em></span>
-        <i data-lucide="chevron-down"></i>
-      </summary>
-      <div class="home-inline-portrait" id="homeInlinePortrait"></div>
-    </details>
-    <a class="home-primary-card navigator" href="timeline.html?stage=1">
-      <span class="home-primary-icon"><i data-lucide="route"></i></span>
-      <span><small>申请导航</small><strong>知道下一步做什么</strong><em>时间地图与任务清单</em></span>
-      <i data-lucide="arrow-up-right"></i>
-    </a>
-  </div>
+  <a class="home-focus-action" href="diy.html">
+    <span class="home-focus-icon"><i data-lucide="briefcase-business"></i></span>
+    <span><small>继续我的申请</small><strong>打开 DIY 工作台</strong><em>材料、DDL 和推荐信都在这里</em></span>
+    <i data-lucide="chevron-right"></i>
+  </a>
 
-  <div class="home-compact-actions" aria-label="高频功能">
-    <a href="status.html"><i data-lucide="school"></i><span><strong>院校组合</strong><small>冲刺 / 匹配 / 稳妥</small></span></a>
-    <a href="effort.html"><i data-lucide="sliders-horizontal"></i><span><strong>努力模拟</strong><small>比较补强回报</small></span></a>
-  </div>
+  <nav class="home-simple-tools" aria-label="常用工具">
+    <a href="diy.html"><i data-lucide="briefcase-business"></i><span>DIY 工作台</span></a>
+    <a href="diy.html#route"><i data-lucide="map"></i><span>时间地图</span></a>
+    <a href="diy.html#week"><i data-lucide="list-checks"></i><span>任务导航</span></a>
+    <a href="status.html"><i data-lucide="school"></i><span>项目选择</span></a>
+    <a href="effort.html"><i data-lucide="chart-no-axes-combined"></i><span>成长计划</span></a>
+    <button type="button" onclick="toggleMobilePortraitForm()"><i data-lucide="scan-line"></i><span>AI 画像</span></button>
+    <a href="school-detail.html?school=cuhk#cost"><i data-lucide="wallet-cards"></i><span>预算就业</span></a>
+    <a href="advisors.html"><i data-lucide="messages-square"></i><span>社区</span></a>
+  </nav>
 
-  <details class="home-toolbox">
-    <summary><span><i data-lucide="layout-grid"></i><strong>更多工具</strong></span><small>咨询、投入建议与分享</small><i data-lucide="chevron-down"></i></summary>
-    <div class="home-toolbox-grid">
-      <a href="advisors.html"><i data-lucide="messages-square"></i><span><strong>找人复核</strong><small>学长学姐与专业顾问</small></span></a>
-      <a href="effort.html"><i data-lucide="badge-dollar-sign"></i><span><strong>投入建议</strong><small>哪些值得花，哪些先别急</small></span></a>
-      <button type="button" onclick="openShareModal()"><i data-lucide="share-2"></i><span><strong>画像分享图</strong><small>生成可保存的申请卡片</small></span></button>
-      <a href="status.html"><i data-lucide="external-link"></i><span><strong>院校信息</strong><small>确认项目组合与申请要求</small></span></a>
-    </div>
-  </details>
-
-  <details class="home-reading">
-    <summary><span><strong>申请灵感与真实经验</strong><small>根据商科方向与当前阶段推荐</small></span><i data-lucide="chevron-down"></i></summary>
-    <div class="home-content-grid">
-      <a class="home-content-card featured" href="status.html">
-        <img src="https://images.unsplash.com/photo-1564981797816-1043664bf78d?auto=format&fit=crop&w=700&q=80" alt="香港高校校园" />
-        <div><span>选校策略</span><h3>港前三应该冲几所？先看你的主申区是否稳固</h3><small>申请导航 · 6 分钟阅读</small></div>
-      </a>
-      <a class="home-content-card" href="effort.html?type=ielts">
-        <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=500&q=80" alt="语言考试学习计划" />
-        <div><span>语言规划</span><h3>雅思 6.5 到 7.0，最值得优先突破什么？</h3><small>128 人收藏</small></div>
-      </a>
-      <a class="home-content-card" href="advisors.html">
-        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=500&q=80" alt="学生交流申请经验" />
-        <div><span>真实经验</span><h3>211 商科背景申请 CUHK 的关键节点</h3><small>港中文学姐分享</small></div>
-      </a>
-    </div>
+  <details class="home-primary-details home-portrait-update" id="homePortraitDetails">
+    <summary class="home-primary-card portrait">
+      <span class="home-primary-icon"><i data-lucide="scan-line"></i></span>
+      <span><small>你的申请画像</small><strong>查看我的 AI 画像</strong><em>填写近况后，看看 Nexus 如何理解你</em></span>
+      <i data-lucide="chevron-down"></i>
+    </summary>
+    <form class="home-portrait-mini-form" onsubmit="startMobilePortrait(event)">
+      <div class="mini-form-intro"><strong>先让我重新认识一下你</strong><p>不用写得很完整，最近有变化的部分告诉我就好。</p></div>
+      <label><span>本科背景</span><input id="mobilePortraitSchool" value="211 / 双一流" placeholder="学校或院校背景" /></label>
+      <div class="mini-form-row">
+        <label><span>GPA / 均分</span><input id="mobilePortraitGpa" value="3.55" inputmode="decimal" /></label>
+        <label><span>语言成绩</span><input id="mobilePortraitLanguage" value="雅思 7.0" /></label>
+      </div>
+      <label><span>目标方向</span><select id="mobilePortraitDirection"><option>商科 / 金融</option><option>AI / CS</option><option>传媒 / 社科</option><option>教育 / TESOL</option></select></label>
+      <label><span>最近最想解决什么？</span><select id="mobilePortraitConcern"><option>不知道下一步先做什么</option><option>想确认院校组合</option><option>担心语言准备</option><option>想梳理经历和文书</option><option>想控制预算</option></select></label>
+      <button type="submit"><i data-lucide="sparkles"></i><span><strong>看看 Nexus 怎么理解我</strong><small>生成一份有解释的申请画像</small></span></button>
+    </form>
   </details>
 </section>
 
@@ -1822,8 +1818,8 @@ body{padding-bottom:96px !important;}
 
     <section id="portraitGenerating" class="portrait-generating">
       <div class="portrait-kicker">NEXUS PROFILE</div>
-      <h2 id="scanTitle">正在推演你的申请画像</h2>
-      <p id="scanText">读取学术背景与目标方向</p>
+      <h2 id="scanTitle">正在理解你的申请状态</h2>
+      <p id="scanText">先把你的背景放回申请场景里</p>
 
       <div class="portrait-chart" aria-hidden="true">
         <div class="portrait-orbit orbit-one"></div>
@@ -1839,42 +1835,63 @@ body{padding-bottom:96px !important;}
 
       <div class="portrait-step-list">
         <span class="active"><i data-lucide="circle-check"></i>背景归位</span>
-        <span><i data-lucide="circle"></i>风险扫描</span>
+        <span><i data-lucide="circle"></i>理解你的顾虑</span>
         <span><i data-lucide="circle"></i>路径推演</span>
         <span><i data-lucide="circle"></i>生成画像</span>
       </div>
-      <small class="portrait-disclaimer">基于结构化信息提供风险区间判断，不等于录取概率。</small>
+      <small class="portrait-disclaimer">正在把零散信息整理成一条更清楚的路线。</small>
     </section>
 
     <section id="portraitReveal" class="portrait-reveal" aria-hidden="true">
       <div class="reveal-mark"><i data-lucide="sparkles"></i></div>
-      <span class="reveal-overline">你的申请画像已生成</span>
+      <span class="reveal-overline">这是我现在对你的理解</span>
       <h2 id="revealType">稳中带冲型</h2>
       <p id="revealSummary">基础位置具备竞争力，但语言与申请节奏决定最终上限。</p>
 
       <div class="reveal-score-row">
-        <div><strong id="revealScore">76</strong><span>综合位置</span></div>
+        <div><strong id="revealScore">76</strong><span>申请准备度</span></div>
         <div><strong id="revealMatch">匹配</strong><span>当前档位</span></div>
-        <div><strong id="revealWindow">4–6月</strong><span>关键窗口</span></div>
+        <div><strong id="revealWindow">现在</strong><span>行动窗口</span></div>
       </div>
 
       <div class="reveal-insight">
-        <span><i data-lucide="triangle-alert"></i>首要风险</span>
+        <span><i data-lucide="sparkles"></i>现在最值得留意</span>
         <strong id="revealRisk">语言成绩仍在临界区间</strong>
         <p id="revealAction">优先锁定下一次语言考试，再开始投入高价文书服务。</p>
       </div>
 
+      <div class="reveal-understood">
+        <div><small>我看到的你</small><p id="revealSeen">你的背景里已经有可以继续展开的部分，现在更需要把目标和顺序理清楚。</p></div>
+        <div><small>为什么这样判断</small><p id="revealWhy">我会结合你的本科背景、成绩、方向和最近的困惑，说明这份画像从哪里来。</p></div>
+        <div><small>我们接下来一起做</small><p id="revealTogether">先完成最近的一次语言考试。每次回来更新进展，画像会跟着你一起变化。</p></div>
+      </div>
+
       <div class="reveal-actions">
-        <a href="status.html" onclick="saveStatusSnapshot()">查看完整画像 <i data-lucide="arrow-right"></i></a>
+        <a href="profile-detail.html" onclick="saveStatusSnapshot()">查看画像详情 <i data-lucide="arrow-right"></i></a>
         <button type="button" onclick="closePortraitFlow()">返回调整背景</button>
       </div>
-      <small class="portrait-disclaimer">AI 负责初步分析，复杂背景建议结合真人复核。</small>
+      <small class="portrait-disclaimer">以后成绩或经历有变化，回来更新就好。</small>
     </section>
   </div>
 </div>
 
 <script>
 
+function toggleMobilePortraitForm(){
+  const details=document.getElementById("homePortraitDetails");
+  if(!details)return;
+  details.open=!details.open;
+  if(details.open)setTimeout(()=>details.scrollIntoView({behavior:"smooth",block:"center"}),80);
+}
+function startMobilePortrait(event){
+  event.preventDefault();
+  [["mobilePortraitSchool","schoolName"],["mobilePortraitGpa","gpaInput"],["mobilePortraitLanguage","languageInput"],["mobilePortraitDirection","directionInput"]].forEach(([source,target])=>{
+    const from=document.getElementById(source);
+    const to=document.getElementById(target);
+    if(from&&to)to.value=from.value;
+  });
+  startScan();
+}
 function toggleAdvanced(){
   const box = document.getElementById("advancedFields");
   box.classList.toggle("open");
@@ -1890,10 +1907,10 @@ function startScan(){
   const chart = document.querySelector(".portrait-chart");
   const stepItems = [...document.querySelectorAll(".portrait-step-list span")];
   const steps = [
-    ["读取学术背景与目标方向", "24%"],
-    ["识别语言、经历与项目匹配风险", "49%"],
-    ["推演冲刺、匹配与稳妥路径", "76%"],
-    ["整理下一步行动优先级", "100%"]
+    ["先把你的背景放回申请场景里", "24%"],
+    ["理解你现在最在意的问题", "49%"],
+    ["比较不同申请路线的适配度", "76%"],
+    ["整理一条现在能开始的路径", "100%"]
   ];
   clearInterval(portraitTimer);
   overlay.classList.add("open");
@@ -1922,7 +1939,7 @@ function startScan(){
       stepItems.forEach((item,index)=>{
         item.classList.toggle("active",index===i);
         item.classList.toggle("done",index<i);
-        item.innerHTML = `<i data-lucide="${index<=i?'circle-check':'circle'}"></i>${["背景归位","风险扫描","路径推演","生成画像"][index]}`;
+        item.innerHTML = `<i data-lucide="${index<=i?'circle-check':'circle'}"></i>${["背景归位","理解顾虑","路径推演","生成画像"][index]}`;
       });
       if(window.lucide)lucide.createIcons();
     }else{
@@ -1942,25 +1959,71 @@ function startScan(){
   }, 720);
 }
 function populatePortraitReveal(){
-  const language = document.getElementById("languageInput")?.value || "";
-  const budget = document.getElementById("budgetInput")?.value || "";
-  const gpa = parseFloat(document.getElementById("gpaInput")?.value) || 3.4;
-  let score = Math.max(64,Math.min(88,Math.round(52 + gpa * 7)));
-  let type = "稳中带冲型";
-  let match = "匹配";
-  let risk = "语言成绩仍在临界区间";
-  let action = "优先锁定下一次语言考试，再开始投入高价文书服务。";
-  if(/7(?:\\.0)?|105|110/.test(language)){ score += 5; risk = "经历与目标项目的匹配度"; action = "优先补一段强相关经历，并开始整理推荐信与材料素材。"; }
-  if(budget.includes("预算有限")){ type = "预算敏感规划型"; match = "稳妥"; risk = "项目组合与预算边界"; action = "加入大湾区与澳门路径，先建立可承受的稳妥组合。"; }
-  if(budget.includes("稳妥")){ type = "低风险稳妥型"; match = "稳妥"; risk = "托底项目数量不足"; action = "先补齐稳妥项目，再保留少量高价值冲刺选择。"; }
+  const school = document.getElementById("mobilePortraitSchool")?.value.trim() || "当前本科背景";
+  const language = document.getElementById("mobilePortraitLanguage")?.value.trim() || "暂未填写";
+  const direction = document.getElementById("mobilePortraitDirection")?.value || "目标方向";
+  const concern = document.getElementById("mobilePortraitConcern")?.value || "不知道下一步先做什么";
+  const rawGpa = parseFloat(document.getElementById("mobilePortraitGpa")?.value);
+  const gpa = Number.isFinite(rawGpa) ? rawGpa : 3.4;
+  const gpaOnFour = gpa > 4 ? Math.min(4,gpa/25) : gpa;
+  const languageNumber = parseFloat((language.match(/\d+(?:\.\d+)?/)||["0"])[0]);
+  const languageReady = /雅思|IELTS/i.test(language)
+    ? languageNumber>=7
+    : /托福|TOEFL/i.test(language)
+      ? languageNumber>=100
+      : languageNumber>0;
+  let score = Math.max(62,Math.min(91,Math.round(50+gpaOnFour*7+(languageReady?7:2))));
+  let type = score>=83 ? "基础稳，可以向上试" : score>=74 ? "稳中带冲型" : "先把主线排稳";
+  let match = score>=83 ? "匹配偏上" : score>=74 ? "匹配" : "稳妥起步";
+  let risk = languageReady ? "把已有经历讲成一条清楚的主线" : "先让语言不再卡住项目选择";
+  let action = languageReady
+    ? "先挑一段最相关的经历，写清你做了什么、为什么与目标方向有关。"
+    : "先确认下一次考试时间和目标分数，其他准备不用同时全开。";
+  let together = languageReady
+    ? "整理一段最相关的经历，再开始准备推荐信素材。"
+    : "先完成语言考试安排，我会陪你把后面的材料任务逐项接上。";
+  if(concern.includes("院校组合")){
+    risk="学校名字不少，但还缺少能解释的申请组合";
+    action="先各选两所冲刺、匹配和稳妥项目，再看专业要求是否真的适合你。";
+    together="先完成一版六校组合，不求一次选对，我们再根据要求逐个调整。";
+  }else if(concern.includes("语言")){
+    risk=languageReady?"语言已不再是主要限制":"语言仍是最容易改变申请空间的一项";
+    action=languageReady?"保持成绩有效，把时间转向经历和材料。":"锁定下一次考试，不需要同时购买文书或增加多段实习。";
+    together=languageReady?"确认目标项目的单项要求，再开始整理材料。":"先把考试日期放进工作台，之后按周推进即可。";
+  }else if(concern.includes("经历和文书")){
+    risk="你的经历需要被整理，而不是继续堆数量";
+    action="先找出一段最能证明能力的经历，补齐任务、方法和结果。";
+    together="完成一版经历清单，再从中挑出 CV 和文书的主线。";
+  }else if(concern.includes("预算")){
+    type="边界清楚的规划型";
+    match="稳妥";
+    risk="先看清总投入，再决定项目组合";
+    action="把学费、生活成本和可接受地区放在一起比较，不急着购买全包服务。";
+    together="先写下预算上限，再筛掉明显不合适的项目。";
+  }
+  const seen = `你的本科背景是${school}，目前想申请${direction}。你不是缺少想法，而是希望先把位置和顺序弄清楚，再踏实往前走。`;
+  const why = `GPA ${Number.isFinite(rawGpa)?rawGpa:"暂未填写"} 提供了当前学术底座；${language} ${languageReady?"已经给你留出更多项目选择":"仍会影响部分项目的选择范围"}。你最关心的是“${concern}”，所以现在不需要把所有任务同时推起来。`;
+  const summary = score>=83
+    ? "你的基础已经比较完整，可以保留向上尝试的空间，同时把材料主线做扎实。"
+    : score>=74
+      ? "你有向上尝试的基础，也需要一条让自己安心推进的主线。"
+      : "现在最重要的不是催自己冲刺，而是先把一条能走通的路线排出来。";
   document.getElementById("revealType").textContent = type;
   document.getElementById("revealScore").textContent = Math.min(score,92);
   document.getElementById("revealMatch").textContent = match;
+  document.getElementById("revealWindow").textContent = "现在";
   document.getElementById("revealRisk").textContent = risk;
   document.getElementById("revealAction").textContent = action;
-  document.getElementById("revealSummary").textContent = type === "稳中带冲型"
-    ? "基础位置具备竞争力，但关键短板与申请节奏决定最终上限。"
-    : "当前更适合先控制风险，再有选择地保留冲刺空间。";
+  document.getElementById("revealSeen").textContent = seen;
+  document.getElementById("revealWhy").textContent = why;
+  document.getElementById("revealTogether").textContent = together;
+  document.getElementById("revealSummary").textContent = summary;
+  const homeType=document.querySelector(".home-oracle-result span:first-child strong");
+  const homeScore=document.querySelector(".home-oracle-result span:nth-child(2) strong");
+  const homeNote=document.querySelector(".home-profile-oracle>p");
+  if(homeType)homeType.textContent=type;
+  if(homeScore)homeScore.textContent=String(Math.min(score,92));
+  if(homeNote)homeNote.textContent=together;
 }
 function closePortraitFlow(){
   clearInterval(portraitTimer);
@@ -1975,16 +2038,16 @@ function saveStatusSnapshot(){
   const budget = document.getElementById("budgetInput") ? document.getElementById("budgetInput").value : "优先香港本地";
   let type = "稳中带冲型";
   let tags = "语言临界 · 实习加分 · 适合分层";
-  let summary = "你不是没有机会，而是不适合盲目冲刺。当前最影响结果的变量是语言成绩和申请节奏。";
+  let summary = "你有可以继续展开的基础。先把语言准备和申请节奏排清楚，接下来每一步会更容易判断。";
   if(budget.includes("预算有限")){
     type = "预算敏感规划型";
     tags = "预算敏感 · 大湾区替代 · 稳妥推进";
-    summary = "你更适合把香港本地院校与大湾区替代路径一起考虑，先控制成本和风险，再保留少量冲刺项目。";
+    summary = "把香港本地院校与大湾区路径放在一起比较，会更容易看清预算、选择和各自的准备要求。";
   }
   if(budget.includes("稳妥")){
     type = "低风险稳妥型";
     tags = "稳妥优先 · 控制风险 · 分层申请";
-    summary = "你更适合建立清晰的托底组合，不建议只盯港前三。当前重点是提高录取确定性。";
+    summary = "先放好自己愿意去的稳妥项目，再保留少量真正喜欢的向上选择，组合会更踏实。";
   }
   const snapshot = {
     school: document.getElementById("schoolName")?.value || "未填写",
@@ -2144,18 +2207,18 @@ function refreshProfile(){
   let type = "稳中带冲型";
   let variable = "语言成绩";
   let tags = "语言临界 · 实习加分 · 适合分层";
-  let summary = "你不是没有机会，而是不适合盲目冲刺。当前最影响结果的变量是语言成绩和申请节奏。";
+  let summary = "你有可以继续展开的基础。先把语言准备和申请节奏排清楚，接下来每一步会更容易判断。";
   if(budget.includes("预算有限")){
     type = "预算敏感规划型";
     variable = "路径选择";
     tags = "预算敏感 · 大湾区替代 · 稳妥推进";
-    summary = "你更适合把香港本地院校与大湾区替代路径一起考虑，先控制成本和风险，再保留少量冲刺项目。";
+    summary = "把香港本地院校与大湾区路径放在一起比较，会更容易看清预算、选择和各自的准备要求。";
   }
   if(budget.includes("稳妥")){
     type = "低风险稳妥型";
     variable = "托底组合";
     tags = "稳妥优先 · 控制风险 · 分层申请";
-    summary = "你更适合建立清晰的托底组合，不建议只盯港前三。当前重点是提高录取确定性。";
+    summary = "先放好自己愿意去的稳妥项目，再保留少量真正喜欢的向上选择，组合会更踏实。";
   }
   const profileTypeEl = document.getElementById("profileType");
   const profileTagsEl = document.getElementById("profileTags");
@@ -2353,27 +2416,11 @@ renderStages(1);
 selectStage(1);
 renderSchools();
 window.addEventListener("load", drawShareCard);
-function mountMobilePortrait(){
-  const engine=document.getElementById("engine");
-  const target=document.getElementById("homeInlinePortrait");
-  const desktopHome=engine?.parentElement;
-  if(!engine||!target||!desktopHome)return;
-  const sync=()=>{
-    if(window.matchMedia("(max-width:760px)").matches){
-      if(engine.parentElement!==target)target.appendChild(engine);
-    }else if(engine.parentElement!==desktopHome){
-      desktopHome.appendChild(engine);
-    }
-  };
-  sync();
-  window.addEventListener("resize",sync);
-}
-mountMobilePortrait();
 </script>
 
 <nav class="quick-nav mobile-five" aria-label="底部快速导航">
   <a class="active" href="index.html" aria-current="page"><i data-lucide="house"></i><span>首页</span></a>
-  <a href="timeline.html"><i data-lucide="route"></i><span>导航</span></a>
+  <a href="diy.html"><i data-lucide="briefcase-business"></i><span>工作台</span></a>
   <a href="advisors.html"><i data-lucide="messages-square"></i><span>社区</span></a>
   <a href="profile-detail.html"><i data-lucide="user-round"></i><span>我的</span></a>
 </nav>

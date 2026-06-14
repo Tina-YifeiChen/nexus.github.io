@@ -305,7 +305,7 @@ body{padding-bottom:96px !important;}
 .detail-jump a{padding:9px 12px;border-radius:999px;text-decoration:none;background:#f1fffb;color:#087b64;border:1px solid rgba(34,211,166,.16);font-size:12px;font-weight:950}
 @media(max-width:980px){.cycle-grid{grid-template-columns:repeat(7,168px);min-width:1240px}.cycle-map{padding-bottom:12px}}
 /* === Figma pass: quiet, content-first timeline UI === */
-@media(max-width:760px){
+@media(min-width:0px){
   body.nexus-timeline-page{
     --tl-bg:#F9FAFC;
     --tl-card:#FFFFFF;
@@ -578,12 +578,13 @@ body{padding-bottom:96px !important;}
   }
 }
 </style>
-<link rel="stylesheet" href="nexus-clean-v22.css" />
+<link rel="stylesheet" href="nexus-clean-v22.css?v=20260610-sage-only" />
+<link rel="stylesheet" href="nexus-mobile-workspace.css?v=20260610-nested-lock" />
 <style id="nexus-mobile-app-ui">
 .mobile-app-dashboard{display:none}
 .quick-nav.mobile-five{grid-template-columns:repeat(4,1fr)}
 
-@media(max-width:760px){
+@media(min-width:0px){
   :root{
     --mobile-bg:#F9FAFC;
     --mobile-panel:#FFFFFF;
@@ -707,7 +708,7 @@ body{padding-bottom:96px !important;}
   .quick-nav a.active:before{background:#2D6A4F!important}
 }
 
-@media(max-width:760px){
+@media(min-width:0px){
   body{
     --nx-shadow-low:0 2px 8px rgba(23,33,28,.045);
     --nx-shadow-mid:0 8px 24px rgba(23,33,28,.07);
@@ -989,7 +990,7 @@ body{padding-bottom:96px !important;}
 @media(max-width:760px){.application-task-map{display:none!important}}
 </style>
 <style id="nexus-navigation-v3">
-@media(max-width:760px){
+@media(min-width:0px){
   body.nexus-timeline-page{
     padding-bottom:92px!important;
     background:#F7F8F7!important;
@@ -1214,7 +1215,7 @@ body{padding-bottom:96px !important;}
 </style>
 <style>
 .stage-detail-sheet{display:none}
-@media(max-width:760px){
+@media(min-width:0px){
   body.stage-detail-open{overflow:hidden!important}
   .stage-detail-sheet{
     position:fixed;inset:0;z-index:300;display:block;overflow:hidden;
@@ -1249,6 +1250,34 @@ body{padding-bottom:96px !important;}
   .cycle-node em{display:inline-flex!important;align-items:center;gap:3px}
 }
 </style>
+<style>
+@media(min-width:0px){
+  body.nexus-timeline-page .mobile-app-dashboard{padding:6px 16px 110px!important;background:#F9FAFC!important}
+  body.nexus-timeline-page .mobile-app-head{min-height:44px!important;padding-bottom:8px!important}
+  body.nexus-timeline-page .mobile-brand-mark{width:34px!important;height:34px!important;font-size:12px!important}
+  body.nexus-timeline-page .mobile-brand-lockup strong{font-size:14px!important}
+  body.nexus-timeline-page .mobile-brand-lockup small{font-size:8px!important}
+  body.nexus-timeline-page .mobile-icon-button{width:36px!important;height:36px!important}
+  body.nexus-timeline-page .nav-stage-overview{padding:14px!important;border-radius:16px!important;color:#17211C!important;background:#EAF2ED!important;box-shadow:0 5px 18px rgba(45,106,79,.07)!important}
+  body.nexus-timeline-page .nav-stage-meta span,body.nexus-timeline-page .nav-stage-meta small{color:#718078!important;font-size:8px!important}
+  body.nexus-timeline-page .nav-stage-title-row{margin-top:6px!important}
+  body.nexus-timeline-page .nav-stage-title-row h1{color:#17211C!important;font-size:19px!important}
+  body.nexus-timeline-page .nav-stage-title-row>span{color:#2D6A4F!important;font-size:12px!important}
+  body.nexus-timeline-page .nav-stage-progress{height:3px!important;margin-top:10px!important;background:rgba(45,106,79,.14)!important}
+  body.nexus-timeline-page .nav-stage-progress span{background:#2D6A4F!important}
+  body.nexus-timeline-page .nav-next-node{grid-template-columns:30px minmax(0,1fr) 15px!important;margin-top:10px!important;padding-top:9px!important;border-top-color:rgba(45,106,79,.1)!important}
+  body.nexus-timeline-page .nav-next-icon{width:30px!important;height:30px!important;color:#2D6A4F!important;background:#fff!important}
+  body.nexus-timeline-page .nav-next-node small{color:#7C8982!important;font-size:8px!important}
+  body.nexus-timeline-page .nav-next-node strong{color:#344139!important;font-size:10px!important}
+  body.nexus-timeline-page .nav-next-node>svg{color:#849088!important}
+  body.nexus-timeline-page .mobile-nav-switch{margin-top:11px!important;padding:3px!important}
+  body.nexus-timeline-page .mobile-nav-switch button{min-height:38px!important;font-size:10px!important}
+  body.nexus-timeline-page .mobile-panel-heading h2{font-size:14px!important}
+  body.nexus-timeline-page .mobile-cycle-peek{padding:13px 8px 10px!important}
+  body.nexus-timeline-page .mobile-stage-actions>summary{min-height:50px!important}
+  body.nexus-timeline-page .mobile-stage-actions .mobile-priority-item{min-height:42px!important;font-size:10px!important}
+}
+</style>
 </head>
 <body class="nexus-timeline-page">
 <header class="topbar">
@@ -1275,7 +1304,7 @@ body{padding-bottom:96px !important;}
       <span class="mobile-brand-mark">N</span>
       <span>
         <strong>申请导航</strong>
-        <small>你的申请路径</small>
+        <small>慢慢来，路线一直都在</small>
       </span>
     </a>
     <a class="mobile-icon-button" href="profile-detail.html" aria-label="查看我的申请画像">
@@ -1295,7 +1324,7 @@ body{padding-bottom:96px !important;}
     <div class="nav-stage-progress"><span id="mobileStageProgress" style="width:42%"></span></div>
     <div class="nav-next-node">
       <span class="nav-next-icon"><i data-lucide="flag"></i></span>
-      <span><small>最近关键节点</small><strong id="mobileNextAction">锁定语言考试时间</strong></span>
+      <span><small>这周做一件事</small><strong id="mobileNextAction">锁定语言考试时间</strong></span>
       <i data-lucide="chevron-right"></i>
     </div>
   </section>
@@ -1311,7 +1340,7 @@ body{padding-bottom:96px !important;}
 
   <section class="mobile-nav-panel active" id="mobileTimePanel" data-mobile-panel="time">
     <div class="mobile-panel-heading">
-      <div><span>18 MONTH ROADMAP</span><h2>先看时间位置</h2></div>
+      <div><span>18 MONTH ROADMAP</span><h2>申请时间位置</h2></div>
       <button type="button" onclick="toggleFullMap(true)">展开地图</button>
     </div>
     <div class="mobile-cycle-peek" aria-label="七阶段申请进度">
@@ -1323,8 +1352,16 @@ body{padding-bottom:96px !important;}
       <button type="button" onclick="openMapStage(5)"><span>6</span><small>面试</small></button>
       <button type="button" onclick="openMapStage(6)"><span>7</span><small>Offer</small></button>
     </div>
+    <section class="stage-clarity-card" aria-live="polite">
+      <header><span><small id="stageClarityMonth">4–6 月</small><strong id="stageClarityGoal">把能改变的背景条件补起来</strong></span><button type="button" onclick="openStageDetail(current)">查看全部</button></header>
+      <div class="stage-clarity-grid">
+        <div><span class="clarity-icon"><i data-lucide="play"></i></span><p><small>现在先做</small><strong id="stageClarityAction">确定语言考试日期</strong></p></div>
+        <div><span class="clarity-icon"><i data-lucide="badge-check"></i></span><p><small>完成的标志</small><strong id="stageClarityDone">语言已报名，经历方向已确定</strong></p></div>
+      </div>
+      <a id="stageClarityTool" href="effort.html?type=ielts"><i data-lucide="wrench"></i><span><small>这个阶段可以用</small><strong>打开成长计划</strong></span><i data-lucide="chevron-right"></i></a>
+    </section>
     <details class="mobile-stage-actions" open>
-      <summary><span><small>本阶段重点</small><strong>优先完成这三件事</strong></span><i data-lucide="chevron-down"></i></summary>
+      <summary><span><small>本阶段同行清单</small><strong>这三件事可以慢慢完成</strong></span><i data-lucide="chevron-down"></i></summary>
       <div class="mobile-priority-list" id="mobilePriorityList"></div>
     </details>
   </section>
@@ -1332,21 +1369,36 @@ body{padding-bottom:96px !important;}
   <section class="mobile-nav-panel" id="mobileTaskPanel" data-mobile-panel="task" hidden>
     <div class="mobile-panel-heading">
       <div><span>APPLICATION TASKS</span><h2>按事项推进</h2></div>
-      <button type="button" onclick="focusCurrentTask()">定位重点</button>
+      <button type="button" onclick="focusCurrentTask()">看看先做什么</button>
     </div>
     <div class="mobile-task-nav" id="mobileTaskNav" aria-label="留学申请任务导航"></div>
     <div class="mobile-task-detail" id="mobileTaskDetail" aria-live="polite"></div>
   </section>
 
   <div class="mobile-nav-shortcuts" aria-label="导航相关工具">
+    <a href="diy.html">
+      <span><i data-lucide="briefcase-business"></i></span>
+      <div><strong>DIY 工作台</strong><small>项目、材料与递交状态</small></div>
+      <i data-lucide="chevron-right"></i>
+    </a>
     <a href="status.html">
       <span><i data-lucide="school"></i></span>
-      <div><strong>院校组合</strong><small>冲刺、匹配与稳妥</small></div>
+      <div><strong>项目选择</strong><small>需要时再调整目标项目</small></div>
       <i data-lucide="chevron-right"></i>
     </a>
     <a href="index.html#engine">
       <span><i data-lucide="scan-search"></i></span>
       <div><strong>更新画像</strong><small>背景变化后重新分析</small></div>
+      <i data-lucide="chevron-right"></i>
+    </a>
+    <a href="school-detail.html?school=cuhk#cost">
+      <span><i data-lucide="wallet-cards"></i></span>
+      <div><strong>预算与就业</strong><small>比较投入、课程和未来方向</small></div>
+      <i data-lucide="chevron-right"></i>
+    </a>
+    <a href="status.html">
+      <span><i data-lucide="git-branch"></i></span>
+      <div><strong>替代路线</strong><small>计划变化时还有哪些选择</small></div>
       <i data-lucide="chevron-right"></i>
     </a>
   </div>
@@ -1678,13 +1730,22 @@ const stages = [
     "money": "值得花：Offer选择咨询、行前信息核对。不建议花：已经不影响录取结果的重复包装服务。"
   }
 ];
+const stageClarity = [
+  {goal:'看清方向和可承受的申请范围', action:'选定一个主要专业方向', done:'有一份分层项目清单和预算范围', tool:'查看院校组合', href:'status.html'},
+  {goal:'把能改变的背景条件补起来', action:'确定语言考试日期', done:'语言已报名，经历方向已确定', tool:'打开成长计划', href:'effort.html?type=ielts'},
+  {goal:'把零散经历整理成可提交材料', action:'建立经历素材库和基础 CV', done:'CV、推荐人和证明材料已有初稿', tool:'查看任务导航', href:'timeline.html?stage=2&view=task'},
+  {goal:'在项目开放时快速完成核对', action:'确认首批项目的要求与 DDL', done:'官网要求、材料和费用已核对', tool:'查看院校详情', href:'status.html'},
+  {goal:'按顺序递交，不被遗漏打乱节奏', action:'提交第一所主申项目', done:'申请费、材料和推荐信状态清楚', tool:'打开任务导航', href:'timeline.html?stage=4&view=task'},
+  {goal:'把自己的经历讲得自然、清楚', action:'准备三段核心经历回答', done:'完成一次模拟并整理追问清单', tool:'寻找经验伙伴', href:'advisors.html'},
+  {goal:'安心比较 Offer 与真实生活选择', action:'核对留位费和回复日期', done:'学校、预算、就业与生活方案已比较', tool:'比较预算就业', href:'school-detail.html?school=cuhk#cost'}
+];
 let current = Number(new URLSearchParams(location.search).get('stage') || 1);
 if(!Number.isInteger(current) || current < 0 || current >= stages.length) current = 1;
 let currentDrill = 'tasks';
 const drillLabels = {
   tasks: '要做什么',
   materials: '准备什么',
-  risk: '风险提醒',
+  risk: '需要留意',
   money: '投入建议',
   advisor: '顾问复核'
 };
@@ -1776,7 +1837,7 @@ const applicationTasks = [
       '暂时不用大量填系统，重点仍是语言、经历和推荐人。',
       '建立项目追踪表，记录开放时间、DDL 和材料要求。',
       '项目开放后开始填系统，优先主申项目。',
-      '当前重点是提交主申项目，确认申请费、材料、推荐信全部到位。',
+      '现在可以先提交主申项目，再逐项确认申请费、材料和推荐信。',
       '等待期关注系统状态、补材料和邮件提醒。',
       'Offer 后整理已提交材料，用于签证和入学注册。'
     ]
@@ -1792,7 +1853,7 @@ const applicationTasks = [
       '材料期开始整理项目动机和自我介绍。',
       '开放期准备常见问题，尤其是经历细节和职业规划。',
       '提交后保持每周面试练习，收到邀请后快速强化。',
-      '当前重点是模拟面试和英文回答，避免临场才准备。',
+      '现在可以开始熟悉面试和英文回答，给自己留出练习空间。',
       'Offer 后面试任务结束，可以转向行前和求职准备。'
     ]
   },
@@ -1808,14 +1869,14 @@ const applicationTasks = [
       '提交期记录每个项目的留位费和预计出结果时间。',
       '等待期开始准备 offer 选择标准，不只看排名。',
       '收到结果后比较课程、费用、城市、就业与个人约束。',
-      '当前重点是确认留位费、签证、租房、保险和行前材料。'
+      '现在可以逐项确认留位费、签证、租房、保险和行前材料。'
     ]
   }
 ];
 function getTaskStatus(task){
   const value = task.progress[current] || 0;
   if(value >= 98) return {label:'已完成', cls:'done'};
-  if(task.id === stageTaskFocus[current]) return {label:'当前重点', cls:'focus'};
+  if(task.id === stageTaskFocus[current]) return {label:'现在可以做', cls:'focus'};
   if(value === 0) return {label:'未开始', cls:''};
   if(value < 35) return {label:'提前准备', cls:''};
   return {label:'进行中', cls:''};
@@ -1908,10 +1969,10 @@ function openStageDetail(i){
   document.getElementById('stageDetailMeta').textContent = `${s.month} · ${s.round}`;
   document.getElementById('stageDetailTitle').textContent = s.name;
   document.getElementById('stageDetailSummary').textContent = s.summary;
-  document.getElementById('stageDetailPriority').textContent = `当前优先：${s.tasks[0]}`;
+  document.getElementById('stageDetailPriority').textContent = `建议先做：${s.tasks[0]}`;
   document.getElementById('stageDetailTasks').innerHTML = s.tasks.map((item,index)=>`<div><b>${index+1}</b><span>${item}</span></div>`).join('');
   document.getElementById('stageDetailMaterials').innerHTML = s.materials.map(item=>`<span>${item}</span>`).join('');
-  document.getElementById('stageDetailRisk').innerHTML = `<strong>风险：</strong>${s.risk}`;
+  document.getElementById('stageDetailRisk').innerHTML = `<strong>需要留意：</strong>${s.risk}`;
   document.getElementById('stageDetailMoney').innerHTML = `<strong>投入：</strong>${s.money}`;
   sheet.classList.add('open');
   sheet.setAttribute('aria-hidden','false');
@@ -1939,7 +2000,7 @@ function renderDrill(){
     items = s.materials.map((text, index)=>({title:`材料 ${index + 1}`, body:text}));
   }
   if(currentDrill === 'risk'){
-    items = [{title:'本阶段最大风险', body:s.risk}];
+    items = [{title:'本阶段需要留意', body:s.risk}];
   }
   if(currentDrill === 'money'){
     items = [{title:'钱应该花在哪里', body:s.money}];
@@ -1964,6 +2025,7 @@ function renderTabs(){
 }
 function updateMobileStage(i){
   const s = stages[i];
+  const clarity = stageClarity[i];
   const values = s.progress.map(item => Number((item.match(/\d+/)||[0])[0]));
   const readiness = Math.round(values.reduce((sum,value)=>sum+value,0)/values.length);
   const stageName = document.getElementById('mobileStageName');
@@ -1983,6 +2045,20 @@ function updateMobileStage(i){
   if(readinessRing) readinessRing.style.background = `conic-gradient(var(--app-primary) 0 ${readiness}%,rgba(255,255,255,.09) ${readiness}% 100%)`;
   if(readinessBar) readinessBar.style.width = `${readiness}%`;
   if(nextAction) nextAction.textContent = s.tasks[0] || '查看当前阶段任务';
+  const clarityMonth = document.getElementById('stageClarityMonth');
+  const clarityGoal = document.getElementById('stageClarityGoal');
+  const clarityAction = document.getElementById('stageClarityAction');
+  const clarityDone = document.getElementById('stageClarityDone');
+  const clarityTool = document.getElementById('stageClarityTool');
+  if(clarityMonth) clarityMonth.textContent = s.month;
+  if(clarityGoal) clarityGoal.textContent = clarity.goal;
+  if(clarityAction) clarityAction.textContent = clarity.action;
+  if(clarityDone) clarityDone.textContent = clarity.done;
+  if(clarityTool){
+    clarityTool.href = clarity.href;
+    const toolName = clarityTool.querySelector('strong');
+    if(toolName) toolName.textContent = clarity.tool;
+  }
   document.querySelectorAll('.mobile-cycle-peek button').forEach((button,index)=>{
     button.classList.toggle('active', index === i);
   });
@@ -2018,9 +2094,7 @@ function selectStage(i, shouldScroll){
   updateMobileStage(i);
   renderApplicationTaskNav();
   if(shouldScroll){
-    const target = window.matchMedia('(max-width:760px)').matches
-      ? document.querySelector('.mobile-section-head')
-      : document.getElementById('details');
+    const target = document.querySelector('.nav-stage-overview');
     if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
   }
 }
@@ -2054,8 +2128,10 @@ window.closeStageDetail = closeStageDetail;
 window.selectApplicationTask = selectApplicationTask;
 window.focusCurrentTask = focusCurrentTask;
 window.setMobileNavMode = setMobileNavMode;
+const initialMobileView=new URLSearchParams(location.search).get('view');
 window.toggleFullMap = toggleFullMap;
 selectStage(current);
+if(initialMobileView==='task')setMobileNavMode('task');
 </script>
 
 <section class="stage-detail-sheet" id="stageDetailSheet" aria-hidden="true">
@@ -2089,7 +2165,7 @@ selectStage(current);
 
 <nav class="quick-nav mobile-five" aria-label="底部快速导航">
   <a class="" href="index.html"><i data-lucide="house"></i><span>首页</span></a>
-  <a class="active" href="timeline.html" aria-current="page"><i data-lucide="route"></i><span>导航</span></a>
+  <a class="active" href="diy.html" aria-current="page"><i data-lucide="briefcase-business"></i><span>工作台</span></a>
   <a class="" href="advisors.html"><i data-lucide="messages-square"></i><span>社区</span></a>
   <a class="" href="profile-detail.html"><i data-lucide="user-round"></i><span>我的</span></a>
 </nav>

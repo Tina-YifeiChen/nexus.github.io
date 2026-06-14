@@ -271,8 +271,8 @@ body{padding-bottom:96px !important;}
 }
 
 </style>
-<link rel="stylesheet" href="nexus-clean-v22.css" />
-<link rel="stylesheet" href="nexus-mobile-workspace.css" />
+<link rel="stylesheet" href="nexus-clean-v22.css?v=20260610-sage-only" />
+<link rel="stylesheet" href="nexus-mobile-workspace.css?v=20260610-nested-lock" />
 <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
 </head>
 <body class="nexus-mobile-page nexus-tools">
@@ -281,19 +281,19 @@ body{padding-bottom:96px !important;}
     <a class="mobile-workspace-brand" href="index.html"><span class="mobile-workspace-mark">NX</span><span><strong>Nexus AI</strong><small>港校申请导航</small></span></a>
     <a class="mobile-workspace-action" href="status.html" aria-label="查看当前申请状态"><i data-lucide="activity"></i></a>
   </div>
-  <div class="mobile-workspace-intro"><span>DECISION TOOLS</span><h1>努力与投入模拟工具</h1><p>比较语言、实习、材料和预算调整，判断哪一步更值得先做。</p></div>
+  <div class="mobile-workspace-intro"><span>GROWTH PLAN</span><h1>你的成长计划</h1><p>一起看看语言、实习、材料和预算，下一步从哪里开始更轻松。</p></div>
 </section>
-<section class="effort-mobile-app" aria-label="努力模拟">
+<section class="effort-mobile-app" aria-label="成长计划">
   <header class="mobile-product-bar">
     <a href="index.html" aria-label="返回首页"><i data-lucide="chevron-left"></i></a>
-    <div><strong>努力模拟</strong><small>比较每一步的真实回报</small></div>
+    <div><strong>成长计划</strong><small>每次向前一点就很好</small></div>
     <a href="status.html" aria-label="查看申请状态"><i data-lucide="activity"></i></a>
   </header>
 
   <section class="effort-mobile-result">
-    <div class="effort-result-head"><span><small>当前优先变量</small><h1 id="mobileEffortLabel">语言提分</h1></span><span class="effort-result-score" id="mobileEffortScore">72 → 81</span></div>
+    <div class="effort-result-head"><span><small>接下来可以准备</small><h1 id="mobileEffortLabel">语言提分</h1></span><span class="effort-result-score" id="mobileEffortScore">72 → 81</span></div>
     <div class="effort-score-track"><span id="mobileEffortTrack" style="width:81%"></span></div>
-    <p id="mobileEffortImpact">降低硬门槛风险，让主申项目更稳。</p>
+    <p id="mobileEffortImpact">更接近项目语言要求，申请时会更从容。</p>
   </section>
 
   <div class="effort-mobile-picker" id="mobileEffortPicker" aria-label="选择模拟变量"></div>
@@ -308,14 +308,14 @@ body{padding-bottom:96px !important;}
   </section>
 
   <details class="effort-mobile-details" open>
-    <summary><span><small>下一步行动</small><strong>按顺序完成</strong></span><i data-lucide="chevron-down"></i></summary>
+    <summary><span><small>下一步行动</small><strong>跟着自己的节奏来</strong></span><i data-lucide="chevron-down"></i></summary>
     <div id="mobileEffortActions"></div>
   </details>
   <details class="effort-mobile-details">
     <summary><span><small>投入判断</small><strong>值得花与先别急</strong></span><i data-lucide="chevron-down"></i></summary>
     <div id="mobileEffortMoneyList"></div>
   </details>
-  <p class="mobile-trust-copy">模拟结果用于比较不同动作的相对影响，不代表实际录取结果。</p>
+  <p class="mobile-trust-copy">计划会随着你的成绩、经历和目标变化持续更新。</p>
 </section>
 <header class="topbar">
   <div class="nav-shell">
@@ -395,7 +395,7 @@ body{padding-bottom:96px !important;}
 </main>
 <script>
 const plans={
-  ielts:{label:'语言提分',title:'雅思/托福怎么补，才真的影响申请？',sub:'语言不是为了“好看”，而是为了降低硬门槛风险、避免递交后被卡、给热门项目更多审理空间。',score:'72 → 81',impact:'影响：降低硬门槛风险',fit:'适合雅思 6.0-6.5、托福临界、目标项目有明确语言要求，且 GPA 和经历并不弱的申请者。',standard:'商科和社科方向优先冲到雅思 7.0 或同等水平；如果目标热门项目，单项不要明显短板。',avoid:'不要一边语言没过线，一边先买高价文书套餐。语言是硬门槛时，文书再好也会被递交资格限制。',actions:['先确认目标项目最低语言要求和往年安全线，不只看学校总要求。','把听说读写拆成短板，不要用“总分差一点”来安慰自己。','优先解决小分短板，尤其是写作和口语这种容易卡单项的部分。','在 7-8 月前至少完成一次正式考试，避免 9 月项目开放后还在等成绩。'],times:[['1-2周','确认目标项目语言门槛，做一次完整模考。'],['3-6周','集中突破最低分项，形成固定刷题和复盘节奏。'],['7-10周','报名正式考试，把成绩用于第一轮申请。']],money:[['值得花','语言班、口语/写作专项、一对一批改。'],['先别急','在语言没过线前购买全套申请包装。'],['判断标准','花钱后能不能直接提高硬门槛通过率。']],advisors:['如果多次卡同一小分，可以找语言专项老师，而不是申请顾问。','如果语言达标但不知道是否够冲港前三，可以找目标院校学长学姐了解项目安全线。']},
+  ielts:{label:'语言提分',title:'雅思/托福怎么准备，会让申请更从容？',sub:'语言准备是为了满足项目要求，也让你在选择热门项目时拥有更大的空间。',score:'72 → 81',impact:'更接近项目要求，选择会更从容',fit:'适合雅思 6.0-6.5、托福临界、目标项目有明确语言要求，且 GPA 和经历并不弱的申请者。',standard:'商科和社科方向可以把雅思 7.0 或同等水平作为阶段目标；目标热门项目时，再多关注各单项要求。',avoid:'语言还没达到项目要求时，可以先把预算留给考试和专项提升，文书服务不必急着购买。',actions:['先确认目标项目的语言要求和往年常见成绩，不只看学校总要求。','看看听说读写里哪一项最需要帮助，从一项开始调整。','先照顾容易卡单项的写作或口语，给自己留出复盘和再考的空间。','尽量在 7-8 月前完成一次正式考试，为第一轮申请留出余量。'],times:[['1-2周','确认目标项目语言要求，做一次完整模考。'],['3-6周','集中练习需要提升的单项，形成固定刷题和复盘节奏。'],['7-10周','报名正式考试，把成绩用于第一轮申请。']],money:[['值得花','语言班、口语/写作专项、一对一批改。'],['先别急','语言成绩稳定前购买全套申请包装。'],['判断标准','这笔投入能否帮助你更接近项目明确要求。']],advisors:['如果多次卡在同一小分，可以找语言专项老师一起梳理。','如果语言达标但不确定港前三的适配度，可以找目标院校学长学姐了解项目情况。']},
   intern:{label:'相关实习',title:'实习/项目怎么补，才不是无效堆经历？',sub:'实习的本质不是数量，而是相关性。它要证明你理解目标方向，并且能把经历讲成申请主线。',score:'72 → 79',impact:'影响：提高专业匹配度',fit:'适合目标方向明确但经历偏空、跨专业、或者已有经历和申请方向连接不强的用户。',standard:'至少形成一段能写进 CV 和 PS 的相关经历，能说清任务、方法、结果和与目标项目的关系。',avoid:'不要为了凑数量随便找不相关实习。无关经历太多，反而会让申请主线更散。',actions:['先反推目标项目喜欢什么能力，例如数据分析、研究能力、商业分析、教育实践。','选择能产出具体成果的实习、课题、竞赛或项目。','把经历写成 STAR 结构：任务、行动、方法、结果。','每段经历都要能回答“为什么这段经历支持我申请这个项目”。'],times:[['2周','确定目标方向和能力关键词。'],['1-2个月','完成一段相关实习、项目或竞赛产出。'],['7-8月','把经历整理进 CV 和 PS 主线。']],money:[['值得花','高质量项目训练、行业导师反馈、简历经历复盘。'],['先别急','花钱买含金量不清楚的“背景提升证书”。'],['判断标准','这段经历能不能产生真实任务、真实产出、可写入文书的细节。']],advisors:['如果不知道某段实习是否匹配项目，可以找目标院校学长学姐看同背景案例。','如果跨专业主线很难讲通，可以找顶级申请顾问做一次经历重组。']},
   cv:{label:'材料提前',title:'CV、PS、推荐信怎么提前准备？',sub:'材料不是最后一周包装出来的，而是把你的背景、目标和证据提前组织成一条线。',score:'72 → 78',impact:'影响：提高表达清晰度',fit:'适合背景不差但表达混乱、经历多但主线不清、或者申请节奏容易拖延的用户。',standard:'7-8 月完成 CV 和 PS 初稿，9 月能根据不同项目快速微调，而不是从零开始。',avoid:'不要等项目开放后才开始写第一版材料。那时你会同时被选校、网申、推荐信和语言成绩压住。',actions:['先做一版一页 CV，把教育、实习、科研、项目、技能全部结构化。','写一个 200 字申请主线：我是谁、为什么这个方向、我凭什么适合。','提前联系推荐人，确认推荐信意愿、邮箱和提交方式。','为不同方向准备可替换素材，避免所有项目用一份 PS。'],times:[['1周','整理经历库和基础 CV。'],['2-4周','完成 PS 主线和第一版材料。'],['7-8月','让顾问或有经验的人做一次结构复核。']],money:[['值得花','材料结构诊断、CV 复核、PS 主线复核。'],['先别急','在没有确定目标方向前购买整套文书润色。'],['判断标准','服务能不能帮你把经历讲清楚，而不是只改语法。']],advisors:['如果只是语法问题，不需要申请顾问。','如果经历很多但主线很散，适合找顾问做一次材料结构复核。','如果目标项目很具体，可以找学长学姐看项目偏好。']},
   budget:{label:'预算路径',title:'预算有限时，怎么选才不是被迫降级？',sub:'预算限制不等于申请失败。真正要做的是把香港本地、港校内地分校、大湾区和澳门路径组合起来。',score:'72 → 76',impact:'影响：提高路径安全感',fit:'适合家庭预算有限、不确定是否能承担香港本地高学费生活费、但仍希望保留升学质量的用户。',standard:'形成冲刺、主申、稳妥、预算友好四层组合，同时明确学费、生活费、留位费和地区接受度。',avoid:'不要只因为预算压力就盲目放弃好项目，也不要只看排名忽略总成本。',actions:['先算总成本：学费、住宿、生活费、留位费、签证、机票和机会成本。','把学校分成香港本地、港校内地分校、大湾区合作办学、澳门院校四类。','为每类路径设置上限预算和可接受专业。','优先保留性价比高、就业地点匹配、项目资源清晰的选择。'],times:[['1周','做预算上限和家庭承受范围确认。'],['2-3周','建立预算友好学校清单。'],['Offer后','比较留位费、奖学金、城市成本和长期回报。']],money:[['值得花','预算规划、Offer 对比、奖学金和住宿信息确认。'],['先别急','因为焦虑购买超预算服务或盲目交多个留位费。'],['判断标准','这笔钱是否降低决策失误，而不是只降低焦虑。']],advisors:['如果不清楚项目真实体验和就业回报，适合问目标院校学长学姐。','如果手里有多个 Offer 且成本差异很大，适合做一次 Offer 选择咨询。']}
@@ -424,7 +424,7 @@ const params=new URLSearchParams(location.search);render(params.get('type')||'ie
 
 <nav class="quick-nav mobile-five" aria-label="底部快速导航">
   <a href="index.html"><i data-lucide="house"></i><span>首页</span></a>
-  <a href="timeline.html"><i data-lucide="route"></i><span>导航</span></a>
+  <a href="diy.html"><i data-lucide="briefcase-business"></i><span>工作台</span></a>
   <a href="advisors.html"><i data-lucide="messages-square"></i><span>社区</span></a>
   <a href="profile-detail.html"><i data-lucide="user-round"></i><span>我的</span></a>
 </nav>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nexus AI｜我的内容</title>
+<style>
+*{box-sizing:border-box}body{margin:0;padding-bottom:28px;color:#17211C;background:#F9FAFC;font-family:Inter,system-ui,-apple-system,"Segoe UI","Microsoft YaHei",sans-serif}.page{width:100%;max-width:560px;margin:auto;padding:8px 16px 32px}.bar{min-height:54px;display:grid;grid-template-columns:42px 1fr 42px;align-items:center}.bar a{width:40px;height:40px;display:grid;place-items:center;border-radius:14px;color:#34413A;background:#fff;box-shadow:0 2px 10px rgba(23,33,28,.05)}.bar strong{text-align:center;font-size:16px}.bar svg{width:19px}.summary{margin-top:12px;padding:18px;border-radius:19px;background:#EAF2ED}.summary small{color:#2D6A4F;font-size:9px;font-weight:700}.summary h1{margin:5px 0 0;font-size:21px}.summary p{margin:6px 0 0;color:#68766E;font-size:11px;line-height:1.6}.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-top:12px;padding:4px;border-radius:14px;background:#E9EDEB}.tabs a{min-height:38px;display:grid;place-items:center;border-radius:11px;color:#748078;font-size:10px;text-decoration:none}.tabs a.active{color:#17211C;background:#fff;box-shadow:0 2px 8px rgba(23,33,28,.06)}.list{display:grid;gap:9px;margin-top:12px}.item{display:grid;grid-template-columns:40px minmax(0,1fr) auto;align-items:center;gap:11px;padding:14px;border-radius:16px;color:inherit;background:#fff;box-shadow:0 2px 10px rgba(23,33,28,.045);text-decoration:none}.icon{width:40px;height:40px;display:grid;place-items:center;border-radius:12px;color:#2D6A4F;background:#EEF5F1}.icon svg{width:18px}.item strong{display:block;font-size:13px}.item p{margin:3px 0 0;color:#758078;font-size:9px;line-height:1.5}.item>small{color:#929B96;font-size:8px}.empty{padding:60px 20px;color:#87928C;text-align:center}.empty svg{width:28px}.empty strong{display:block;margin-top:10px;color:#425047;font-size:14px}.empty p{margin:5px 0 0;font-size:10px}.section-title{margin:20px 0 9px;font-size:14px}
+@media(min-width:761px){.page{max-width:760px;padding:24px 28px 48px}}
+</style>
+<script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+</head>
+<body><main class="page">
+<header class="bar"><a href="profile-detail.html" aria-label="返回我的"><i data-lucide="chevron-left"></i></a><strong id="pageTitle">我的内容</strong><span></span></header>
+<section class="summary"><small>MY NEXUS</small><h1 id="summaryTitle"></h1><p id="summaryText"></p></section>
+<nav class="tabs"><a data-view="tasks" href="?view=tasks">待办</a><a data-view="saved" href="?view=saved">收藏</a><a data-view="consults" href="?view=consults">咨询</a></nav>
+<div id="content"></div>
+</main>
+<script>
+const view=new URLSearchParams(location.search).get('view')||'tasks';
+const DATA={
+tasks:{title:'待办任务',summary:'3 项近期任务',text:'按申请节奏排列，完成后可回到导航页更新进度。',items:[
+['languages','锁定下一次语言考试','确认报名日期与目标小分','本周','effort.html?type=ielts'],
+['file-pen-line','完成一版基础 CV','整理课程、实习与项目成果','7 月前','effort.html?type=cv'],
+['user-round-check','确认推荐人意愿','准备推荐信素材与提交方式','8 月前','timeline.html?stage=2']]},
+saved:{title:'我的收藏',summary:'12 条收藏内容',text:'保存的经验、案例和申请伙伴，可按需要继续查看。',items:[
+['bookmark','211 商科申请 CUHK 的关键节点','港中文商学院学姐 · 经验笔记','经验','advisor-profile.html?id=cuhk-business#mobile-notes'],
+['school','香港大学费用与就业方向','学费、预算、课程和语言要求','院校','school-detail.html?school=hku'],
+['route','雅思 6.5 到 7.0 的提分安排','8 周语言行动方案','语言','effort.html?type=ielts'],
+['users-round','GPA 3.55 港校商科组合案例','冲刺、主申与稳妥路径','案例','case-profile.html']]},
+consults:{title:'咨询记录',summary:'1 次体验沟通',text:'查看体验申请、完整咨询与准备事项。',items:[
+['clock-3','港中文商学院学姐','15 分钟体验沟通 · 待确认时间','待确认','advisor-profile.html?id=cuhk-business'],
+['file-text','咨询问题清单','选校档位、文书主线、面试准备','可编辑','advisor-profile.html?id=cuhk-business#mobile-services']]}
+};
+const d=DATA[view]||DATA.tasks;
+document.getElementById('pageTitle').textContent=d.title;document.getElementById('summaryTitle').textContent=d.summary;document.getElementById('summaryText').textContent=d.text;
+document.querySelectorAll('[data-view]').forEach(a=>a.classList.toggle('active',a.dataset.view===view));
+document.getElementById('content').innerHTML=`<h2 class="section-title">${d.title}</h2><div class="list">${d.items.map(x=>`<a class="item" href="${x[4]}"><span class="icon"><i data-lucide="${x[0]}"></i></span><span><strong>${x[1]}</strong><p>${x[2]}</p></span><small>${x[3]}</small></a>`).join('')}</div>`;
+document.title=`Nexus AI｜${d.title}`;if(window.lucide)lucide.createIcons();
+</script></body></html>

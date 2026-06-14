@@ -3,13 +3,61 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Nexus AI 智航湾区｜真人复核与顾问协同</title>
+<title>Nexus AI｜申请社区</title>
+<link rel="stylesheet" href="nexus-clean-v22.css?v=20260610-sage-only" />
+<link rel="stylesheet" href="nexus-mobile-workspace.css?v=20260610-community-separation" />
 <style>
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 html{scroll-behavior:smooth;background:#F7F8F7}
 body{margin:0;padding-bottom:92px;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;color:#17211C;background:#F7F8F7}
 a{color:inherit}
-@media(max-width:760px){
+body.consultation-mode .community-search,
+body.consultation-mode .community-compose,
+body.consultation-mode .community-filter-button,
+body.consultation-mode [data-community-section="feed"],
+body.consultation-mode [data-community-section="insight"],
+body.consultation-mode [data-community-section="people-entry"]{display:none!important}
+body.consultation-mode [data-community-section="people"]{display:grid!important}
+body.consultation-mode .people-type-switch{display:grid!important}
+body.consultation-mode .consult-summary{display:flex!important}
+body.consultation-mode .consult-platform-note{display:flex!important}
+body:not(.consultation-mode) [data-community-section="people"]{display:none!important}
+.intel-brief{margin-top:12px}.intel-brief-head{display:flex;align-items:end;justify-content:space-between;margin-bottom:8px}.intel-brief-head h2{margin:0;font-size:16px}.intel-brief-head span{color:#829087;font-size:8px}.brief-list{overflow:hidden;border-radius:17px;background:#fff;box-shadow:0 4px 16px rgba(23,33,28,.05)}.brief-item{display:grid;grid-template-columns:47px 1fr auto;gap:9px;align-items:start;padding:12px;border-bottom:1px solid #EEF1EF;text-decoration:none}.brief-item:last-child{border-bottom:0}.brief-time{padding:5px 3px;border-radius:8px;color:#2D6A4F;background:#EAF2ED;font-size:7px;font-weight:700;text-align:center}.brief-copy strong{display:block;font-size:10px;line-height:1.45}.brief-copy small{display:block;margin-top:4px;color:#77847D;font-size:8px;line-height:1.5}.brief-impact{align-self:center;color:#9A6A2E;font-size:8px;white-space:nowrap}.intel-explain{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:10px}.intel-explain button{min-height:68px;padding:10px 8px;border:0;border-radius:14px;background:#fff;box-shadow:0 3px 13px rgba(23,33,28,.045);text-align:left}.intel-explain svg{width:16px;color:#2D6A4F}.intel-explain strong{display:block;margin-top:8px;font-size:9px}.intel-explain small{display:block;margin-top:3px;color:#819087;font-size:7px;line-height:1.4}
+.learning-path{margin-top:18px}.learning-path h2{margin:0;font-size:15px}.learning-path>p{margin:3px 0 9px;color:#7B8881;font-size:9px}.lesson-list{display:grid;gap:7px}.lesson{display:grid;grid-template-columns:32px 1fr auto;align-items:center;gap:9px;padding:11px 12px;border-radius:15px;background:#fff;box-shadow:0 3px 13px rgba(23,33,28,.045)}.lesson>i{width:30px;height:30px;display:grid;place-items:center;border-radius:9px;color:#2D6A4F;background:#EAF2ED;font-style:normal;font-size:9px;font-weight:750}.lesson strong{display:block;font-size:10px}.lesson small{display:block;margin-top:3px;color:#7C8982;font-size:8px}.lesson>span{color:#829087;font-size:8px}.source-note{display:flex;align-items:flex-start;gap:7px;margin-top:10px;padding:10px 11px;border-radius:12px;background:#EEF3F0;color:#64736B;font-size:8px;line-height:1.5}.source-note svg{width:14px;flex:0 0 14px;color:#2D6A4F}
+.people-type-switch{display:flex;gap:6px;margin:0 0 9px}.people-type-switch button{height:31px;padding:0 11px;border:0;border-radius:10px;color:#6F7D75;background:#E9EEEB;font-size:9px}.people-type-switch button.active{color:#fff;background:#2D6A4F}.community-block[hidden],.person-card[hidden],.community-post[hidden]{display:none!important}
+.consult-list{display:grid;gap:9px}.consult-person{display:grid;grid-template-columns:52px minmax(0,1fr) auto;align-items:center;gap:10px;padding:12px;border-radius:15px;background:#fff;box-shadow:0 3px 14px rgba(23,33,28,.045)}.consult-person>img{width:52px;height:52px;border-radius:50%;object-fit:cover;object-position:center 25%}.consult-person h3{margin:0;font-size:12px}.consult-person .consult-role{display:flex;align-items:center;gap:4px;margin-top:3px;color:#6F7C75;font-size:9px}.consult-person .consult-role svg{width:11px;color:#2D6A4F}.consult-person p{margin:6px 0 0;color:#47564D;font-size:9px;line-height:1.45}.consult-person-tags{display:flex;gap:4px;margin-top:6px}.consult-person-tags span{padding:3px 6px;border-radius:6px;color:#617168;background:#EEF3F0;font-size:8px}.consult-person>a{width:31px;height:31px;display:grid;place-items:center;border-radius:10px;color:#2D6A4F;background:#EAF2ED}.consult-person>a svg{width:15px}.consult-hint{margin:0 0 9px;color:#7D8982;font-size:9px;line-height:1.5}
+.consult-tools{margin-bottom:10px}.consult-search{height:40px;display:flex;align-items:center;gap:7px;padding:0 11px;border-radius:12px;background:#fff;box-shadow:0 2px 10px rgba(23,33,28,.04)}.consult-search svg{width:15px;color:#7E8A83}.consult-search input{width:100%;border:0;outline:0;background:transparent;font-size:10px}.consult-summary{display:flex;align-items:center;justify-content:space-between;margin:2px 0 9px;color:#7C8982;font-size:8px}.consult-summary strong{color:#344139;font-size:10px}.consult-person{grid-template-columns:54px minmax(0,1fr);align-items:start}.consult-person>img{width:54px;height:54px}.consult-main{min-width:0}.consult-title h3{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.consult-person p{margin-top:5px}.consult-actions{grid-column:1/-1;display:grid;grid-template-columns:1fr auto;gap:7px;margin-top:2px}.consult-actions a{height:34px;display:flex;align-items:center;justify-content:center;border-radius:10px;text-decoration:none;font-size:9px;font-weight:650}.consult-actions a:first-child{color:#fff;background:#2D6A4F}.consult-actions a:last-child{padding:0 13px}
+.consult-actions a:last-child{color:#2D6A4F;background:#EAF2ED}
+.channel-intro{display:none;margin:12px 0 8px}.channel-intro.active{display:block}.channel-intro h2{margin:0;font-size:16px}.channel-intro p{margin:4px 0 0;color:#77847D;font-size:9px;line-height:1.5}
+.channel-topics{display:none;gap:7px;overflow:auto;margin:2px 0 10px;scrollbar-width:none}.channel-topics.active{display:flex}.channel-topics button{flex:0 0 auto;height:30px;padding:0 11px;border:0;border-radius:15px;color:#66756D;background:#EDF1EF;font-size:10px}.channel-topics button:first-child,.channel-topics button.selected{color:#2D6A4F;background:#E6F1EA}
+@media(min-width:0px){
+  body.nexus-community .mobile-community{display:flex!important;flex-direction:column!important;padding:0 14px 8px!important}
+  body.nexus-community .community-appbar{order:1}
+  body.nexus-community .community-tabs{order:2;position:sticky!important;top:0!important;z-index:20!important;margin:2px -14px 0!important;padding:8px 14px!important;border-radius:0!important;background:rgba(247,248,247,.96)!important;backdrop-filter:blur(16px)}
+  body.nexus-community .community-search{order:3;margin-top:8px!important}
+  body.nexus-community .community-compose{order:4;min-height:52px!important;margin-top:8px!important;padding:8px 10px!important;border-radius:14px!important}
+  body.nexus-community .channel-intro{order:5;margin:14px 0 8px!important}
+  body.nexus-community .channel-topics{order:6}
+  body.nexus-community [data-community-section="feed"]{order:7}
+  body.nexus-community [data-community-section="insight"]{order:11}
+  body.nexus-community [data-community-section="people"]{order:12}
+  body.nexus-community #communityEmpty{order:13}
+  body.nexus-community .community-tabs button{flex:1!important;min-width:0!important;height:36px!important;padding:0 6px!important;border-radius:10px!important;font-size:12px!important}
+  body.nexus-community .community-tabs button.active{box-shadow:0 2px 9px rgba(23,33,28,.06)!important}
+  body.nexus-community .channel-intro h2{font-size:17px!important}
+  body.nexus-community .channel-intro p{font-size:11px!important}
+  body.nexus-community .community-compose strong{font-size:12px!important}
+  body.nexus-community .community-compose small{font-size:9px!important}
+  body.nexus-community .community-section-title h2,.intel-brief-head h2,.learning-path h2{font-size:15px!important}
+  body.nexus-community .community-section-title p,.learning-path>p{font-size:10px!important}
+  .brief-copy strong{font-size:12px!important}.brief-copy small{font-size:10px!important}.brief-time,.brief-impact{font-size:9px!important}
+  .lesson strong{font-size:11px!important}.lesson small,.lesson>span{font-size:9px!important}
+  body.nexus-community .community-post .post-copy>span{font-size:9px!important}
+  body.nexus-community .community-post h3{font-size:12px!important;line-height:1.45!important}
+  body.nexus-community .community-post p{font-size:10px!important;line-height:1.45!important}
+  body.nexus-community .community-post small{font-size:9px!important}
+  .people-type-switch{display:grid!important;grid-template-columns:1fr 1fr!important;gap:4px!important;padding:3px!important;border-radius:12px!important;background:#E9EEEB!important}.people-type-switch button{height:36px!important;border-radius:9px!important;background:transparent!important;font-size:11px!important}.people-type-switch button.active{color:#17211C!important;background:#fff!important;box-shadow:0 2px 8px rgba(23,33,28,.055)!important}.consult-person h3{font-size:13px!important}.consult-person p{font-size:10px!important}.consult-person .consult-role,.consult-person-tags span{font-size:9px!important}.consult-search input{font-size:11px!important}.consult-actions a{font-size:10px!important}
   body.nexus-community{padding-bottom:calc(88px + env(safe-area-inset-bottom,0px))!important}
   body.nexus-community .community-bottom-nav{
     position:fixed!important;
@@ -75,18 +123,391 @@ a{color:inherit}
     white-space:nowrap!important;
     text-overflow:clip!important;
   }
+  body.nexus-community .community-section-title{
+    align-items:center!important;
+    margin:20px 0 10px!important;
+  }
+  body.nexus-community .community-section-title h2{
+    font-size:16px!important;
+    line-height:1.35!important;
+  }
+  body.nexus-community .community-section-title p{
+    margin-top:2px!important;
+    font-size:10px!important;
+  }
+  body.nexus-community .people-rail{
+    gap:9px!important;
+    padding-bottom:6px!important;
+  }
+  body.nexus-community .person-card{
+    flex:0 0 132px!important;
+    min-height:176px!important;
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:center!important;
+    padding:14px 10px 10px!important;
+    overflow:visible!important;
+    border:1px solid rgba(23,33,28,.045)!important;
+    border-radius:16px!important;
+    box-shadow:0 3px 12px rgba(23,33,28,.045)!important;
+    text-align:center!important;
+  }
+  body.nexus-community .person-card>img{
+    width:64px!important;
+    height:64px!important;
+    flex:0 0 64px!important;
+    border:2px solid #fff!important;
+    border-radius:50%!important;
+    object-position:center 24%!important;
+    box-shadow:0 2px 9px rgba(23,33,28,.1)!important;
+  }
+  body.nexus-community .person-card-body{
+    width:100%!important;
+    display:flex!important;
+    flex:1!important;
+    flex-direction:column!important;
+    align-items:center!important;
+    padding:8px 0 0!important;
+  }
+  body.nexus-community .verified{
+    justify-content:center!important;
+    gap:3px!important;
+    font-size:8px!important;
+    white-space:nowrap!important;
+  }
+  body.nexus-community .verified svg{width:11px!important;height:11px!important}
+  body.nexus-community .person-card h3{
+    width:100%!important;
+    overflow:hidden!important;
+    margin-top:5px!important;
+    font-size:12px!important;
+    line-height:1.35!important;
+    white-space:nowrap!important;
+    text-overflow:ellipsis!important;
+  }
+  body.nexus-community .person-card p{
+    width:100%!important;
+    overflow:hidden!important;
+    margin-top:2px!important;
+    font-size:9px!important;
+    white-space:nowrap!important;
+    text-overflow:ellipsis!important;
+  }
+  body.nexus-community .person-tags{
+    justify-content:center!important;
+    gap:4px!important;
+    margin-top:7px!important;
+  }
+  body.nexus-community .person-tags span{
+    padding:3px 5px!important;
+    border-radius:6px!important;
+    font-size:8px!important;
+  }
+  body.nexus-community .person-card a{
+    width:100%!important;
+    min-height:30px!important;
+    margin-top:auto!important;
+    border-radius:9px!important;
+    font-size:10px!important;
+  }
+  body.nexus-community .feed-heading{margin-top:20px!important}
+  body.nexus-community.consultation-mode .community-appbar{min-height:42px!important;padding-top:4px!important}
+  body.nexus-community.consultation-mode .community-appbar>div>span{font-size:8px!important}
+  body.nexus-community.consultation-mode .community-appbar h1{font-size:18px!important}
+  body.nexus-community.consultation-mode .community-tabs{
+    position:sticky!important;top:0!important;z-index:20!important;display:grid!important;
+    grid-template-columns:1fr 1fr!important;gap:3px!important;margin:2px 0 10px!important;
+    padding:3px!important;border-radius:12px!important;background:#E9EEEB!important;
+  }
+  body.nexus-community.consultation-mode .community-tabs button{
+    height:32px!important;border-radius:9px!important;color:#708078!important;
+    background:transparent!important;font-size:10px!important;font-weight:550!important;
+  }
+  body.nexus-community.consultation-mode .community-tabs button.active{
+    color:#2D6A4F!important;background:#fff!important;box-shadow:0 2px 7px rgba(23,33,28,.05)!important;
+  }
+  body.nexus-community.consultation-mode .people-type-switch{
+    gap:3px!important;margin:0 0 8px!important;padding:3px!important;border-radius:11px!important;
+  }
+  body.nexus-community.consultation-mode .people-type-switch button{height:30px!important;font-size:10px!important}
+  body.nexus-community.consultation-mode .consult-tools{margin-bottom:8px!important}
+  body.nexus-community.consultation-mode .consult-search{
+    height:36px!important;gap:6px!important;padding:0 10px!important;border-radius:11px!important;
+  }
+  body.nexus-community.consultation-mode .consult-search svg{
+    width:13px!important;height:13px!important;flex:0 0 13px!important;
+  }
+  body.nexus-community.consultation-mode .consult-search input{font-size:10px!important}
+  body.nexus-community.consultation-mode .consult-summary{margin:1px 1px 8px!important}
+  body.nexus-community.consultation-mode .consult-summary strong{font-size:10px!important}
+  body.nexus-community.consultation-mode .consult-list{
+    display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;
+  }
+  body.nexus-community.consultation-mode .consult-person{
+    min-width:0!important;min-height:158px!important;display:grid!important;
+    grid-template-columns:46px minmax(0,1fr)!important;grid-template-rows:auto 1fr auto!important;
+    align-items:start!important;gap:8px!important;padding:11px!important;
+    border:1px solid rgba(23,33,28,.04)!important;border-radius:15px!important;
+    background:#fff!important;box-shadow:0 3px 13px rgba(23,33,28,.045)!important;
+  }
+  body.nexus-community.consultation-mode .consult-person[hidden]{display:none!important}
+  body.nexus-community.consultation-mode .consult-person>img{
+    width:46px!important;height:46px!important;grid-column:1!important;grid-row:1!important;
+    border:2px solid #fff!important;box-shadow:0 2px 8px rgba(23,33,28,.09)!important;
+  }
+  body.nexus-community.consultation-mode .consult-main{
+    grid-column:2!important;grid-row:1/3!important;min-width:0!important;
+  }
+  body.nexus-community.consultation-mode .consult-title h3{
+    margin:1px 0 0!important;font-size:12px!important;line-height:1.35!important;
+  }
+  body.nexus-community.consultation-mode .consult-role{
+    gap:3px!important;margin-top:3px!important;overflow:hidden!important;
+    font-size:8px!important;line-height:1.35!important;white-space:nowrap!important;text-overflow:ellipsis!important;
+  }
+  body.nexus-community.consultation-mode .consult-role svg{
+    width:10px!important;height:10px!important;flex:0 0 10px!important;
+  }
+  body.nexus-community.consultation-mode .consult-person p{
+    display:-webkit-box!important;overflow:hidden!important;-webkit-box-orient:vertical!important;
+    -webkit-line-clamp:2!important;margin:7px 0 0!important;color:#5E6B63!important;
+    font-size:9px!important;line-height:1.5!important;
+  }
+  body.nexus-community.consultation-mode .consult-person-tags{
+    gap:4px!important;margin-top:7px!important;overflow:hidden!important;
+  }
+  body.nexus-community.consultation-mode .consult-person-tags span{
+    flex:0 1 auto!important;overflow:hidden!important;padding:3px 5px!important;
+    border-radius:6px!important;font-size:7px!important;white-space:nowrap!important;text-overflow:ellipsis!important;
+  }
+  body.nexus-community.consultation-mode .consult-actions{
+    grid-column:1/-1!important;grid-row:3!important;grid-template-columns:minmax(0,1fr) 44px!important;
+    gap:6px!important;margin-top:2px!important;
+  }
+  body.nexus-community.consultation-mode .consult-actions a{
+    height:30px!important;border-radius:9px!important;font-size:9px!important;
+  }
+  body.nexus-community.consultation-mode .consult-actions a:first-child{
+    color:#2D6A4F!important;background:#EAF2ED!important;
+  }
+  body.nexus-community.consultation-mode .consult-actions a:last-child{
+    padding:0!important;color:#738078!important;background:#F1F3F2!important;
+  }
+  @media(min-width:761px){
+    body.nexus-community.consultation-mode .consult-list{
+      grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:10px!important;
+    }
+  }
+  body.nexus-community [data-community-section="feed"]{order:7!important}
+  body.nexus-community:not(.consultation-mode) .channel-intro,
+  body.nexus-community:not(.consultation-mode) .channel-topics,
+  body.nexus-community:not(.consultation-mode) .recommendation-feed{
+    width:100%!important;
+    max-width:720px!important;
+    align-self:center!important;
+  }
+  body.nexus-community .recommendation-feed{margin:0 auto!important}
+  body.nexus-community .feed-list-head{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:space-between!important;
+    margin:2px 1px 8px!important;
+  }
+  body.nexus-community .feed-list-head h2{
+    margin:0!important;
+    font-size:14px!important;
+    line-height:1.35!important;
+  }
+  body.nexus-community .feed-list-head span{
+    color:#849088!important;
+    font-size:9px!important;
+  }
+  body.nexus-community .community-feed-list{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:9px!important;
+  }
+  body.nexus-community .community-feed-card{
+    min-width:0!important;
+    padding:12px 13px!important;
+    border:1px solid rgba(23,33,28,.035)!important;
+    border-radius:15px!important;
+    background:#fff!important;
+    box-shadow:0 3px 14px rgba(23,33,28,.045)!important;
+  }
+  body.nexus-community .community-feed-card[hidden]{display:none!important}
+  body.nexus-community .community-feed-card.community-user-post{
+    display:block!important;
+    grid-column:auto!important;
+    grid-template-columns:none!important;
+  }
+  body.nexus-community .feed-author{
+    display:grid!important;
+    grid-template-columns:34px minmax(0,1fr) 28px!important;
+    align-items:center!important;
+    gap:8px!important;
+  }
+  body.nexus-community .feed-avatar{
+    width:34px!important;
+    height:34px!important;
+    display:grid!important;
+    place-items:center!important;
+    border-radius:50%!important;
+    color:#2D6A4F!important;
+    background:#EAF2ED!important;
+    font-size:10px!important;
+    font-weight:700!important;
+  }
+  body.nexus-community .feed-avatar.brand{
+    color:#fff!important;
+    background:#2D6A4F!important;
+  }
+  body.nexus-community .feed-author-copy{min-width:0!important}
+  body.nexus-community .feed-author-copy strong{
+    display:block!important;
+    overflow:hidden!important;
+    color:#26322B!important;
+    font-size:11px!important;
+    line-height:1.35!important;
+    white-space:nowrap!important;
+    text-overflow:ellipsis!important;
+  }
+  body.nexus-community .feed-author-copy small{
+    display:block!important;
+    margin-top:2px!important;
+    overflow:hidden!important;
+    color:#8A958F!important;
+    font-size:8px!important;
+    white-space:nowrap!important;
+    text-overflow:ellipsis!important;
+  }
+  body.nexus-community .feed-more{
+    width:28px!important;
+    height:28px!important;
+    display:grid!important;
+    place-items:center!important;
+    padding:0!important;
+    border:0!important;
+    border-radius:9px!important;
+    color:#89948E!important;
+    background:transparent!important;
+  }
+  body.nexus-community .feed-more svg{width:15px!important;height:15px!important}
+  body.nexus-community .feed-copy{
+    margin:9px 0 0!important;
+    color:#344139!important;
+    font-size:12px!important;
+    line-height:1.62!important;
+  }
+  body.nexus-community .feed-tags{
+    display:flex!important;
+    flex-wrap:wrap!important;
+    gap:5px!important;
+    margin-top:8px!important;
+  }
+  body.nexus-community .feed-tags span{
+    padding:3px 6px!important;
+    border-radius:6px!important;
+    color:#64736B!important;
+    background:#F0F3F1!important;
+    font-size:8px!important;
+  }
+  body.nexus-community .feed-case-preview{
+    display:grid!important;
+    grid-template-columns:72px minmax(0,1fr) 14px!important;
+    align-items:center!important;
+    gap:9px!important;
+    margin-top:9px!important;
+    padding:8px!important;
+    border-radius:12px!important;
+    color:inherit!important;
+    background:#F5F7F6!important;
+    text-decoration:none!important;
+  }
+  body.nexus-community .feed-case-preview img{
+    width:72px!important;
+    height:58px!important;
+    border-radius:9px!important;
+    object-fit:cover!important;
+  }
+  body.nexus-community .feed-case-preview>span{min-width:0!important}
+  body.nexus-community .feed-case-preview>span>span{
+    display:block!important;
+    color:#2D6A4F!important;
+    font-size:8px!important;
+    font-weight:650!important;
+  }
+  body.nexus-community .feed-case-preview strong{
+    display:block!important;
+    margin-top:3px!important;
+    overflow:hidden!important;
+    color:#2D3832!important;
+    font-size:10px!important;
+    line-height:1.4!important;
+    white-space:nowrap!important;
+    text-overflow:ellipsis!important;
+  }
+  body.nexus-community .feed-case-preview small{
+    display:block!important;
+    margin-top:3px!important;
+    overflow:hidden!important;
+    color:#7C8881!important;
+    font-size:8px!important;
+    white-space:nowrap!important;
+    text-overflow:ellipsis!important;
+  }
+  body.nexus-community .feed-case-preview svg{
+    width:14px!important;
+    height:14px!important;
+    color:#829087!important;
+  }
+  body.nexus-community .feed-actions{
+    display:flex!important;
+    flex-wrap:wrap!important;
+    align-items:center!important;
+    gap:3px!important;
+    margin-top:9px!important;
+    padding-top:8px!important;
+    border-top:1px solid #F0F2F1!important;
+  }
+  body.nexus-community .feed-actions button{
+    min-height:28px!important;
+    display:flex!important;
+    align-items:center!important;
+    gap:4px!important;
+    padding:0 6px!important;
+    border:0!important;
+    border-radius:8px!important;
+    color:#748078!important;
+    background:transparent!important;
+    font-size:8px!important;
+  }
+  body.nexus-community .feed-actions button:hover,
+  body.nexus-community .feed-actions button.is-active{
+    color:#2D6A4F!important;
+    background:#EEF5F1!important;
+  }
+  body.nexus-community .feed-actions svg{width:13px!important;height:13px!important}
+  body.nexus-community .feed-time{
+    margin-left:auto!important;
+    color:#9AA39E!important;
+    font-size:8px!important;
+    white-space:nowrap!important;
+  }
+  @media(min-width:761px){
+    body.nexus-community .community-feed-card{padding:14px 15px!important}
+    body.nexus-community .feed-copy{font-size:13px!important}
+  }
 }
 </style>
-<link rel="stylesheet" href="nexus-clean-v22.css?v=20260609-community-clean" />
-<link rel="stylesheet" href="nexus-mobile-workspace.css?v=20260609-community-clean" />
 <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
 </head>
 <body class="nexus-mobile-page nexus-community">
 <section id="community-feed" class="mobile-community" aria-label="社区推荐">
   <header class="community-appbar">
     <div>
-      <span>申请社区</span>
-      <h1>发现真实经验</h1>
+      <span>NEXUS COMMUNITY</span>
+      <h1>一起聊聊申请</h1>
     </div>
     <button type="button" class="community-filter-button" aria-label="筛选社区内容">
       <i data-lucide="sliders-horizontal"></i>
@@ -95,95 +516,118 @@ a{color:inherit}
 
   <label class="community-search">
     <i data-lucide="search"></i>
-    <input id="communitySearch" type="search" placeholder="搜索学校、专业或申请问题" aria-label="搜索社区内容" />
+    <input id="communitySearch" type="search" placeholder="搜学校、专业，或大家遇到的问题" aria-label="搜索社区内容" />
   </label>
+
+  <button class="community-compose" type="button" onclick="openCommunityComposer()">
+    <span class="community-compose-avatar">陈</span>
+    <span><strong>最近申请到哪一步了？</strong><small>问个问题、记点进展，也可以分享经验</small></span>
+    <i data-lucide="square-pen"></i>
+  </button>
 
   <div class="community-tabs" role="tablist" aria-label="社区分类">
     <button class="active" type="button" role="tab" aria-selected="true" data-community-filter="all">推荐</button>
-    <button type="button" role="tab" aria-selected="false" data-community-filter="senior">学长学姐</button>
-    <button type="button" role="tab" aria-selected="false" data-community-filter="advisor">专业顾问</button>
-    <button type="button" role="tab" aria-selected="false" data-community-filter="case">案例</button>
+    <button type="button" role="tab" aria-selected="false" data-community-filter="people">咨询</button>
   </div>
 
-  <div class="community-section-title">
-    <div><h2>适合你的申请伙伴</h2><p>根据目标方向与当前风险推荐</p></div>
-    <span>3 位</span>
+  <div class="channel-intro active" data-channel-intro="all"><h2>为你推荐</h2><p>最近讨论、实用经验和与你背景接近的案例。</p></div>
+  <div class="channel-topics active" data-channel-topics="all"><button type="button">与你相关</button><button type="button">港校商科</button><button type="button">2027 Fall</button><button type="button">本周热门</button></div>
+
+  <section class="community-block recommendation-feed" data-community-section="feed">
+    <div class="feed-list-head"><h2>最近更新</h2><span>按相关度推荐</span></div>
+    <div class="community-feed-list">
+      <article class="community-feed-card" data-community-type="forum" data-search="雅思 语言 6.5 先申请 后补 港校商科">
+        <header class="feed-author"><span class="feed-avatar">林</span><span class="feed-author-copy"><strong>林同学</strong><small>双非大三 · 语言准备中</small></span><button class="feed-more" type="button" aria-label="更多操作"><i data-lucide="more-horizontal"></i></button></header>
+        <p class="feed-copy">雅思刚到 6.5，要先递交还是再考一次？我主要看港校商科，担心等成绩会错过前面的轮次。</p>
+        <div class="feed-tags"><span>语言</span><span>港校商科</span><span>2027 Fall</span></div>
+        <footer class="feed-actions"><button type="button" onclick="toggleFeedReaction(this)"><i data-lucide="heart"></i><span>12</span></button><button type="button"><i data-lucide="message-circle"></i><span>18 条回复</span></button><button type="button" onclick="toggleFeedReaction(this)"><i data-lucide="bookmark"></i><span>收藏</span></button><span class="feed-time">2 分钟前</span></footer>
+      </article>
+
+      <article class="community-feed-card" data-community-type="forum" data-search="推荐信 老师 联系 邮件 材料">
+        <header class="feed-author"><span class="feed-avatar">周</span><span class="feed-author-copy"><strong>周同学</strong><small>211 商科 · 材料准备中</small></span><button class="feed-more" type="button" aria-label="更多操作"><i data-lucide="more-horizontal"></i></button></header>
+        <p class="feed-copy">第一次找老师要推荐信有点紧张。我先整理了课程表现、项目经历和申请方向，再约老师当面聊，沟通比想象中顺利。</p>
+        <div class="feed-tags"><span>推荐信</span><span>材料准备</span></div>
+        <footer class="feed-actions"><button type="button" onclick="toggleFeedReaction(this)"><i data-lucide="heart"></i><span>26</span></button><button type="button"><i data-lucide="message-circle"></i><span>9 条回复</span></button><button type="button" onclick="toggleFeedReaction(this)"><i data-lucide="bookmark"></i><span>收藏</span></button><span class="feed-time">18 分钟前</span></footer>
+      </article>
+
+      <article class="community-feed-card" data-community-type="case" data-search="211 商科 GPA 3.55 雅思 6.5 CUHK CityU 城大 案例 选校">
+        <header class="feed-author"><span class="feed-avatar brand">N</span><span class="feed-author-copy"><strong>Nexus 案例库</strong><small>已核验背景 · 商科申请</small></span><button class="feed-more" type="button" aria-label="更多操作"><i data-lucide="more-horizontal"></i></button></header>
+        <p class="feed-copy">这位同学最初的项目组合偏冲刺，补充匹配项目后，也重新安排了语言和递交节奏。</p>
+        <a class="feed-case-preview" href="case-profile.html"><img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=320&q=80" alt="商科申请案例" /><span><span>211 · 商科 · 2 Offer</span><strong>GPA 3.55、雅思 6.5，如何调整港校组合？</strong><small>CUHK / CityU · 查看完整过程</small></span><i data-lucide="chevron-right"></i></a>
+        <footer class="feed-actions"><button type="button" onclick="toggleFeedReaction(this)"><i data-lucide="heart"></i><span>45</span></button><button type="button"><i data-lucide="message-circle"></i><span>7 条讨论</span></button><button type="button" onclick="toggleFeedReaction(this)"><i data-lucide="bookmark"></i><span>收藏</span></button><span class="feed-time">今天</span></footer>
+      </article>
+
+      <article class="community-feed-card" data-community-type="forum" data-search="DDL 滚动审理 递交 网申 时间 2027 Fall">
+        <header class="feed-author"><span class="feed-avatar">许</span><span class="feed-author-copy"><strong>许同学</strong><small>港大准新生 · 已完成申请</small></span><button class="feed-more" type="button" aria-label="更多操作"><i data-lucide="more-horizontal"></i></button></header>
+        <p class="feed-copy">项目开放后不一定要当天提交。我当时先确认是否滚动审理，再按材料完整度排递交顺序，节奏会稳很多。</p>
+        <div class="feed-tags"><span>网申节奏</span><span>DDL</span></div>
+        <footer class="feed-actions"><button type="button" onclick="toggleFeedReaction(this)"><i data-lucide="heart"></i><span>38</span></button><button type="button"><i data-lucide="message-circle"></i><span>11 条回复</span></button><button type="button" onclick="toggleFeedReaction(this)"><i data-lucide="bookmark"></i><span>收藏</span></button><span class="feed-time">1 小时前</span></footer>
+      </article>
+
+      <article class="community-feed-card" data-community-type="case" data-search="双非 跨专业 数据 商业分析 科研 实习 BA 案例">
+        <header class="feed-author"><span class="feed-avatar brand">N</span><span class="feed-author-copy"><strong>Nexus 案例库</strong><small>已核验背景 · 跨专业申请</small></span><button class="feed-more" type="button" aria-label="更多操作"><i data-lucide="more-horizontal"></i></button></header>
+        <p class="feed-copy">跨专业并不只靠解释动机。这个案例用课程、项目和实习三条证据，证明自己能跟上商业分析的学习强度。</p>
+        <a class="feed-case-preview" href="case-profile.html"><img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=320&q=80" alt="跨专业申请案例" /><span><span>双非 · 跨专业 · 1 Offer</span><strong>没有计算机背景，怎样申请商业分析？</strong><small>BA 方向 · 查看材料组织方式</small></span><i data-lucide="chevron-right"></i></a>
+        <footer class="feed-actions"><button type="button" onclick="toggleFeedReaction(this)"><i data-lucide="heart"></i><span>33</span></button><button type="button"><i data-lucide="message-circle"></i><span>5 条讨论</span></button><button type="button" onclick="toggleFeedReaction(this)"><i data-lucide="bookmark"></i><span>收藏</span></button><span class="feed-time">昨天</span></footer>
+      </article>
+
+      <article class="community-feed-card" data-community-type="forum" data-search="实习 简历 CV 经历 主线 商科">
+        <header class="feed-author"><span class="feed-avatar">邓</span><span class="feed-author-copy"><strong>邓同学</strong><small>双非金融 · 选校准备中</small></span><button class="feed-more" type="button" aria-label="更多操作"><i data-lucide="more-horizontal"></i></button></header>
+        <p class="feed-copy">整理 CV 时才发现，实习做得多不等于主线清楚。我把重复的工作删掉，只保留能证明分析和沟通能力的经历。</p>
+        <div class="feed-tags"><span>实习</span><span>CV</span><span>商科</span></div>
+        <footer class="feed-actions"><button type="button" onclick="toggleFeedReaction(this)"><i data-lucide="heart"></i><span>21</span></button><button type="button"><i data-lucide="message-circle"></i><span>6 条回复</span></button><button type="button" onclick="toggleFeedReaction(this)"><i data-lucide="bookmark"></i><span>收藏</span></button><span class="feed-time">昨天</span></footer>
+      </article>
+    </div>
+  </section>
+
+  <div class="people-type-switch community-block people-directory" data-community-section="people" aria-label="申请伙伴类型" hidden>
+    <button class="active" type="button" data-people-filter="senior">学长学姐</button>
+    <button type="button" data-people-filter="advisor">专业顾问</button>
   </div>
 
-  <div class="people-rail" aria-label="推荐申请伙伴">
-    <article class="person-card" data-community-type="senior" data-search="港中文 CUHK 商科 学姐 面试 文书">
+  <div class="consult-tools community-block people-directory" data-community-section="people" hidden><label class="consult-search"><i data-lucide="search"></i><input id="consultSearch" type="search" placeholder="搜索学校、专业或问题" /></label></div>
+  <div class="consult-summary community-block people-directory" data-community-section="people" hidden><strong id="consultCount">5 位可选</strong><span>按擅长方向选择</span></div>
+  <div class="consult-list community-block people-directory" data-community-section="people" aria-label="咨询伙伴" hidden>
+    <article class="consult-person" data-community-type="senior" data-search="港中文 CUHK 商科 学姐 选校 面试 文书">
       <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=360&q=80" alt="港中文商学院学姐头像" />
-      <div class="person-card-body">
-        <span class="verified"><i data-lucide="badge-check"></i>身份已核验</span>
-        <h3>港中文商学院学姐</h3>
-        <p>CUHK · MSc 商科</p>
-        <div class="person-tags"><span>选校</span><span>面试</span></div>
-        <a href="advisor-profile.html?id=cuhk-business">查看主页</a>
-      </div>
+      <div class="consult-main"><div class="consult-title"><h3>港中文商学院学姐</h3></div><span class="consult-role"><i data-lucide="badge-check"></i>CUHK MSc · 211 本科</span><p>商科选校、文书主线、面试准备</p><div class="consult-person-tags"><span>同背景申请</span><span>商科</span></div></div><div class="consult-actions"><a href="advisor-profile.html?id=cuhk-business">查看档案</a><a href="advisor-profile.html?id=cuhk-business#reviews">评论</a></div>
     </article>
-    <article class="person-card" data-community-type="senior" data-search="港大 HKU 数据 AI CS 学长 科研">
+    <article class="consult-person" data-community-type="senior" data-search="港大 HKU 数据 AI 学长 跨专业 科研 技术面">
       <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=360&q=80" alt="港大数据方向学长头像" />
-      <div class="person-card-body">
-        <span class="verified"><i data-lucide="badge-check"></i>在读已核验</span>
-        <h3>港大数据方向学长</h3>
-        <p>HKU · Data / AI</p>
-        <div class="person-tags"><span>科研</span><span>技术面</span></div>
-        <a href="advisor-profile.html?id=hku-data">查看主页</a>
-      </div>
+      <div class="consult-main"><div class="consult-title"><h3>港大数据方向学长</h3></div><span class="consult-role"><i data-lucide="badge-check"></i>HKU Data / AI · 跨方向</span><p>项目经历、科研表达、技术面试</p><div class="consult-person-tags"><span>跨专业</span><span>数据方向</span></div></div><div class="consult-actions"><a href="advisor-profile.html?id=hku-data">查看档案</a><a href="advisor-profile.html?id=hku-data#reviews">评论</a></div>
     </article>
-    <article class="person-card" data-community-type="advisor" data-search="专业顾问 低绩点 跨专业 文书 Offer">
+    <article class="consult-person" data-community-type="senior" data-search="港科 HKUST 工程 理工 学长 科研 项目 面试">
+      <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=360&q=80" alt="港科工程方向学长头像" />
+      <div class="consult-main"><div class="consult-title"><h3>港科工程方向学长</h3></div><span class="consult-role"><i data-lucide="badge-check"></i>HKUST Engineering · 985</span><p>科研取舍、工程项目、英文面试</p><div class="consult-person-tags"><span>理工科</span><span>科研</span></div></div><div class="consult-actions"><a href="advisor-profile.html?id=hkust-engineering">查看档案</a><a href="advisor-profile.html?id=hkust-engineering#reviews">评论</a></div>
+    </article>
+    <article class="consult-person" data-community-type="senior" data-search="港理工 PolyU 传媒 学姐 跨专业 作品集 文书">
+      <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=360&q=80" alt="港理工传媒学姐头像" />
+      <div class="consult-main"><div class="consult-title"><h3>港理工传媒学姐</h3></div><span class="consult-role"><i data-lucide="badge-check"></i>PolyU Media · 跨专业</span><p>跨专业解释、作品集、项目体验</p><div class="consult-person-tags"><span>传媒</span><span>跨专业</span></div></div><div class="consult-actions"><a href="advisor-profile.html?id=polyu-media">查看档案</a><a href="advisor-profile.html?id=polyu-media#reviews">评论</a></div>
+    </article>
+    <article class="consult-person" data-community-type="senior" data-search="港城 CityU 金融 学姐 双非 商科 面试 实习">
+      <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=360&q=80" alt="港城金融方向学姐头像" />
+      <div class="consult-main"><div class="consult-title"><h3>港城金融方向学姐</h3></div><span class="consult-role"><i data-lucide="badge-check"></i>CityU Finance · 双非本科</span><p>双非定位、实习表达、商科面试</p><div class="consult-person-tags"><span>金融</span><span>双非</span></div></div><div class="consult-actions"><a href="advisor-profile.html?id=cityu-finance">查看档案</a><a href="advisor-profile.html?id=cityu-finance#reviews">评论</a></div>
+    </article>
+    <article class="consult-person" data-community-type="advisor" data-search="专业顾问 低绩点 跨专业 文书 策略">
       <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=360&q=80" alt="复杂背景申请顾问头像" />
-      <div class="person-card-body">
-        <span class="verified"><i data-lucide="shield-check"></i>平台已复核</span>
-        <h3>复杂背景申请顾问</h3>
-        <p>低绩点 · 跨专业</p>
-        <div class="person-tags"><span>策略</span><span>文书</span></div>
-        <a href="advisor-profile.html?id=strategy-top">查看主页</a>
-      </div>
+      <div class="consult-main"><div class="consult-title"><h3>复杂背景申请顾问</h3></div><span class="consult-role"><i data-lucide="shield-check"></i>5 年经验 · 平台已复核</span><p>低 GPA、跨专业、复杂申请策略</p><div class="consult-person-tags"><span>策略复核</span><span>文书</span></div></div><div class="consult-actions"><a href="advisor-profile.html?id=strategy-top">查看档案</a><a href="advisor-profile.html?id=strategy-top#reviews">评论</a></div>
     </article>
-  </div>
-
-  <div class="community-section-title feed-heading">
-    <div><h2>社区精选</h2><p>案例、经验与策略拆解</p></div>
-  </div>
-
-  <div class="community-feed-list" aria-live="polite">
-    <a class="community-post" href="advisor-profile.html?id=cuhk-business" data-community-type="senior" data-search="211 商科 CUHK 主申 冲刺 学姐">
-      <div class="post-copy">
-        <span>学长学姐经验</span>
-        <h3>211 商科背景，CUHK 应该放在主申还是冲刺？</h3>
-        <p>从语言、GPA 和实习主线判断，不只看学校层级。</p>
-        <small>港中文商学院学姐 · 128 收藏</small>
-      </div>
-      <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=320&q=80" alt="大学生讨论申请方案" />
-    </a>
-    <a class="community-post" href="advisor-profile.html?id=hku-data" data-community-type="senior" data-search="HKU HKUST 数据 AI 技术经历 科研 学长">
-      <div class="post-copy">
-        <span>项目经验</span>
-        <h3>技术经历怎么写，才不像简单罗列项目？</h3>
-        <p>把方法、结果和目标项目能力要求连接起来。</p>
-        <small>港大数据方向学长 · 96 收藏</small>
-      </div>
-      <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=320&q=80" alt="学生使用电脑完成数据项目" />
-    </a>
-    <a class="community-post" href="advisor-profile.html?id=strategy-top" data-community-type="advisor" data-search="专业顾问 低绩点 跨专业 港前三 花钱 策略">
-      <div class="post-copy">
-        <span>专业顾问</span>
-        <h3>低绩点或跨专业，什么时候值得购买真人咨询？</h3>
-        <p>先确认问题是否需要策略判断，再决定服务深度。</p>
-        <small>复杂背景顾问 · 74 收藏</small>
-      </div>
-      <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=320&q=80" alt="顾问进行申请策略沟通" />
-    </a>
-    <a class="community-post" href="case-profile.html" data-community-type="case" data-search="案例 211 GPA 3.55 雅思 商科 港校">
-      <div class="post-copy">
-        <span>相似案例</span>
-        <h3>GPA 3.55、雅思 6.5，如何搭建港校商科组合？</h3>
-        <p>一个完整的冲刺、主申与稳妥路径拆解。</p>
-        <small>Nexus 案例库 · 52 收藏</small>
-      </div>
-      <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=320&q=80" alt="申请规划与资料整理" />
-    </a>
+    <article class="consult-person" data-community-type="advisor" data-search="商科 顾问 家长 预算 就业 选校">
+      <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=360&q=80" alt="商科项目顾问头像" />
+      <div class="consult-main"><div class="consult-title"><h3>商科项目顾问</h3></div><span class="consult-role"><i data-lucide="shield-check"></i>项目规划 · 平台已复核</span><p>项目比较、留学预算、就业方向</p><div class="consult-person-tags"><span>预算规划</span><span>就业</span></div></div><div class="consult-actions"><a href="advisor-profile.html?id=business-planning">查看档案</a><a href="advisor-profile.html?id=business-planning#reviews">评论</a></div>
+    </article>
+    <article class="consult-person" data-community-type="advisor" data-search="文书 顾问 PS CV 推荐信 叙事 修改">
+      <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=360&q=80" alt="文书主线顾问头像" />
+      <div class="consult-main"><div class="consult-title"><h3>文书主线顾问</h3></div><span class="consult-role"><i data-lucide="shield-check"></i>文书复核 · 平台已复核</span><p>CV 梳理、PS 主线、推荐信素材</p><div class="consult-person-tags"><span>文书</span><span>材料</span></div></div><div class="consult-actions"><a href="advisor-profile.html?id=writing-review">查看档案</a><a href="advisor-profile.html?id=writing-review#reviews">评论</a></div>
+    </article>
+    <article class="consult-person" data-community-type="advisor" data-search="语言 雅思 托福 提分 规划 顾问">
+      <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=360&q=80" alt="语言规划顾问头像" />
+      <div class="consult-main"><div class="consult-title"><h3>语言规划顾问</h3></div><span class="consult-role"><i data-lucide="shield-check"></i>语言规划 · 6 年经验</span><p>雅思诊断、考试节奏、单项补强</p><div class="consult-person-tags"><span>雅思</span><span>提分</span></div></div><div class="consult-actions"><a href="advisor-profile.html?id=language-plan">查看档案</a><a href="advisor-profile.html?id=language-plan#reviews">评论</a></div>
+    </article>
+    <article class="consult-person" data-community-type="advisor" data-search="面试 顾问 商科 英文 模拟 复盘">
+      <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=360&q=80" alt="港校面试顾问头像" />
+      <div class="consult-main"><div class="consult-title"><h3>港校面试顾问</h3></div><span class="consult-role"><i data-lucide="shield-check"></i>模拟面试 · 平台已复核</span><p>英文表达、追问训练、面试复盘</p><div class="consult-person-tags"><span>面试</span><span>英文表达</span></div></div><div class="consult-actions"><a href="advisor-profile.html?id=interview-coach">查看档案</a><a href="advisor-profile.html?id=interview-coach#reviews">评论</a></div>
+    </article>
   </div>
 
   <div id="communityEmpty" class="community-empty" hidden>
@@ -193,14 +637,24 @@ a{color:inherit}
   </div>
 </section>
 
-<nav class="community-bottom-nav" aria-label="底部快速导航">
+<div class="community-composer-sheet" id="communityComposer" aria-hidden="true">
+  <button class="composer-backdrop" type="button" aria-label="关闭发布窗口" onclick="closeCommunityComposer()"></button>
+  <section role="dialog" aria-modal="true" aria-labelledby="composerTitle">
+    <header><button type="button" onclick="closeCommunityComposer()" aria-label="取消发布"><i data-lucide="x"></i></button><strong id="composerTitle">发布笔记</strong><button type="button" onclick="publishCommunityPost()">发布</button></header>
+    <textarea id="communityPostText" maxlength="300" placeholder="记录一个申请进展，或者问问大家……"></textarea>
+    <div class="composer-topics"><button type="button">#选校</button><button type="button">#语言</button><button type="button">#文书</button><button type="button">#今日进度</button></div>
+    <p>真实分享会帮助和你背景相似的人。</p>
+  </section>
+</div>
+
+<nav class="quick-nav mobile-five community-bottom-nav" aria-label="底部快速导航">
   <a href="index.html">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7"/><path d="M5 9v11h14V9"/><path d="M9 20v-6h6v6"/></svg>
     <span>首页</span>
   </a>
-  <a href="timeline.html">
+  <a href="diy.html">
     <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="18" r="2"/><path d="M8 6h5a3 3 0 0 1 3 3v1a3 3 0 0 1-3 3H9a3 3 0 0 0-3 3v0"/></svg>
-    <span>导航</span>
+    <span>工作台</span>
   </a>
   <a class="active" href="advisors.html" aria-current="page">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4Z"/><path d="M8 9h8M8 13h5"/></svg>
@@ -219,20 +673,85 @@ function toggleCommunitySave(button){
   button.textContent=saved?'已收藏':'收藏';
   button.setAttribute('aria-pressed',String(saved));
 }
+function toggleFeedReaction(button){
+  const active=button.classList.toggle('is-active');
+  button.setAttribute('aria-pressed',String(active));
+  const label=button.querySelector('span');
+  if(!label)return;
+  const value=label.textContent.trim();
+  if(/^\d+$/.test(value)){
+    const base=Number(label.dataset.base||value);
+    label.dataset.base=String(base);
+    label.textContent=String(base+(active?1:0));
+  }else if(value==='收藏'||value==='已收藏'){
+    label.textContent=active?'已收藏':'收藏';
+  }
+}
+function openCommunityComposer(){
+  const sheet=document.getElementById('communityComposer');
+  sheet?.classList.add('open');
+  sheet?.setAttribute('aria-hidden','false');
+  document.body.classList.add('community-composer-open');
+  setTimeout(()=>document.getElementById('communityPostText')?.focus(),180);
+}
+function closeCommunityComposer(){
+  const sheet=document.getElementById('communityComposer');
+  sheet?.classList.remove('open');
+  sheet?.setAttribute('aria-hidden','true');
+  document.body.classList.remove('community-composer-open');
+}
+function publishCommunityPost(){
+  const input=document.getElementById('communityPostText');
+  const text=(input?.value||'').trim();
+  if(!text){input?.focus();return}
+  const list=document.querySelector('.community-feed-list');
+  const post=document.createElement('article');
+  post.className='community-feed-card community-user-post';
+  post.dataset.communityType='forum';
+  post.dataset.search=text;
+  post.innerHTML=`<header class="feed-author"><span class="feed-avatar">陈</span><span class="feed-author-copy"><strong>陈奕斐</strong><small>我的进展 · 刚刚发布</small></span><button class="feed-more" type="button" aria-label="更多操作"><i data-lucide="more-horizontal"></i></button></header><p class="feed-copy">${text.replace(/[<>&]/g,s=>({'<':'&lt;','>':'&gt;','&':'&amp;'}[s]))}</p><footer class="feed-actions"><button type="button" onclick="toggleFeedReaction(this)"><i data-lucide="heart"></i><span>0</span></button><button type="button"><i data-lucide="message-circle"></i><span>回复</span></button><button type="button" onclick="toggleFeedReaction(this)"><i data-lucide="bookmark"></i><span>收藏</span></button><span class="feed-time">刚刚</span></footer>`;
+  list?.prepend(post);
+  input.value='';
+  closeCommunityComposer();
+  if(window.lucide)lucide.createIcons();
+}
 function filterCommunity(){
   const query=(document.getElementById('communitySearch')?.value||'').trim().toLowerCase();
   const active=document.querySelector('[data-community-filter].active')?.dataset.communityFilter||'all';
   const items=document.querySelectorAll('[data-community-type]');
   let visible=0;
   items.forEach(item=>{
-    const category=item.dataset.communityType;
+    const inPeopleDirectory=Boolean(item.closest('[data-community-section="people"]'));
     const text=(item.dataset.search||item.textContent||'').toLowerCase();
-    const show=(active==='all'||category===active)&&(!query||text.includes(query));
+    const show=active==='all'&&!inPeopleDirectory&&(!query||text.includes(query));
     item.hidden=!show;
     if(show)visible++;
   });
+  document.querySelectorAll('[data-community-section]').forEach(section=>{
+    const type=section.dataset.communitySection;
+    const show=active==='all'&&!['people'].includes(type)
+      ||(active==='people'&&type==='people');
+    section.hidden=!show;
+  });
+  document.querySelectorAll('[data-channel-intro]').forEach(intro=>{
+    intro.classList.toggle('active',intro.dataset.channelIntro===active);
+  });
+  document.querySelectorAll('[data-channel-topics]').forEach(topics=>{
+    topics.classList.toggle('active',topics.dataset.channelTopics===active);
+  });
   const empty=document.getElementById('communityEmpty');
-  if(empty)empty.hidden=visible>0;
+  if(empty)empty.hidden=active==='people'||visible>0;
+}
+function filterByTopic(topic){
+  const input=document.getElementById('communitySearch');
+  if(input)input.value=topic;
+  document.querySelectorAll('[data-community-filter]').forEach(item=>{
+    const selected=item.dataset.communityFilter==='all';
+    item.classList.toggle('active',selected);
+    item.setAttribute('aria-selected',String(selected));
+  });
+  filterCommunity();
+  document.querySelector('.community-feed-list')?.scrollIntoView({behavior:'smooth',block:'start'});
 }
 document.querySelectorAll('[data-community-filter]').forEach(button=>{
   button.addEventListener('click',()=>{
@@ -241,10 +760,61 @@ document.querySelectorAll('[data-community-filter]').forEach(button=>{
       item.classList.toggle('active',selected);
       item.setAttribute('aria-selected',String(selected));
     });
+    const consulting=button.dataset.communityFilter==='people';
+    document.body.classList.toggle('consultation-mode',consulting);
+    document.querySelector('.community-appbar>div>span').textContent=consulting?'NEXUS CONSULT':'NEXUS COMMUNITY';
+    document.querySelector('.community-appbar h1').textContent=consulting?'咨询':'一起聊聊申请';
+    document.querySelector('.community-search').hidden=consulting;
+    document.querySelector('.community-compose').hidden=consulting;
     filterCommunity();
+    if(consulting){
+      document.querySelector('[data-people-filter="senior"]')?.click();
+    }
   });
 });
 document.getElementById('communitySearch')?.addEventListener('input',filterCommunity);
+document.querySelectorAll('.channel-topics button').forEach(button=>{
+  button.addEventListener('click',()=>{
+    const group=button.closest('.channel-topics');
+    group.querySelectorAll('button').forEach(item=>item.classList.toggle('selected',item===button));
+    const general=['与你相关','最新回复','相似背景','本周热门','2027 Fall'];
+    const input=document.getElementById('communitySearch');
+    input.value=general.includes(button.textContent.trim())?'':button.textContent.trim();
+    filterCommunity();
+  });
+});
+document.querySelectorAll('[data-people-filter]').forEach(button=>{
+  button.addEventListener('click',()=>{
+    document.querySelectorAll('[data-people-filter]').forEach(item=>item.classList.toggle('active',item===button));
+    const type=button.dataset.peopleFilter;
+    let count=0;
+    document.querySelectorAll('.consult-person[data-community-type]').forEach(card=>{
+      card.hidden=type!=='all'&&card.dataset.communityType!==type;
+      if(!card.hidden)count++;
+    });
+    consultCount.textContent=`${count} 位可选`;
+    communityEmpty.hidden=true;
+  });
+});
+document.getElementById('consultSearch')?.addEventListener('input',event=>{
+  const query=event.target.value.trim().toLowerCase();
+  const type=document.querySelector('[data-people-filter].active')?.dataset.peopleFilter;
+  let count=0;
+  document.querySelectorAll('.consult-person[data-community-type]').forEach(card=>{
+    const show=card.dataset.communityType===type&&(!query||(card.dataset.search||card.textContent).toLowerCase().includes(query));
+    card.hidden=!show;
+    if(show)count++;
+  });
+  consultCount.textContent=`${count} 位可选`;
+  communityEmpty.hidden=true;
+});
+const initialCommunityView=new URLSearchParams(location.search).get('view');
+if(initialCommunityView==='people'){
+  document.querySelector('[data-community-filter="people"]')?.click();
+}else{
+  document.body.classList.remove('consultation-mode');
+  filterCommunity();
+}
 if(window.lucide){lucide.createIcons()}
 </script>
 </body>
